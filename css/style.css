@@ -1,0 +1,32 @@
+html {
+    font-size:  0.625rem;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    background-image: url('../img/layout/forest2.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 105%;
+    color: white;
+}
+header {
+    background-color: #285881;
+}
+.page {
+    background-color: #fafafa;
+}
+.feed {
+    background-color: white;
+    padding: 180px;
+    font-size: 1.8rem;
+}
+footer {
+    background-color: #285881;
+}
+.footermiddle {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
