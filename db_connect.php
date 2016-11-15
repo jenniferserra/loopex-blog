@@ -1,3 +1,0 @@
-<?php
-/*ADD CONTENT HERE*/
-?>
