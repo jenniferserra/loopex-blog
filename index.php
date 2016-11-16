@@ -1,5 +1,5 @@
 <?php
-include "dbconnect.php";
+require "header.php";
 
 $stmt = $conn->stmt_init();
 
@@ -31,4 +31,6 @@ if($stmt->prepare($query)) {
 	}		
 }	
 
+
+require "footer.php";
 ?>		

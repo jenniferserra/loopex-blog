@@ -1,52 +1,49 @@
-
-<!--*************************************************************************** 
-    STANDARD-HTML AND PHP TO INCLUDE ON PAGES.
-    CONTAINS HEADER AND BODY.
-    ALSO CONTAINS STANDARD PHP VIEWING DIFFERENTLY IF LOGGED IN
-    INCLUDES BOOTSTRAP
-     ***********************************************************************-->
-
 <!DOCTYPE html>
-<html lang="sv">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bloggprojekt</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Login/Registrera</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- ------------------------------------------------------------------------
-    // BOOTSTRAP
-    ------------------------------------------------------------------------ -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-
 <body>
+<?php
 
-    <header class="container-fluid">
-        <nav id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Hem</a></li>
-            <li><a href="#about">Blogg</a></li>
-            <li><a href="#contact">Statistik</a></li>
-          </ul>
+session_start();
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
+    // ------------------------------------------------------------------------
+    // IF LOGGED IN
+    // ------------------------------------------------------------------------
+    $userid = $_SESSION['user_id'];
+    require "dbconnect.php";
+
+    $stmt = $conn->stmt_init();
+    $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
+    $stmt->execute();
+    $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
+    $stmt->fetch();
+?>
+
+    <header>     
+        <nav>
+            <p>Hej <?php echo $firstname;?></p>
+            <a href="index.php">Till bloggen</a><br>
+            <a href="dashboard.php">Skriv inlägg</a><br>
+            <a href="logout.php">Logga ut</a>
         </nav>
     </header>
-    <div class="page row">
-            <div class="col-md-1">
-            </div>
-            <div class="feed col-md-10">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Dignissimos tenetur quidem qui sit tempore ratione nobis sequi
-                 saepe impedit alias voluptate iusto rerum incidunt doloremque,
-                est amet dolorum quam quibusdam!</p>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Dignissimos tenetur quidem qui sit tempore ratione nobis sequi
-                 saepe impedit alias voluptate iusto rerum incidunt doloremque,
-                est amet dolorum quam quibusdam!</p>
-            </div>
-            <div class="col-md-1">
-            </div>
+<?php
+} else {
+    // ------------------------------------------------------------------------
+    // IF NOT LOGGED IN
+    // ------------------------------------------------------------------------    
+?>
+    <header>
+    </header>
+    <?php
+        }
+?>
+   
+    

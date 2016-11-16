@@ -1,23 +1,16 @@
 <?php 
+require "header.php";
 
-//if logged in
-if(isset($_COOKIE["user_id"])) {
-	$userId = $_COOKIE["user_id"];
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
+	$userId = $_SESSION["user_id"];
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Dashboard</title>
-	</head>
-<body>
 <?php 
-require "dbconnect.php";
 
 $stmt = $conn->stmt_init();
 
-if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$_COOKIE["user_id"]}' ")) { 
+if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) { 
 	$stmt->execute();
 	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
 	$stmt->fetch();
@@ -161,6 +154,8 @@ if(isset($_POST["draft"])) {
 }else {
 	//IF NOT LOGGED IN
 	echo "Du är inte inloggad";
+	echo "<br><a href='login.php'>Logga in</a>";
 }
 
+require "footer.php";
 ?>
