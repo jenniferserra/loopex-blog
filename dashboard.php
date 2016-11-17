@@ -26,9 +26,6 @@ echo "Hej " . $firstname;
 
 ?>
 <h1> TEST </h1>
-<form action="logout.php">
-	<input name="logout" class="btn btn-lg btn-primary btn-block" type="submit" value="Logga ut">
-</form>
 
 <form method="POST" action="dashboard.php">
 	<input type="text" name="blogpost_title"><br>
