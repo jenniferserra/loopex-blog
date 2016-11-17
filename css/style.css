@@ -45,7 +45,7 @@ header {
 .banner {
   background-repeat: none;
   background-size: 100%;
-  background-image: url("https://pixabay.com/get/e832b30e2df2073ed1534705fb0938c9bd22ffd41db618439cf2c27fa6/tangerines-1721566_1920.jpg");
+  background-image: url("../img/layout/banner.jpg");
   height: 80vh;
   width: 100%;
 }

@@ -9,14 +9,13 @@
 </head>
 <body>
 <?php
-
+require "dbconnect.php";
 session_start();
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     // ------------------------------------------------------------------------
     // IF LOGGED IN
     // ------------------------------------------------------------------------
     $userid = $_SESSION['user_id'];
-    require "dbconnect.php";
 
     $stmt = $conn->stmt_init();
     $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");

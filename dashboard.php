@@ -17,7 +17,7 @@ if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
 	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
 	$stmt->fetch();
 }		
-echo "Hej " . $firstname . $user_id;
+echo "Hej " . $firstname;
 
 
 //-----------------------------------------------------------------------------
@@ -46,47 +46,6 @@ echo "Hej " . $firstname . $user_id;
 
 <?php 
 
-
-
-//-----------------------------------------------------------------------------
-// PRINTING OUT BLOG POST
-//-----------------------------------------------------------------------------
-
-
-
-$query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
-            LEFT JOIN users ON users.user_id = posts.user_id
-            LEFT JOIN categories ON posts.cat_id = categories.cat_id
-            ORDER BY create_time DESC";
-
-
-
-if($stmt->prepare($query)) {
-	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
-	$stmt->fetch();
-
-
-	while(mysqli_stmt_fetch($stmt)) {
-		// Only displaying published posts
-		if(isset($isPublished) && $isPublished == TRUE) {
-	?>
-	<div class="blogpost">
-		<h1><?php echo $title; ?></h1>
-        <div class="date"><?php echo $createTime; ?></div>
-		<div class="text"><?php echo $text; ?></div>
-		<div class="author">Written by:
-			<?php
-			echo "<a href='author.php?id=$userId'>$firstName $lastName</a>";
-            echo "<br>Kategori: $catName";
-			?>
-			</div>
-	</div>
-	<?php	
-		}
-	}
-}
-
 //-----------------------------------------------------------------------------
 // PUBLISH
 //-----------------------------------------------------------------------------
@@ -95,7 +54,7 @@ if(isset($_POST["publish"])) {
 	if(	!empty($_POST["blogpost_title"]) &&
 		!empty($_POST["blogpost_text"]) &&
 		$_POST["category"] != "0" ) {
-		
+
 		// Preparing the statement
 		$stmt = $conn->stmt_init();
 		
@@ -106,9 +65,9 @@ if(isset($_POST["publish"])) {
 		$timeStamp = date("Y-m-d H:i:s");
 		$category = $_POST["category"];
 
-		// Upload post into database. Published = FALSE
-		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$userId', '$category')";
-		
+		// Upload post into database. Published = TRUE
+		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
+		// header("Refresh:0");
 		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
 		} else {
@@ -137,7 +96,7 @@ if(isset($_POST["draft"])) {
 		$category = $_POST["category"];
 
 		// Upload post into database. Published = FALSE
-		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$userId', '$category')";
+		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
 		
 		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";

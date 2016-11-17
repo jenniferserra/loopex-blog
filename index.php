@@ -7,15 +7,12 @@ require "header.php";
     
 <?php
 
-include "dbconnect.php";
-
 $stmt = $conn->stmt_init();
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
             LEFT JOIN users ON posts.user_id = users.user_id
             LEFT JOIN categories ON posts.cat_id = categories.cat_id
             ORDER BY create_time DESC";
-
 
 if ( mysqli_query($conn, $query) ) {
 }
