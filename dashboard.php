@@ -17,7 +17,7 @@ if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
 	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
 	$stmt->fetch();
 }		
-echo "Hej " . $firstname;
+echo "Hej " . $firstname . $user_id;
 
 
 //-----------------------------------------------------------------------------
@@ -55,7 +55,7 @@ echo "Hej " . $firstname;
 
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
-            LEFT JOIN users ON posts.user_id = users.user_id
+            LEFT JOIN users ON users.user_id = posts.user_id
             LEFT JOIN categories ON posts.cat_id = categories.cat_id
             ORDER BY create_time DESC";
 

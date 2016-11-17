@@ -1,6 +1,5 @@
 <?php
 
-
 function regUser() {
 
 	if(isset($_POST["register"])) {
