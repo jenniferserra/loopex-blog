@@ -28,9 +28,9 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     <header>     
         <nav>
             <p>Hej <?php echo $firstname;?></p>
-            <a href="index.php">Till bloggen</a><br>
-            <a href="dashboard.php">Skriv inlägg</a><br>
-            <a href="logout.php">Logga ut</a>
+            <a class="navbtn btn-primary" href="index.php">Till bloggen</a>
+            <a class="navbtn btn-primary" href="dashboard.php">Skriv inlägg</a>
+            <a class="navbtn btn-primary" href="logout.php">Logga ut</a>
         </nav>
     </header>
 

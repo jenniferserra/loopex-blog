@@ -1,8 +1,10 @@
 <?php 
 require "header.php";
 
-
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
+//-----------------------------------------------------------------------------
+// LOGGED IN
+//-----------------------------------------------------------------------------
 	$userId = $_SESSION["user_id"];
 ?>
 
@@ -31,10 +33,12 @@ echo "Hej " . $firstname;
 <form method="POST" action="dashboard.php">
 	<input type="text" name="blogpost_title"><br>
 	<textarea rows="15" cols="80" name="blogpost_text"></textarea><br>
-	<select name="categories"> 
+	<select name="category"> 
 		<option value ="0">Välj kategori</option>
-		<option value ="1">Mode</option>
-		<option value ="2">Fotografi</option>
+		<option value ="1">Sport</option>
+		<option value ="2">Mode</option>
+		<option value ="3">Fotografi</option>
+		<option value ="4">Annat</option>
 	</select><br>
 	<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
 	<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
@@ -48,45 +52,49 @@ echo "Hej " . $firstname;
 // PRINTING OUT BLOG POST
 //-----------------------------------------------------------------------------
 
-$query = "SELECT posts.*, users.firstname, users.lastname FROM posts LEFT JOIN users ON posts.fk_user_id = users.user_id WHERE posts.fk_user_id = '{$userId}'";
+
+
+$query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
+            LEFT JOIN users ON posts.user_id = users.user_id
+            LEFT JOIN categories ON posts.cat_id = categories.cat_id
+            ORDER BY create_time DESC";
 
 
 
 if($stmt->prepare($query)) {
 	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $fkUserId, $fkCatId, $firstName, $lastName);
+	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+	$stmt->fetch();
+
 
 	while(mysqli_stmt_fetch($stmt)) {
-
+		// Only displaying published posts
+		if(isset($isPublished) && $isPublished == TRUE) {
 	?>
 	<div class="blogpost">
 		<h1><?php echo $title; ?></h1>
+        <div class="date"><?php echo $createTime; ?></div>
 		<div class="text"><?php echo $text; ?></div>
 		<div class="author">Written by:
 			<?php
-			echo "<a href='author.php?id=$fkUserId'>$firstName $lastName</a>";
+			echo "<a href='author.php?id=$userId'>$firstName $lastName</a>";
+            echo "<br>Kategori: $catName";
 			?>
 			</div>
 	</div>
 	<?php	
+		}
 	}
 }
 
 //-----------------------------------------------------------------------------
-//PUBLISH
+// PUBLISH
 //-----------------------------------------------------------------------------
 
-if($stmt->prepare($query)) {
-	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $fkUserId, $fkCatId, $firstName, $lastName);
-}
-
-// If fields are filled
 if(isset($_POST["publish"])) {
 	if(	!empty($_POST["blogpost_title"]) &&
 		!empty($_POST["blogpost_text"]) &&
-		$_POST["categories"] != "0" ) {
-
+		$_POST["category"] != "0" ) {
 		
 		// Preparing the statement
 		$stmt = $conn->stmt_init();
@@ -95,52 +103,49 @@ if(isset($_POST["publish"])) {
 		$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
 		$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
 
-		$category = $_POST["categories"];
 		$timeStamp = date("Y-m-d H:i:s");
-		// Upload post into databease
-		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '{$userId}', '');";
-		$query .= "INSERT INTO categories VALUES (NULL, '{$category}')";
+		$category = $_POST["category"];
+
+		// Upload post into database. Published = FALSE
+		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$userId', '$category')";
 		
-		if ( mysqli_multi_query($conn, $query)) {
+		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
-			} else {
-				echo "inlägget är inte sparat i databasen";
+		} else {
+				echo "Inlägget är inte sparat i databasen";
 		}
 	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
-	
-
 }
+
 //-----------------------------------------------------------------------------
-//PUBLISH
+// SAVE AS DRAFT
 //-----------------------------------------------------------------------------
 
-// DRAFT
-//If button draft is selected
 if(isset($_POST["draft"])) {
 	if(	!empty($_POST["blogpost_title"]) &&
 		!empty($_POST["blogpost_text"]) &&
-		$_POST["categories"] != "0") {
+		$_POST["category"] != "0") {
 
-		//prepare the statement
+		// Preparing the statement
 		$stmt = $conn->stmt_init();
-
+		
+		// Stripping off harmful characters
 		$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
 		$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
 
-		$query = "INSERT INTO posts VALUES (NULL, 'time()', '', '$title', '$text', FALSE, '', '')"; 
+		$timeStamp = date("Y-m-d H:i:s");
+		$category = $_POST["category"];
 
-			
-			if ( mysqli_query($conn, $query) ) {
+		// Upload post into database. Published = FALSE
+		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$userId', '$category')";
+		
+		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
-			} else {
-				echo "inlägget är inte sparat i databasen";
-			}
-
-
-	} else {
-		echo "Du har inte fyllt i alla fält eller valt kategori";
-	}
-} 
+		} else {
+				echo "Inlägget är inte sparat i databasen";
+		}
+	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
+}
 
 
 ?>
@@ -152,7 +157,9 @@ if(isset($_POST["draft"])) {
 <?php
 
 }else {
-	//IF NOT LOGGED IN
+//-----------------------------------------------------------------------------
+// LOGGED OUT
+//-----------------------------------------------------------------------------
 	echo "Du är inte inloggad";
 	echo "<br><a href='login.php'>Logga in</a>";
 }
