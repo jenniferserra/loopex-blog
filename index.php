@@ -27,14 +27,14 @@ if($stmt->prepare($query)) {
         ?>
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
-            <div class="date"><?php echo $createTime; ?></div>
-            <div class="text"><?php echo $text; ?></div>
-            <div class="author">Written by:
+            <div class="date"><p><?php echo $createTime; ?></p></div>
+            <div class="text"><p><?php echo $text; ?></p></div>
+            <div class="author"><p>Written by:
                 <?php
-                echo "<a href='author.php?id=$userId'>$firstName $lastName</a>";
-                echo "<br>Kategori: $catName";
+                echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
+                echo "<p>Kategori: $catName</p>";
                 ?>
-                </div>
+            </div>
         </div>
         <?php
         }

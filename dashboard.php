@@ -7,7 +7,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
 //-----------------------------------------------------------------------------
 	$userId = $_SESSION["user_id"];
 ?>
-
+<div class="frida-form">
 <?php 
 
 $stmt = $conn->stmt_init();
@@ -17,7 +17,7 @@ if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
 	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
 	$stmt->fetch();
 }		
-echo "Hej " . $firstname;
+echo "Hej " . $firstname . " " . $lastname;
 
 
 //-----------------------------------------------------------------------------
@@ -25,10 +25,12 @@ echo "Hej " . $firstname;
 //-----------------------------------------------------------------------------
 
 ?>
-<h1> TEST </h1>
+<h1>Blogginlägg</h1>
 
 <form method="POST" action="dashboard.php">
+	<p>Rubrik</p>
 	<input type="text" name="blogpost_title"><br>
+	<p>Text</p>
 	<textarea rows="15" cols="80" name="blogpost_text"></textarea><br>
 	<select name="category"> 
 		<option value ="0">Välj kategori</option>
@@ -105,7 +107,7 @@ if(isset($_POST["draft"])) {
 
 
 ?>
-	
+</div>	
 </body>
 </html>
 

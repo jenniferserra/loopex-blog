@@ -25,6 +25,13 @@
 
       include "functions/functions.php";
 
+      // TO-DO, någon liknande if sats som denna, för att:
+      // om användaren är inloggad och hamnar på login.php ska
+      // användaren hamna på dashboard istället
+      //
+      // if (!empty($_SESSION['user_id'])) { 
+      //   header("Location: dashboard.php");
+      // }
       ?>
 
   </head>
