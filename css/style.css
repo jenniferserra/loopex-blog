@@ -78,6 +78,7 @@ nav.navbar.navbar-default {
   background-repeat: none;
   background-size: 100%;
   background-image: url("../img/layout/banner.jpg");
+  background-position: center 50%;
   height: 55vh;
   width: 100%;
 }
