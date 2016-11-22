@@ -37,7 +37,7 @@ if($stmt->prepare($query)) {
             </div>
             <div class="comments">
             <?php 
-                echo "<a href='post.php?$postId' name='btn' >";
+                echo "<a href='post2.php?$postId' name='btn'>";
                 echo "(X) Kommentarer </a>"; 
             ?>
             </div>
