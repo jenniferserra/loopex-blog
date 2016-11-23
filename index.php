@@ -1,12 +1,9 @@
 <?php
 require "header.php";
 ?>
-
 <div class="banner"> </div>
 <div class="col-md-2"></div> <div class="col-md-8">
-    
 <?php
-
 $stmt = $conn->stmt_init();
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
@@ -37,7 +34,7 @@ if($stmt->prepare($query)) {
             </div>
             <div class="comments">
             <?php 
-                echo "<a href='post2.php?$postId' name='btn'>";
+                echo "<a href='post.php?id=$postId' name='btn'>";
                 echo "(X) Kommentarer </a>"; 
             ?>
             </div>
@@ -46,10 +43,7 @@ if($stmt->prepare($query)) {
         }
 	}		
 }	
-
-
 require "footer.php";
 ?>		
-
 </div>
 <div class="col-md-2"></div>

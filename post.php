@@ -1,18 +1,15 @@
 <?php
-
-
-//include "header.php";
-include "dbconnect.php";
-
-var_dump($_GET);
+include "header.php";
+// include "dbconnect.php";
 
 $stmt = $conn->stmt_init();
 
-$query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name 
-			FROM posts WHERE post_id='" . mysql_real_escape_string($_GET['id']) . "'
-            LEFT JOIN users ON posts.user_id = users.user_id
-            LEFT JOIN categories ON posts.cat_id = categories.cat_id
-            ";
+$query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
+$query .= "FROM posts ";
+$query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
+$query .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
+$query .= "WHERE post_id = ";
+$query .= $_GET['id'];
 
 if ( mysqli_query($conn, $query) ) {
 }
@@ -22,7 +19,6 @@ if($stmt->prepare($query)) {
 
 	while(mysqli_stmt_fetch($stmt)) {
 		
-	
 	?>
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
@@ -34,28 +30,17 @@ if($stmt->prepare($query)) {
                 echo "<p>Kategori: $catName</p>";
                 ?>
             </div>
-            <div class="comments"> 
-            <?php 
-                echo "<a href='post.php?id=$postId'>";
-                echo "(X) Kommentarer </a>"; 
-            ?>
-            </div>
         </div>
-  
 		<form method="POST" action="post.php">
 			<h2>Kommentera</h2>
-			<input type="name" name="comment_name"><br>
+			<p>Rubrik</p>
+            <input type="text" name="blogpost_title"><br>
+            <p>Text</p>
 			<textarea rows="5" cols="30" name="blogpost_text"></textarea><br>
-			<input type="text" name="comment_text"><br>
-			<textarea rows="15" cols="80" name="blogpost_text"></textarea><br>
 			<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera kommentar">
 		</form>
-
       <?php   
 	}
 }
-//}
-
 include "footer.php";
-
 ?>
