@@ -1,5 +1,7 @@
 <?php 
 require "header.php";
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
+
 $stmt = $conn->stmt_init();
 
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
@@ -64,7 +66,7 @@ if(isset($_POST["publish"])) {
 		$category = $_POST["category"];
 		$editId = $_GET['editid'];
 
-		// Upload post into database. Published = TRUE
+		// Update posts with new content as entered in previous form
 		$query = "UPDATE posts
 					SET posts.title = $title, posts.text = $text, posts.category = $category, posts.edit_time = $timeStamp
 					WHERE post_id = $editId";
@@ -78,6 +80,9 @@ if(isset($_POST["publish"])) {
 }
 }
 }
+}
+}else {
+	echo "Du är inte inloggad!";
 }
 
 ?>

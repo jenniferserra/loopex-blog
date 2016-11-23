@@ -42,13 +42,10 @@ echo "Hej " . $firstname . " " . $lastname;
 	<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
 	<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
 </form>
-
 <?php 
-
 //-----------------------------------------------------------------------------
 // PUBLISH
 //-----------------------------------------------------------------------------
-
 if(isset($_POST["publish"])) {
 	if(	!empty($_POST["blogpost_title"]) &&
 		!empty($_POST["blogpost_text"]) &&
@@ -66,7 +63,7 @@ if(isset($_POST["publish"])) {
 
 		// Upload post into database. Published = TRUE
 		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
-		// header("Refresh:0");
+	
 		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
 		} else {

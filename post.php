@@ -1,6 +1,5 @@
 <?php
 include "header.php";
-// include "dbconnect.php";
 
 $stmt = $conn->stmt_init();
 
@@ -18,7 +17,6 @@ if($stmt->prepare($query)) {
 	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
 
 	while(mysqli_stmt_fetch($stmt)) {
-		
 	?>
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
@@ -31,8 +29,31 @@ if($stmt->prepare($query)) {
                 ?>
             </div>
         </div>
+        <hr>
+        <?php
+            // Print comment 
+            $stmt = $conn->stmt_init();
+
+            $query  = "SELECT * FROM comments";
+
+            if ( mysqli_query($conn, $query) ) {
+            }
+            if($stmt->prepare($query)) {
+                $stmt->execute();
+                $stmt->bind_result($com_id, $c_name, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
+                while(mysqli_stmt_fetch($stmt)) {
+            ?>
+                 <div class="blogpost">
+                    <div class="text"><p><?php echo $c_text; ?></p></div>
+                    <div class="author"><p><?php echo $c_name . " " . $createTime; ?></p></div>
+                </div>
+                <?php
+                }
+            }
+        ?>
+        <hr>
         <div class="comments_to_post">
-            <h2>Kommentarer</h2>
+            <h3>Kommentera</h3>
     		<form method="POST" action="post.php?id=140">
     			<p>Namn</p>
                 <input type="text" name="comment_name"><br>
@@ -61,22 +82,14 @@ if($stmt->prepare($query)) {
             $timeStamp = date("Y-m-d H:i:s");
 
             // Upload post into database. Published = TRUE
-            $query = "INSERT INTO comments VALUES ('', '{$timeStamp}', '', '{$c_text}', '{$c_epost}', '')";
+            $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$timeStamp}', '', '{$c_text}', '{$c_epost}', '')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
                     echo "Ditt inlägg är sparat i databasen";
+                    header("Refresh:0");
             } else {echo "Inlägget är inte sparat i databasen";}
         } else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
     }
-    ?>
-     <div class="blogpost">
-        <h1><?php echo $c_name; ?></h1>
-        <div class="date"><p><?php echo $c_epost; ?></p></div>
-        <div class="text"><p><?php echo $c_text; ?></p></div>
-        <div class="author"><p>Written by:
-        </div>
-    </div>
-<?php
 }
 include "footer.php";
 ?>

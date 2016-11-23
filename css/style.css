@@ -84,13 +84,27 @@ nav.navbar.navbar-default {
 }
 input.btn.btn-lg.btn-primary.btn-block {
   max-width: 330px;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 .frida-form {
   width: 50%;
   margin: 10px 0 0 150px;
   padding: 10px;
 }
-
+.comments_to_post {
+  text-align: center;
+}
+.comments_to_post > h3 {
+  font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+  color: #666;
+  font-size: 2.0rem;
+}
+.comments_to_post > form > p {
+  font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+  color: #666;
+  font-size: 1.2rem;
+}
 /*------------------------------------------------------
 FOOTER
 --------------------------------------------------------*/

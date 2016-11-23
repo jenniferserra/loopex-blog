@@ -14,10 +14,10 @@ $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name F
 if ( mysqli_query($conn, $query) ) {
 }
 if($stmt->prepare($query)) {
-	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+    $stmt->execute();
+    $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
 
-	while(mysqli_stmt_fetch($stmt)) {
+    while(mysqli_stmt_fetch($stmt)) {
 
         // Only displaying published posts
         if(isset($isPublished) && $isPublished == TRUE) {
@@ -40,16 +40,19 @@ if($stmt->prepare($query)) {
             </div>
             <div class="edit">
             <?php 
+            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId) {
                 echo "<a href='editpost.php?editid=$postId' name='btn'>";
-                echo "Redigera </a>"; 
+                
+                echo "Redigera </a>";
+            }
             ?>
             </div>
         </div>
         <?php
         }
-	}		
-}	
+    }       
+}   
 require "footer.php";
-?>		
+?>      
 </div>
 <div class="col-md-2"></div>
