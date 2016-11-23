@@ -38,6 +38,12 @@ if($stmt->prepare($query)) {
                 echo "(X) Kommentarer </a>"; 
             ?>
             </div>
+            <div class="edit">
+            <?php 
+                echo "<a href='editpost.php?editid=$postId' name='btn'>";
+                echo "Redigera </a>"; 
+            ?>
+            </div>
         </div>
         <?php
         }
