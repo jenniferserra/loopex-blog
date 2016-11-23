@@ -61,8 +61,20 @@ HEADER
 nav.navbar.navbar-default {
   margin-bottom: 0px;
 }
+.blogpost_center {
+  margin: 0 auto;
+  max-width: 400px;
+}
 .blogpost {
+  margin: 0 auto;
   text-align: center;
+}
+.border {
+  margin: 5px;
+  text-align: center;
+  border: solid 1px #eee;
+  width: 400px;
+  padding: 5px;
 }
 .blogpost > h1 {
   font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;

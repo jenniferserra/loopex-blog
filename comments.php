@@ -1,9 +1,6 @@
 <?php
-require "header.php";
-?>
-<div class="banner"> </div>
-<div class="col-md-2"></div> <div class="col-md-8">
-<?php
+include "header.php";
+
 $stmt = $conn->stmt_init();
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
@@ -20,7 +17,7 @@ if($stmt->prepare($query)) {
     while(mysqli_stmt_fetch($stmt)) {
 
         // Only displaying published posts
-        if(isset($isPublished) && $isPublished == TRUE) {
+        if(isset($isPublished) && $isPublished == TRUE && $_SESSION["user_id"] == $userId) {
         ?>
         <div class="blogpost_center">
             <div class="blogpost">
@@ -52,9 +49,40 @@ if($stmt->prepare($query)) {
         </div>
         <?php
         }
-    }       
+        ?>
+        <hr>
+        <?php
+            // Print comment 
+            $stmt = $conn->stmt_init();
+
+            $query  = "SELECT * FROM comments";
+
+            if ( mysqli_query($conn, $query) ) {
+            }
+            if($stmt->prepare($query)) {
+                $stmt->execute();
+                $stmt->bind_result($com_id, $c_name, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
+    
+                while(mysqli_stmt_fetch($stmt)) {
+                    if ($fk_post_id === $postId) {
+                    ?> 
+                    <div class="container">
+						<div class="row">
+							<div class="col-sm-4"></div>
+							<div class="col-sm-4">
+			                    <div class="blogpost border">
+			                        <div class="text"><p><?php echo $c_text; ?></p></div>
+			                        <div class="author"><p><?php echo $c_name . " " . $createTime; ?></p></div>
+			                    </div>
+                 			</div>
+							<div class="col-sm-4"></div>
+						</div>
+					</div>
+                    <?php
+                    }
+                }
+            }
+    }   
 }   
-require "footer.php";
-?>      
-</div>
-<div class="col-md-2"></div>
+include "footer.php";
+?>
