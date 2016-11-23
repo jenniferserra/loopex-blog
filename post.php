@@ -81,8 +81,9 @@ if($stmt->prepare($query)) {
 
             $timeStamp = date("Y-m-d H:i:s");
 
+            $fk_post_id = $_GET['id'];
             // Upload post into database. Published = TRUE
-            $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$timeStamp}', '', '{$c_text}', '{$c_epost}', '')";
+            $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$timeStamp}', '', '{$c_text}', '{$c_epost}', '{$fk_post_id}')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
                     echo "Ditt inlägg är sparat i databasen";
