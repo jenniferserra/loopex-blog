@@ -31,14 +31,18 @@ if($stmt->prepare($query)) {
                 ?>
             </div>
         </div>
-		<form method="POST" action="post.php">
-			<h2>Kommentera</h2>
-			<p>Rubrik</p>
-            <input type="text" name="blogpost_title"><br>
-            <p>Text</p>
-			<textarea rows="5" cols="30" name="blogpost_text"></textarea><br>
-			<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera kommentar">
-		</form>
+        <div class="comments_to_post">
+            <h2>Kommentarer</h2>
+    		<form method="POST" action="post.php">
+    			<p>Namn</p>
+                <input type="text" name="blogpost_title"><br>
+                <p>E-post</p>
+                <input type="text" name="blogpost_title"><br>
+                <p>Kommentar</p>
+    			<textarea rows="5" cols="30" name="blogpost_text"></textarea><br>
+    			<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera kommentar">
+    		</form>
+        </div>
       <?php   
 	}
 }
