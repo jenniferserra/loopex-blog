@@ -41,20 +41,23 @@ if($stmt->prepare($query)) {
             if($stmt->prepare($query)) {
                 $stmt->execute();
                 $stmt->bind_result($com_id, $c_name, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
+    
                 while(mysqli_stmt_fetch($stmt)) {
-            ?>
-                 <div class="blogpost">
-                    <div class="text"><p><?php echo $c_text; ?></p></div>
-                    <div class="author"><p><?php echo $c_name . " " . $createTime; ?></p></div>
-                </div>
-                <?php
+                    if ($fk_post_id === $postId) {
+                    ?>
+                     <div class="blogpost">
+                        <div class="text"><p><?php echo $c_text; ?></p></div>
+                        <div class="author"><p><?php echo $c_name . " " . $createTime; ?></p></div>
+                    </div>
+                    <?php
+                    }
                 }
             }
         ?>
         <hr>
         <div class="comments_to_post">
             <h3>Kommentera</h3>
-    		<form method="POST" action="post.php?id=140">
+    		<form method="POST">
     			<p>Namn</p>
                 <input type="text" name="comment_name"><br>
                 <p>E-post</p>
