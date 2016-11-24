@@ -1,88 +1,68 @@
 <?php
 include "header.php";
-
+echo $firstname;
 $stmt = $conn->stmt_init();
 
-$query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
-            LEFT JOIN users ON posts.user_id = users.user_id
-            LEFT JOIN categories ON posts.cat_id = categories.cat_id
-            ORDER BY create_time DESC";
-
-if ( mysqli_query($conn, $query) ) {
+$query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
+$query .= "FROM posts ";
+$query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
+$query .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
+$query .= "WHERE users.user_id =";
+$query .= $userid;
+if (mysqli_query($conn, $query)) {
 }
 if($stmt->prepare($query)) {
-    $stmt->execute();
-    $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+	$stmt->execute();
+	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+	$myPostDataArray = array();
+	while($stmt->fetch()) {
 
-    while(mysqli_stmt_fetch($stmt)) {
-
-        // Only displaying published posts
-        if(isset($isPublished) && $isPublished == TRUE && $_SESSION["user_id"] == $userId) {
-        ?>
-        <div class="blogpost_center">
-            <div class="blogpost">
-                <h1><?php echo $title; ?></h1>
-                <div class="date"><p><?php echo $createTime; ?></p></div>
-                <div class="text"><p><?php echo $text; ?></p></div>
-                <div class="author"><p>Written by:
-                    <?php
-                    echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
-                    echo "<p>Kategori: $catName</p>";
-                    ?>
-                </div>
-                <div class="comments">
-                <?php 
-                    echo "<a href='post.php?id=$postId' name='btn'>";
-                    echo "(X) Kommentarer </a>"; 
-                ?>
-                </div>
-                <div class="edit">
-                <?php 
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId) {
-                    echo "<a href='editpost.php?editid=$postId' name='btn'>";
-                    
-                    echo "Redigera </a>";
-                }
-                ?>
-                </div>
-            </div>
+		$myPostDataArray[] = array('postId' => $postId, 'createTime' => $createTime, 'editTime' => $editTime, 'title' => $title, 'text' => $text, 'isPublished' => $isPublished, 'userId' => $userId, 'catId' => $catId, 'firstName' => $firstName, 'lastName' => $lastName, 'catName' => $catName);
+	}
+}	
+foreach ($myPostDataArray as $post) {
+?>
+    <div class="blogpost">
+        <h1><?php echo $post['title']; ?></h1>
+        <div class="date"><p><?php echo $post['createTime']; ?></p></div>
+        <div class="text"><p><?php echo $post['text']; ?></p></div>
+        <div class="author"><p>Written by:
+            <?php
+            echo $post['firstName']; 
+            ?>
         </div>
-        <?php
+    </div>
+    <hr>
+    <?php
+        // Print comment
+    	//
+    	// TO-DO, change stmt2 to stmt???
+    	// and query2 to query????
+        $stmt2 = $conn->stmt_init();
+
+        $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']}";
+
+        if (mysqli_query($conn, $query2)) {
+        }
+        if($stmt2->prepare($query2)) {
+            $stmt2->execute();
+            $stmt2->bind_result($com_id, $c_name, $c_url, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
+
+            while($stmt2->fetch()) {
+            ?>
+				<div class="blogpost">
+				<div class="text"><p><?php echo $c_text; ?></p></div>
+				<div class="author">
+				    <p><?php echo $c_name . " " . $createTime; ?></p>
+				    <p><?php echo $c_url; ?></p>
+				</div>
+				</div>
+            <?php
+            }
         }
         ?>
-        <hr>
-        <?php
-            // Print comment 
-            $stmt = $conn->stmt_init();
-
-            $query  = "SELECT * FROM comments";
-
-            if ( mysqli_query($conn, $query) ) {
-            }
-            if($stmt->prepare($query)) {
-                $stmt->execute();
-                $stmt->bind_result($com_id, $c_name, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
-    
-                while(mysqli_stmt_fetch($stmt)) {
-                    if ($fk_post_id === $postId) {
-                    ?> 
-                    <div class="container">
-						<div class="row">
-							<div class="col-sm-4"></div>
-							<div class="col-sm-4">
-			                    <div class="blogpost border">
-			                        <div class="text"><p><?php echo $c_text; ?></p></div>
-			                        <div class="author"><p><?php echo $c_name . " " . $createTime; ?></p></div>
-			                    </div>
-                 			</div>
-							<div class="col-sm-4"></div>
-						</div>
-					</div>
-                    <?php
-                    }
-                }
-            }
-    }   
-}   
+    <hr>
+<?php
+}      
 include "footer.php";
 ?>
