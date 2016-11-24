@@ -33,7 +33,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                 <a class="navbar-brand" href="comments.php">Kommentarer</a>
                 <a class="navbar-brand" href="archive.php">Arkiv</a>
                 <a class="navbar-brand" href="drafts.php">Utkast</a>
-                <a class="navbar-brand" href="index.php">Statistik</a>
+                <a class="navbar-brand" href="statistics.php">Statistik</a>
             </div>
             <div class="navbar-header navbar-right">
                 <a class="navbar-brand" href="logout.php">Logga ut</a>
