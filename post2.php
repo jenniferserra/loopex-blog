@@ -117,7 +117,7 @@ if($stmt->prepare($query)) {
                         </div>
                         </div>
                         <div class="col-sm-4"></div>
-                    </div>
+                    </div>hej
                 </div>
                 <?php
                 }
@@ -134,3 +134,6 @@ $query = "SELECT posts.*, comments.*, users.firstname, users.lastname, categorie
             LEFT JOIN comments ON comments.fk_post_id = posts.post_id 
             LEFT JOIN users ON posts.user_id = users.user_id
             LEFT JOIN categories ON posts.cat_id = categories.cat_id";
+
+
+            echo "<p><a href='mailto:<?php echo $c_epost; ?>'><?php echo $c_epost; ?></a> | <a href='http://<?php echo $c_url; ?>'><?php echo $c_url; ?></a></p>"; // lägg till i index! 

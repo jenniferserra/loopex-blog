@@ -6,7 +6,7 @@ require "header.php";
 <?php
 $stmt = $conn->stmt_init();
 
-$query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
+$query = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
             LEFT JOIN users ON posts.user_id = users.user_id
             LEFT JOIN categories ON posts.cat_id = categories.cat_id
             ORDER BY create_time DESC";
@@ -15,22 +15,24 @@ if ( mysqli_query($conn, $query) ) {
 }
 if($stmt->prepare($query)) {
     $stmt->execute();
-    $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+    $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $user_email, $catName);
 
     while(mysqli_stmt_fetch($stmt)) {
 
         // Only displaying published posts
         if(isset($isPublished) && $isPublished == TRUE) {
+
         ?>
         <div class="blogpost_center">
             <div class="blogpost">
                 <h1><?php echo $title; ?></h1>
                 <div class="date"><p><?php echo $createTime; ?></p></div>
                 <div class="text"><p><?php echo $text; ?></p></div>
-                <div class="author"><p>Written by:
+                <div class="text"><p><?php echo "<p>Kategori: $catName</p>"; ?></p></div>
+                <div class="author"><p>Skriven av:
                     <?php
                     echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
-                    echo "<p>Kategori: $catName</p>";
+                    echo "<p><a href='mailto:$user_email'>$user_email</a></p>";
                     ?>
                 </div>
                 <div class="comments">

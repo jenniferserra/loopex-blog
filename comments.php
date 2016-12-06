@@ -1,6 +1,20 @@
 <?php
 include "header.php";
 echo $firstname;
+/**
+* if "delete" is set.
+* $query, is to delete the specific item from tasks where the id is the $taskToDelete.
+* prepares if the query is correct. 
+* $stmt, the prepared statement executes.
+**/
+if (isset($_GET["delete"])) {
+	$taskToDelete = $_GET["delete"];
+	$query = "DELETE FROM comments WHERE com_id = '{$taskToDelete}'";
+
+	if ($stmt->prepare($query)) {
+		$stmt->execute();
+	}
+}
 $stmt = $conn->stmt_init();
 
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
@@ -22,17 +36,8 @@ if($stmt->prepare($query)) {
 }	
 foreach ($myPostDataArray as $post) {
 ?>
-    <div class="blogpost">
-        <h1><?php echo $post['title']; ?></h1>
-        <div class="date"><p><?php echo $post['createTime']; ?></p></div>
-        <div class="text"><p><?php echo $post['text']; ?></p></div>
-        <div class="author"><p>Written by:
-            <?php
-            echo $post['firstName']; 
-            ?>
-        </div>
-    </div>
-    <hr>
+
+    <table>
     <?php
         // Print comment
     	//
@@ -40,7 +45,8 @@ foreach ($myPostDataArray as $post) {
     	// and query2 to query????
         $stmt2 = $conn->stmt_init();
 
-        $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']}";
+        $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']} 
+        ORDER BY create_time DESC";
 
         if (mysqli_query($conn, $query2)) {
         }
@@ -49,19 +55,25 @@ foreach ($myPostDataArray as $post) {
             $stmt2->bind_result($com_id, $c_name, $c_url, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
 
             while($stmt2->fetch()) {
-            ?>
+            ?><tr style="border: solid 1px;">
+            	<td style="border: solid 1px;"><a href="comments.php?delete=<?php echo $com_id; ?>">Radera</a></td>
 				<div class="blogpost">
-				<div class="text"><p><?php echo $c_text; ?></p></div>
-				<div class="author">
-				    <p><?php echo $c_name . " " . $createTime; ?></p>
-				    <p><?php echo $c_url; ?></p>
-				</div>
+				<td style="border: solid 1px;">
+					<div class="author">
+						<p>
+							<?php echo $c_name?> kommenterade <?php echo $post['title']; ?>
+						<?php echo $c_name?>
+						</p> 
+					</div>
+					<div class="text"><p><?php echo $c_text; ?></p></div>
+				</td>
 				</div>
             <?php
             }
         }
         ?>
-    <hr>
+        </tr>
+        </table>
 <?php
 }      
 include "footer.php";

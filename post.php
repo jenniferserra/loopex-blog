@@ -43,17 +43,18 @@ if($stmt->prepare($query)) {
                 $stmt->bind_result($com_id, $c_name, $c_url, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
     
                 while(mysqli_stmt_fetch($stmt)) {
-                   // if ($fk_post_id === $postId) {
                     ?>
-                     <div class="blogpost">
-                        <div class="text"><p><?php echo $c_text; ?></p></div>
-                        <div class="author">
+                    <div class="blogpost">
+                        <div class="text">
+                            <p><?php echo $c_text; ?></p>
                             <p><?php echo $c_name . " " . $createTime; ?></p>
-                            <p><?php echo $c_url; ?></p>
                         </div>
+                        <div class="author">
+                            <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a> | <a href="http://<?php echo $c_url; ?>"><?php echo $c_url; ?></a></p>
+                        </div>
+                        <br>
                     </div>
-                    <?php
-                    //}
+                <?php
                 }
             }
         ?>
@@ -64,7 +65,7 @@ if($stmt->prepare($query)) {
     			<p>Namn</p>
                 <input type="text" name="comment_name"><br>
                 <p>E-post</p>
-                <input type="text" name="comment_epost"><br>
+                <input type="email" name="comment_epost"><br>
                 <p>Url</p>
                 <input type="text" name="comment_url"><br>
                 <p>Kommentar</p>
