@@ -1,19 +1,18 @@
 <?php
 
-// require "header.php";
+require "header.php";
 
-require_once 'dbconnect.php';
+// require_once 'dbconnect.php';
+$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-// $conn->stmt_init();
-
-$query = "SELECT COUNT(*) AS count FROM posts WHERE user_id = 15";
+$query = "SELECT COUNT(*) AS count FROM posts WHERE user_id = $userid";
 $post = $conn->query($query)->fetch_object();
 
 echo "Du har skrivit ". $post->count . " inlägg.<br>";
 
 //SELECT * FROM `comments` WHERE fk_post_id = 150
 
-$query = "SELECT COUNT(*) AS count FROM comments";
+$query = "SELECT COUNT(*) AS count, posts.post_id FROM comments LEFT JOIN posts ON posts.post_id = comments.fk_post_id WHERE user_id = $userid";
 $comment = $conn->query($query)->fetch_object();
 
 echo "Du har " . $comment->count . " kommentarer.<br>";
