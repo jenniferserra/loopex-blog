@@ -33,7 +33,7 @@ echo "Hästen";
 
 	if ( mysqli_query($conn, $query)) {
 			$_SESSION['msg'] = "Funkar bra";
-			header('Location: editpost.php?editid=' . $_GET['editid']);
+			header('Location: editpost_josef.php?editid=' . $_GET['editid']);
 	} else {
 			echo "Inlägget är inte sparat i databasen";
 	}
@@ -55,7 +55,7 @@ $cats = $conn->query($query);
 <h1>Blogginlägg</h1>
 <h2><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } ?></h2>
 
-<form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
+<form method="POST" action="editpost_josef.php?editid=<?= $post->post_id; ?>">
 	<p>Rubrik</p>
 	<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
 	<p>Text</p>
