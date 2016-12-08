@@ -9,14 +9,14 @@ function regUser() {
 			!empty($_POST["email"]) &&
 			!empty($_POST["password"])
 			) {
-			
+
 			$conn = new mysqli("localhost", "root", "", "db_blogg");
 
 			$firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
 			$lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
 			$email = mysqli_real_escape_string($conn, $_POST["email"]);
 			$password = mysqli_real_escape_string($conn, $_POST["password"]);
-
+			$role = "user"; //standard för användaren är user.
 			$encrypt_pass = password_hash($password, PASSWORD_DEFAULT);
 
 			include "dbconnect.php";
@@ -28,17 +28,11 @@ function regUser() {
 			'$lastname',
 			'$email',
 			'$encrypt_pass',
-			'')"; /* istället för profilbild eftersom den inte läggs in nu */
+			'', /* istället för profilbild eftersom den inte läggs in nu */
+			'$role'
+			)";
 
 			mysqli_query($conn, $query);
-
-			/* 
-				Skapa en mapp till användaren
-				TODO: att hitta på ett bättre namn till mappen 
-			*/
-				
-			mkdir("profiledata/{$email}", 0777, true);
-
 		}
 	}
 }

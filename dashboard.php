@@ -1,4 +1,4 @@
-<?php 
+<?php
 require "header.php";
 
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
@@ -8,15 +8,15 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
 	$userId = $_SESSION["user_id"];
 ?>
 <div class="frida-form">
-<?php 
+<?php
 
 $stmt = $conn->stmt_init();
 
-if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) { 
+if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
 	$stmt->execute();
-	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
+	$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
 	$stmt->fetch();
-}		
+}
 echo "Hej " . $firstname . " " . $lastname;
 
 
@@ -32,7 +32,7 @@ echo "Hej " . $firstname . " " . $lastname;
 	<input type="text" name="blogpost_title"><br>
 	<p>Text</p>
 	<textarea rows="15" cols="80" name="blogpost_text"></textarea><br>
-	<select name="category"> 
+	<select name="category">
 		<option value ="0">Välj kategori</option>
 		<option value ="1">Sport</option>
 		<option value ="2">Mode</option>
@@ -42,7 +42,7 @@ echo "Hej " . $firstname . " " . $lastname;
 	<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
 	<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
 </form>
-<?php 
+<?php
 //-----------------------------------------------------------------------------
 // PUBLISH
 //-----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ if(isset($_POST["publish"])) {
 
 		// Preparing the statement
 		$stmt = $conn->stmt_init();
-		
+
 		// Stripping off harmful characters
 		$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
 		$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
@@ -63,13 +63,13 @@ if(isset($_POST["publish"])) {
 
 		// Upload post into database. Published = TRUE
 		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
-	
+
 		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
 		} else {
 				echo "Inlägget är inte sparat i databasen";
 		}
-	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
+	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
 }
 
 //-----------------------------------------------------------------------------
@@ -83,7 +83,7 @@ if(isset($_POST["draft"])) {
 
 		// Preparing the statement
 		$stmt = $conn->stmt_init();
-		
+
 		// Stripping off harmful characters
 		$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
 		$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
@@ -93,18 +93,18 @@ if(isset($_POST["draft"])) {
 
 		// Upload post into database. Published = FALSE
 		$query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
-		
+
 		if ( mysqli_query($conn, $query)) {
 				echo "Ditt inlägg är sparat i databasen";
 		} else {
 				echo "Inlägget är inte sparat i databasen";
 		}
-	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
+	} else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
 }
 
 
 ?>
-</div>	
+</div>
 </body>
 </html>
 

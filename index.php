@@ -36,16 +36,16 @@ if($stmt->prepare($query)) {
                     ?>
                 </div>
                 <div class="comments">
-                <?php 
+                <?php
                     echo "<a href='post.php?id=$postId' name='btn'>";
-                    echo "(X) Kommentarer </a>"; 
+                    echo "(X) Kommentarer </a>";
                 ?>
                 </div>
                 <div class="edit">
-                <?php 
-                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId) {
+                <?php
+                if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId || $_SESSION["role"] == "admin") {
                     echo "<a href='editpost.php?editid=$postId' name='btn'>";
-                    
+
                     echo "Redigera </a>";
                 }
                 ?>
@@ -54,9 +54,9 @@ if($stmt->prepare($query)) {
         </div>
         <?php
         }
-    }       
-}   
+    }
+}
 require "footer.php";
-?>      
+?>
 </div>
 <div class="col-md-2"></div>

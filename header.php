@@ -10,22 +10,21 @@
 </head>
 <body>
 <?php
-require "dbconnect.php";
+require_once "dbconnect.php";
 session_start();
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     // ------------------------------------------------------------------------
     // IF LOGGED IN
     // ------------------------------------------------------------------------
     $userid = $_SESSION['user_id'];
-
     $stmt = $conn->stmt_init();
     $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
     $stmt->execute();
-    $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic);
+    $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
     $stmt->fetch();
 ?>
 
-    <header>     
+    <header>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
             <div class="navbar-header">
@@ -50,7 +49,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 
 } else {
     ?>
-        <header>     
+        <header>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
             <div class="navbar-header">
@@ -94,5 +93,3 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     <?php
         }
 ?>
-   
-    

@@ -14,12 +14,38 @@ $sort = "";
 if (isset($_GET["sort"])) {
 	$sort = $_GET["sort"];
 }
+
+//Exempel om vi använder switch:
+// switch ($sort) { // SWITCH-sats för sortering, lättläst och elegant!
+//
+// 	case "name":
+// 	$query = "SELECT * FROM posts ORDER BY title";
+// 	break;
+//
+// 	case "asc":
+// 	$query = "SELECT * FROM posts ORDER BY prio ASC";
+// 	break;
+//
+// 	case "desc":
+// 	$query = "SELECT * FROM posts ORDER BY prio DESC";
+// 	break;
+//
+// 	default:
+// 	$query = "SELECT * FROM posts";
+// 	break;
+// }
+
+
+$sort = "";
+if (isset($_GET["sort"])) {
+	$sort = $_GET["sort"];
+}
 if($sort == "name") {
 	$query = "SELECT * FROM posts ORDER BY title";
 }
 else if($sort == "asc") {
 	$query = "SELECT * FROM posts ORDER BY priority ASC";
-} 
+}
 else if($sort == "desc") {
 	$query = "SELECT * FROM posts ORDER BY priority DESC";
 }
@@ -55,16 +81,16 @@ if($stmt->prepare($query)) {
                     ?>
                 </div>
                 <div class="comments">
-                <?php 
+                <?php
                     echo "<a href='post.php?id=$postId' name='btn'>";
-                    echo "(X) Kommentarer </a>"; 
+                    echo "(X) Kommentarer </a>";
                 ?>
                 </div>
                 <div class="edit">
-                <?php 
+                <?php
                 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId) {
                     echo "<a href='editpost.php?editid=$postId' name='btn'>";
-                    
+
                     echo "Redigera </a>";
                 }
                 ?>
@@ -73,7 +99,7 @@ if($stmt->prepare($query)) {
         </div>
         <?php
         }
-    }       
-}   
+    }
+}
 require "footer.php";
 ?>

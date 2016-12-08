@@ -1,12 +1,11 @@
 </body>
-
-
 	<footer>
-	
+
 		<div class="footer">
+			<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6">
-					<p>Copyright Loopex 2016</p>
+					<p>Copyright Loopex <?php echo date("Y") ?> </p>
 				</div>
 			</div>
 
@@ -14,21 +13,19 @@
 				<div class="col-xs-12 col-sm-6">
 					<p>Dela på sociala medier</p>
 
-					<!-- BILDERNA NEDAN FUNKAR INTE??? -->
-					<a href="www.facebook.com">
-					<img title="Facebook" alt="Facebook" src="/img/links/facebook.png" width="16px" height="16px" />
+					<a href="http://www.facebook.com">
+            <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
 					</a>
 
-					<a href="www.instagram.com">
-					<img title="Instagram" alt="Instagram" src="/img/links/instagram.png" width="16px" height="16px" />
+					<a href="http://www.instagram.com">
+            <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
 					</a>
-
-					<a href="www.twitter.com">
-					<img title="Twitter" alt="Twitter" src="/img/links/twitter.png" width="16px" height="16px" />
+          <a href="http://www.twitter.com"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
 					</a>
 				</div>
-			</div>		
+			</div>
 		</div>
+	</div>
 
 	</footer>
 

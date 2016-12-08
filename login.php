@@ -6,37 +6,30 @@
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    <?php 
-      if(isset($_GET['error'])) {
-        ?>
-        <style>
-          body {
-            background-color: red;
-          } </style>
-          <?php
-      }else if (isset($_GET['empty'])) {
-                ?>
-        <style>
-          body {
-            background-color: yellow;
-          } </style>
-          <?php
-      }
 
-      include "functions/functions.php";
 
-      // TO-DO, någon liknande if sats som denna, för att:
-      // om användaren är inloggad och hamnar på login.php ska
-      // användaren hamna på dashboard istället
-      //
-      // if (!empty($_SESSION['user_id'])) { 
-      //   header("Location: dashboard.php");
-      // }
-      ?>
 
   </head>
 
   <body>
+  <!-- Om användaren loggar in med fel uppgifter blir man varse om detta -->
+    <?php
+      if(isset($_GET['error'])) {
+        ?>
+        <div class="alert alert-danger" role="alert">Fel användarnamn eller lösenord</div>
+    <?php
+      }
+
+      include "functions/functions.php";
+
+      // TODO, någon liknande if sats som denna, för att:
+      // om användaren är inloggad och hamnar på login.php ska
+      // användaren hamna på dashboard istället
+      //
+      // if (!empty($_SESSION['user_id'])) {
+      //   header("Location: dashboard.php");
+      // }
+      ?>
 
     <div class="container">
   <!-- TO DO Lufta mellan inputfälten -->
@@ -54,10 +47,10 @@
         <input name="login" class="btn btn-lg btn-primary btn-block" type="submit" value="Logga in">
       </form>
 
-    </div> 
+    </div>
 
     <div class="container">
-      
+
       <form method="POST" class="form-horizontal form-center">
       <h2 class="form-center-heading">Registrera</h2>
         <div class="form-group">
@@ -75,11 +68,11 @@
         <!-- TO DO: lägg till profilbild här -->
         <input name="register" class="btn btn-lg btn-primary btn-block" type="submit" value="Registrera">
       </form>
-      <?php regUser(); 
+      <?php regUser();
 
       ?>
-      
-    </div>   
+
+    </div>
 
 
   </body>
