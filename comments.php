@@ -62,7 +62,7 @@ foreach ($myPostDataArray as $post) {
 					<div class="author">
 						<p>
 							<?php echo $c_name?> kommenterade <?php echo $post['title']; ?>
-						<?php echo $c_name?>
+						<?php echo "(" . $createTime . " )"?>
 						</p>
 					</div>
 					<div class="text"><p><?php echo $c_text; ?></p></div>
