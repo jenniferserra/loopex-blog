@@ -69,6 +69,14 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
 			$query = "UPDATE posts
 						SET posts.title = '{$title}', posts.text = '{$text}', posts.edit_time = '{$timeStamp}', posts.postId = $editId
 						WHERE post_id = '{$editId}'";
+
+			if (mysqli_query($conn, $query) ) {
+
+				if($stmt->prepare($query)) {
+					$stmt->execute();
+					$stmt->bind_result($editId, '', $timeStamp, $title, $text, '', '', '');
+				}
+			}
 			echo $query;
 			// header("Refresh:0");
 			if ( mysqli_query($conn, $query)) {

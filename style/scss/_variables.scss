@@ -1,0 +1,22 @@
+/* COLOR VARIABLES. Change color scheme for blog here */
+
+$primary-text-color:	#212121; /* black for paragraphs */
+$primary-color:			#FFFFFF; /* white for backgrounds */ 
+$accent-color:			#FF9800; /* orange for buttons */
+$divider-color:			#BDBDBD; /* grey for dividers */
+$secondary-text-color:	#455A64; /* dark blue for headline fonts */ 
+
+
+/* To make it clearer which color goes to which function we created shortnames for our variables */
+$headline-color: $secondary-text-color;
+$text-color: $primary-text-color;
+$button-color: $accent-color;
+$divider: $divider-color;
+$background-color: $primary-color;
+
+/* FONT VARIABLES */
+$primary-font: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+
+
+
+
