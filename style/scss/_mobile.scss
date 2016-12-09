@@ -1,7 +1,7 @@
 @media screen and (max-width: 699px) and (min-width: 300px) {
 
 	/* Detta ska vara body.login bakgrunden bara men den verkar inte funka */
-	body{
+	body.login{
 		background-image: url("../../images/layout/bw_1.jpg");
 		background-size: cover;
 		height: 100vh;
@@ -41,6 +41,32 @@
   .btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
     
+  }
+
+/* ************** DASHBOARD ******************* */
+
+
+
+  /* ************** STATISTICS ******************* */
+
+  .statistics-bg{
+    /*bakgrund på statistiksidan i mobilversionen */;
+  }
+
+  .statistics-count{
+    font-family: $primary-font;
+    font-size: 1.5em;
+    padding: 2px;
+  }
+
+  .statistics-box{
+   /*om det ens ska vara en omslutande box i mobilversionen?*/ 
+   }
+
+/*denna ska generaliseras i base.scss */
+  h1.statistics{
+    font-family: $primary-font;
+    font-size: 2.5em;
   }
 
 

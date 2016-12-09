@@ -155,10 +155,10 @@ body { background-color: #FFFFFF; }
 
 /* dessa verkar inte funka, urlen funkar i andra filer men inte här */
 /* BACKGROUND FOR LOGIN.PHP */
-body.login { background-repeat: no-repeat; background-position: center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-image: url "https://s-media-cache-ak0.pinimg.com/originals/95/4b/e5/954be5e2935b8ae31fc9dc4c5eac80b0.jpg"; }
+body.login { background-repeat: no-repeat; background-position: center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
 
 /* BODY FOR DASHBOARD.PHP */
-body.dashboard { background-repeat: no-repeat; background-position: center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
+.dashboard { background-repeat: no-repeat; background-position: center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
 
 /* BODY FOR COMMENTS.PHP */
 body.comments { background-repeat: no-repeat; background-position: center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; }
@@ -193,17 +193,43 @@ h2 { font-size: 2em; }
 .footer { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 1em; text-align: center; margin: 20px; }
 
 @media screen and (min-device-width: 1024px) and (max-device-width: 1600px) { /* ************** LOGIN ******************* */
+  /*bakgrunden för loginsidan, denna ska senare finnas i bakground.scss när det funkar */
   body.login { background-image: url("../../images/layout/bw_1.jpg"); background-size: cover; height: 100vh; }
+  /*den vita rutan som omger loginformuläret */
   .form { background: #FFFFFF; max-width: 400px; margin: 20vh auto; padding: 35px; text-align: center; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+  /* forumulär-inputfälten */
   .form input { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; outline: 0; width: 100%; margin: 0 0 15px; padding: 15px; box-sizing: border-box; font-size: 14px; }
+  /*loginknappen */
   .login-button { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; text-transform: uppercase; outline: 0; background: #FF9800; width: 100%; border: none; padding: 15px; color: #FFFFFF; font-size: 14px; -webkit-transition: all 0.3 ease; transition: all 0.3 ease; cursor: pointer; }
-  .btn:hover, .btn:active, .btn:focus { background: #ff8c1a; border: none; } }
+  .btn:hover, .btn:active, .btn:focus { background: #ff8c1a; border: none; }
+  /* ************** DASHBOARD ******************* */
+  /*bakgrunden för dashboard eftersom background.scss för tillfället inte funkar.  detta måste tänkas om eftersom bodyn ligger i header.php tar inte bakgrunden upp hela sidan */
+  /*välkomsttexten på dashboard */
+  .welcome { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 2em; text-align: center; }
+  /*detta är den vita boxen runt om input-fälten för inlägg */
+  /*denna kan man kodförkorta med @extend men får felmeddelande på det */
+  /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
+  h1.dashboard-title { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 2em; color: #455A64; }
+  /*kategoriväljaren */
+  /* ************** STATISTICS ******************* */
+  .statistics-bg { background-image: url("../../images/layout/banner5.jpg"); background-size: cover; height: 100vh; }
+  .statistics-count { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 1.5em; padding: 2px; }
+  .statistics-box { background: #FFFFFF; max-width: 400px; margin: 20vh 50px; padding: 35px; text-align: center; box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); }
+  /*denna ska generaliseras i base.scss */
+  h1.statistics { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 2.5em; } }
 
 @media screen and (max-width: 699px) and (min-width: 300px) { /* Detta ska vara body.login bakgrunden bara men den verkar inte funka */
-  body { background-image: url("../../images/layout/bw_1.jpg"); background-size: cover; height: 100vh; }
+  body.login { background-image: url("../../images/layout/bw_1.jpg"); background-size: cover; height: 100vh; }
   /* ************** LOGIN ******************* */
   /* detta funkade jättebra innan jag gjorde desktop.scss som skriver över detta. varför? */
   .form { text-align: center; width: 100%; margin-top: 20vh; }
   .form input { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; width: 100%; margin: 0 0 15px; padding: 15px; box-sizing: border-box; font-size: 14px; }
   .login-button { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; text-transform: uppercase; outline: 0; background: #FF9800; width: 100%; padding: 15px; color: #FFFFFF; font-size: 14px; }
-  .btn:hover, .btn:active, .btn:focus { background: #ff8c1a; } }
+  .btn:hover, .btn:active, .btn:focus { background: #ff8c1a; }
+  /* ************** DASHBOARD ******************* */
+  /* ************** STATISTICS ******************* */
+  .statistics-bg { /*bakgrund på statistiksidan i mobilversionen */ }
+  .statistics-count { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 1.5em; padding: 2px; }
+  .statistics-box { /*om det ens ska vara en omslutande box i mobilversionen?*/ }
+  /*denna ska generaliseras i base.scss */
+  h1.statistics { font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; font-size: 2.5em; } }

@@ -4,13 +4,13 @@
 		<div class="footer">
 			<div class="container-fluid">
 			<div class="row">
-				<div class="col-xs-12 col-sm-6">
+				<div class="col-xs-12 col-sm-12">
 					<p>Copyright Loopex <?php echo date("Y") ?> </p>
 				</div>
 			</div>
 
 			<div class="row">
-				<div class="col-xs-12 col-sm-6">
+				<div class="col-xs-12 col-sm-12">
 					<p>Dela på sociala medier</p>
 
 					<a href="http://www.facebook.com">

@@ -10,11 +10,10 @@ body{
 /* BACKGROUND FOR LOGIN.PHP */
 body.login{
   @include backImage("../../images/layout/bw_1.jpg");
-  background-image: url ("https://s-media-cache-ak0.pinimg.com/originals/95/4b/e5/954be5e2935b8ae31fc9dc4c5eac80b0.jpg")
 }
 
 /* BODY FOR DASHBOARD.PHP */
-body.dashboard{
+.dashboard{
   @include backImage("../../images/layout/bw_12.jpg");
 }
 
