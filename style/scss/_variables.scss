@@ -3,6 +3,7 @@
 $primary-text-color:	#212121; /* black for paragraphs */
 $primary-color:			#FFFFFF; /* white for backgrounds */ 
 $accent-color:			#FF9800; /* orange for buttons */
+$secondary-accent-color: #ff8c1a; /* darker orange for button hovers */
 $divider-color:			#BDBDBD; /* grey for dividers */
 $secondary-text-color:	#455A64; /* dark blue for headline fonts */ 
 
@@ -11,6 +12,7 @@ $secondary-text-color:	#455A64; /* dark blue for headline fonts */
 $headline-color: $secondary-text-color;
 $text-color: $primary-text-color;
 $button-color: $accent-color;
+$button-hover: $secondary-accent-color;
 $divider: $divider-color;
 $background-color: $primary-color;
 

@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login/Registrera</title>
     <link rel="stylesheet" href="normalize.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">
@@ -9,9 +10,10 @@
 
 
 
+
   </head>
 
-  <body>
+  <body class="login">
   <!-- Om användaren loggar in med fel uppgifter blir man varse om detta -->
     <?php
       if(isset($_GET['error'])) {
@@ -30,10 +32,9 @@
       //   header("Location: dashboard.php");
       // }
       ?>
-
-    <div class="container">
-  <!-- TO DO Lufta mellan inputfälten -->
-      <form method="POST" action="logincheck.php" class="form-center">
+  <div class="loginbox col-sm-12 col-xs-12">
+    <div class="container form">
+      <form method="POST" action="logincheck.php" class="form-center login-form">
         <h2 class="form-center-heading">Logga in</h2>
         <label for="inputEmail" class="sr-only">E-post</label>
         <input type="email" id="inputEmail" class="form-control" name="email" placeholder="E-post" required autofocus>
@@ -44,11 +45,11 @@
             <input type="checkbox" value="remember-me"> Kom ihåg mig
           </label>
         </div> -->
-        <input name="login" class="btn btn-lg btn-primary btn-block" type="submit" value="Logga in">
+        <input name="login" class="btn login-button btn-lg btn-primary btn-block" type="submit" value="Logga in">
       </form>
-
     </div>
 
+    <!-- DEN HÄR KODEN SKA BORT OCH ISTÄLLET IN I SUPERUSER ADMIN-SIDAN -->
     <div class="container">
 
       <form method="POST" class="form-horizontal form-center">
@@ -73,7 +74,7 @@
       ?>
 
     </div>
-
+  </div>
 
   </body>
 </html>

@@ -1,11 +1,26 @@
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 699px) {
   @import "mobile";
 }
 
-@media screen and (min-width: 1200px) {
-  @import "tablet"
-}
-
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1024px) {
   @import "desktop"
 }
+
+*/
+
+h1, h2, h3, h4{
+	font-family: $primary-font;
+}
+
+h1{
+	font-size: 3em;
+}
+
+h2{
+	font-size: 2em;
+}
+
+.btn{
+	color: $button-color;
+}
+
