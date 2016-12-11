@@ -2,7 +2,7 @@
 require "header.php";
 ?>
     <div class="banner"> </div>
-    <div class="col-md-2"></div> <div class="col-md-8">
+    <div class="col-md-3"></div> <div class="col-md-6">
 <?php
 
 //-----------------------------------------------------------------------------
@@ -207,11 +207,14 @@ mysqli_close($conn);
 
 </div>
 
-    
+<div class="col-md-3"></div>
 
-<div class="col-md-2"></div>
-<div class="pagination_controls"><?php echo $paginationCtrls; ?></div>
+<!-----------------------------------------------------------------------------
+Pagination printed out
+------------------------------------------------------------------------------>
+<div class="col-sm-12 col-xs-12 text-center pagination_controls"><?php echo $paginationCtrls; ?></div>
 <?php
+
 // Closing html-structure
 require "footer.php";
 ?>
