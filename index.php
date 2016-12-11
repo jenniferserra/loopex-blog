@@ -168,15 +168,14 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
                 <p><a href='mailto:$user_email'>$user_email</a></p>";
                 ?>
-
-                </div>
-                <div class="comments">
+            </div>
+            <div class="comments">
                 <?php
-                    echo "<a href='post.php?id=$postId' name='btn'>
-                    ($comments) Kommentarer </a>";
+                echo "<a href='post.php?id=$postId' name='btn'>
+                ($comments) Kommentarer </a>";
                 ?>
-                </div>
-                <div class="edit">
+            </div>
+            <div class="edit">
                 <?php
                 if(isset($_SESSION["role"])) {
                     if(isset($_SESSION["loggedin"])
