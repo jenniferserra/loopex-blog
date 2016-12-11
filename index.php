@@ -74,12 +74,12 @@ if ($last !=1) {
 
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp;';
+        <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '&nbsp <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
+                $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
 
             }
         }
