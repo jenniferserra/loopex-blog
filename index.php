@@ -69,7 +69,7 @@ if ($last !=1) {
 
         if ($pageNumber >= $last - 4){
             $fillNumbersBehind = $pageNumber - $last;
-            $jumpBackward = $pageNumber - 8 + $fillNumbersBehind;
+            $jumpBackward = $pageNumber - 8 - $fillNumbersBehind;
         }
 
         // Previous-button and long-backward-jump
