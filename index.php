@@ -5,6 +5,9 @@ require "header.php";
     <div class="col-md-2"></div> <div class="col-md-8">
 <?php
 
+//-----------------------------------------------------------------------------
+// Pagination start
+//-----------------------------------------------------------------------------
 
 $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
             LEFT JOIN users ON posts.user_id = users.user_id
@@ -35,7 +38,7 @@ if(isset($_GET['pn'])) {
     $pageNumber = preg_replace('#[^0-9]#', '', $_GET['pn']);
 }
 
-
+// Page number must be more than 1 and cannot be more than last page
 if($pageNumber < 1) {
     $pageNumber = 1;
 } elseif ($pageNumber > $last) {
@@ -57,7 +60,7 @@ $query = mysqli_query($conn, $sql);
 // Establishing the $paginationCtrls variable
 $paginationCtrls = '';
 
-// If there is more than one page worth of results
+// If there is more than one page of results
 if ($last !=1) {
     if ($pageNumber > 1) {
         $previous = $pageNumber - 1;
@@ -72,8 +75,6 @@ if ($last !=1) {
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpBackward . '"> << </a> &nbsp
         <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp;';
-        
-
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-8-$fillNumbersBehind; $i < $pageNumber; $i++) {
@@ -112,6 +113,15 @@ if ($last !=1) {
     }
 }
 
+//-----------------------------------------------------------------------------
+// Pagination end
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// Looping out blog posts
+//-----------------------------------------------------------------------------
+
 // Looping out blog posts a few at a time
 while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $postId = $post["post_id"];
@@ -143,6 +153,24 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 <?php
                 echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
                 echo "<p><a href='mailto:$user_email'>$user_email</a></p>";
+
+                ?>
+                </div>
+                <div class="comments">
+                <?php
+                    echo "<a href='post.php?id=$postId' name='btn'>";
+                    echo "(X) Kommentarer </a>";
+                ?>
+                </div>
+                <div class="edit">
+                <?php
+                
+                if(isset($_SESSION["loggedin"])
+                    && $_SESSION["loggedin"] == TRUE
+                    && $_SESSION["user_id"] == $userId
+                    || $_SESSION["role"] == "admin") {
+                    echo "<a href='editpost.php?editid=$postId' name='btn'>Redigera</a>";
+                }
                 ?>
             </div>
             <div class="comments">
@@ -153,28 +181,35 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
             </div>
             <div class="edit">
             <?php 
-            if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE && $_SESSION["user_id"] == $userId) {
-                echo "<a href='editpost.php?editid=$postId' name='btn'>";
-                
-                echo "Redigera </a>";
+            if(isset($_SESSION["loggedin"])
+                && $_SESSION["loggedin"] == TRUE
+                && $_SESSION["user_id"] == $userId) {
+                echo "<a href='editpost.php?editid=$postId' name='btn'>Redigera</a>";
             }
             ?>
             </div>
         </div>
     </div>
-    <?php
-   }
+
+<?php 
+    }
 }
+//-----------------------------------------------------------------------------
+// End of looping out blog posts
+//-----------------------------------------------------------------------------
+
+
 //Closing database connection
 mysqli_close($conn);
 ?>
 
-<div>
-    <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
 </div>
-
-<?php 
-require "footer.php";
-?>      
-</div>
+    <div>
+        <div id="pagination_controls"><?php echo $paginationCtrls; ?></div>
+    </div>
 <div class="col-md-2"></div>
+
+<?php
+// Closing html-structure
+require "footer.php";
+?>

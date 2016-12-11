@@ -31,7 +31,7 @@ if($stmt->prepare($query)) {
         </div>
         <hr>
         <?php
-            // Print comment 
+            // Print comment
             $stmt = $conn->stmt_init();
 
             $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
@@ -40,8 +40,8 @@ if($stmt->prepare($query)) {
             }
             if($stmt->prepare($query)) {
                 $stmt->execute();
-                $stmt->bind_result($com_id, $c_name, $c_url, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
-    
+								$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
+
                 while(mysqli_stmt_fetch($stmt)) {
                     ?>
                     <div class="blogpost">
@@ -50,7 +50,7 @@ if($stmt->prepare($query)) {
                             <p><?php echo $c_name . " " . $createTime; ?></p>
                         </div>
                         <div class="author">
-                            <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a> | <a href="http://<?php echo $c_url; ?>"><?php echo $c_url; ?></a></p>
+                            <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
                         </div>
                         <br>
                     </div>
@@ -66,8 +66,6 @@ if($stmt->prepare($query)) {
                 <input type="text" name="comment_name"><br>
                 <p>E-post</p>
                 <input type="email" name="comment_epost"><br>
-                <p>Url</p>
-                <input type="text" name="comment_url"><br>
                 <p>Kommentar</p>
     			<textarea rows="5" cols="30" name="comment_text"></textarea><br>
     			<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera kommentar">
@@ -82,24 +80,23 @@ if($stmt->prepare($query)) {
 
             // Preparing the statement
             $stmt = $conn->stmt_init();
-            
+
             // Stripping off harmful characters
             $c_name = mysqli_real_escape_string($conn, $_POST["comment_name"]);
             $c_epost = mysqli_real_escape_string($conn, $_POST["comment_epost"]);
-            $c_url = mysqli_real_escape_string($conn, $_POST["comment_url"]);
             $c_text = mysqli_real_escape_string($conn, $_POST["comment_text"]);
 
             $timeStamp = date("Y-m-d H:i:s");
 
             $fk_post_id = $_GET['id'];
             // Upload post into database. Published = TRUE
-            $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_url}', '{$timeStamp}', '', '{$c_text}', '{$c_epost}', '{$fk_post_id}')";
+            $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
                     echo "Ditt inlägg är sparat i databasen";
                     header("Refresh:0");
             } else {echo "Inlägget är inte sparat i databasen";}
-        } else { echo "Du har inte fyllt i alla fält eller valt kategori"; } 
+        } else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
     }
 }
 include "footer.php";

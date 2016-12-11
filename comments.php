@@ -4,7 +4,7 @@ echo $firstname;
 /**
 * if "delete" is set.
 * $query, is to delete the specific item from tasks where the id is the $taskToDelete.
-* prepares if the query is correct. 
+* prepares if the query is correct.
 * $stmt, the prepared statement executes.
 **/
 if (isset($_GET["delete"])) {
@@ -33,7 +33,7 @@ if($stmt->prepare($query)) {
 
 		$myPostDataArray[] = array('postId' => $postId, 'createTime' => $createTime, 'editTime' => $editTime, 'title' => $title, 'text' => $text, 'isPublished' => $isPublished, 'userId' => $userId, 'catId' => $catId, 'firstName' => $firstName, 'lastName' => $lastName, 'catName' => $catName);
 	}
-}	
+}
 foreach ($myPostDataArray as $post) {
 ?>
 
@@ -45,14 +45,14 @@ foreach ($myPostDataArray as $post) {
     	// and query2 to query????
         $stmt2 = $conn->stmt_init();
 
-        $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']} 
+        $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']}
         ORDER BY create_time DESC";
 
         if (mysqli_query($conn, $query2)) {
         }
         if($stmt2->prepare($query2)) {
             $stmt2->execute();
-            $stmt2->bind_result($com_id, $c_name, $c_url, $createTime, $editTime, $c_text, $c_epost, $fk_post_id);
+            $stmt2->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
 
             while($stmt2->fetch()) {
             ?><tr style="border: solid 1px;">
@@ -62,8 +62,8 @@ foreach ($myPostDataArray as $post) {
 					<div class="author">
 						<p>
 							<?php echo $c_name?> kommenterade <?php echo $post['title']; ?>
-						<?php echo $c_name?>
-						</p> 
+						<?php echo "(" . $createTime . " )"?>
+						</p>
 					</div>
 					<div class="text"><p><?php echo $c_text; ?></p></div>
 				</td>
@@ -75,6 +75,6 @@ foreach ($myPostDataArray as $post) {
         </tr>
         </table>
 <?php
-}      
+}
 include "footer.php";
 ?>
