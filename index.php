@@ -22,7 +22,6 @@ $postsPerPage = 5;
 
 // Tells the page nr of the very last page ("ceil" rounds numbers up)
 $last = ceil($posts/$postsPerPage);
-$first = 1;
 
 // Makes sure that last page cannot be less than 1
 if ($last < 1) {
@@ -31,7 +30,6 @@ if ($last < 1) {
 
 // If no page-number URL-variables are available
 $pageNumber = 1;
-
 
 // Replacing pagenumber in url
 if(isset($_GET['pn'])) {
@@ -70,6 +68,9 @@ if ($last !=1) {
         if ($pageNumber >= $last - 3){
             $fillNumbersBehind = $pageNumber - $last;
             $jumpBackward = $pageNumber - 6 - $fillNumbersBehind;
+            if($jumpBackward < 1){
+                $jumpBackward = 1;
+            }
         }
 
         // Previous-button and long-backward-jump
