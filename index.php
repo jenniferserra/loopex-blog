@@ -81,7 +81,6 @@ if ($last !=1) {
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
                 $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
-
             }
         }
     }
@@ -119,6 +118,18 @@ if ($last !=1) {
 
 
 
+?>
+<!-----------------------------------------------------------------------------
+Pagination-top printed out
+------------------------------------------------------------------------------>
+<div class="col-sm-12 col-xs-12 text-center pagination_controls"><?php echo $paginationCtrls; ?></div>
+
+
+
+<?php
+
+
+
 //-----------------------------------------------------------------------------
 // Looping out blog posts
 //-----------------------------------------------------------------------------
@@ -139,6 +150,12 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     //Left join
     $catName = $post["cat_name"];
 
+
+        $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
+        $queryForCommentAmount = mysqli_query($conn, $sql);
+        $comment = mysqli_fetch_row($queryForCommentAmount);
+        $comments = $comment[0];
+
     ?>
 
     <div class="blogpost_center">
@@ -157,7 +174,7 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 <div class="comments">
                 <?php
                     echo "<a href='post.php?id=$postId' name='btn'>
-                    (X) Kommentarer </a>";
+                    ($comments) Kommentarer </a>";
                 ?>
                 </div>
                 <div class="edit">
@@ -174,10 +191,9 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
             </div>
         </div>
     </div>
-
 <?php 
-
 }
+
 //-----------------------------------------------------------------------------
 // End of looping out blog posts
 //-----------------------------------------------------------------------------
@@ -191,7 +207,7 @@ mysqli_close($conn);
 <div class="col-md-3"></div>
 
 <!-----------------------------------------------------------------------------
-Pagination printed out
+Pagination-bottom printed out
 ------------------------------------------------------------------------------>
 <div class="col-sm-12 col-xs-12 text-center pagination_controls"><?php echo $paginationCtrls; ?></div>
 <?php
