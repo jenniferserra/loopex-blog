@@ -128,15 +128,13 @@ Pagination-top printed out
 
 <?php
 
-
-
 //-----------------------------------------------------------------------------
 // Looping out blog posts
 //-----------------------------------------------------------------------------
 // Looping out blog posts a few at a time
 while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $postId = $post["post_id"];
-    $createTime = $post["create_time"];
+    $createTime = substr($post['create_time'], 0, 10); // Printing out only yyyy-mm-dd not minutes and seconds
     $editTime = $post["edit_time"];
     $title = $post["title"];
     $text = $post["text"];
@@ -160,7 +158,7 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     <div class="blogpost_center">
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
-            <div class="date"><p><?php echo $createTime; ?></p></div>
+            <div class="date-container"><p class="date"><?php echo $createTime; ?></p></div>
             <div class="text"><p><?php echo $text; ?></p></div>
             <div class="text"><p><?php echo "<p>Kategori: $catName</p>"; ?></p></div>
             <div class="author"><p>Skriven av:
@@ -191,7 +189,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     </div>
 <?php 
 }
-
 //-----------------------------------------------------------------------------
 // End of looping out blog posts
 //-----------------------------------------------------------------------------
@@ -201,9 +198,7 @@ mysqli_close($conn);
 ?>
 
 </div>
-
 <div class="col-md-3"></div>
-
 <!-----------------------------------------------------------------------------
 Pagination-bottom printed out
 ------------------------------------------------------------------------------>
