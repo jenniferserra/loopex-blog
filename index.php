@@ -64,12 +64,12 @@ $paginationCtrls = '';
 if ($last !=1) {
     if ($pageNumber > 1) {
         $previous = $pageNumber - 1;
-        $fillNumbersBehind = -4;
-        $jumpBackward = $pageNumber - 4;
+        $fillNumbersBehind = -3;
+        $jumpBackward = $pageNumber - 3;
 
-        if ($pageNumber >= $last - 4){
+        if ($pageNumber >= $last - 3){
             $fillNumbersBehind = $pageNumber - $last;
-            $jumpBackward = $pageNumber - 8 - $fillNumbersBehind;
+            $jumpBackward = $pageNumber - 6 - $fillNumbersBehind;
         }
 
         // Previous-button and long-backward-jump
@@ -77,7 +77,7 @@ if ($last !=1) {
         <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp;';
 
         // LEFT - Render clickable number links to the left
-        for($i = $pageNumber-8-$fillNumbersBehind; $i < $pageNumber; $i++) {
+        for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
                 $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
 
@@ -93,13 +93,13 @@ if ($last !=1) {
         $paginationCtrls .= '<a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
         
         // Making the index always show the same amount of page links
-        if ($pageNumber <= 4){
-            $fillNumbersInfront= 5 - $pageNumber;
+        if ($pageNumber <= 3){
+            $fillNumbersInfront= 4 - $pageNumber;
         } else {
             $fillNumbersInfront= 0;
         }
         // End of pagination links
-        if ($i >= $pageNumber + 4 + $fillNumbersInfront) {
+        if ($i >= $pageNumber + 3 + $fillNumbersInfront) {
             break;
         }
     }
@@ -107,7 +107,7 @@ if ($last !=1) {
     // Next-button and long-forward-jump button
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
-        $jumpForward = $pageNumber + 4 + $fillNumbersInfront;
+        $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
         $paginationCtrls .= '&nbsp; <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $next . '">Next</a> &nbsp
         <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpForward . '"> >> </a> ';
     }
