@@ -134,7 +134,7 @@ Pagination-top printed out
 // Looping out blog posts a few at a time
 while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $postId = $post["post_id"];
-    $createTime = substr($post['create_time'], 0, 10); // Printing out only yyyy-mm-dd not minutes and seconds
+    $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
     $editTime = $post["edit_time"];
     $title = $post["title"];
     $text = $post["text"];
