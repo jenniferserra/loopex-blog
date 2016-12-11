@@ -11,19 +11,14 @@ require "header.php";
 
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-
-$sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
-        LEFT JOIN users ON posts.user_id = users.user_id
-        LEFT JOIN categories ON posts.cat_id = categories.cat_id
-        WHERE is_published = TRUE
-        ORDER BY create_time DESC";
-
+// Getting the number of published blog posts
+$sql = "SELECT count(*) FROM posts WHERE is_published = TRUE";
 
 $query = mysqli_query($conn, $sql);
-
 $post = mysqli_fetch_row($query);
 $posts = $post[0];
 $postsPerPage = 5;
+
 
 // Tells the page nr of the very last page ("ceil" rounds numbers up)
 $last = ceil($posts/$postsPerPage);
@@ -36,6 +31,7 @@ if ($last < 1) {
 
 // If no page-number URL-variables are available
 $pageNumber = 1;
+
 
 // Replacing pagenumber in url
 if(isset($_GET['pn'])) {
@@ -116,16 +112,15 @@ if ($last !=1) {
         <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpForward . '"> >> </a> ';
     }
 }
-
 //-----------------------------------------------------------------------------
 // Pagination end
 //-----------------------------------------------------------------------------
 
 
+
 //-----------------------------------------------------------------------------
 // Looping out blog posts
 //-----------------------------------------------------------------------------
-
 // Looping out blog posts a few at a time
 while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $postId = $post["post_id"];
@@ -142,10 +137,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $user_email = $post["email"];
     //Left join
     $catName = $post["cat_name"];
-
-
-    // Only displaying published posts
-    if(isset($isPublished) && $isPublished == TRUE) {
 
     ?>
 
@@ -184,12 +175,11 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     </div>
 
 <?php 
-    }
+
 }
 //-----------------------------------------------------------------------------
 // End of looping out blog posts
 //-----------------------------------------------------------------------------
-
 
 //Closing database connection
 mysqli_close($conn);
