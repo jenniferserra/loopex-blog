@@ -150,12 +150,11 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     //Left join
     $catName = $post["cat_name"];
 
-
-        $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
-        $queryForCommentAmount = mysqli_query($conn, $sql);
-        $comment = mysqli_fetch_row($queryForCommentAmount);
-        $comments = $comment[0];
-
+    // Getting the amout of comments for each post
+    $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
+    $queryForCommentAmount = mysqli_query($conn, $sql);
+    $comment = mysqli_fetch_row($queryForCommentAmount);
+    $comments = $comment[0];
     ?>
 
     <div class="blogpost_center">
