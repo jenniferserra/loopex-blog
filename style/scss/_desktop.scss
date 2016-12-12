@@ -1,7 +1,4 @@
-@media screen and (min-device-width: 1024px) and (max-device-width: 1600px) {
-
-
-  /* ************** LOGIN ******************* */
+ /* ************** LOGIN ******************* */
 
 /*bakgrunden för loginsidan, denna ska senare finnas i bakground.scss när det funkar */
   body.login{
@@ -56,8 +53,10 @@
 
   /*bakgrunden för dashboard eftersom background.scss för tillfället inte funkar. 
   detta måste tänkas om eftersom bodyn ligger i header.php tar inte bakgrunden upp hela sidan */
-  .dashboard{
-
+  body.dashboard{
+    background-image: url("../../images/layout/bw_1.jpg");
+    background-size: cover;
+    height: 100vh;
   }
 
 /*välkomsttexten på dashboard */
@@ -88,13 +87,6 @@
 
 /* ************** STATISTICS ******************* */
 
-  .statistics-bg{
-    background-image: url("../../images/layout/banner5.jpg");
-    background-size: cover;
-    height: 100vh;
-
-  }
-
   .statistics-count{
     font-family: $primary-font;
     font-size: 1.5em;
@@ -119,7 +111,4 @@
 
 .pagination_controls {
   min-width: 300px;
-}
-
-
-}  
+} 
