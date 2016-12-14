@@ -11,9 +11,11 @@ if (isset($_GET["delete"])) {
 	$taskToDelete = $_GET["delete"];
 	$query = "DELETE FROM comments WHERE com_id = '{$taskToDelete}'";
 
+    $stmt = $conn->stmt_init();
 	if ($stmt->prepare($query)) {
 		$stmt->execute();
 	}
+    $stmt->close();
 }
 $stmt = $conn->stmt_init();
 
@@ -71,10 +73,12 @@ foreach ($myPostDataArray as $post) {
             <?php
             }
         }
+        $stmt2->close();
         ?>
         </tr>
         </table>
 <?php
 }
+$stmt->close();
 include "footer.php";
 ?>
