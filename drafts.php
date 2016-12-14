@@ -7,35 +7,52 @@ $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name F
             LEFT JOIN categories ON posts.cat_id = categories.cat_id
             ORDER BY create_time DESC";
 
-if ( mysqli_query($conn, $query) ) {
+if (mysqli_query($conn, $query)) {
 }
-if($stmt->prepare($query)) {
-	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
-?>
+if ($stmt->prepare($query)) {
+    $stmt->execute();
+    $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); ?>
 
-        <div class="row">
-          <div class="col-md-2"></div>
-            <div class="col-md-8">
               <h1>Välj ett utkast att redigera</h1>
               <?php
-              while(mysqli_stmt_fetch($stmt)) {
-              if(isset($isPublished) && $isPublished == FALSE) {
-              ?>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <?php echo "$title " . "$createTime"; }} ?>
-                  </label>
-                  <input name="edit" class="btn btn-sm btn-primary btn-block" type="submit" value="Redigera utkast">
-                  <input name="delete" class="btn btn-sm btn-primary btn-block" type="submit" value="Radera utkast">
+              /* Start printing unpublished posts */
+              while (mysqli_stmt_fetch($stmt)) {
 
+                  if (isset($isPublished) && $isPublished == false && $userId == $_SESSION["user_id"]) {
+                      ?>
+
+
+                <div class="form-check">
+                    <div id="<?=$postId?>">
+
+                      <?php echo "$title " . "<em>$createTime</em>"; ?>
+
+                      <!-- Link to edit post -->
+                      <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
+                      Redigera
+                      </a>
+                      <!-- Link to delete post -->
+                      <a href="drafts.php?delete=<?=$postId?>" class="btn btn-sm btn-primary">
+                      Radera
+´                     </a>
                 </div>
 
-              </div>
-              <div class="col-md-2"></div>
-            </row>
-        <?php
-        }
+                    <?php
+
+                  }
+              }
+            /* end print */
+
+            /* delete from database if get-request is sent */
+            if (isset($_GET["delete"])) {
+
+                $deletePost = $_GET["delete"];
+                $deleteQuery = "DELETE FROM posts
+                                WHERE post_id = '{$deletePost}'";
+                mysqli_query($conn, $deleteQuery);
+                header("Location:drafts.php");
+            }
+}
+
 require "footer.php";
 ?>

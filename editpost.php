@@ -6,7 +6,6 @@ if (!isset($_SESSION["loggedin"])) {
 	die();
 }
 
-$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
 
