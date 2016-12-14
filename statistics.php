@@ -59,8 +59,9 @@
 
 <?php
 	require "footer.php";
-	//detta kan man använda om man har en superuser som vill se vad alla användarna har för post count
 
+
+	//detta kan man använda om man har en superuser som vill se vad alla användarna har för post count
 	//SELECT user_id, count(*) as postcount_per_user FROM posts WHERE user_id in (SELECT user_id FROM users) GROUP BY user_id
 ?>
 	

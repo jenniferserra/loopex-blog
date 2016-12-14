@@ -1,6 +1,5 @@
 <?php
 require "header.php";
-
 $stmt = $conn->stmt_init();
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts
