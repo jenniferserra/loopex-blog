@@ -92,4 +92,5 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     </header>
     <?php
         }
+    $stmt->close();
 ?>

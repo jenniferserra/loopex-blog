@@ -1,10 +1,10 @@
+<?php
+
+require "header.php";
+
+?>
 <div class="statistics-bg">
 	
-	<?php
-
-	require "header.php";
-
-	?>
 	<div class="statistics-box col-xs-12">
 	
 	<h1 class="statistics">Statistik</h1>
@@ -12,12 +12,16 @@
 	<?php
 
 	// require_once 'dbconnect.php';
-	$conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+	// $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
-	$query = "SELECT COUNT(*) AS count FROM posts WHERE user_id = $userid";
+	$query = "SELECT COUNT(*) AS count FROM posts WHERE is_published = 1 AND user_id = $userid";
+	$result = $conn->query($query);
+	echo mysqli_error($conn);
 	$post = $conn->query($query)->fetch_object();
 
+	if ($post->count >= 1) {
 	echo '<div class="statistics-count">Du har skrivit '. $post->count . ' inlägg.<br></div>';
+	}
 
 
 	//SELECT * FROM `comments` WHERE fk_post_id = 150
