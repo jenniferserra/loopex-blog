@@ -1,12 +1,6 @@
-/* @media screen and (max-width: 699px) {
-  @import "mobile";
+.page-content{
+	min-height: 100vh;
 }
-
-@media screen and (min-width: 1024px) {
-  @import "desktop"
-}
-
-*/
 
 h1, h2, h3, h4{
 	font-family: $primary-font;
