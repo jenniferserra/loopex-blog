@@ -1,9 +1,21 @@
 <?php
 require "header.php";
 ?>
+
+
     <div class="banner"> </div>
     <div class="col-md-3"></div> <div class="col-md-6">
 <?php
+
+ $category = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
+if (isset($_GET["category"])) {
+	$category = $_GET["category"];
+
+    
+}
+
+echo $category;
+
 
 //-----------------------------------------------------------------------------
 // Pagination start
@@ -49,7 +61,8 @@ $limit = 'LIMIT ' .($pageNumber - 1) * $postsPerPage .',' . $postsPerPage;
 $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
         LEFT JOIN users ON posts.user_id = users.user_id
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
-        WHERE is_published = TRUE
+        WHERE posts.cat_id = $category
+        AND is_published = TRUE
         ORDER BY create_time DESC $limit";
 
 $query = mysqli_query($conn, $sql);

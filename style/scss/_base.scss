@@ -1,5 +1,6 @@
 .page-content{
 	min-height: 100vh;
+	padding-top: 82px;
 }
 
 h1, h2, h3, h4{
@@ -20,4 +21,7 @@ h2{
 
 .date {
 	font-style: italic;
+}
+.blogpost {
+	z-index: -10;
 }

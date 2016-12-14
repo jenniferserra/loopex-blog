@@ -93,9 +93,11 @@ if($stmt->prepare($query)) {
             $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
-                    echo "Ditt inlägg är sparat i databasen";
-                    header("Refresh:0");
-            } else {echo "Inlägget är inte sparat i databasen";}
+                echo "Ditt inlägg är sparat i databasen";
+                header("Refresh:0");
+            }   else {
+                echo "Inlägget är inte sparat i databasen";
+                }
         } else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
     }
 }
