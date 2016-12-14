@@ -43,49 +43,38 @@
         </header>
 
     <?php
-     // ------------------------------------------------------------------------
+       // ---------------------------------------------------------------------
         // IF NOT LOGGED IN
-        // ------------------------------------------------------------------------
+        // --------------------------------------------------------------------
 
     } else {
         ?>
-            <header>
+        <header>
             <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="index.php">Hem</a>
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="category.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Arkiv<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li><a href="#">Hem</a></li>
+                    <li>
+                        <a href="?category=0">Kategori</a>
+                        <ul>
+                            <li><a href="?category=1">Sport</a></li>
+                            <li><a href="?category=2">Mode</a></li>
+                            <li><a href="?category=3">Fotografi</a></li>
+                            <li><a href="?category=4">Annat</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">Arkiv</a>
+                        <ul>
+                            <li><a href="#">Januari</a></li>
+                            <li><a href="#">Februari</a></li>
+                        </ul>
+                    </li>
+                </ul>
                 <div class="navbar-header navbar-right">
                     <a class="navbar-brand" href="login.php">Logga in</a>
                 </div>
-            </div>
-        </nav>
+            </nav>
         </header>
         
 
