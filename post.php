@@ -88,6 +88,11 @@ if($stmt->prepare($query)) {
 
             $timeStamp = date("Y-m-d H:i:s");
 
+            if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
+                echo "Ogiltig e-post.";
+                exit;
+            }
+
             $fk_post_id = $_GET['id'];
             // Upload post into database. Published = TRUE
             $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
