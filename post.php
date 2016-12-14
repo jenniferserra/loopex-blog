@@ -1,8 +1,10 @@
 <?php
-include "header.php";
+require "header.php";
 
 $stmt = $conn->stmt_init();
-
+/* ----------------------------------------------------------------------------
+        PRINT POST
+---------------------------------------------------------------------------- */
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
 $query .= "FROM posts ";
 $query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
@@ -31,7 +33,9 @@ if($stmt->prepare($query)) {
         </div>
         <hr>
         <?php
-            // Print comment
+            /* ----------------------------------------------------------------------------
+                    PRINT COMMENTS TO POST
+            ---------------------------------------------------------------------------- */
             $stmt = $conn->stmt_init();
 
             $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
