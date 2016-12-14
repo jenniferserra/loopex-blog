@@ -10,12 +10,17 @@ require "header.php";
 		<h1 class="statistics">Statistik</h1>
 		<?php
 /* ----------------------------------------------------------------------------
-			YO, THIS IS A COMMENT
+			STATISTICS - statistics of posts and comments
 ---------------------------------------------------------------------------- */
 /* ----------------------------------------------------------------------------
-*	massa kommentarer här
-*	massa kommentarer här igen
-*	massa kommentarer här och igen
+*	The query counts all from the table "posts", from the logged in user 
+*	(user_id) and from the posts that are published (1). 
+*	If the posts count is equal/more to 1 the number of posts prints. 
+*	
+*	The second query counts all from the table "comments" where the foreign 
+*	key id is the same as the post id in the table "posts".    
+*
+*	$spare divides comments with posts and ... EJ KLAR!
 ---------------------------------------------------------------------------- */
 		$query = "SELECT COUNT(*) AS count FROM posts WHERE is_published = 1 AND user_id = $userid";
 		$result = $conn->query($query);
@@ -44,7 +49,7 @@ require "header.php";
 <?php
 	require "footer.php";
 
-	
+
 	//detta kan man använda om man har en superuser som vill se vad alla användarna har för post count
 	//SELECT user_id, count(*) as postcount_per_user FROM posts WHERE user_id in (SELECT user_id FROM users) GROUP BY user_id
 ?>
