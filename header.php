@@ -23,7 +23,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
     $stmt->fetch();
 ?>
-
     <header>
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -40,7 +39,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
             </div>
         </nav>
     </header>
-
     <?php
     $stmt->close();
        // ---------------------------------------------------------------------
