@@ -532,6 +532,7 @@ body.statistics {
 
 .page-content {
   min-height: 100vh;
+  padding-top: 82px;
 }
 
 h1, h2, h3, h4 {
@@ -570,6 +571,10 @@ p.italic {
   font-style: italic;
 }
 
+.blogpost {
+  z-index: -10;
+}
+
 /* FOOTER */
 .footer {
   font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
@@ -578,6 +583,65 @@ p.italic {
   padding: 20px;
   max-height: 200px;
   background-color: #FFFFFF;
+}
+
+header {
+  z-index: 1000000;
+  position: absolute;
+  width: 100%;
+}
+
+nav * {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  z-index: 1000000;
+}
+
+nav {
+  float: left;
+  width: 100%;
+  height: 82px;
+  background: #272727;
+}
+
+nav > ul {
+  float: right;
+  width: 70%;
+  height: 82px;
+  background: #272727;
+}
+
+nav > ul > li {
+  float: left;
+  min-width: 150px;
+  outline: #fff solid 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-right: 15px;
+  line-height: 82px;
+}
+
+nav > ul li a {
+  padding: 40px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav > ul li a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+nav > ul > li > ul {
+  display: none;
+  opacity: 0;
+}
+
+nav > ul > li:hover > ul {
+  display: block;
+  opacity: 1;
 }
 
 @media screen and (max-width: 699px) {

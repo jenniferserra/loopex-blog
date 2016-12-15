@@ -3,12 +3,20 @@ require "header.php";
 ?>
 <div class="sort_list">
 	<h3>Sort:</h3>
-	<a title="Sort by name" href="list.php?sort=name"><i class="fa fa-sort-alpha-asc"></i></a>
 	<a title="Sort by number asc" href="category.php?sort=asc"><i class="fa fa-sort-numeric-asc"></i></a>
 	<a title="Sort by number desc" href="category.php?sort=desc"><i class="fa fa-sort-numeric-desc"></i></a>
+    <br><br><br>
+
 </div> <!-- .sort_list -->
 
 <?php
+
+
+
+
+
+
+
 
 $sort = "";
 if (isset($_GET["sort"])) {
@@ -101,5 +109,7 @@ if($stmt->prepare($query)) {
         }
     }
 }
+
+
 require "footer.php";
 ?>

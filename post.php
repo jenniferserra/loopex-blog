@@ -1,8 +1,10 @@
 <?php
-include "header.php";
+require "header.php";
 
 $stmt = $conn->stmt_init();
-
+/* ----------------------------------------------------------------------------
+        PRINT POST
+---------------------------------------------------------------------------- */
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
 $query .= "FROM posts ";
 $query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
@@ -31,7 +33,9 @@ if($stmt->prepare($query)) {
         </div>
         <hr>
         <?php
-            // Print comment
+            /* ----------------------------------------------------------------------------
+                    PRINT COMMENTS TO POST
+            ---------------------------------------------------------------------------- */
             $stmt = $conn->stmt_init();
 
             $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
@@ -88,14 +92,21 @@ if($stmt->prepare($query)) {
 
             $timeStamp = date("Y-m-d H:i:s");
 
+            if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
+                echo "Ogiltig e-post.";
+                exit;
+            }
+
             $fk_post_id = $_GET['id'];
             // Upload post into database. Published = TRUE
             $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
-                    echo "Ditt inlägg är sparat i databasen";
-                    header("Refresh:0");
-            } else {echo "Inlägget är inte sparat i databasen";}
+                echo "Ditt inlägg är sparat i databasen";
+                header("Refresh:0");
+            }   else {
+                echo "Inlägget är inte sparat i databasen";
+                }
         } else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
     }
 }

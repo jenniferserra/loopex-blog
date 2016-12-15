@@ -2,10 +2,10 @@
 -- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Värd: localhost
--- Tid vid skapande: 17 nov 2016 kl 09:40
--- Serverversion: 10.1.16-MariaDB
--- PHP-version: 7.0.9
+-- Host: localhost
+-- Generation Time: Dec 08, 2016 at 07:26 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Databas: `db_blogg`
+-- Database: `db_blogg`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -32,7 +32,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
--- Dumpning av Data i tabell `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
@@ -44,22 +44,30 @@ INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `comments`
+-- Table structure for table `comments`
 --
 
 CREATE TABLE `comments` (
   `com_id` int(255) NOT NULL,
-  `create_time` datetime(6) NOT NULL,
-  `edit_time` datetime(6) NOT NULL,
-  `text` text COLLATE utf8_swedish_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
+  `create_time` datetime(6) NOT NULL,
+  `text` text COLLATE utf8_swedish_ci NOT NULL,
   `fk_post_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`com_id`, `name`, `email`, `create_time`, `text`, `fk_post_id`) VALUES
+(1, 'Henrik', 'hans@hans.se', '2016-12-08 13:53:14.000000', 'DÃ¥lig blogg', 97),
+(2, 'Torde', 'torde@torde.com', '2016-12-08 13:57:56.000000', 'Jag tycker den var bra!', 97);
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `posts`
+-- Table structure for table `posts`
 --
 
 CREATE TABLE `posts` (
@@ -74,109 +82,22 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
--- Dumpning av Data i tabell `posts`
+-- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `create_time`, `edit_time`, `title`, `text`, `is_published`, `user_id`, `cat_id`) VALUES
-(1, '2016-11-16 22:07:28.000000', '0000-00-00 00:00:00.000000', 'Nu kÃ¶r vi', 'Vi provar igen', 1, 14, 0),
-(2, '2016-11-16 22:10:28.000000', '0000-00-00 00:00:00.000000', 'h', 'h', 1, 14, 0),
-(3, '2016-11-16 22:17:13.000000', '0000-00-00 00:00:00.000000', 'fa', 'fa', 1, 14, 0),
-(4, '2016-11-16 22:20:12.000000', '0000-00-00 00:00:00.000000', 'jjj', 'jjj', 1, 14, 0),
-(5, '2016-11-16 22:20:19.000000', '0000-00-00 00:00:00.000000', 'kkkk', 'kkkk', 1, 14, 0),
-(6, '2016-11-16 22:21:48.000000', '0000-00-00 00:00:00.000000', 'kkkk', 'kkkk', 1, 14, 2),
-(7, '2016-11-16 22:21:55.000000', '0000-00-00 00:00:00.000000', 'jojojo', 'jojojo', 1, 14, 2),
-(8, '2016-11-16 22:28:41.000000', '0000-00-00 00:00:00.000000', 'Hej, nu funkar det som det ska', 'HÃ„r kan vi till exempel kÃ¶ra kategori "annat"', 1, 14, 2),
-(9, '2016-11-16 22:29:37.000000', '0000-00-00 00:00:00.000000', 'Hej, nu funkar det som det ska', 'HÃ„r kan vi till exempel kÃ¶ra kategori "annat"', 1, 14, 0),
-(10, '2016-11-16 22:29:44.000000', '0000-00-00 00:00:00.000000', 's', 's', 1, 14, 0),
-(11, '2016-11-16 22:30:48.000000', '0000-00-00 00:00:00.000000', 's', 's', 1, 14, 4),
-(12, '2016-11-16 22:30:54.000000', '0000-00-00 00:00:00.000000', 'j', 'j', 1, 14, 4),
-(13, '2016-11-16 22:31:07.000000', '0000-00-00 00:00:00.000000', 'i', 'i', 1, 14, 3),
-(14, '2016-11-16 22:35:51.000000', '0000-00-00 00:00:00.000000', 'hehe', 'hehe', 1, 14, 2),
-(15, '2016-11-16 22:41:14.000000', '0000-00-00 00:00:00.000000', 'hehe', 'hehe', 1, 14, 0),
-(16, '2016-11-16 22:41:28.000000', '0000-00-00 00:00:00.000000', 'Hej Ã¥ hÃ¥', 'Nu ska vi prova', 1, 14, 3),
-(17, '2016-11-16 22:43:58.000000', '0000-00-00 00:00:00.000000', 'Hej Ã¥ hÃ¥', 'Nu ska vi prova', 1, 14, 0),
-(18, '2016-11-16 22:44:09.000000', '0000-00-00 00:00:00.000000', 'ghert', 'ghert', 1, 14, 3),
-(19, '2016-11-16 22:44:54.000000', '0000-00-00 00:00:00.000000', 'ghert', 'ghert', 1, 14, 3),
-(20, '2016-11-16 22:45:09.000000', '0000-00-00 00:00:00.000000', 'fas', 'asdf', 1, 14, 1),
-(21, '2016-11-16 22:52:56.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(22, '2016-11-16 22:53:08.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(23, '2016-11-16 22:54:17.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(24, '2016-11-16 22:54:25.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(25, '2016-11-16 23:07:16.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(26, '2016-11-16 23:10:43.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 0),
-(27, '2016-11-16 23:11:49.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(28, '2016-11-16 23:12:07.000000', '0000-00-00 00:00:00.000000', 'EH', 'EH', 1, 14, 1),
-(29, '2016-11-16 23:12:25.000000', '0000-00-00 00:00:00.000000', 'gggggg', 'gggggg', 1, 14, 2),
-(30, '2016-11-16 23:14:22.000000', '0000-00-00 00:00:00.000000', 'gggggg', 'gggggg', 1, 14, 2),
-(31, '2016-11-16 23:14:27.000000', '0000-00-00 00:00:00.000000', 'gggggg', 'gggggg', 1, 14, 2),
-(32, '2016-11-16 23:14:45.000000', '0000-00-00 00:00:00.000000', 'Hej nu skriver vi ett nytt', 'Ett nytt inlÃ¤gg bÃ¶r man skirva', 1, 14, 3),
-(33, '2016-11-16 23:15:29.000000', '0000-00-00 00:00:00.000000', 'Hej nu skriver vi ett nytt', 'Ett nytt inlÃ¤gg bÃ¶r man skirva', 1, 14, 3),
-(34, '2016-11-16 23:15:32.000000', '0000-00-00 00:00:00.000000', 'Hej nu skriver vi ett nytt', 'Ett nytt inlÃ¤gg bÃ¶r man skirva', 1, 14, 3),
-(35, '2016-11-16 23:15:42.000000', '0000-00-00 00:00:00.000000', 'HejjÃ¥', 'hejjpan', 1, 14, 1),
-(36, '2016-11-16 23:15:45.000000', '0000-00-00 00:00:00.000000', 'HejjÃ¥', 'hejjpan', 1, 14, 1),
-(37, '2016-11-16 23:16:56.000000', '0000-00-00 00:00:00.000000', 'HejjÃ¥', 'hejjpan', 1, 14, 1),
-(38, '2016-11-16 23:17:05.000000', '0000-00-00 00:00:00.000000', 'HejjÃ¥', 'hejjpan', 1, 14, 1),
-(39, '2016-11-16 23:18:15.000000', '0000-00-00 00:00:00.000000', 'tjosan', 'sportona', 1, 14, 1),
-(40, '2016-11-16 23:20:35.000000', '0000-00-00 00:00:00.000000', 'tjosan', 'sportona', 1, 14, 1),
-(41, '2016-11-16 23:20:37.000000', '0000-00-00 00:00:00.000000', 'tjosan', 'sportona', 1, 14, 1),
-(42, '2016-11-16 23:20:58.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(43, '2016-11-16 23:22:28.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(44, '2016-11-16 23:23:02.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(45, '2016-11-16 23:23:52.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(46, '2016-11-16 23:23:59.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(47, '2016-11-16 23:25:22.000000', '0000-00-00 00:00:00.000000', 'nya saker', 'nya saker', 1, 14, 4),
-(48, '2016-11-16 23:25:31.000000', '0000-00-00 00:00:00.000000', 'jo', 'jo', 1, 14, 3),
-(49, '2016-11-16 23:26:40.000000', '0000-00-00 00:00:00.000000', 'jo', 'jo', 1, 14, 3),
-(50, '2016-11-16 23:29:46.000000', '0000-00-00 00:00:00.000000', 'jo', 'jo', 1, 14, 3),
-(51, '2016-11-16 23:30:00.000000', '0000-00-00 00:00:00.000000', 'jo', 'jo', 1, 14, 3),
-(52, '2016-11-16 23:31:05.000000', '0000-00-00 00:00:00.000000', 'jo', 'jo', 1, 14, 3),
-(53, '2016-11-16 23:31:20.000000', '0000-00-00 00:00:00.000000', 'Nu ska vi lkÃ¶ra', 'hehe', 1, 14, 3),
-(54, '2016-11-16 23:31:27.000000', '0000-00-00 00:00:00.000000', 'Nu ska vi lkÃ¶ra', 'hehe', 1, 14, 3),
-(55, '2016-11-16 23:31:37.000000', '0000-00-00 00:00:00.000000', 'Nu ska vi lkÃ¶ra', 'hehe', 1, 14, 3),
-(56, '2016-11-16 23:32:59.000000', '0000-00-00 00:00:00.000000', 'Nu ska vi lkÃ¶ra', 'hehe', 1, 14, 3),
-(57, '2016-11-16 23:33:10.000000', '0000-00-00 00:00:00.000000', 'grymt', 'sa grisen', 1, 14, 4),
-(58, '2016-11-16 23:33:13.000000', '0000-00-00 00:00:00.000000', 'grymt', 'sa grisen', 1, 14, 4),
-(59, '2016-11-16 23:33:15.000000', '0000-00-00 00:00:00.000000', 'grymt', 'sa grisen', 1, 14, 4),
-(60, '2016-11-16 23:34:35.000000', '0000-00-00 00:00:00.000000', 'grymt', 'sa grisen', 1, 14, 4),
-(61, '2016-11-16 23:34:43.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(62, '2016-11-16 23:34:46.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(63, '2016-11-16 23:34:49.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(64, '2016-11-16 23:35:43.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(65, '2016-11-16 23:36:08.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(66, '2016-11-16 23:39:35.000000', '0000-00-00 00:00:00.000000', 'tjo', 'bra', 1, 14, 2),
-(67, '2016-11-16 23:39:41.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 1, 14, 1),
-(68, '2016-11-16 23:39:44.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 1, 14, 1),
-(69, '2016-11-16 23:39:45.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 1, 14, 1),
-(70, '2016-11-16 23:39:56.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(71, '2016-11-16 23:39:59.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(72, '2016-11-16 23:40:01.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(73, '2016-11-16 23:44:12.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(74, '2016-11-16 23:44:59.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(75, '2016-11-16 23:45:16.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(76, '2016-11-16 23:45:22.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(77, '2016-11-16 23:45:33.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(78, '2016-11-16 23:45:37.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(79, '2016-11-16 23:45:45.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(80, '2016-11-16 23:49:31.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(81, '2016-11-16 23:50:07.000000', '0000-00-00 00:00:00.000000', 'asdf', 'asdf', 0, 14, 3),
-(82, '2016-11-16 23:50:23.000000', '0000-00-00 00:00:00.000000', 'Publicera', 'Publicera', 1, 14, 1),
-(83, '2016-11-16 23:50:28.000000', '0000-00-00 00:00:00.000000', 'Publicera', 'Publicera', 1, 14, 1),
-(84, '2016-11-16 23:50:33.000000', '0000-00-00 00:00:00.000000', 'Publicera', 'Publicera', 1, 14, 1),
-(85, '2016-11-16 23:51:07.000000', '0000-00-00 00:00:00.000000', 'Publicera2', 'Publicera2', 1, 14, 1),
-(86, '2016-11-16 23:51:12.000000', '0000-00-00 00:00:00.000000', 'Publicera2', 'Publicera2', 1, 14, 1),
-(87, '2016-11-16 23:51:14.000000', '0000-00-00 00:00:00.000000', 'Publicera2', 'Publicera2', 1, 14, 1),
-(88, '2016-11-16 23:51:24.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(89, '2016-11-16 23:51:27.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(90, '2016-11-16 23:51:28.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(91, '2016-11-16 23:51:30.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(92, '2016-11-16 23:55:48.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(93, '2016-11-16 23:57:52.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2),
-(94, '2016-11-17 00:00:36.000000', '0000-00-00 00:00:00.000000', 'Draft', 'Draft', 0, 14, 2);
+(95, '2016-12-07 17:20:56.000000', '0000-00-00 00:00:00.000000', 'Test', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. At iste non dolendi status non vocatur voluptas. Varietates autem iniurasque fortunae facile veteres philosophorum praeceptis instituta vita superabat. </p>\r\n\r\n<ul>\r\n	<li>Frater et T.</li>\r\n	<li>Omnium enim rerum principia parva sunt, sed suis progressionibus usa augentur nec sine causa;</li>\r\n	<li>Facillimum id quidem est, inquam.</li>\r\n	<li>Sed tamen enitar et, si minus multa mihi occurrent, non fugiam ista popularia.</li>\r\n</ul>\r\n\r\n\r\n<p>Quid enim de amicitia statueris utilitatis causa expetenda vides. Istic sum, inquit. Aliter homines, aliter philosophos loqui putas oportere? <b>Sed quod proximum fuit non vidit.</b> Ut in geometria, prima si dederis, danda sunt omnia. Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; <i>Memini me adesse P.</i> </p>\r\n\r\n<p><b>Beatum, inquit.</b> Sed haec quidem liberius ab eo dicuntur et saepius. Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur. </p>\r\n\r\n<p>Duo Reges: constructio interrete. Et ille ridens: Video, inquit, quid agas; Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. <b>Quod quidem iam fit etiam in Academia.</b> </p>\r\n\r\n<p>Atqui reperies, inquit, in hoc quidem pertinacem; Animi enim quoque dolores percipiet omnibus partibus maiores quam corporis. Vitae autem degendae ratio maxime quidem illis placuit quieta. Post enim Chrysippum eum non sane est disputatum. <b>An haec ab eo non dicuntur?</b> Summum enÃ­m bonum exposuit vacuitatem doloris; </p>\r\n\r\n', 1, 4, 1),
+(96, '2016-12-07 20:42:28.000000', '0000-00-00 00:00:00.000000', 'Harry bloggar', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Equidem, sed audistine modo de Carneade? Ita prorsus, inquam; Duo Reges: constructio interrete. Hoc Hieronymus summum bonum esse dixit. Quonam, inquit, modo? Quid est, quod ab ea absolvi et perfici debeat? Quid me istud rogas? Quid de Platone aut de Democrito loquar? </p>\r\n\r\n<dl>\r\n	<dt><dfn>Quid Zeno?</dfn></dt>\r\n	<dd>Itaque rursus eadem ratione, qua sum paulo ante usus, haerebitis.</dd>\r\n	<dt><dfn>Quibusnam praeteritis?</dfn></dt>\r\n	<dd>Quid censes in Latino fore?</dd>\r\n	<dt><dfn>Magna laus.</dfn></dt>\r\n	<dd>Res enim se praeclare habebat, et quidem in utraque parte.</dd>\r\n	<dt><dfn>Easdemne res?</dfn></dt>\r\n	<dd>Itaque in rebus minime obscuris non multus est apud eos disserendi labor.</dd>\r\n</dl>\r\n\r\n\r\n<p>Ne in odium veniam, si amicum destitero tueri. Ut in geometria, prima si dederis, danda sunt omnia. </p>\r\n\r\n<p>Quantum Aristoxeni ingenium consumptum videmus in musicis? Sit hoc ultimum bonorum, quod nunc a me defenditur; Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant. Hic Speusippus, hic Xenocrates, hic eius auditor Polemo, cuius illa ipsa sessio fuit, quam videmus. </p>\r\n\r\n<p>Videamus animi partes, quarum est conspectus illustrior; Prodest, inquit, mihi eo esse animo. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Age nunc isti doceant, vel tu potius quis enim ista melius? Beatus sibi videtur esse moriens. At iste non dolendi status non vocatur voluptas. Aliter homines, aliter philosophos loqui putas oportere? </p>\r\n\r\n<ol>\r\n	<li>Nec enim, omnes avaritias si aeque avaritias esse dixerimus, sequetur ut etiam aequas esse dicamus.</li>\r\n	<li>Animum autem reliquis rebus ita perfecit, ut corpus;</li>\r\n</ol>\r\n\r\n\r\n<p>Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Quae est igitur causa istarum angustiarum? Sit sane ista voluptas. Urgent tamen et nihil remittunt. An nisi populari fama? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. </p>\r\n\r\n', 1, 5, 2),
+(97, '2016-12-07 20:43:41.000000', '0000-00-00 00:00:00.000000', 'Mitt fÃ¶rsta inlÃ¤gg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si mala non sunt, iacet omnis ratio Peripateticorum. Quid de Platone aut de Democrito loquar? Cur fortior sit, si illud, quod tute concedis, asperum et vix ferendum putabit? </p>\r\n\r\n<ol>\r\n	<li>Audeo dicere, inquit.</li>\r\n	<li>Non potes ergo ista tueri, Torquate, mihi crede, si te ipse et tuas cogitationes et studia perspexeris;</li>\r\n	<li>Nosti, credo, illud: Nemo pius est, qui pietatem-;</li>\r\n	<li>Aliis esse maiora, illud dubium, ad id, quod summum bonum dicitis, ecquaenam possit fieri accessio.</li>\r\n	<li>Commoda autem et incommoda in eo genere sunt, quae praeposita et reiecta diximus;</li>\r\n	<li>Quamquam non negatis nos intellegere quid sit voluptas, sed quid ille dicat.</li>\r\n</ol>\r\n\r\n\r\n<p>Quae cum magnifice primo dici viderentur, considerata minus probabantur. Immo alio genere; Inde sermone vario sex illa a Dipylo stadia confecimus. Quid enim tanto opus est instrumento in optimis artibus comparandis? </p>\r\n\r\n<p>Mene ergo et Triarium dignos existimas, apud quos turpiter loquare? Eam tum adesse, cum dolor omnis absit; Non quam nostram quidem, inquit Pomponius iocans; Vide igitur ne non debeas verbis nostris uti, sententiis tuis. </p>\r\n\r\n<p>Duo Reges: constructio interrete. Hoc sic expositum dissimile est superiori. Tecum optime, deinde etiam cum mediocri amico. Nihil enim iam habes, quod ad corpus referas; Idem iste, inquam, de voluptate quid sentit? Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Quae cum dixisset, finem ille. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; A villa enim, credo, et: Si ibi te esse scissem, ad te ipse venissem. Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium. </p>\r\n\r\n<p>Quid ad utilitatem tantae pecuniae? Iam in altera philosophiae parte. Animi enim quoque dolores percipiet omnibus partibus maiores quam corporis. Quodsi ipsam honestatem undique pertectam atque absolutam. Apparet statim, quae sint officia, quae actiones. Quantum Aristoxeni ingenium consumptum videmus in musicis? Suo enim quisque studio maxime ducitur. </p>\r\n\r\n<dl>\r\n	<dt><dfn>Nihil sane.</dfn></dt>\r\n	<dd>Vitae autem degendae ratio maxime quidem illis placuit quieta.</dd>\r\n	<dt><dfn>Moriatur, inquit.</dfn></dt>\r\n	<dd>Sed id ne cogitari quidem potest quale sit, ut non repugnet ipsum sibi.</dd>\r\n	<dt><dfn>Numquam facies.</dfn></dt>\r\n	<dd>Videamus animi partes, quarum est conspectus illustrior;</dd>\r\n	<dt><dfn>Numquam facies.</dfn></dt>\r\n	<dd>Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines.</dd>\r\n	<dt><dfn>Avaritiamne minuis?</dfn></dt>\r\n	<dd>Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis.</dd>\r\n</dl>\r\n\r\n\r\n', 1, 6, 4),
+(98, '2016-12-08 11:57:39.000000', '0000-00-00 00:00:00.000000', 'Utkast 1', '\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam. Mauris elit velit, lobortis sed interdum at, vestibulum vitae libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque iaculis ligula ut ipsum mattis viverra. Nulla a libero metus. Integer gravida tempor metus eget condimentum. Integer eget iaculis tortor. Nunc sed ligula sed augue rutrum ultrices eget nec odio. Morbi rhoncus, sem laoreet tempus pulvinar, leo diam varius nisi, sed accumsan ligula urna sed felis. Mauris molestie augue sed nunc adipiscing et pharetra ligula suscipit. In euismod lectus ac sapien fringilla ut eleifend lacus venenatis.  </p>\r\n\r\n<p>Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, bibendum eu pulvinar vel, sodales vitae dui. Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.  </p>\r\n\r\n<p>In facilisis scelerisque dui vel dignissim. Sed nunc orci, ultricies congue vehicula quis, facilisis a orci. In aliquet facilisis condimentum. Donec at orci orci, a dictum justo. Sed a nunc non lectus fringilla suscipit. Vivamus pretium sapien sit amet mauris aliquet eleifend vel vitae arcu. Fusce pharetra dignissim nisl egestas pretium.  </p>\r\n\r\n<p>Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor, erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum. Nulla vel aliquet libero. Vestibulum eget felis nec purus commodo convallis. Aliquam erat volutpat.  </p>\r\n\r\n<p>Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.  </p>', 0, 3, 2),
+(99, '2016-12-08 12:20:54.000000', '0000-00-00 00:00:00.000000', 'Utkast 2', 'En vacker sommardag.', 0, 3, 1),
+(100, '2016-12-08 12:21:04.000000', '0000-00-00 00:00:00.000000', 'Roliga timmen', 'eller?', 0, 3, 4),
+(101, '2016-12-08 12:21:14.000000', '0000-00-00 00:00:00.000000', 'KrÃ¤ftor Ã¤r gott', 'Eller hur!', 0, 3, 3);
 
 -- --------------------------------------------------------
 
 --
--- Tabellstruktur `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -185,47 +106,38 @@ CREATE TABLE `users` (
   `lastname` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
-  `profilepic` varchar(255) COLLATE utf8_swedish_ci NOT NULL
+  `profilepic` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8_swedish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci COMMENT='Användardatabasen';
 
 --
--- Dumpning av Data i tabell `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `profilepic`) VALUES
-(1, '', '$2y$10$jdEfU9KFHbBEu8aIplnCQeNTPKfi/wI5aZ8/QryDQE9X77WwTX/K.', '', '', ''),
-(2, '', '$2y$10$bgsuTsqN67o4ovQb5xdLvuWFf7xwSe2ajcbn6bX.oXLJ8DfqCFDt.', '', '', ''),
-(3, '', '$2y$10$RWsVVVx7elUhKO.XqiVt7eQudVL6OzlZIoUFwqE6HtMPBvLgFTzSq', '', '', ''),
-(4, '', '$2y$10$IA5XcRX1OF3/2IQUZBaXbezusbG4msB0tNRWyPkE4hEWq77z5jQYq', '', '', ''),
-(5, 'o@o.com', '$2y$10$tqVGBMIZFMjaJ92fsOnzHOScwZ2F0OavGG.3.g54KkY7U8zpnIcAG', 'o', 'o', ''),
-(6, 'o@o.com', '$2y$10$/J/3ctI/JBxbycN/Lo6XJekex977xSjaCx0MOESm6BSfbPlY/tOii', 'o', 'o', ''),
-(7, 'oh@oh.com', '$2y$10$363r.k4QxMeTticbS0/jMOoDebLJQWYgiGpVyiy464fEwc72xx1l6', 'oh', 'oh', ''),
-(8, 'oh@oh.com', '$2y$10$yTC3yLiR.x2BKywuKQXtVOJJNr/gNNwH0kZ52FPU4h5i8fuiB32B.', 'oh', 'oh', ''),
-(9, 'jo@jo.com', '$2y$10$r/uHKSWBjL6i2oMhYIHhs.vG8QlYb9GKUPzanWXQTrt7lDPCnhz6K', 'jo', 'jo', ''),
-(10, 'joho@joho.com', '$2y$10$PopwRgxiBLuPkFuJkNAkcOMuPIdRHL2rv6SYOcfVxv7dI7F1Mi3k.', 'jo', 'jo@jo.com', ''),
-(11, 'je', 'je', 'je@je.com', '$2y$10$.lhbSFLF4xMRaDuiPGLq5.kRJ13uc3ZxyDFM5sE0HeiOG4FK/VFIO', ''),
-(12, 'test', 'test', 'test@test.com', '$2y$10$NF8iGWOkO186kHx71n/.6uwuBU3hNc28.aR3Wyq3olQM/obQtpiAy', ''),
-(13, 'nyanvÃ¤ndare', 'nyanvÃ¤ndare', 'nyanvandare@hej.com', '$2y$10$jhdPVy9vv.AKnU1MPvZdAuFDEJn.aBfHqT43gAzIATJW.HD3aUR4O', ''),
-(14, 'j', 'j', 'j@j.com', '$2y$10$08ihyCESRw2O/MDzKRkfP.k442yqukaa8fiHNKm8DQiDuZPWm6RDu', '');
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `profilepic`, `role`) VALUES
+(3, 'superuser', 'superuser', 'superuser@loop.x', '$2y$10$xBRdo1uZS/5dSSGd1nuZgelONvVWB8hdLy/AYTv02V/AT85wd8NBy', '', 'admin'),
+(4, 'Erik', 'Kers', 'erik.kers.ohrnell@gmail.com', '$2y$10$g60BFLDwTow2O2tjX6IOqOlVwcr3S2QDWREfvjnndiK4m/IdBdreK', '', 'user'),
+(5, 'Harry', 'Hansson', 'hogsboharry@gbg.se', '$2y$10$Gw8vwMT5Q.RGlaTprU7/8.Vs89o49sAMpoPVgJKpkcPpvf1tzpHD2', '', 'user'),
+(6, 'Gunde', 'Svan', 'gsvan@hotmail.com', '$2y$10$uxz04VT6b5FKGIp7P62V9OIuSjR.gwiisWLi/sITFUzgiyERcNKZO', '', 'user');
 
 --
--- Index för dumpade tabeller
+-- Indexes for dumped tables
 --
 
 --
--- Index för tabell `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`cat_id`);
 
 --
--- Index för tabell `comments`
+-- Indexes for table `comments`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`com_id`);
 
 --
--- Index för tabell `posts`
+-- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`),
@@ -233,35 +145,35 @@ ALTER TABLE `posts`
   ADD KEY `cat_id` (`cat_id`);
 
 --
--- Index för tabell `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- AUTO_INCREMENT för dumpade tabeller
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT för tabell `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `cat_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT för tabell `comments`
+-- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `com_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `com_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
--- AUTO_INCREMENT för tabell `posts`
+-- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `post_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
--- AUTO_INCREMENT för tabell `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
