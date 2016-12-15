@@ -11,7 +11,7 @@
 
 					<div class="row">
 						<div class="col-xs-12 col-sm-12">
-							<p>Dela på sociala medier</p>
+							<p>Dela på sociala medier</p><br>
 
 							<a href="http://www.facebook.com">
 		           				<i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
