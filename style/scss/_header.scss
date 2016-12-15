@@ -8,47 +8,47 @@ nav * {
     text-decoration: none;
     padding: 0;
     margin: 0;
-    color: #fff;
-    z-index: 1000000;
+    color: $primary-text-color;
+    z-index: 1000;
 }
 
 nav {
 	float: left;
 	width: 100%;
-	height: 82px;
 	background:#272727;
 }
 nav > ul {
     float: right;
     width: 70%;
-    height: 82px;
-    background: #272727;
+    height: 40px;
+    background-color: $primary-color;
 }
-nav > ul > li {
+.menu-btn-lvl-1 {
     float: left;
     min-width: 150px;
-    outline: #fff solid 1px;
-    background-color: rgba($color: $primary-color, $alpha: 0.1);
+    background-color: rgba($color: $primary-text-color, $alpha: 0.5);
     margin-right: 15px;
-    line-height: 82px;
+    line-height: 40px;
 }
-nav > ul li a {
-    padding: 40px;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-nav > ul li a:hover {
-    color: white;
+nav > ul li:hover a {
+    color: $primary-color;
     text-decoration: none;
 }
 
-nav > ul > li > ul {
+.menu-btn-lvl-1 > ul {
     display: none;
-    opacity: 0;
 }
 
-nav > ul > li:hover > ul {
+.menu-btn-lvl-1:hover > ul {
     display: block;
-    opacity: 1;
-    
+
+}
+
+.menu-btn-lvl-2:hover {
+  background-color: rgba($color: $primary-text-color, $alpha: 0.5);
+}
+
+nav a {
+    padding: 15px;
+    box-sizing: border-box;
 }
