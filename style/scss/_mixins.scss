@@ -2,17 +2,17 @@
 @mixin backImage($image) {
 	background-image: url($image);
 	background-repeat: no-repeat;
-	background-position: center center fixed; 
+	background-position: center center fixed;
  	-webkit-background-size: cover;
   	-moz-background-size: cover;
   	-o-background-size: cover;
   	background-size: cover;
-} 
+}
 
 @mixin whitebox {
 	background: $primary-color;
     width: 800px;
-    margin: 50px auto; 
+    margin: 50px auto;
     padding: 35px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);

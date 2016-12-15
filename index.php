@@ -58,12 +58,21 @@ if($pageNumber < 1) {
 // Query for a limited amount of posts
 $limit = 'LIMIT ' .($pageNumber - 1) * $postsPerPage .',' . $postsPerPage;
 
-$sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
+/*$sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
         LEFT JOIN users ON posts.user_id = users.user_id
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
         WHERE posts.cat_id = $category
-        AND is_published = TRUE
-        ORDER BY create_time DESC $limit";
+        AND posts.is_published = TRUE
+        ORDER BY create_time DESC $limit";*/
+$sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
+        FROM posts
+        LEFT JOIN users ON posts.user_id = users.user_id
+        LEFT JOIN categories ON posts.cat_id = categories.cat_id
+        WHERE posts.is_published = 1 ";
+if (isset($_GET["category"])) {
+    $sql .= " AND posts.cat_id = $category ";
+}
+$sql .= " ORDER BY create_time DESC $limit";
 
 $query = mysqli_query($conn, $sql);
 
@@ -184,18 +193,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 <?php
                 echo "<a href='post.php?id=$postId' name='btn'>
                 ($comments) Kommentarer </a>";
-                ?>
-            </div>
-            <div class="edit">
-                <?php
-                if(isset($_SESSION["role"])) {
-                    if(isset($_SESSION["loggedin"])
-                    && $_SESSION["loggedin"] == TRUE
-                    && $_SESSION["user_id"] == $userId
-                    || $_SESSION["role"] == "admin") {
-                        echo "<a href='editpost.php?editid=$postId' name='btn'>Redigera</a>";
-                    }
-                }
                 ?>
             </div>
         </div>

@@ -21,20 +21,20 @@ if ($stmt->prepare($query)) {
 
                   if (isset($isPublished) && $isPublished == TRUE && $userId == $_SESSION["user_id"]) {
                       ?>
-
-                <div class="form-check">
-
-                      <?php echo "$title " . "<em>$createTime</em>"; ?>
+              <div class="form-check draft-divider">
+                  <div id="<?=$postId?>">
+                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
 
                       <!-- Link to edit post -->
-                      <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-success">
+                      <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
                       Redigera
                       </a>
                       <!-- Link to delete post -->
-                      <a href="archive.php?delete=<?=$postId?>" class="btn btn-danger">
+                      <a href="archive.php?delete=<?=$postId?>" class="btn btn-sm btn-primary">
                       Radera
                      </a>
-
+                  </div>
+              </div> 
                     <?php
 
                   }

@@ -1,11 +1,15 @@
 /* FOOTER */
 
 .footer{
+	color: $primary-color;
 	font-family: $primary-font;
 	font-size: 1em;
 	text-align: center;
 	padding: 20px;
 	max-height: 200px;
-	background-color: $background-color;
+	background-color: $divider-color;
 }
 
+.fa-facebook-square, .fa-instagram,.fa-twitter-square {
+	color: $primary-color;
+}
