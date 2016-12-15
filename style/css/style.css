@@ -596,19 +596,29 @@ nav * {
   text-decoration: none;
   padding: 0;
   margin: 0;
+<<<<<<< HEAD
   color: #212121;
   z-index: 1000;
+=======
+  color: #fff;
+  z-index: 1000000;
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
 }
 
 nav {
   float: left;
   width: 100%;
+<<<<<<< HEAD
+=======
+  height: 82px;
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   background: #272727;
 }
 
 nav > ul {
   float: right;
   width: 70%;
+<<<<<<< HEAD
   height: 40px;
   background-color: #FFFFFF;
 }
@@ -645,13 +655,58 @@ nav a {
 
 @media screen and (max-width: 699px) {
   /* Detta ska vara body.login bakgrunden bara men den verkar inte funka */
+=======
+  height: 82px;
+  background: #272727;
+}
+
+nav > ul > li {
+  float: left;
+  min-width: 150px;
+  outline: #fff solid 1px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-right: 15px;
+  line-height: 82px;
+}
+
+nav > ul li a {
+  padding: 40px;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+nav > ul li a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+nav > ul > li > ul {
+  display: none;
+  opacity: 0;
+}
+
+nav > ul > li:hover > ul {
+  display: block;
+  opacity: 1;
+}
+
+@media screen and (max-width: 699px) {
+  /* ************** GENERAL STYLE FOR MOBILE ******************* */
+  p {
+    display: block;
+  }
+  /* denna ska in i backgrounds.scss men det funkar inte?? */
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   body.login {
     background-image: url("../../images/layout/bw_1.jpg");
     background-size: cover;
     height: 100vh;
   }
   /* ************** LOGIN ******************* */
+<<<<<<< HEAD
   /* detta funkade jättebra innan jag gjorde desktop.scss som skriver över detta. varför? */
+=======
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   .form {
     text-align: center;
     width: 100%;
@@ -678,23 +733,91 @@ nav a {
   .btn:hover, .btn:active, .btn:focus {
     background: #ff8c1a;
   }
+<<<<<<< HEAD
   /* ************** DASHBOARD ******************* */
   /* ************** STATISTICS ******************* */
   .statistics-bg {
     /*bakgrund på statistiksidan i mobilversionen */
   }
+=======
+  h2.login {
+    color: #FFFFFF;
+  }
+  /* ************** DASHBOARD ******************* */
+  /*välkomsttexten på dashboard */
+  .welcome {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 3em;
+    text-align: center;
+  }
+  /* inputrutan för rubrik och brödtext */
+  input[type="text"], textarea {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    outline: 0;
+    width: 100%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
+  h1.dashboard-title {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 2em;
+    color: #455A64;
+  }
+  /*kategoriväljaren */
+  select.categories {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 1.3em;
+    background-color: #BDBDBD;
+    opacity: 0.7;
+  }
+  /* publicera / spara utkast-knapparna */
+  input[type="submit"] {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    color: #FFFFFF;
+    background-color: #FF9800;
+    border: none;
+    max-width: 100%;
+    margin: 0px auto;
+  }
+  input[type="submit"]:hover {
+    background-color: #ff8c1a;
+  }
+  /* ************** STATISTICS ******************* */
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   .statistics-count {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 1.5em;
     padding: 2px;
+<<<<<<< HEAD
   }
   .statistics-box {
     /*om det ens ska vara en omslutande box i mobilversionen?*/
+=======
+    text-align: center;
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   }
   /*denna ska generaliseras i base.scss */
   h1.statistics {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2.5em;
+<<<<<<< HEAD
+=======
+    text-align: center;
+  }
+  /* ************** DRAFTS ******************* */
+  .draft-box {
+    text-align: center;
+  }
+  .draft-divider {
+    margin: 10px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #BDBDBD;
+>>>>>>> 08f03c99a79e31752af70ce79a701d011fac609b
   }
 }
 
