@@ -195,18 +195,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 ($comments) Kommentarer </a>";
                 ?>
             </div>
-            <div class="edit">
-                <?php
-                if(isset($_SESSION["role"])) {
-                    if(isset($_SESSION["loggedin"])
-                    && $_SESSION["loggedin"] == TRUE
-                    && $_SESSION["user_id"] == $userId
-                    || $_SESSION["role"] == "admin") {
-                        echo "<a href='editpost.php?editid=$postId' name='btn'>Redigera</a>";
-                    }
-                }
-                ?>
-            </div>
         </div>
     </div>
 <?php 

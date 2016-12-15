@@ -25,7 +25,8 @@ if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_PO
 		title = '{$title}',
 		text = '{$text}',
 		cat_id = '{$cat}',
-		edit_time = '{$timeStamp}'
+		edit_time = '{$timeStamp}',
+		is_published = 1
 		WHERE post_id = " . $_GET['editid'];
 		echo $query;
 
