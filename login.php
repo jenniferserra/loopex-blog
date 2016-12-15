@@ -35,7 +35,7 @@
   <div class="loginbox col-sm-12 col-xs-12">
     <div class="container form">
       <form method="POST" action="logincheck.php" class="form-center login-form">
-        <h2 class="form-center-heading">Logga in</h2>
+        <h2 class="form-center-heading login">Logga in</h2>
         <label for="inputEmail" class="sr-only">E-post</label>
         <input type="email" id="inputEmail" class="form-control" name="email" placeholder="E-post" required autofocus>
         <label for="inputPassword" class="sr-only">Lösenord</label>
