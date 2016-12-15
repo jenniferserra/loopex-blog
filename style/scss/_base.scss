@@ -19,10 +19,11 @@ p {
 	display: inline;
 }
 
-p.bold, span.bold{
+p.bold, span.bold {
 	font-weight: bold;
 	margin: 0px;
 	padding-right: 10px;
+	/* letter-spacing: 0.1em; */
 }
 
 p.italic, span.italic {

@@ -555,6 +555,7 @@ p.bold, span.bold {
   font-weight: bold;
   margin: 0px;
   padding-right: 10px;
+  /* letter-spacing: 0.1em; */
 }
 
 p.italic, span.italic {
@@ -577,16 +578,17 @@ p.italic, span.italic {
 
 /* FOOTER */
 .footer {
+  color: #FFFFFF;
   font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
   font-size: 1em;
   text-align: center;
   padding: 20px;
   max-height: 200px;
-  background-color: #FFFFFF;
+  background-color: #BDBDBD;
 }
 
 .fa-facebook-square, .fa-instagram, .fa-twitter-square {
-  color: #FF9800;
+  color: #FFFFFF;
 }
 
 header {
@@ -758,14 +760,11 @@ nav > ul > li:hover > ul {
 }
 
 @media screen and (min-width: 700px) {
-  /* ************** LOGIN ******************* */
-  /*bakgrunden för loginsidan, denna ska senare finnas i bakground.scss när det funkar */
   body.login {
     background-image: url("../../images/layout/bw_1.jpg");
     background-size: cover;
     height: 100vh;
   }
-  /*den vita rutan som omger loginformuläret */
   .form {
     background: #FFFFFF;
     max-width: 400px;
@@ -774,7 +773,6 @@ nav > ul > li:hover > ul {
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
-  /* forumulär-inputfälten */
   .form input {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     outline: 0;
@@ -784,7 +782,6 @@ nav > ul > li:hover > ul {
     box-sizing: border-box;
     font-size: 14px;
   }
-  /*loginknappen */
   .login-button {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     text-transform: uppercase;
@@ -803,15 +800,11 @@ nav > ul > li:hover > ul {
     background: #ff8c1a;
     border: none;
   }
-  /* ************** DASHBOARD ******************* */
-  /*välkomsttexten på dashboard */
   .welcome {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 3em;
     text-align: center;
   }
-  /*detta är den vita boxen runt om input-fälten för inlägg */
-  /*denna kan man kodförkorta med @extend */
   .blogpost-box {
     background: #FFFFFF;
     width: 800px;
@@ -821,7 +814,6 @@ nav > ul > li:hover > ul {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     float: none;
   }
-  /* inputrutan för rubrik och brödtext */
   input[type="text"], textarea {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     outline: 0;
@@ -831,13 +823,11 @@ nav > ul > li:hover > ul {
     box-sizing: border-box;
     font-size: 16px;
   }
-  /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
   h1.dashboard-title {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2em;
     color: #455A64;
   }
-  /*kategoriväljaren */
   select.categories {
     width: 90%;
     margin: 20px auto;
@@ -846,7 +836,6 @@ nav > ul > li:hover > ul {
     background-color: #BDBDBD;
     opacity: 0.7;
   }
-  /* publicera / spara utkast-knapparna */
   input[type="submit"] {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     color: #FFFFFF;
@@ -858,7 +847,6 @@ nav > ul > li:hover > ul {
   input[type="submit"]:hover {
     background-color: #ff8c1a;
   }
-  /* ************** STATISTICS ******************* */
   .statistics-count {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 1.5em;
@@ -872,7 +860,6 @@ nav > ul > li:hover > ul {
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
-  /*denna ska generaliseras i base.scss */
   h1.statistics {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2.5em;
@@ -880,7 +867,6 @@ nav > ul > li:hover > ul {
   .pagination_controls {
     min-width: 300px;
   }
-  /* ************** DRAFTS ******************* */
   .draft-box {
     background: #FFFFFF;
     width: 800px;
@@ -894,9 +880,10 @@ nav > ul > li:hover > ul {
     margin: 10px auto;
     padding-bottom: 10px;
   }
-  /* ************** COMMENTS ******************* */
-  /* ************** in comments.php ******************* */
   td {
-    word-break: break-all;
+    /*   word-break: break-all */
+    float: left;
+    margin: 20px auto;
+    line-height: 1.7em;
   }
 }

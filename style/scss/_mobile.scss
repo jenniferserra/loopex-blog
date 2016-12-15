@@ -6,7 +6,6 @@ p {
 }
 
 
-
 	/* denna ska in i backgrounds.scss men det funkar inte?? */
 	body.login{
 		background-image: url("../../images/layout/bw_1.jpg");
@@ -41,10 +40,10 @@ p {
     color: $primary-color;
     font-size: 14px;
   }
-  
+
   .btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
-    
+
   }
 
   h2.login{
@@ -71,7 +70,7 @@ input[type="text"], textarea {
     box-sizing: border-box;
     font-size: 16px;
 }
-   
+
 
 /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
   h1.dashboard-title{
