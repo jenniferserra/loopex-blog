@@ -15,7 +15,7 @@ if ($stmt->prepare($query)) {
 
               <div class="draft-box">
               <h1>Välj ett utkast att redigera</h1>
-              
+
               <?php
               /* Start printing unpublished posts */
               while (mysqli_stmt_fetch($stmt)) {
@@ -38,7 +38,7 @@ if ($stmt->prepare($query)) {
                       Radera
                      </a>
                 </div>
-               </div> 
+               </div>
 
                     <?php
 

@@ -19,13 +19,13 @@ p {
 	display: inline;
 }
 
-p.bold{
+p.bold, span.bold{
 	font-weight: bold;
 	margin: 0px;
 	padding-right: 10px;
 }
 
-p.italic {
+p.italic, span.italic {
 	font-style: italic;
 	padding-right: 10px;
 }

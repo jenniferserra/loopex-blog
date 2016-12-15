@@ -19,6 +19,8 @@ if (isset($_GET["delete"])) {
 }
 $stmt = $conn->stmt_init();
 
+//$query = "SELECT * FROM comments LEFT JOIN posts ON comments.post_id = posts.id"
+
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
 $query .= "FROM posts ";
 $query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
@@ -38,8 +40,6 @@ if($stmt->prepare($query)) {
 }
 foreach ($myPostDataArray as $post) {
 ?>
-
-    <table>
     <?php
         // Print comment
     	//
@@ -50,34 +50,34 @@ foreach ($myPostDataArray as $post) {
         $query2  = "SELECT * FROM comments WHERE fk_post_id = {$post['postId']}
         ORDER BY create_time DESC";
 
-        if (mysqli_query($conn, $query2)) {
-        }
+        $result = mysqli_query($conn, $query2);
+
         if($stmt2->prepare($query2)) {
             $stmt2->execute();
             $stmt2->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
 
-            while($stmt2->fetch()) {
-            ?><tr style="border: solid 1px;">
-            	<td style="border: solid 1px;"><a href="comments.php?delete=<?php echo $com_id; ?>">Radera</a></td>
-				<div class="blogpost">
-				<td style="border: solid 1px;">
-					<div class="author">
-						<p>
-							<?php echo $c_name?> kommenterade <?php echo $post['title']; ?>
-						<?php echo "(" . $createTime . " )"?>
-						</p>
-					</div>
-					<div class="text"><p><?php echo $c_text; ?></p></div>
-				</td>
-				</div>
+          while($stmt2->fetch()) {
+          ?>
+						<div class='draft-box'>
+							<table>
+								<tr>
+										<td>
+											<p><span class='bold'><?php echo $c_name; ?></span>
+												<?php echo "<span class='bold'><?php echo $c_name; ?></span>";?> kommenterade <?php echo $post['title']; ?>
+												<?php echo "<span class='italic'>($createTime;)</span>";?>
+											</p>
+											<p><?php echo $c_text; ?></p>
+										</td>
+										<td>
+												<a href="comments.php?delete=<?php echo $com_id; ?>" class="btn btn-sm btn-primary">Radera</a>
+										</td>
+								</tr>
+							</table>
+						</div>
             <?php
-            }
+          }
         }
         $stmt2->close();
-        ?>
-        </tr>
-        </table>
-<?php
 }
 $stmt->close();
 include "footer.php";
