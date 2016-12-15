@@ -5,7 +5,6 @@
 ---------------------------------------------------------------------------- */
 require "header.php";
 ?>
-<div class="statistics-bg">
 	<div class="statistics-box col-xs-12">
 		<h1 class="statistics">Statistik</h1>
 		<?php
@@ -45,7 +44,7 @@ require "header.php";
 		echo '<div class="statistics-count">Du har '. $nbr . ' kommentarer per inlägg.</div>';
 		?>
 	</div> <!-- .statistics-box.col-xs-12 -->
-</div> <!-- .statistics-bg -->
+
 <?php
 	require "footer.php";
 	//detta kan man använda om man har en superuser som vill se vad alla användarna har för post count

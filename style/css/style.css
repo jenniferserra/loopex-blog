@@ -645,14 +645,17 @@ nav > ul > li:hover > ul {
 }
 
 @media screen and (max-width: 699px) {
-  /* Detta ska vara body.login bakgrunden bara men den verkar inte funka */
+  /* ************** GENERAL STYLE FOR MOBILE ******************* */
+  p {
+    display: block;
+  }
+  /* denna ska in i backgrounds.scss men det funkar inte?? */
   body.login {
     background-image: url("../../images/layout/bw_1.jpg");
     background-size: cover;
     height: 100vh;
   }
   /* ************** LOGIN ******************* */
-  /* detta funkade jättebra innan jag gjorde desktop.scss som skriver över detta. varför? */
   .form {
     text-align: center;
     width: 100%;
@@ -679,23 +682,74 @@ nav > ul > li:hover > ul {
   .btn:hover, .btn:active, .btn:focus {
     background: #ff8c1a;
   }
-  /* ************** DASHBOARD ******************* */
-  /* ************** STATISTICS ******************* */
-  .statistics-bg {
-    /*bakgrund på statistiksidan i mobilversionen */
+  h2.login {
+    color: #FFFFFF;
   }
+  /* ************** DASHBOARD ******************* */
+  /*välkomsttexten på dashboard */
+  .welcome {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 3em;
+    text-align: center;
+  }
+  /* inputrutan för rubrik och brödtext */
+  input[type="text"], textarea {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    outline: 0;
+    width: 100%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
+  h1.dashboard-title {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 2em;
+    color: #455A64;
+  }
+  /*kategoriväljaren */
+  select.categories {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 1.3em;
+    background-color: #BDBDBD;
+    opacity: 0.7;
+  }
+  /* publicera / spara utkast-knapparna */
+  input[type="submit"] {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    color: #FFFFFF;
+    background-color: #FF9800;
+    border: none;
+    max-width: 100%;
+    margin: 0px auto;
+  }
+  input[type="submit"]:hover {
+    background-color: #ff8c1a;
+  }
+  /* ************** STATISTICS ******************* */
   .statistics-count {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 1.5em;
     padding: 2px;
-  }
-  .statistics-box {
-    /*om det ens ska vara en omslutande box i mobilversionen?*/
+    text-align: center;
   }
   /*denna ska generaliseras i base.scss */
   h1.statistics {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2.5em;
+    text-align: center;
+  }
+  /* ************** DRAFTS ******************* */
+  .draft-box {
+    text-align: center;
+  }
+  .draft-divider {
+    margin: 10px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #BDBDBD;
   }
 }
 
