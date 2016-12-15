@@ -19,14 +19,15 @@
 			$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
 			$stmt->fetch();
 		}
-		echo '<div class="welcome"> Hej '. $firstname .' '. $lastname .'! </div>';
-
+	
 		//-----------------------------------------------------------------------------
 		// HTML-STRUKTUR FÖR INLÄGG
 		//-----------------------------------------------------------------------------
 
 		?>
 		<div class="blogpost-box col-sm-12 col-xs-12">
+		<?php echo '<div class="welcome"> Hej '. $firstname .' '. $lastname .'! </div>'; ?>
+
 		<h1 class="dashboard-title">Dags att skriva nästa succéinlägg?</h1>
 			<form method="POST" action="dashboard.php" class="blogposts">
 		        <input type="text" placeholder="Skriv din rubrik här" name="blogpost_title" class="blogpost_title"><br>

@@ -21,8 +21,8 @@
   .form input {
     font-family: $primary-font;
     outline: 0;
-    width: 100%;
-    margin: 0 0 15px;
+    width: 90%;
+    margin: 0 auto 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
@@ -51,25 +51,32 @@
 
 /* ************** DASHBOARD ******************* */
 
-  /*bakgrunden för dashboard eftersom background.scss för tillfället inte funkar. 
-  detta måste tänkas om eftersom bodyn ligger i header.php tar inte bakgrunden upp hela sidan */
-  body.dashboard{
-    background-image: url("../../images/layout/bw_1.jpg");
-    background-size: cover;
-    height: 100vh;
-  }
 
 /*välkomsttexten på dashboard */
   .welcome{
     font-family: $primary-font;
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
   }
 
 /*detta är den vita boxen runt om input-fälten för inlägg */
-/*denna kan man kodförkorta med @extend men får felmeddelande på det */
+/*denna kan man kodförkorta med @extend */
   .blogpost-box { 
+   @include whitebox;
+  
    }
+
+/* inputrutan för rubrik och brödtext */
+input[type="text"], textarea {
+    font-family: $primary-font;
+    outline: 0;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+   
 
 /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
   h1.dashboard-title{
@@ -81,7 +88,25 @@
 
 /*kategoriväljaren */
   select.categories{
+    width: 90%;
+    margin: 20px auto;
+    font-family: $primary-font;
+    font-size: 1.3em;
+    background-color: $divider-color;
+    opacity: 0.7;
 
+  }
+/* publicera / spara utkast-knapparna */
+  input[type="submit"]{
+    font-family: $primary-font;
+    color: $primary-color;
+    background-color: $button-color;
+    border: none;
+    max-width: 90%;
+    margin: 0px auto;
+    &:hover {
+      background-color: $secondary-accent-color;
+    }
   }
 
 
@@ -112,3 +137,16 @@
 .pagination_controls {
   min-width: 300px;
 } 
+
+
+/* ************** DRAFTS ******************* */
+
+.draft-box{
+  @include whitebox;
+
+}
+
+.draft-divider{
+  margin: 10px auto;
+  padding-bottom: 10px;
+}

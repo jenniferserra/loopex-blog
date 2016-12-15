@@ -13,7 +13,9 @@ if ($stmt->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); ?>
 
+              <div class="draft-box">
               <h1>Välj ett utkast att redigera</h1>
+              
               <?php
               /* Start printing unpublished posts */
               while (mysqli_stmt_fetch($stmt)) {
@@ -22,10 +24,10 @@ if ($stmt->prepare($query)) {
                       ?>
 
 
-                <div class="form-check">
+                <div class="form-check draft-divider">
                     <div id="<?=$postId?>">
 
-                      <?php echo "$title " . "<em>$createTime</em>"; ?>
+                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
 
                       <!-- Link to edit post -->
                       <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
@@ -34,13 +36,18 @@ if ($stmt->prepare($query)) {
                       <!-- Link to delete post -->
                       <a href="drafts.php?delete=<?=$postId?>" class="btn btn-sm btn-primary">
                       Radera
-´                     </a>
+                     </a>
                 </div>
+               </div> 
 
                     <?php
 
                   }
               }
+
+          ?>
+          </div>
+          <?php
             /* end print */
 
             /* delete from database if get-request is sent */
@@ -54,5 +61,5 @@ if ($stmt->prepare($query)) {
             }
 }
 
-require "footer.php";
+require_once "footer.php";
 ?>
