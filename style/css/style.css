@@ -466,7 +466,7 @@ body {
 /* dessa verkar inte funka, urlen funkar i andra filer men inte här */
 /* BACKGROUND FOR LOGIN.PHP */
 body.login {
-  background-image: url("$image");
+  background-image: url("../../images/layout/bw_1.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -477,7 +477,7 @@ body.login {
 
 /* BODY FOR DASHBOARD.PHP */
 body.dashboard {
-  background-image: url("$image");
+  background-image: url("../../images/layout/bw_1.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -488,7 +488,7 @@ body.dashboard {
 
 /* BODY FOR COMMENTS.PHP */
 body.comments {
-  background-image: url("$image");
+  background-image: url("../../images/layout/bw_7.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -499,7 +499,7 @@ body.comments {
 
 /* BODY FOR ARCHIVE.PHP */
 body.archive {
-  background-image: url("$image");
+  background-image: url("../../images/layout/bw_7.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -510,7 +510,7 @@ body.archive {
 
 /* BODY FOR DRAFTS.PHP */
 body.drafts {
-  background-image: url("$image");
+  background-image: url("../../images/layout/bw_9.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -521,7 +521,7 @@ body.drafts {
 
 /* BODY FOR STATISTICS.PHP */
 body.statistics {
-  background-image: url("$image");
+  background-image: url("../../images/layout/banner1.jpg");
   background-repeat: no-repeat;
   background-position: center center fixed;
   -webkit-background-size: cover;
@@ -540,15 +540,31 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 h2 {
   font-size: 2em;
 }
 
+p {
+  display: inline;
+}
+
+p.bold {
+  font-weight: bold;
+  margin: 0px;
+  padding-right: 10px;
+}
+
+p.italic {
+  font-style: italic;
+  padding-right: 10px;
+}
+
 .btn {
-  color: #FF9800;
+  background-color: #FF9800;
+  border: none;
 }
 
 .date {
@@ -629,14 +645,17 @@ nav > ul > li:hover > ul {
 }
 
 @media screen and (max-width: 699px) {
-  /* Detta ska vara body.login bakgrunden bara men den verkar inte funka */
+  /* ************** GENERAL STYLE FOR MOBILE ******************* */
+  p {
+    display: block;
+  }
+  /* denna ska in i backgrounds.scss men det funkar inte?? */
   body.login {
     background-image: url("../../images/layout/bw_1.jpg");
     background-size: cover;
     height: 100vh;
   }
   /* ************** LOGIN ******************* */
-  /* detta funkade jättebra innan jag gjorde desktop.scss som skriver över detta. varför? */
   .form {
     text-align: center;
     width: 100%;
@@ -663,23 +682,74 @@ nav > ul > li:hover > ul {
   .btn:hover, .btn:active, .btn:focus {
     background: #ff8c1a;
   }
-  /* ************** DASHBOARD ******************* */
-  /* ************** STATISTICS ******************* */
-  .statistics-bg {
-    /*bakgrund på statistiksidan i mobilversionen */
+  h2.login {
+    color: #FFFFFF;
   }
+  /* ************** DASHBOARD ******************* */
+  /*välkomsttexten på dashboard */
+  .welcome {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 3em;
+    text-align: center;
+  }
+  /* inputrutan för rubrik och brödtext */
+  input[type="text"], textarea {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    outline: 0;
+    width: 100%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
+  h1.dashboard-title {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 2em;
+    color: #455A64;
+  }
+  /*kategoriväljaren */
+  select.categories {
+    width: 100%;
+    margin: 20px auto;
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 1.3em;
+    background-color: #BDBDBD;
+    opacity: 0.7;
+  }
+  /* publicera / spara utkast-knapparna */
+  input[type="submit"] {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    color: #FFFFFF;
+    background-color: #FF9800;
+    border: none;
+    max-width: 100%;
+    margin: 0px auto;
+  }
+  input[type="submit"]:hover {
+    background-color: #ff8c1a;
+  }
+  /* ************** STATISTICS ******************* */
   .statistics-count {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 1.5em;
     padding: 2px;
-  }
-  .statistics-box {
-    /*om det ens ska vara en omslutande box i mobilversionen?*/
+    text-align: center;
   }
   /*denna ska generaliseras i base.scss */
   h1.statistics {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     font-size: 2.5em;
+    text-align: center;
+  }
+  /* ************** DRAFTS ******************* */
+  .draft-box {
+    text-align: center;
+  }
+  .draft-divider {
+    margin: 10px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #BDBDBD;
   }
 }
 
@@ -704,8 +774,8 @@ nav > ul > li:hover > ul {
   .form input {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
     outline: 0;
-    width: 100%;
-    margin: 0 0 15px;
+    width: 90%;
+    margin: 0 auto 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
@@ -730,21 +800,33 @@ nav > ul > li:hover > ul {
     border: none;
   }
   /* ************** DASHBOARD ******************* */
-  /*bakgrunden för dashboard eftersom background.scss för tillfället inte funkar. 
-  detta måste tänkas om eftersom bodyn ligger i header.php tar inte bakgrunden upp hela sidan */
-  body.dashboard {
-    background-image: url("../../images/layout/bw_1.jpg");
-    background-size: cover;
-    height: 100vh;
-  }
   /*välkomsttexten på dashboard */
   .welcome {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
-    font-size: 2em;
+    font-size: 3em;
     text-align: center;
   }
   /*detta är den vita boxen runt om input-fälten för inlägg */
-  /*denna kan man kodförkorta med @extend men får felmeddelande på det */
+  /*denna kan man kodförkorta med @extend */
+  .blogpost-box {
+    background: #FFFFFF;
+    width: 800px;
+    margin: 50px auto;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    float: none;
+  }
+  /* inputrutan för rubrik och brödtext */
+  input[type="text"], textarea {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    outline: 0;
+    width: 90%;
+    margin: 10px auto;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
   /* denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
   h1.dashboard-title {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
@@ -752,6 +834,26 @@ nav > ul > li:hover > ul {
     color: #455A64;
   }
   /*kategoriväljaren */
+  select.categories {
+    width: 90%;
+    margin: 20px auto;
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    font-size: 1.3em;
+    background-color: #BDBDBD;
+    opacity: 0.7;
+  }
+  /* publicera / spara utkast-knapparna */
+  input[type="submit"] {
+    font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+    color: #FFFFFF;
+    background-color: #FF9800;
+    border: none;
+    max-width: 90%;
+    margin: 0px auto;
+  }
+  input[type="submit"]:hover {
+    background-color: #ff8c1a;
+  }
   /* ************** STATISTICS ******************* */
   .statistics-count {
     font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
@@ -773,5 +875,19 @@ nav > ul > li:hover > ul {
   }
   .pagination_controls {
     min-width: 300px;
+  }
+  /* ************** DRAFTS ******************* */
+  .draft-box {
+    background: #FFFFFF;
+    width: 800px;
+    margin: 50px auto;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    float: none;
+  }
+  .draft-divider {
+    margin: 10px auto;
+    padding-bottom: 10px;
   }
 }
