@@ -9,7 +9,6 @@ if (!isset($_SESSION["loggedin"])) {
 
 if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
 
-echo "Hästen";
 
 	// Preparing the statement
 	$stmt = $conn->stmt_init();
@@ -31,13 +30,42 @@ echo "Hästen";
 		echo $query;
 
 	if ( mysqli_query($conn, $query)) {
-			$_SESSION['msg'] = "Funkar bra";
-			header('Location: editpost.php?editid=' . $_GET['editid']);
+			$_SESSION['msg'] = "Minisuccé";
+			//header('Location: editpost.php?editid=' . $_GET['editid']);
 	} else {
 			echo "Inlägget är inte sparat i databasen";
 	}
 }
 
+if(isset($_POST["draft"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
+
+				// Preparing the statement
+				$stmt = $conn->stmt_init();
+
+				// Stripping off harmful characters
+				$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
+				$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
+				$timeStamp = date("Y-m-d H:i:s");
+				$category = $_POST["category"];
+
+				// Upload post into database. Published = FALSE
+				$query = "
+		UPDATE posts SET
+		title = '{$title}',
+		text = '{$text}',
+		cat_id = '{$cat}',
+		edit_time = '{$timeStamp}',
+		is_published = 0
+		WHERE post_id = " . $_GET['editid'];
+		echo $query;
+
+	if ( mysqli_query($conn, $query)) {
+			$_SESSION['msg'] = "Funkar bra";
+			//header('Location: editpost.php?editid=' . $_GET['editid']);
+	} else {
+			echo "Inlägget är inte sparat i databasen";
+	}
+		}
 
 $editid = mysqli_real_escape_string($conn, $_GET['editid']);
 
