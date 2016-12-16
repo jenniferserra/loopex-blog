@@ -24,12 +24,12 @@ $sql = "SELECT count(*) FROM posts
 
 $query = mysqli_query($conn, $sql);
 $post = mysqli_fetch_row($query);
-$posts = $post[0];
+$amountOfPosts = $post[0];
 $postsPerPage = 5;
 
 
 // Tells the page nr of the very last page ("ceil" rounds numbers up)
-$last = ceil($posts/$postsPerPage);
+$last = ceil($amountOfPosts/$postsPerPage);
 
 // Makes sure that last page cannot be less than 1
 if ($last < 1) {
@@ -39,7 +39,7 @@ if ($last < 1) {
 // If no page-number URL-variables are available
 $pageNumber = 1;
 
-// Replacing pagenumber in url
+// Simplifying GET-value
 if(isset($_GET['pn'])) {
     $pageNumber = preg_replace('#[^0-9]#', '', $_GET['pn']);
 }
@@ -83,19 +83,14 @@ if ($last !=1) {
             }
         }
 
-if(isset($_GET["category"])) {
-        $selectedCategory = $_GET["category"];
-} else {
-    $selectedCategory = 0;
-}
         // Previous-button and long-backward-jump
-        $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
+        $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $jumpBackward . '"> << </a> &nbsp
+        <a href="?category='. $category . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
+                $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
             }
         }
     }
@@ -106,7 +101,7 @@ if(isset($_GET["category"])) {
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
-        $paginationCtrls .= '<a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
+        $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
 
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){
@@ -124,8 +119,8 @@ if(isset($_GET["category"])) {
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
         $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-        $paginationCtrls .= '&nbsp; <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $next . '">Next</a> &nbsp
-        <a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpForward . '"> >> </a> ';
+        $paginationCtrls .= '&nbsp; <a href="?category='. $category . '&pn=' . $next . '">Next</a> &nbsp
+        <a href="?category='. $category . '&pn=' . $jumpForward . '"> >> </a> ';
     }
 }
 //-----------------------------------------------------------------------------
