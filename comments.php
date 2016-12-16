@@ -57,20 +57,19 @@ foreach ($myPostDataArray as $post) {
             $stmt2->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
 
           while($stmt2->fetch()) {
-          ?>
+					?>
 						<div class='draft-box'>
 							<table>
 								<tr>
 										<td>
-											<!-- TO DO: Fult mellanrim mellan namn och kommenterade hur ta bort (letter-spacing)? -->
-											<p><span class='bold'><?php echo $c_name; ?></span>
-												<?php echo "<span class='bold'>";?>kommenterade inlägget:</span><?php echo $post['title']; ?>
+											<p><span class='bold'><?php echo $c_name;?></span>
+												<?php echo "<span class='bold'>";?>kommenterade inlägget:</span><?php echo $post['title'];?>
 												<?php echo "<span class='italic'><br>($createTime)</span><br>";?>
 											</p>
-											<p><?php echo $c_text; ?></p>
+											<p><?php echo $c_text;?></p>
 										</td>
 										<td>
-												<a href="comments.php?delete=<?php echo $com_id; ?> "class="btn btn-sm btn-primary">Radera</a>
+												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
 										</td>
 								</tr>
 							</table>
