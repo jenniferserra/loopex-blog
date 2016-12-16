@@ -22,8 +22,8 @@ if($stmt->prepare($query)) {
 	?>
 
 
-					<div class="blogpost-box">
-						  <div class="blogpost">
+					<div class="blogpost-box divider">
+						  <div class="blogpost divider">
             <h1><?php echo $title; ?></h1>
             <div class="date"><p><?php echo $createTime; ?></p></div>
             <div class="text"><p><?php echo $text; ?></p></div>
@@ -51,11 +51,14 @@ if($stmt->prepare($query)) {
 
                 while(mysqli_stmt_fetch($stmt)) {
                     ?>
+
                     <div class="blogpost">
-                        <div class="text">
-                            <p><?php echo $c_text; ?></p><br>
-                            <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
-                        </div>
+
+                      		<div class="text">
+	                            <p><?php echo $c_text; ?></p><br>
+	                            <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
+													</div>
+
                         <div class="author">
                             <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
                         </div>

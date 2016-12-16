@@ -19,7 +19,7 @@
 			$stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
 			$stmt->fetch();
 		}
-	
+
 		//-----------------------------------------------------------------------------
 		// HTML-STRUKTUR FÖR INLÄGG
 		//-----------------------------------------------------------------------------
@@ -43,7 +43,7 @@
 				<input name="publish" class="btn button btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
 				<input name="draft" class="btn button btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
 			</form>
-		
+
 		<?php
 		//-----------------------------------------------------------------------------
 		// PUBLISH
