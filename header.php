@@ -48,7 +48,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     } else {
         ?>
                     <li class="menu-btn-lvl-1"><a href="index.php">Hem</a></li>
-                    <li class="menu-btn-lvl-1"><a href="?category=0">Kategori</a>
+                    <li class="menu-btn-lvl-1"><a href="index.php">Kategori</a>
                         <ul>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=1">Sport</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=2">Mode</a></li>
