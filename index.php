@@ -18,7 +18,9 @@ if (isset($_GET["category"])) {
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Getting the number of published blog posts
-$sql = "SELECT count(*) FROM posts WHERE is_published = TRUE";
+$sql = "SELECT count(*) FROM posts
+        WHERE is_published = TRUE
+        AND posts.cat_id = $category";
 
 $query = mysqli_query($conn, $sql);
 $post = mysqli_fetch_row($query);
@@ -52,21 +54,13 @@ if($pageNumber < 1) {
 // Query for a limited amount of posts
 $limit = 'LIMIT ' .($pageNumber - 1) * $postsPerPage .',' . $postsPerPage;
 
-/*$sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
-        LEFT JOIN users ON posts.user_id = users.user_id
-        LEFT JOIN categories ON posts.cat_id = categories.cat_id
-        WHERE posts.cat_id = $category
-        AND posts.is_published = TRUE
-        ORDER BY create_time DESC $limit";*/
 $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
         FROM posts
         LEFT JOIN users ON posts.user_id = users.user_id
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
-        WHERE posts.is_published = 1 ";
-if (isset($_GET["category"])) {
-    $sql .= " AND posts.cat_id = $category ";
-}
-$sql .= " ORDER BY create_time DESC $limit";
+        WHERE posts.is_published = 1
+        AND posts.cat_id = $category
+        ORDER BY create_time DESC $limit";
 
 $query = mysqli_query($conn, $sql);
 
@@ -89,6 +83,11 @@ if ($last !=1) {
             }
         }
 
+if(isset($_GET["category"])) {
+        $selectedCategory = $_GET["category"];
+} else {
+    $selectedCategory = 0;
+}
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="' .$_SERVER['PHP_SELF'] . '?pn=' . $jumpBackward . '"> << </a> &nbsp
         <a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
@@ -100,6 +99,7 @@ if ($last !=1) {
             }
         }
     }
+
 
     // CURRENT PAGE - Render the target page number (not being a link)
     $paginationCtrls .= ''.$pageNumber.' &nbsp; ';
@@ -170,6 +170,7 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $comment = mysqli_fetch_row($queryForCommentAmount);
     $comments = $comment[0];
     ?>
+
     <div class="blogpost_center blogpost-box">
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
