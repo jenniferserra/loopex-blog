@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="style/css/style.css">
 </head>
 <body class="dashboard comments drafts archive statistics index">
+
+    <header>
+            <nav class="navbar navbar-default">
+                <ul>
+
+
 <?php
 require_once "dbconnect.php";
 session_start();
@@ -23,22 +29,16 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
     $stmt->fetch();
 ?>
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.php">Till bloggen</a>
-                <a class="navbar-brand" href="dashboard.php">Profil</a>
-                <a class="navbar-brand" href="comments.php">Kommentarer</a>
-                <a class="navbar-brand" href="archive.php">Arkiv</a>
-                <a class="navbar-brand" href="drafts.php">Utkast</a>
-                <a class="navbar-brand" href="statistics.php">Statistik</a>
-            </div>
-            <div class="navbar-header navbar-right">
-                <a class="navbar-brand" href="logout.php">Logga ut</a>
-            </div>
-        </nav>
-    </header>
+
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="comments.php">Kommentarer</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="archive.php">Arkiv</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="drafts.php">Utkast</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
+                    <li class="navbar-brand menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
+
     <?php
     $stmt->close();
        // ---------------------------------------------------------------------
@@ -47,9 +47,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 
     } else {
         ?>
-        <header>
-            <nav class="navbar navbar-default">
-                <ul>
                     <li class="menu-btn-lvl-1"><a href="#">Hem</a></li>
                     <li class="menu-btn-lvl-1">
                         <a href="?category=0">Kategori</a>
@@ -73,12 +70,13 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                             <a class="navbar-brand" href="login.php">Logga in</a>
                         </li>
                     </div>
+    <?php
+        }
+?>
+
                 </ul>
             </nav>
         </header>
 
-    <?php
-        }
-?>
         <!-- start a wrapper -->
         <div class="page-content">
