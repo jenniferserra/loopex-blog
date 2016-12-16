@@ -77,8 +77,8 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
             </nav>
         </header>
 
-        <!-- start a wrapper -->
-        <div class="page-content">
     <?php
         }
 ?>
+        <!-- start a wrapper -->
+        <div class="page-content">
