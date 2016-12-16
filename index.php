@@ -8,7 +8,7 @@ require "header.php";
 
 $category = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
 if (isset($_GET["category"])) {
-	$category = $_GET["category"];   
+	$category = $_GET["category"];
 }
 
 //-----------------------------------------------------------------------------
@@ -107,7 +107,7 @@ if ($last !=1) {
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
         $paginationCtrls .= '<a href="' . $_SERVER['PHP_SELF'] . '?pn=' . $i . '">' . $i . '</a> &nbsp; ';
-        
+
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){
             $fillNumbersInfront= 4 - $pageNumber;
@@ -171,18 +171,23 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $comments = $comment[0];
     ?>
 
-    <div class="blogpost_center">
+    <div class="blogpost_center blogpost-box">
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
             <div class="date-container"><p class="date"><?php echo $createTime; ?></p></div>
             <div class="text"><p><?php echo $text; ?></p></div>
-            <div class="text"><p><?php echo "<p>Kategori: $catName</p>"; ?></p></div>
-            <div class="author"><p>Skriven av:
-                <?php
-                echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
+
+            <div class="text"><p><?php echo "<p class='bold'>Kategori:</p> $catName</p>";?></div>
+            <div class="author"><span class='bold'></p>Skriven av:
+
+
+              <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
                 <p><a href='mailto:$user_email'>$user_email</a></p>";
                 ?>
             </div>
+
+
+
             <div class="comments">
                 <?php
                 echo "<a href='post.php?id=$postId' name='btn'>
@@ -191,8 +196,9 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
             </div>
         </div>
     </div>
-<?php 
+<?php
 }
+
 //-----------------------------------------------------------------------------
 // End of looping out blog posts
 //-----------------------------------------------------------------------------

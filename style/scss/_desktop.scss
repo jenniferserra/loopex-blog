@@ -67,7 +67,7 @@
   .blogpost-box {
    @include whitebox;
 
-   }
+  }
 
 // inputrutan för rubrik och brödtext
 input[type="text"], textarea {
@@ -78,7 +78,7 @@ input[type="text"], textarea {
     padding: 15px;
     box-sizing: border-box;
     font-size: 16px;
-}
+  }
 
 
 // denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
@@ -165,3 +165,7 @@ td {
     margin: 20px auto;
     line-height: 1.7em;
 }
+
+//-----------------------------------------------------------------------------
+// BLOG-PAGE: index.php
+//-----------------------------------------------------------------------------

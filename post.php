@@ -20,13 +20,16 @@ if($stmt->prepare($query)) {
 
 	while(mysqli_stmt_fetch($stmt)) {
 	?>
-        <div class="blogpost">
+
+
+					<div class="blogpost-box">
+						  <div class="blogpost">
             <h1><?php echo $title; ?></h1>
             <div class="date"><p><?php echo $createTime; ?></p></div>
             <div class="text"><p><?php echo $text; ?></p></div>
             <div class="author"><p>Written by:
                 <?php
-                echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
+                echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a><br>";
                 echo "<p>Kategori: $catName</p>";
                 ?>
             </div>
@@ -50,8 +53,8 @@ if($stmt->prepare($query)) {
                     ?>
                     <div class="blogpost">
                         <div class="text">
-                            <p><?php echo $c_text; ?></p>
-                            <p><?php echo $c_name . " " . $createTime; ?></p>
+                            <p><?php echo $c_text; ?></p><br>
+                            <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
                         </div>
                         <div class="author">
                             <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
