@@ -2,20 +2,14 @@
 require "header.php";
 ?>
 
-
     <div class="banner"> </div>
     <div class="col-md-3"></div> <div class="col-md-6">
 <?php
 
- $category = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
+$category = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
 if (isset($_GET["category"])) {
-	$category = $_GET["category"];
-
-    
+	$category = $_GET["category"];   
 }
-
-echo $category;
-
 
 //-----------------------------------------------------------------------------
 // Pagination start
