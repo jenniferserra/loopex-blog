@@ -170,7 +170,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
     $comment = mysqli_fetch_row($queryForCommentAmount);
     $comments = $comment[0];
     ?>
-
     <div class="blogpost_center blogpost-box">
         <div class="blogpost">
             <h1><?php echo $title; ?></h1>
