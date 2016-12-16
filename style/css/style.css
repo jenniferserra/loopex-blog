@@ -613,22 +613,20 @@ nav {
 }
 
 nav > ul {
-  float: right;
-  width: 70%;
-  height: 40px;
   background-color: #FFFFFF;
 }
 
 .menu-btn-lvl-1 {
   float: left;
   min-width: 150px;
-  background-color: rgba(33, 33, 33, 0.5);
-  margin-right: 15px;
-  line-height: 40px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  margin-right: 2px;
+  line-height: 50px;
 }
 
 nav > ul li:hover a {
-  color: #FFFFFF;
+  color: #212121;
   text-decoration: none;
 }
 
@@ -644,8 +642,12 @@ nav > ul li:hover a {
   background-color: rgba(33, 33, 33, 0.5);
 }
 
+.menu-btn-lvl-2 {
+  background-color: #FFFFFF;
+}
+
 nav a {
-  padding: 15px;
+  padding: 10px;
   box-sizing: border-box;
 }
 

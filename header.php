@@ -28,47 +28,15 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     $stmt->execute();
     $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
     $stmt->fetch();
-?>
-
-                    <li class="menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
-                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
-                    <li class="menu-btn-lvl-1"><a href="comments.php">Kommentarer</a></li>
-                    <li class="menu-btn-lvl-1"><a href="archive.php">Arkiv</a></li>
-                    <li class="menu-btn-lvl-1"><a href="drafts.php">Utkast</a></li>
-                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
-                    <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
-                    <li class="menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
-
-    <?php
+                    require"header_btns/default_inlog_btns.php";
     $stmt->close();
        // ---------------------------------------------------------------------
         // IF NOT LOGGED IN
         // --------------------------------------------------------------------
 
     } else {
-        ?>
-                    <li class="menu-btn-lvl-1"><a href="index.php">Hem</a></li>
-                    <li class="menu-btn-lvl-1"><a href="?category=0">Kategori</a>
-                        <ul>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=1">Sport</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=2">Mode</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=3">Fotografi</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=4">Annat</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="menu-btn-lvl-1"><a href="#">Arkiv</a>
-                        <ul>
-                            <li class="menu-btn-lvl-2"><a href="#">Januari</a></li>
-                            <li class="menu-btn-lvl-2"><a href="#">Februari</a></li>
-                        </ul>
-                    </li>
-                    <div class="navbar-header navbar-right">
-                        <li class="menu-btn-lvl-1">
-                            <a class="navbar-brand" href="login.php">Logga in</a>
-                        </li>
-                    </div>
-    <?php
+                    require"header_btns/default_outlog_btns.php";
+                    require"header_btns/index_outlog_btns.php";
         }
 ?>
 
