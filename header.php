@@ -59,8 +59,8 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 
                     <li class="menu-btn-lvl-1"><a href="#">Arkiv</a>
                         <ul>
-                            <li class="menu-btn-lvl-2"><a href="#">Januari</a></li>
-                            <li class="menu-btn-lvl-2"><a href="#">Februari</a></li>
+                            <li class="menu-btn-lvl-2"><a href="?month=12">December</a></li>
+                            <li class="menu-btn-lvl-2"><a href="?month=1">Januari</a></li>
                         </ul>
                     </li>
                     <div class="navbar-header navbar-right">
