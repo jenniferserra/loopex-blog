@@ -11,6 +11,13 @@ if (isset($_GET["category"])) {
 	$category = $_GET["category"];
 }
 
+$selectedMonthRange = range(1, 12);
+$selectedMonth = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4 . ' OR ' . 5 . ' OR ' . 6 . ' OR ' . 7 . ' OR ' . 8 . ' OR ' . 9 . ' OR ' . 10 . ' OR ' . 11 . ' OR ' . 12;
+if (isset($_GET["month"])) {
+    $selectedMonth = $_GET["month"];
+}
+echo $selectedMonth;
+
 //-----------------------------------------------------------------------------
 // Pagination start
 //-----------------------------------------------------------------------------
@@ -20,7 +27,8 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Getting the number of published blog posts
 $sql = "SELECT count(*) FROM posts
         WHERE is_published = TRUE
-        AND posts.cat_id = $category";
+        AND (cat_id = $category)
+        AND (substr(create_time, 6, 2) = $selectedMonth)";
 
 $query = mysqli_query($conn, $sql);
 $post = mysqli_fetch_row($query);
@@ -58,8 +66,9 @@ $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories
         FROM posts
         LEFT JOIN users ON posts.user_id = users.user_id
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
-        WHERE posts.is_published = 1
-        AND posts.cat_id = $category
+        WHERE is_published = 1
+        AND (posts.cat_id = $category)
+        AND (substr(create_time, 6, 2) = $selectedMonth)
         ORDER BY create_time DESC $limit";
 
 $query = mysqli_query($conn, $sql);
@@ -84,13 +93,13 @@ if ($last !=1) {
         }
 
         // Previous-button and long-backward-jump
-        $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="?category='. $category . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
+        $paginationCtrls .= '<a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $jumpBackward . '"> << </a> &nbsp
+        <a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+                $paginationCtrls .= '<a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
             }
         }
     }
@@ -101,7 +110,7 @@ if ($last !=1) {
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
-        $paginationCtrls .= '<a href="?category='. $category . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+        $paginationCtrls .= '<a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
 
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){
@@ -119,8 +128,8 @@ if ($last !=1) {
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
         $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-        $paginationCtrls .= '&nbsp; <a href="?category='. $category . '&pn=' . $next . '">Next</a> &nbsp
-        <a href="?category='. $category . '&pn=' . $jumpForward . '"> >> </a> ';
+        $paginationCtrls .= '&nbsp; <a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $next . '">Next</a> &nbsp
+        <a href="?category='. $category . '&month=' . $selectedMonth . '&pn=' . $jumpForward . '"> >> </a> ';
     }
 }
 //-----------------------------------------------------------------------------
@@ -180,8 +189,6 @@ while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
                 <p><a href='mailto:$user_email'>$user_email</a></p>";
                 ?>
             </div>
-
-
 
             <div class="comments">
                 <?php
