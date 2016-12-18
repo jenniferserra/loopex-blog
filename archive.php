@@ -14,6 +14,7 @@ if ($stmt->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); ?>
 
+          <div class='draft-box'>
               <h1>Välj ett utkast att redigera</h1>
               <?php
               /* Start printing unpublished posts */
@@ -35,6 +36,7 @@ if ($stmt->prepare($query)) {
                      </a>
                   </div>
               </div> 
+
                     <?php
 
                   }
@@ -51,6 +53,9 @@ if ($stmt->prepare($query)) {
                 header("Location:archive.php");
             }
           }
-
+        ?>  
+      </div>
+    <?php      
+  
 require "footer.php";
 ?>
