@@ -59,8 +59,23 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 
                     <li class="menu-btn-lvl-1"><a href="#">Arkiv</a>
                         <ul>
-                            <li class="menu-btn-lvl-2"><a href="?month=12">December</a></li>
-                            <li class="menu-btn-lvl-2"><a href="?month=1">Januari</a></li>
+                            
+                            <?php
+                            $sql_month = "SELECT create_time FROM posts
+                                        GROUP BY substr(create_time, 1, 8)
+                                        HAVING COUNT(*) > 1
+                                        ORDER BY create_time DESC";
+                            $query_month = mysqli_query($conn, $sql_month);
+                            while ($yearAndMonth = mysqli_fetch_array($query_month)) {
+                                
+                                $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
+
+                                global $readableDate;
+                                $readableDate = date("F Y", strtotime($yearAndMonth));
+                                
+                                echo '<li class="menu-btn-lvl-2"><a href="?month=' . $yearAndMonth . '">' . $readableDate . '</a></li>';
+                            }
+                            ?>
                         </ul>
                     </li>
                     <div class="navbar-header navbar-right">
@@ -78,3 +93,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 
         <!-- start a wrapper -->
         <div class="page-content">
+
+
+            
