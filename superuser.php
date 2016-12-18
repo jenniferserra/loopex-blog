@@ -74,13 +74,16 @@ $stmt = $conn->stmt_init();
                 												 $lastName, $user_email, $catName);
 
                       while ($stmt->fetch()) {
-                          echo "$title";
-                          echo " (" . $createTime . " )<p>";
+                          echo "<h4>$title"; if($isPublished == 0) {
+                            echo "*";
+                          }
+
+                          echo " </h4>(" . $createTime . ")<p>";
                           echo "$text </p>";
                           echo "<p><a href='superuser.php?postDelete=$postId' class='btn btn-secondary'>Radera </a></p>";
                       }
                   }
-
+                          echo "* = utkast";
                 break;
 
               /* Show all comments */
@@ -121,8 +124,8 @@ $stmt = $conn->stmt_init();
                       echo "<p>Namn: $firstName $lastName</p>";
                       echo "<p>E-Post: $email</p>";
                       echo "<p>Roll: $role</p><hr>";
-                      /* TODO Räkna posts?*/
                       echo "<p><a href='superuser.php?userDelete=$userId' class='btn btn-secondary'>Radera </a></p>";
+
 
                   }
               }
