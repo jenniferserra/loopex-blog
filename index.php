@@ -149,7 +149,7 @@ if ($last !=1) {
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
         $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-        $paginationCtrls .= '&nbsp; <a href="' . $categoryURL . $selectedMonthURL . '&pn=' . $next . '">Next</a> &nbsp
+        $paginationCtrls .= '&nbsp; <a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $next . '">Next</a> &nbsp
         <a href="' . $categoryURL . $selectedMonthURL . '&pn=' . $jumpForward . '"> >> </a> ';
     }
 }
