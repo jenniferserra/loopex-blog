@@ -20,10 +20,10 @@ require_once "dbconnect.php";
 session_start();
 
 
-// Preparing URL-values for being linked to in menu
+// Variables to be inserted in link-URL in menu-buttons
+// Standard value is empty so that no extra characters appear in URL when nothing is selected
 global $selectedYearAndMonth;
 $selectedYearAndMonth = "";
-
 global $selectedYearAndMonthURL;
 $selectedYearAndMonthURL = "";
 
@@ -32,11 +32,9 @@ if(isset($_GET["yrmnth"])) {
     $selectedYearAndMonthURL = '&yrmnth=' . $selectedYearAndMonth;
 }
 
-// Preparing category ready to be put in a link URL
 global $categoryURL;
-global $categoryId;
 $categoryURL = "";
-$categoryId = "";
+
 if(isset($_GET["category"])) {
     $categoryURL = '&category=' . $_GET["category"];
 }
@@ -56,10 +54,13 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
 ?>
                     <li class="menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
                     <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
-                    <li class="menu-btn-lvl-1"><a href="comments.php">Kommentarer</a></li>
-                    <li class="menu-btn-lvl-1"><a href="archive.php">Arkiv</a></li>
-                    <li class="menu-btn-lvl-1"><a href="drafts.php">Utkast</a></li>
-                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
+                    <li class="menu-btn-lvl-1"><a href="comments.php">Blogginlägg</a>
+                        <ul>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Arkiv</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
+                        </ul>
+                    </li>
                     <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
                     <li class="menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
 
@@ -74,47 +75,40 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                     <li class="menu-btn-lvl-1"><a href="index.php">Hem</a></li>
                     <li class="menu-btn-lvl-1"><a href="index.php">Kategori</a>
                         <ul>
-                            <?php
 
+                            <?php
+                            // Looping out category drop-down
                             $sql_category = "SELECT * FROM categories";
                             $query_category = mysqli_query($conn, $sql_category);
                             while ($category = mysqli_fetch_array($query_category)) {
-
                             $categoryName = $category["cat_name"];
                             $categoryId = $category["cat_id"];
-
-                               echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
+                            echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
                             }
-
-
                             ?>
+
                         </ul>
                     </li>
 
-                    <li class="menu-btn-lvl-1"><a href="#">Arkiv</a>
+                    <li class="menu-btn-lvl-1"><a href="#">Månad</a>
                         <ul>
                             
                             <?php
-                            
+                            // Looping out Month-selection drop-down          
                             $sql_month = "SELECT create_time FROM posts
                                         GROUP BY substr(create_time, 1, 8)
                                         HAVING COUNT(*) > 1
                                         ORDER BY create_time DESC";
                             $query_month = mysqli_query($conn, $sql_month);
-                            while ($yearAndMonth = mysqli_fetch_array($query_month)) {
-                                
-                                $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
-                               
+                            while ($yearAndMonth = mysqli_fetch_array($query_month)) {     
+                                $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);          
                                 $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
-
                                 global $readableDate;
-                                $readableDate = date("F Y", strtotime($yearAndMonth));
-                                
+                                $readableDate = date("F Y", strtotime($yearAndMonth));                 
                                 echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                             }
-
-
                             ?>
+
                         </ul>
                     </li>
                     <div class="navbar-header navbar-right">

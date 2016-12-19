@@ -43,7 +43,7 @@ nav > ul li:hover a {
 }
 
 .menu-btn-lvl-2:hover {
-  background-color: rgba($color: $primary-text-color, $alpha: 0.5);
+  background: #f8f8f8;
 }
 
 .menu-btn-lvl-2 {
@@ -53,4 +53,19 @@ nav > ul li:hover a {
 nav a {
     padding: 10px;
     box-sizing: border-box;
+}
+
+.selection-display {
+    font-family: $primary-font;
+}
+.selection-display-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    color: rgba($color: $primary-text-color, $alpha: 0.5);
+    width: 800px;
+    margin: 0px auto 15px;
+    padding: 0px;
+    text-align: center;
+    float: none;
 }

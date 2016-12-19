@@ -142,102 +142,108 @@ if ($last !=1) {
 //-----------------------------------------------------------------------------
 // Pagination end
 //-----------------------------------------------------------------------------
-
-
-
 ?>
+</div> <!-- col-md-6 -->
+
+<div class="col-sm-12 col-xs-12">
+    <div class="selection-display-box">
+    <?php
+
+    if(isset($_GET["category"])) {
+        $selectedCategory =  $_GET["category"];
+        $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
+        $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
+        $categoryRow = mysqli_fetch_row($query_getCategoryName);
+        $selectedCategoryName = strtoupper($categoryRow[0]);
+        echo '<div class="selection-display">
+                <p>KATEGORI: ' . $selectedCategoryName . '</p>
+            </div>';
+    }
+
+    if(isset($_GET["yrmnth"])) {
+        $selectedReadableDate = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
+        echo '<div class="selection-display">
+                <p>INLÄGG FRÅN: ' . $selectedReadableDate . '</p>
+            </div>';
+    }
+
+    ?>
+    </div> <!-- selection-display-box -->
+
 <!-----------------------------------------------------------------------------
 Pagination-top printed out
 ------------------------------------------------------------------------------>
-<div class="col-sm-12 col-xs-12 text-center pagination_controls"><?php echo $paginationCtrls; ?></div>
+    <div class="text-center pagination_controls"><?php echo $paginationCtrls; ?></div>
 
 
 
-<?php
+    <?php
+
+    //-----------------------------------------------------------------------------
+    // Looping out blog posts
+    //-----------------------------------------------------------------------------
+    // Looping out blog posts a few at a time
+    while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+        $postId = $post["post_id"];
+        $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
+        $editTime = $post["edit_time"];
+        $title = $post["title"];
+        $text = $post["text"];
+        $isPublished = $post["is_published"];
+        $userId = $post["user_id"];
+        $catId = $post["cat_id"];
+        //Left join
+        $firstName = $post["firstname"];
+        $lastName = $post["lastname"];
+        $user_email = $post["email"];
+        //Left join
+        $catName = $post["cat_name"];
+
+        // Getting the amout of comments for each post
+        $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
+        $queryForCommentAmount = mysqli_query($conn, $sql);
+        $comment = mysqli_fetch_row($queryForCommentAmount);
+        $comments = $comment[0];
+        ?>
+
+        <div class="blogpost_center blogpost-box">
+            <div class="blogpost">
+                <h1><?php echo $title; ?></h1>
+                <div class="date-container"><p class="date"><?php echo $createTime; ?></p></div>
+                <div class="text"><p><?php echo $text; ?></p></div>
+
+                <div class="text"><p><?php echo "<p class='bold'>Kategori:</p> $catName</p>";?></div>
+                <div class="author"><span class='bold'></p>Skriven av:
 
 
-if(isset($_GET["yrmnth"])) {
-     $selectedReadableDate = date("F Y", strtotime($selectedYearAndMonth));
-    echo '<div class="blogpost-box">
-            <h1>Inlägg från: ' . $selectedReadableDate . '</h1>
-        </div>';
-}
-if(isset($_GET["category"])) {
-    $selectedCategory =  $_GET["category"];
-    $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
-    $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
-    $categoryRow = mysqli_fetch_row($query_getCategoryName);
-    $selectedCategoryName = $categoryRow[0];
-    echo '<div class="blogpost-box">
-            <h1>Kategori: ' . $selectedCategoryName . '</h1>
-        </div>';
-}
+                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
+                    <p><a href='mailto:$user_email'>$user_email</a></p>";
+                    ?>
+                </div>
 
-
-
-//-----------------------------------------------------------------------------
-// Looping out blog posts
-//-----------------------------------------------------------------------------
-// Looping out blog posts a few at a time
-while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
-    $postId = $post["post_id"];
-    $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
-    $editTime = $post["edit_time"];
-    $title = $post["title"];
-    $text = $post["text"];
-    $isPublished = $post["is_published"];
-    $userId = $post["user_id"];
-    $catId = $post["cat_id"];
-    //Left join
-    $firstName = $post["firstname"];
-    $lastName = $post["lastname"];
-    $user_email = $post["email"];
-    //Left join
-    $catName = $post["cat_name"];
-
-    // Getting the amout of comments for each post
-    $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
-    $queryForCommentAmount = mysqli_query($conn, $sql);
-    $comment = mysqli_fetch_row($queryForCommentAmount);
-    $comments = $comment[0];
-    ?>
-
-    <div class="blogpost_center blogpost-box">
-        <div class="blogpost">
-            <h1><?php echo $title; ?></h1>
-            <div class="date-container"><p class="date"><?php echo $createTime; ?></p></div>
-            <div class="text"><p><?php echo $text; ?></p></div>
-
-            <div class="text"><p><?php echo "<p class='bold'>Kategori:</p> $catName</p>";?></div>
-            <div class="author"><span class='bold'></p>Skriven av:
-
-
-              <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
-                <p><a href='mailto:$user_email'>$user_email</a></p>";
-                ?>
-            </div>
-
-            <div class="comments">
-                <?php
-                echo "<a href='post.php?id=$postId' name='btn'>
-                ($comments) Kommentarer </a>";
-                ?>
+                <div class="comments">
+                    <?php
+                    echo "<a href='post.php?id=$postId' name='btn'>
+                    ($comments) Kommentarer </a>";
+                    ?>
+                </div>
             </div>
         </div>
-    </div>
-<?php
+    <?php
 
-}
+    }
 
-//-----------------------------------------------------------------------------
-// End of looping out blog posts
-//-----------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
+    // End of looping out blog posts
+    //-----------------------------------------------------------------------------
 
-//Closing database connection
-mysqli_close($conn);
-?>
+    //Closing database connection
+    mysqli_close($conn);
+    ?>
 
-</div>
+    </div> <!-- text-center pagination_controls -->
+</div> <!-- col-sm-12 col-xs-12 -->
+
 <div class="col-md-3"></div>
 <!-----------------------------------------------------------------------------
 Pagination-bottom printed out
