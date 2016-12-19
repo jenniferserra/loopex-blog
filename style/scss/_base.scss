@@ -49,3 +49,8 @@ p.italic, span.italic {
 	padding-right: 10px;
 	/* letter-spacing: 0.1em; */
 }
+
+.pagination_controls {
+  	min-width: 300px;
+	font-family: $primary-font;
+}
