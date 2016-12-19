@@ -11,9 +11,10 @@ if (isset($_GET["category"])) {
 	$category = $_GET["category"];
 }
 
-$selectedMonth = 2;
-if (isset($_GET["month"])) {
-    $selectedMonth = $_GET["month"];
+// The number 2 indicates that the blog post begins in the 2:nd millenium
+$sqlYearAndMonth = 2;
+if (isset($_GET["yrmnth"])) {
+    $sqlYearAndMonth = $_GET["yrmnth"];
 }
 
 
@@ -24,13 +25,10 @@ if (isset($_GET["month"])) {
 $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
 // Getting the number of published blog posts
-
-if(isset($selectedMonth)) {
 $sql = "SELECT count(*) FROM posts
         WHERE is_published = TRUE
         AND (cat_id = $category)
-        AND (substr(create_time, 1, 7) LIKE '$selectedMonth%')";
-}
+        AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')";
 
 
 $query = mysqli_query($conn, $sql);
@@ -71,7 +69,7 @@ $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
         WHERE is_published = 1
         AND (posts.cat_id = $category)
-        AND (substr(create_time, 1, 7) LIKE '$selectedMonth%')
+        AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
         ORDER BY create_time DESC $limit";
 
 
@@ -82,16 +80,16 @@ $query = mysqli_query($conn, $sql);
 $paginationCtrls = '';
 
 // Writing out url needed for selecting month
-if(!isset($selectedMonth)) {
-    $selectedMonthURL = '&month=' . $selectedMonth;
+if(isset($_GET["yrmnth"])) {
+    $selectedYearAndMonthURL = '&yrmnth=' . $_GET["yrmnth"];
 } else {
-    $selectedMonthURL = "";
+    $selectedYearAndMonthURL = "";
 }
 
 if(isset($category)) {
     $categoryURL = '&category=' . $category;
 } else {
-    $selectedMonthURL = "";
+    $categoryhURL = "";
 }
 
 
@@ -114,13 +112,13 @@ if ($last !=1) {
 
 
         // Previous-button and long-backward-jump
-        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
+        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpBackward . '"> << </a> &nbsp
+        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '<a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+                $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
             }
         }
     }
@@ -131,7 +129,7 @@ if ($last !=1) {
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
-        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
 
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){
@@ -149,8 +147,8 @@ if ($last !=1) {
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
         $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-        $paginationCtrls .= '&nbsp; <a href="?' . $categoryURL . $selectedMonthURL . '&pn=' . $next . '">Next</a> &nbsp
-        <a href="' . $categoryURL . $selectedMonthURL . '&pn=' . $jumpForward . '"> >> </a> ';
+        $paginationCtrls .= '&nbsp; <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $next . '">Next</a> &nbsp
+        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpForward . '"> >> </a> ';
     }
 }
 //-----------------------------------------------------------------------------
