@@ -155,6 +155,26 @@ Pagination-top printed out
 
 <?php
 
+
+if(isset($_GET["yrmnth"])) {
+     $selectedReadableDate = date("F Y", strtotime($selectedYearAndMonth));
+    echo '<div class="blogpost-box">
+            <h1>Inlägg från: ' . $selectedReadableDate . '</h1>
+        </div>';
+}
+if(isset($_GET["category"])) {
+    $selectedCategory =  $_GET["category"];
+    $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
+    $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
+    $categoryRow = mysqli_fetch_row($query_getCategoryName);
+    $selectedCategoryName = $categoryRow[0];
+    echo '<div class="blogpost-box">
+            <h1>Kategori: ' . $selectedCategoryName . '</h1>
+        </div>';
+}
+
+
+
 //-----------------------------------------------------------------------------
 // Looping out blog posts
 //-----------------------------------------------------------------------------

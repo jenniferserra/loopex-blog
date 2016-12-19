@@ -26,6 +26,7 @@ $selectedYearAndMonth = "";
 
 global $selectedYearAndMonthURL;
 $selectedYearAndMonthURL = "";
+
 if(isset($_GET["yrmnth"])) {
     $selectedYearAndMonth = $_GET["yrmnth"];
     $selectedYearAndMonthURL = '&yrmnth=' . $selectedYearAndMonth;
@@ -33,7 +34,9 @@ if(isset($_GET["yrmnth"])) {
 
 // Preparing category ready to be put in a link URL
 global $categoryURL;
+global $categoryId;
 $categoryURL = "";
+$categoryId = "";
 if(isset($_GET["category"])) {
     $categoryURL = '&category=' . $_GET["category"];
 }
@@ -51,7 +54,6 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
     $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
     $stmt->fetch();
 ?>
-
                     <li class="menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
                     <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
                     <li class="menu-btn-lvl-1"><a href="comments.php">Kommentarer</a></li>
@@ -74,10 +76,15 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                         <ul>
                             <?php
 
-                            echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category=1' . $selectedYearAndMonthURL . '">Sport</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=2' . $selectedYearAndMonthURL . '">Mode</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=3' . $selectedYearAndMonthURL . '">Fotografi</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=4' . $selectedYearAndMonthURL . '">Annat</a></li>';
+                            $sql_category = "SELECT * FROM categories";
+                            $query_category = mysqli_query($conn, $sql_category);
+                            while ($category = mysqli_fetch_array($query_category)) {
+
+                            $categoryName = $category["cat_name"];
+                            $categoryId = $category["cat_id"];
+
+                               echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
+                            }
 
 
                             ?>
