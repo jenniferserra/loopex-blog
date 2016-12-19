@@ -61,6 +61,7 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                         <ul>
                             
                             <?php
+                            
                             $sql_month = "SELECT create_time FROM posts
                                         GROUP BY substr(create_time, 1, 8)
                                         HAVING COUNT(*) > 1
@@ -69,11 +70,13 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                             while ($yearAndMonth = mysqli_fetch_array($query_month)) {
                                 
                                 $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
+                               
+                                $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
 
                                 global $readableDate;
                                 $readableDate = date("F Y", strtotime($yearAndMonth));
                                 
-                                echo '<li class="menu-btn-lvl-2"><a href="?month=' . $yearAndMonth . '">' . $readableDate . '</a></li>';
+                                echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . '">' . $readableDate . '</a></li>';
                             }
                             ?>
                         </ul>
