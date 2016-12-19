@@ -6,9 +6,9 @@ require "header.php";
     <div class="col-md-3"></div> <div class="col-md-6">
 <?php
 
-$category = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
+$sqlCategory = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
 if (isset($_GET["category"])) {
-	$category = $_GET["category"];
+	$sqlCategory = $_GET["category"];
 }
 
 // The number 2 indicates that the blog post begins in the 2:nd millenium
@@ -27,7 +27,7 @@ $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Getting the number of published blog posts
 $sql = "SELECT count(*) FROM posts
         WHERE is_published = TRUE
-        AND (cat_id = $category)
+        AND (cat_id = $sqlCategory)
         AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')";
 
 
@@ -68,7 +68,7 @@ $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories
         LEFT JOIN users ON posts.user_id = users.user_id
         LEFT JOIN categories ON posts.cat_id = categories.cat_id
         WHERE is_published = 1
-        AND (posts.cat_id = $category)
+        AND (posts.cat_id = $sqlCategory)
         AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
         ORDER BY create_time DESC $limit";
 
@@ -79,18 +79,6 @@ $query = mysqli_query($conn, $sql);
 // Establishing the $paginationCtrls variable
 $paginationCtrls = '';
 
-// Writing out url needed for selecting month
-if(isset($_GET["yrmnth"])) {
-    $selectedYearAndMonthURL = '&yrmnth=' . $_GET["yrmnth"];
-} else {
-    $selectedYearAndMonthURL = "";
-}
-
-if(isset($category)) {
-    $categoryURL = '&category=' . $category;
-} else {
-    $categoryhURL = "";
-}
 
 
 

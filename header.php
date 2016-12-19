@@ -50,10 +50,34 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                     <li class="menu-btn-lvl-1"><a href="index.php">Hem</a></li>
                     <li class="menu-btn-lvl-1"><a href="index.php">Kategori</a>
                         <ul>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=1">Sport</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=2">Mode</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=3">Fotografi</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=4">Annat</a></li>
+                            <?php
+
+                            global $selectedYearAndMonth;
+                            $selectedYearAndMonth = "";
+
+                            global $selectedYearAndMonthURL;
+                            $selectedYearAndMonthURL = "";
+
+                            if(isset($_GET["yrmnth"])) {
+                                $selectedYearAndMonth = $_GET["yrmnth"];
+                                $selectedYearAndMonthURL = '&yrmnth=' . $selectedYearAndMonth;
+                            }
+
+                            echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category=1' . $selectedYearAndMonthURL . '">Sport</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=2' . $selectedYearAndMonthURL . '">Mode</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=3' . $selectedYearAndMonthURL . '">Fotografi</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="?category=4' . $selectedYearAndMonthURL . '">Annat</a></li>';
+
+
+                            // Preparing category ready to be put in a link URL
+                            global $categoryURL;
+                            $categoryURL = "";
+
+                            if(isset($_GET["category"])) {
+                                $categoryURL = '&category=' . $_GET["category"];
+                            }
+
+                            ?>
                         </ul>
                     </li>
 
@@ -76,8 +100,10 @@ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                                 global $readableDate;
                                 $readableDate = date("F Y", strtotime($yearAndMonth));
                                 
-                                echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . '">' . $readableDate . '</a></li>';
+                                echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                             }
+
+
                             ?>
                         </ul>
                     </li>
