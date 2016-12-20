@@ -31,8 +31,7 @@
 		<h1 class="dashboard-title">Dags att skriva nästa succéinlägg?</h1>
 			<form method="POST" action="dashboard.php" class="blogposts">
 		        <input type="text" placeholder="Skriv din rubrik här" name="blogpost_title" class="blogpost_title"><br>
-				<textarea rows="15" cols="80" placeholder="Skriv ditt inlägg här" name="blogpost_text" class="blogpost_text">
-				</textarea><br>
+				<textarea rows="15" cols="80" placeholder="Skriv ditt inlägg här" name="blogpost_text" class="blogpost_text"></textarea><br>
 				<select name="category" class="categories">
 					<option value ="0">Välj kategori</option>
 					<option value ="1">Sport</option>
