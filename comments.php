@@ -58,7 +58,6 @@ foreach ($myPostDataArray as $post) {
 
           while($stmt2->fetch()) {
 					?>
-					<!-- TAke away /img class/ when fixed with @include -->
 						<div class='draft-box'>
 							<table>
 								<tr>
