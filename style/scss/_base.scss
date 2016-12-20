@@ -66,3 +66,7 @@ a{
 	color: $divider-color;
 	font-style: italic;
 }
+
+textarea {
+	resize: vertical;
+}
