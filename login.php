@@ -49,31 +49,6 @@
       </form>
     </div>
 
-    <!-- DEN HÄR KODEN SKA BORT OCH ISTÄLLET IN I SUPERUSER ADMIN-SIDAN -->
-    <div class="container">
-
-      <form method="POST" class="form-horizontal form-center">
-      <h2 class="form-center-heading">Registrera</h2>
-        <div class="form-group">
-        <input type="text" name="firstname" placeholder="Förnamn" class="form-control" required>
-        </div>
-        <div class="form-group">
-        <input type="text" name="lastname" placeholder="Efternamn" class="form-control" required>
-        </div>
-        <div class="form-group">
-        <input type="email" name="email" placeholder="E-post" class="form-control" required>
-        </div>
-        <div class="form-group">
-        <input type="password" name="password" placeholder="*******" class="form-control" required>
-        </div>
-        <!-- TO DO: lägg till profilbild här -->
-        <input name="register" class="btn btn-lg btn-primary btn-block" type="submit" value="Registrera">
-      </form>
-      <?php regUser();
-
-      ?>
-
-    </div>
   </div>
 
   </body>
