@@ -1,39 +1,40 @@
 /* GENRERAL BODY BACKGROUND FOR THE BLOG */
 
 body{
-  background-color: $background-color;
+  // background-color: $background-color;
+  background: url("../../images/layout/<?php echo $selectedBg; ?>")
 }
 
 
 
 /* dessa verkar inte funka, urlen funkar i andra filer men inte här */
 
-/* BACKGROUND FOR LOGIN.PHP */
-body.login{
-  @include backImage("../../images/layout/bw_1.jpg");
-}
+// /* BACKGROUND FOR LOGIN.PHP */
+// body.login{
+//   @include backImage("../../images/layout/bw_1.jpg");
+// }
 
-/* BODY FOR DASHBOARD.PHP */
-body.dashboard{
-  @include backImage("../../images/layout/bw_1.jpg");
-}
+// /* BODY FOR DASHBOARD.PHP */
+// body.dashboard{
+//   @include backImage("../../images/layout/bw_1.jpg");
+// }
 
-/* BODY FOR COMMENTS.PHP */
-body.comments{
-  @include backImage("../../images/layout/bw_7.jpg");
-}
+// /* BODY FOR COMMENTS.PHP */
+// body.comments{
+//   @include backImage("../../images/layout/bw_7.jpg");
+// }
 
-/* BODY FOR ARCHIVE.PHP */
-body.archive{
-  @include backImage("../../images/layout/bw_7.jpg");
-}
+// /* BODY FOR ARCHIVE.PHP */
+// body.archive{
+//   @include backImage("../../images/layout/bw_7.jpg");
+// }
 
-/* BODY FOR DRAFTS.PHP */
-body.drafts{
-  @include backImage("../../images/layout/bw_9.jpg");
-}
+// /* BODY FOR DRAFTS.PHP */
+// body.drafts{
+//   @include backImage("../../images/layout/bw_9.jpg");
+// }
 
-/* BODY FOR STATISTICS.PHP */
-body.statistics{
-  @include backImage("../../images/layout/banner1.jpg");
-}
+// /* BODY FOR STATISTICS.PHP */
+// body.statistics{
+//   @include backImage("../../images/layout/banner1.jpg");
+// }
