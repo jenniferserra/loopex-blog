@@ -15,7 +15,7 @@ if ($stmt->prepare($query)) {
     $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); ?>
 
           <div class='draft-box'>
-              <h1>Välj ett utkast att redigera</h1>
+              <h1>Välj ett inlägg att redigera</h1>
               <?php
               /* Start printing unpublished posts */
               while (mysqli_stmt_fetch($stmt)) {
