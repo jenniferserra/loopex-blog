@@ -22,8 +22,8 @@ if($stmt->prepare($query)) {
 	?>
 
 
-			<div class="blogpost-box divider">
-            <div class="blogpost divider">
+		<div class="blogpost-box divider">
+            <div class="blogpost divider mobile-margin">
             <h1><?php echo $title; ?></h1>
             <div class="date"><p><?php echo $createTime; ?></p></div><br>
             <div class="text"><p><?php echo $text; ?></p></div><br>
@@ -52,16 +52,17 @@ if($stmt->prepare($query)) {
                 while(mysqli_stmt_fetch($stmt)) {
                     ?>
 
-                    <div class="blogpost posted-comments"><hr>
+                    <div class="blogpost posted-comments mobile-margin"><hr>
 
-                      		<div class="text">
-	                            <p><?php echo $c_text; ?></p><br>
-	                            <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
+                      		<div class="author">
+                                <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
+                              <!--  <p class="comment-email"><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>-->
+                            </div>
+                            <div class="text">
+	                            <p><?php echo $c_text; ?></p><br> 
 							</div>
 
-                        <div class="author">
-                            <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
-                        </div>
+                        
                         <br>
                     </div>
                 <?php
@@ -72,7 +73,7 @@ if($stmt->prepare($query)) {
                 COMMENT A POST
         ********************************************************************* -->
         <hr>
-        <div class="comments_to_post">
+        <div class="comments_to_post mobile-margin">
             <h3>Kommentera</h3>
     		<form method="POST">
                 <input type="text" placeholder="Namn" name="comment_name"><br>
