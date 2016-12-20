@@ -2,8 +2,10 @@
 require "header.php";
 ?>
 
-    <div class="banner"> </div>
-    <div class="col-md-3"></div> <div class="col-md-6">
+    <!-- BANNER IMAGE -->
+    <div class="banner col-md-12 col-xs-12">
+    </div>
+    
 <?php
 
 $sqlCategory = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
@@ -211,26 +213,23 @@ Pagination-top printed out
         $comments = $comment[0];
         ?>
 
-        <div class="blogpost_center blogpost-box">
+        <div class="blogpost_center mobile-margin">
             <div class="blogpost">
-                <h1><?php echo $title; ?></h1>
-                <div class="date-container"><p class="date"><?php echo $createTime; ?></p></div>
-                <div class="text"><p><?php echo $text; ?></p></div>
-
-                <div class="text"><p><?php echo "<p class='bold'>Kategori:</p> $catName</p>";?></div>
-                <div class="author"><span class='bold'></p>Skriven av:
-
-
-                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>
+                <h1 class="blog-text-center"><?php echo $title; ?></h1>
+                <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
+                <div class="text"><p><?php echo $text; ?></p></div><br>
+                <div class="text right-align"><?php echo "<span class='bold'>Kategori:</span>$catName";?></div>
+                <div class="right-align"><span class='bold'></p>Skriven av:
+                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a><br>
                     <p><a href='mailto:$user_email'>$user_email</a></p>";
                     ?>
                 </div>
 
-                <div class="comments">
+                <div class="comments right-align">
                     <?php
                     echo "<a href='post.php?id=$postId' name='btn'>
                     ($comments) Kommentarer </a>";
-                    ?>
+                    ?><hr>
                 </div>
             </div>
         </div>
@@ -257,5 +256,7 @@ Pagination-bottom printed out
 <?php
 
 // Closing html-structure
-require "footer.php";
+
+//fucking footer funkar inte som den ska. någon med tålamod får fixa
+//require "footer.php";
 ?>

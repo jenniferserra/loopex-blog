@@ -70,3 +70,29 @@ a{
 textarea {
 	resize: vertical;
 }
+
+// index.php 
+
+h1.blog-text-center, .blog-text-center{
+  text-align: center;
+}
+
+// Bannerbilden på index.php
+.banner{
+  background-image: url("../../images/layout/bw_7.jpg");
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-top: 0px;
+  background-size: cover;
+}
+
+//högerjusterar written by, categories etc i varje inlägg på index.php
+.right-align{
+  text-align: right;
+
+}

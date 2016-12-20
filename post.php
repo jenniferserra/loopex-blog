@@ -1,6 +1,14 @@
 <?php
 require "header.php";
 
+?>
+
+<!-- BANNER IMAGE -->
+    <div class="banner col-md-12 col-xs-12">
+    </div>
+
+<?php
+
 $stmt = $conn->stmt_init();
 /* ----------------------------------------------------------------------------
         PRINT POST
@@ -24,13 +32,13 @@ if($stmt->prepare($query)) {
 
 		<div class="blogpost-box divider">
             <div class="blogpost divider mobile-margin">
-            <h1><?php echo $title; ?></h1>
-            <div class="date"><p><?php echo $createTime; ?></p></div><br>
+            <h1 class="blog-text-center"><?php echo $title; ?></h1>
+            <div class="date blog-text-center"><p><?php echo $createTime; ?></p></div><br>
             <div class="text"><p><?php echo $text; ?></p></div><br>
-            <div class="author"><p>Skrivet av:
+            <div class="right-align"><span class="bold">Skrivet av:
                 <?php
                 echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a><br>";
-                echo "<p>Kategori: $catName</p>";
+                echo "<span class='bold'>Kategori:</span>$catName";
                 ?>
             </div>
         </div>
