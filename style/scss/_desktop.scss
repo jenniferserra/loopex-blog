@@ -163,19 +163,16 @@ input[type="text"], input[type="email"], textarea {
 //-----------------------------------------------------------------------------
 
 td {
-  /*   word-break: break-all */
+    word-break: break-all;
     float: left;
     margin: 20px auto;
     line-height: 1.7em;
 }
 
+
 //-----------------------------------------------------------------------------
 // BLOG-PAGE: post.php
 //-----------------------------------------------------------------------------
-
-
-// There is a diveder for colour in _variables, but where
-// is the divider line defined in px as below?
 
 /* .divider {
   margin: 10px auto;
@@ -188,8 +185,6 @@ td {
 }
  */
 
-
- 
 
  //-----------------------------------------------------------------------------
  // BLOG-PAGE-COMMENTS: index.php, post.php

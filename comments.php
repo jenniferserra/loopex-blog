@@ -69,7 +69,7 @@ foreach ($myPostDataArray as $post) {
 											<p><?php echo $c_text;?></p>
 										</td>
 										<td>
-												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
+												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn draft-divider btn-sm btn-primary">Radera</a>
 										</td>
 								</tr>
 							</table>
