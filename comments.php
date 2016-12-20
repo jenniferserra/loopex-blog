@@ -41,6 +41,7 @@ if($stmt->prepare($query)) {
 foreach ($myPostDataArray as $post) {
 ?>
     <?php
+
         // Print comment
     	//
     	// TO-DO, change stmt2 to stmt???
@@ -56,9 +57,11 @@ foreach ($myPostDataArray as $post) {
             $stmt2->execute();
             $stmt2->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
 
+           
           while($stmt2->fetch()) {
 					?>
-						<div class='draft-box'>
+						 <div class="draft-box"> 
+
 							<table>
 								<tr>
 										<td>
@@ -74,11 +77,13 @@ foreach ($myPostDataArray as $post) {
 								</tr>
 							</table>
 						</div>
+						
             <?php
           }
         }
         $stmt2->close();
 }
+
 $stmt->close();
 include "footer.php";
 ?>
