@@ -1,6 +1,6 @@
 <?php
 include "header.php";
-echo $firstname;
+
 /**
 * if "delete" is set.
 * $query, is to delete the specific item from tasks where the id is the $taskToDelete.
