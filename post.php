@@ -22,19 +22,19 @@ if($stmt->prepare($query)) {
 	?>
 
 
-					<div class="blogpost-box divider">
-						  <div class="blogpost divider">
+			<div class="blogpost-box divider">
+            <div class="blogpost divider">
             <h1><?php echo $title; ?></h1>
-            <div class="date"><p><?php echo $createTime; ?></p></div>
-            <div class="text"><p><?php echo $text; ?></p></div>
-            <div class="author"><p>Written by:
+            <div class="date"><p><?php echo $createTime; ?></p></div><br>
+            <div class="text"><p><?php echo $text; ?></p></div><br>
+            <div class="author"><p>Skrivet av:
                 <?php
                 echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a><br>";
                 echo "<p>Kategori: $catName</p>";
                 ?>
             </div>
         </div>
-        <hr>
+       
         <?php
             /* ----------------------------------------------------------------------------
                     PRINT COMMENTS TO POST
@@ -52,12 +52,12 @@ if($stmt->prepare($query)) {
                 while(mysqli_stmt_fetch($stmt)) {
                     ?>
 
-                    <div class="blogpost">
+                    <div class="blogpost posted-comments"><hr>
 
                       		<div class="text">
 	                            <p><?php echo $c_text; ?></p><br>
 	                            <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
-													</div>
+							</div>
 
                         <div class="author">
                             <p><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
@@ -68,19 +68,16 @@ if($stmt->prepare($query)) {
                 }
             }
         ?>
-        <!-- --------------------------------------------------------------------------
+        <!-- *********************************************************************
                 COMMENT A POST
-        --------------------------------------------------------------------------- -->
+        ********************************************************************* -->
         <hr>
         <div class="comments_to_post">
             <h3>Kommentera</h3>
     		<form method="POST">
-    			<p>Namn</p>
-                <input type="text" name="comment_name"><br>
-                <p>E-post</p>
-                <input type="email" name="comment_epost"><br>
-                <p>Kommentar</p>
-    			<textarea rows="5" cols="30" name="comment_text"></textarea><br>
+                <input type="text" placeholder="Namn" name="comment_name"><br>
+                <input type="email" placeholder="E-post" name="comment_epost"><br>
+    			<textarea rows="5" cols="30" placeholder="Kommentar" name="comment_text"></textarea><br>
     			<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera kommentar">
     		</form>
         </div>

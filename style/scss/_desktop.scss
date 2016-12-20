@@ -76,7 +76,7 @@
   }
 
 // inputrutan för rubrik och brödtext
-input[type="text"], textarea {
+input[type="text"], input[type="email"], textarea {
     font-family: $primary-font;
     outline: 0;
     width: 90%;
@@ -187,6 +187,9 @@ td {
   border-top: 1px solid;
 }
  */
+
+
+ 
 
  //-----------------------------------------------------------------------------
  // BLOG-PAGE-COMMENTS: index.php, post.php

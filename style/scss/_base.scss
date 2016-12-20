@@ -36,21 +36,33 @@ p.italic, span.italic {
 	border: none;
 }
 
-.date {
-	font-style: italic;
-}
+//vad gör denna?
 .blogpost {
 	z-index: -10;
+}
+
+// vad gör denna?
+.pagination_controls {
+  	min-width: 300px;
+	font-family: $primary-font;
+}
+
+
+// FORMATTERING FÖR BLOGGPOSTS
+.date {
+	font-style: italic;
+	font-size: 0.9em;
 }
 
 .author {
 	font-weight: bold;
 	margin: 0px;
 	padding-right: 10px;
+	//color: $accent-color;
 	/* letter-spacing: 0.1em; */
 }
 
-.pagination_controls {
-  	min-width: 300px;
-	font-family: $primary-font;
+a{
+	color: $divider-color;
+	font-style: italic;
 }
