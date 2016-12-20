@@ -59,13 +59,11 @@ nav a {
     font-family: $primary-font;
 }
 .selection-display-box {
-    display: flex;
-    justify-content: space-between;
-    font-size: 18px;
-    color: rgba($color: $primary-text-color, $alpha: 0.5);
+    width: 100%;
+    font-size: 24px;
+    color: rgba($color: $primary-text-color, $alpha: 0.8);
     width: 800px;
-    margin: 0px auto 15px;
-    padding: 0px;
+    margin: 40px auto;
     text-align: center;
-    float: none;
+    letter-spacing: 1px;
 }

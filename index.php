@@ -149,6 +149,18 @@ if ($last !=1) {
     <div class="selection-display-box">
     <?php
 
+    if(isset($_GET["yrmnth"])) {
+        $selectedReadableDate = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
+        echo '<div class="selection-display">
+                <p>MÅNADSARKIV: ' . $selectedReadableDate . '</p>
+            </div>';
+    }
+    if(isset($_GET["category"]) && isset($_GET["yrmnth"])) {
+        echo '<div class="selection-display">
+             <p class="divider-line"> ____ </p> <br><br>
+        </div>';
+    }
+
     if(isset($_GET["category"])) {
         $selectedCategory =  $_GET["category"];
         $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
@@ -157,13 +169,6 @@ if ($last !=1) {
         $selectedCategoryName = strtoupper($categoryRow[0]);
         echo '<div class="selection-display">
                 <p>KATEGORI: ' . $selectedCategoryName . '</p>
-            </div>';
-    }
-
-    if(isset($_GET["yrmnth"])) {
-        $selectedReadableDate = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
-        echo '<div class="selection-display">
-                <p>INLÄGG FRÅN: ' . $selectedReadableDate . '</p>
             </div>';
     }
 
