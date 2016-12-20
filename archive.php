@@ -25,7 +25,7 @@ if ($stmt->prepare($query)) {
               <div class="form-check draft-divider">
                   <div id="<?=$postId?>">
                       <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
-
+                      <br>
                       <!-- Link to edit post -->
                       <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
                       Redigera
@@ -35,7 +35,7 @@ if ($stmt->prepare($query)) {
                       Radera
                      </a>
                   </div>
-              </div> 
+              </div>
 
                     <?php
 
@@ -53,9 +53,9 @@ if ($stmt->prepare($query)) {
                 header("Location:archive.php");
             }
           }
-        ?>  
+        ?>
       </div>
-    <?php      
-  
+    <?php
+
 require "footer.php";
 ?>

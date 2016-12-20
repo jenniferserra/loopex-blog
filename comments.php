@@ -57,27 +57,27 @@ foreach ($myPostDataArray as $post) {
             $stmt2->execute();
             $stmt2->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
 
-           
+
           while($stmt2->fetch()) {
 					?>
-						 <div class="draft-box"> 
-
+					<!-- To do: Får inte in den vita rutan som en hel ruta -->
+						 <div class="draft-box">
 							<table>
 								<tr>
 										<td>
-											<p><span class='bold'><?php echo $c_name;?></span>
+											<p><span class='bold'><?php echo $c_name;?></span><br>
 												<?php echo "<span class='bold'>";?>kommenterade inlägget:</span><?php echo $post['title'];?>
 												<?php echo "<span class='italic'><br>($createTime)</span><br>";?>
 											</p>
 											<p><?php echo $c_text;?></p>
 										</td>
 										<td>
-												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn draft-divider btn-sm btn-primary">Radera</a>
+												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
 										</td>
 								</tr>
 							</table>
 						</div>
-						
+
             <?php
           }
         }

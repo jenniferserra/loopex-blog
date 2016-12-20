@@ -153,9 +153,11 @@ input[type="text"], input[type="email"], textarea {
   @include whitebox;
 
 }
-.draft-divider{
+.draft-divider {
   margin: 10px auto;
+  padding-top: 10px;
   padding-bottom: 10px;
+  border-bottom: 1px solid $divider-color;
 }
 
 //-----------------------------------------------------------------------------
@@ -164,8 +166,6 @@ input[type="text"], input[type="email"], textarea {
 
 td {
     word-break: break-all;
-    float: left;
-    margin: 20px auto;
     line-height: 1.7em;
 }
 

@@ -28,7 +28,7 @@ if ($stmt->prepare($query)) {
                     <div id="<?=$postId?>">
 
                       <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
-
+                      <br>
                       <!-- Link to edit post -->
                       <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
                       Redigera
