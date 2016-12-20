@@ -5,10 +5,34 @@ if (!isset($_SESSION["loggedin"])) {
 	echo "Du är inte inloggad";
 	die();
 }
-
-
 if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
+	// Preparing the statement
+	$stmt = $conn->stmt_init();
 
+	// Stripping off harmful characters
+	$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
+	$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
+	$timeStamp = date("Y-m-d H:i:s");
+	$category = $_POST['category'];
+
+	// Update posts with new content as entered in previous form
+	$query = "
+		UPDATE posts SET 
+		title = '{$title}',
+		text = '{$text}',
+		cat_id = '{$category}',
+		edit_time = '{$timeStamp}',
+		is_published = 1
+		WHERE post_id = " . $_GET['editid'];
+
+	if ( mysqli_query($conn, $query)) {
+			$_SESSION['msg'] = "Ditt inlägg är publicerad!";
+			//header('Location: editpost.php?editid=' . $_GET['editid']);
+	} else {
+			echo "Någonting fick fel, testa igen";
+	}
+}
+if(isset($_POST["draft"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
 
 	// Preparing the statement
 	$stmt = $conn->stmt_init();
@@ -17,57 +41,25 @@ if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_PO
 	$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
 	$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
 	$timeStamp = date("Y-m-d H:i:s");
-	$cat = $_POST['category'];
+	$category = $_POST["category"];
 
-	// Update posts with new content as entered in previous form
+	// Upload post into database. Published = FALSE
 	$query = "
-		UPDATE posts SET
+		UPDATE posts SET 
 		title = '{$title}',
 		text = '{$text}',
-		cat_id = '{$cat}',
-		edit_time = '{$timeStamp}',
-		is_published = 1
-		WHERE post_id = " . $_GET['editid'];
-		echo $query;
-
-	if ( mysqli_query($conn, $query)) {
-			$_SESSION['msg'] = "Minisuccé";
-			//header('Location: editpost.php?editid=' . $_GET['editid']);
-	} else {
-			echo "Inlägget är inte sparat i databasen";
-	}
-}
-
-if(isset($_POST["draft"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
-
-				// Preparing the statement
-				$stmt = $conn->stmt_init();
-
-				// Stripping off harmful characters
-				$text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
-				$title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
-				$timeStamp = date("Y-m-d H:i:s");
-				$category = $_POST["category"];
-
-				// Upload post into database. Published = FALSE
-				$query = "
-		UPDATE posts SET
-		title = '{$title}',
-		text = '{$text}',
-		cat_id = '{$cat}',
+		cat_id = '{$category}',
 		edit_time = '{$timeStamp}',
 		is_published = 0
 		WHERE post_id = " . $_GET['editid'];
-		echo $query;
 
 	if ( mysqli_query($conn, $query)) {
-			$_SESSION['msg'] = "Funkar bra";
+			$_SESSION['msg'] = "Ditt inlägg är sparat i utkast!";
 			//header('Location: editpost.php?editid=' . $_GET['editid']);
 	} else {
-			echo "Inlägget är inte sparat i databasen";
+			echo "Någonting fick fel, testa igen";
 	}
-		}
-
+}
 $editid = mysqli_real_escape_string($conn, $_GET['editid']);
 
 $query = "SELECT * FROM posts WHERE post_id = " . $_GET['editid'];
@@ -75,14 +67,12 @@ $post = $conn->query($query)->fetch_object();
 
 $query = "SELECT * FROM categories";
 $cats = $conn->query($query);
+
 //-----------------------------------------------------------------------------
 // HTML-STRUKTUR FÖR INLÄGG
 //-----------------------------------------------------------------------------
-
 ?>
-<h1>Blogginlägg</h1>
-<h2><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } ?></h2>
-
+<h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Blogginlägg" ?></h1>
 <form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
 	<p>Rubrik</p>
 	<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
@@ -98,5 +88,6 @@ $cats = $conn->query($query);
 	<input name="publish" class="btn btn-lg btn-primary btn-block" type="submit" value="Publicera redigering">
 	<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara redigering till utkast">
 </form>
-</body>
-</html>
+<?php
+include "footer.php";
+?>
