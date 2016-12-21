@@ -60,24 +60,18 @@ foreach ($myPostDataArray as $post) {
 
           while($stmt2->fetch()) {
 					?>
-					<!-- To do: Får inte in den vita rutan som en hel ruta -->
-						 <div class="draft-box">
-							<table>
-								<tr>
-										<td>
-											<p><span class='bold'><?php echo $c_name;?></span><br>
-												<?php echo "<span class='bold'>";?>kommenterade inlägget:</span><?php echo $post['title'];?>
-												<?php echo "<span class='italic'><br>($createTime)</span><br>";?>
-											</p>
-											<p><?php echo $c_text;?></p>
-										</td>
-										<td>
-												<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
-										</td>
-								</tr>
-							</table>
-						</div>
 
+<!-- TO DO: Fix the whitebox instead of draftbox to center in middle on comment page -->
+											<div class='draft-box'>
+													<p><span class='bold'><?php echo $c_name;?></span><br>
+														<?php echo "<span class='bold'>" ;?> kommenterade inlägget: </span><?php echo $post['title'];?>
+														<?php echo "<span class='italic'><br>($createTime)</span><br>";?>
+														</p>
+														<p><?php echo $c_text;?></p>
+												<div class='btn-center'>
+													<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
+												</div>
+											</div>
             <?php
           }
         }

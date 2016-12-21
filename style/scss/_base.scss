@@ -1,10 +1,11 @@
 .page-content{
 	min-height: 100vh;
-	padding-top: 82px;
+	padding-top: 40px;
 }
 
 h1, h2, h3, h4{
 	font-family: $primary-font;
+
 }
 
 h1{
@@ -13,15 +14,18 @@ h1{
 
 h2{
 	font-size: 2em;
+
 }
 
 p {
 	display: inline;
+	line-height: 1.7em;
 }
 
 p.bold, span.bold, .bold {
 	font-weight: bold;
 	margin: 0px;
+	line-height: 1.7em;
 	//padding-right: 10px;
 	/* letter-spacing: 0.1em; */
 }
@@ -31,7 +35,7 @@ p.italic, span.italic {
 	padding-right: 10px;
 }
 
-.btn{
+.btn {
 	background-color: $button-color;
 	border: none;
 	margin-top: 10px;
@@ -65,7 +69,7 @@ p.italic, span.italic {
 	/* letter-spacing: 0.1em; */
 }
 
-a{
+a {
 	color: $divider-color;
 	font-style: italic;
 }
@@ -75,11 +79,12 @@ textarea {
 }
 
 //
-// index.php 
+// index.php
 //
 
 h1.blog-text-center, .blog-text-center{
   text-align: center;
+
 }
 
 // Bannerbilden på index.php
