@@ -17,7 +17,7 @@ if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_PO
 
 	// Update posts with new content as entered in previous form
 	$query = "
-		UPDATE posts SET 
+		UPDATE posts SET
 		title = '{$title}',
 		text = '{$text}',
 		cat_id = '{$category}',
@@ -26,7 +26,7 @@ if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_PO
 		WHERE post_id = " . $_GET['editid'];
 
 	if ( mysqli_query($conn, $query)) {
-			$_SESSION['msg'] = "Ditt inlägg är publicerad!";
+			$_SESSION['msg'] = "Ditt inlägg är publicerat!";
 			//header('Location: editpost.php?editid=' . $_GET['editid']);
 	} else {
 			echo "Någonting fick fel, testa igen";
@@ -45,7 +45,7 @@ if(isset($_POST["draft"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["
 
 	// Upload post into database. Published = FALSE
 	$query = "
-		UPDATE posts SET 
+		UPDATE posts SET
 		title = '{$title}',
 		text = '{$text}',
 		cat_id = '{$category}',
@@ -72,14 +72,19 @@ $cats = $conn->query($query);
 // HTML-STRUKTUR FÖR INLÄGG
 //-----------------------------------------------------------------------------
 ?>
+<div class="blogpost-box col-sm-12 col-xs-12">
 <h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Blogginlägg" ?></h1>
 <form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
 	<p>Rubrik</p>
 	<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
 	<p>Text</p>
 	<textarea rows="15" cols="80" name="blogpost_text"><?= $post->text; ?></textarea><br>
-	<select name="category">
+	<select name="category ">
 		<?php while($cat = $cats->fetch_object()) : ?>
+
+		<!-- <select name="category" class="categories"> -->
+		<!-- TO DO: Fixa kategori menyn ssmma som på profilsidan -->
+
 			<option<?= $cat->cat_id == $post->cat_id ? " selected" : null; ?> value="<?= $cat->cat_id; ?>">
 				<?= $cat->cat_name; ?>
 			</option>
