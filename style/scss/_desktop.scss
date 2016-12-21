@@ -76,10 +76,10 @@
   }
 
 // inputrutan för rubrik och brödtext
-input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], input[type="password"], textarea {
     font-family: $primary-font;
     outline: 0;
-    width: 90%;
+    width: 100%;
     margin: 10px auto;
     padding: 15px;
     box-sizing: border-box;
@@ -97,7 +97,7 @@ input[type="text"], input[type="email"], textarea {
 
 // kategoriväljaren
   select.categories{
-    width: 90%;
+    width: 100%;
     margin: 20px auto;
     font-family: $primary-font;
     font-size: 1.3em;
@@ -112,7 +112,7 @@ input[type="text"], input[type="email"], textarea {
     color: $primary-color;
     background-color: $button-color;
     border: none;
-    max-width: 90%;
+    max-width: 100%;
     margin: 0px auto;
     &:hover {
       background-color: $secondary-accent-color;
@@ -189,3 +189,17 @@ td {
  //-----------------------------------------------------------------------------
  // BLOG-PAGE-COMMENTS: index.php, post.php
  //-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+// INDEX.PHP
+//-----------------------------------------------------------------------------
+
+.blogpost_center{
+  margin: 0px 250px;
+}
+
+.comments_to_post{
+  margin: 30px auto;
+
+}

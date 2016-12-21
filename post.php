@@ -30,15 +30,15 @@ if($stmt->prepare($query)) {
 	?>
 
 
-		<div class="blogpost-box divider">
+		<div class="blogpost_center divider">
             <div class="blogpost divider mobile-margin">
             <h1 class="blog-text-center"><?php echo $title; ?></h1>
             <div class="date blog-text-center"><p><?php echo $createTime; ?></p></div><br>
-            <div class="text"><p><?php echo $text; ?></p></div><br>
+            <div class="text"><p><?php echo $text; ?></p></div><br><br>
             <div class="right-align"><span class="bold">Skrivet av:
                 <?php
                 echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a><br>";
-                echo "<span class='bold'>Kategori:</span>$catName";
+                echo "Kategori:</span> $catName";
                 ?>
             </div>
         </div>

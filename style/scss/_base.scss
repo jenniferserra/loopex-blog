@@ -19,10 +19,10 @@ p {
 	display: inline;
 }
 
-p.bold, span.bold {
+p.bold, span.bold, .bold {
 	font-weight: bold;
 	margin: 0px;
-	padding-right: 10px;
+	//padding-right: 10px;
 	/* letter-spacing: 0.1em; */
 }
 
@@ -42,10 +42,12 @@ p.italic, span.italic {
 	z-index: -10;
 }
 
-// vad gör denna?
+// pagineringsformattering
 .pagination_controls {
   min-width: 300px;
-	font-family: $primary-font;
+  font-family: $primary-font;
+  margin: 10px auto 40px;
+  font-size: 1.1em;
 }
 
 
@@ -72,7 +74,9 @@ textarea {
 	resize: vertical;
 }
 
+//
 // index.php 
+//
 
 h1.blog-text-center, .blog-text-center{
   text-align: center;
@@ -84,10 +88,8 @@ h1.blog-text-center, .blog-text-center{
   background-repeat: no-repeat;
   position: relative;
   width: 100%;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
-  margin-bottom: 20px;
+  height: 80vh;
+  margin-bottom: 30px;
   margin-top: 0px;
   background-size: cover;
 }
