@@ -1,5 +1,8 @@
 
-
+<!-- Fixa - Frida 
+	if(empty($_SESSION["loggedin"])) {
+    header('Location: index.php');
+} -->
 		<?php
 		require "header.php";
 
