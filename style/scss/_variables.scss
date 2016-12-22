@@ -2,10 +2,11 @@
 
 $primary-text-color:	#212121; /* black for paragraphs */
 $primary-color:			#FFFFFF; /* white for backgrounds */
-$accent-color:			#FF9800; /* orange for buttons */
-$secondary-accent-color: #ff8c1a; /* darker orange for button hovers */
+$accent-color:			#ff8c1a; /* orange for buttons */
+$secondary-accent-color: #e67300; /* darker orange for button hovers */
 $divider-color:			#BDBDBD; /* grey for dividers */
 $secondary-text-color:	#455A64; /* dark blue for headline fonts */
+$third-text-color:		#999; /* grey for timestamp */
 
 
 /* To make it clearer which color goes to which function we created shortnames for our variables */
@@ -15,6 +16,9 @@ $button-color: $accent-color;
 $button-hover: $secondary-accent-color;
 $divider: $divider-color;
 $background-color: $primary-color;
+$date-color: $third-text-color;
 
 /* FONT VARIABLES */
-$primary-font: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+$primary-font: "Avenir", "Roboto", sans-serif;
+//$secondary-font: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;
+$detail-font: "NovecentoWide", sans-serif;

@@ -5,21 +5,23 @@
 
 h1, h2, h3, h4{
 	font-family: $primary-font;
-
+	color: $accent-color;
+	
 }
 
 h1{
-	font-size: 2.5em;
+	font-size: 2.2em;
 }
 
 h2{
-	font-size: 2em;
+	font-size: 1.9em;
 
 }
 
 p {
 	display: inline;
 	line-height: 1.7em;
+	font-family: $primary-font;
 }
 
 p.bold, span.bold, .bold {
@@ -39,6 +41,8 @@ p.italic, span.italic {
 	background-color: $button-color;
 	border: none;
 	margin-top: 10px;
+	font-style: normal;
+	font-size: 1em;
 }
 
 //vad gör denna?
@@ -57,8 +61,11 @@ p.italic, span.italic {
 
 // FORMATTERING FÖR BLOGGPOSTS
 .date {
-	font-style: italic;
+	//font-style: italic;
 	font-size: 0.9em;
+	font-weight: light;
+	color: $date-color;
+	letter-spacing: 0.1em;
 }
 
 .author {
@@ -78,29 +85,30 @@ textarea {
 	resize: vertical;
 }
 
-//
+// -----------------------------------------------
 // index.php
-//
+// -----------------------------------------------
 
 h1.blog-text-center, .blog-text-center{
   text-align: center;
 
 }
 
-// Bannerbilden på index.php
-.banner{
-  background-image: url("../../images/layout/bw_7.jpg");
-  background-repeat: no-repeat;
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  margin-bottom: 30px;
-  margin-top: 0px;
-  background-size: cover;
-}
 
 //högerjusterar written by, categories etc i varje inlägg på index.php
 .right-align{
   text-align: right;
 
+}
+
+
+// Bannerbilden på index.php
+.banner{
+  background-repeat: no-repeat;
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  margin-bottom: 30px;
+  margin-top: 0px;
+  background-size: cover;
 }
