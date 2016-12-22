@@ -28,7 +28,7 @@ require "header.php";
 				STATISTICS - COMMENTS
 				Count comments on posts
 		---------------------------------------------------------------------------- */
-		$query = "SELECT COUNT(*) AS count, posts.post_id FROM comments LEFT JOIN posts ON posts.post_id = comments.fk_post_id WHERE user_id = $userid";
+		$query = "SELECT COUNT(*) AS count, posts.post_id FROM comments LEFT JOIN posts ON posts.post_id = comments.fk_post_id WHERE is_published = 1 AND user_id = $userid";
 		$comment = $conn->query($query)->fetch_object();
 
 		echo '<div class="statistics-count">Du har '. $comment->count . ' kommentarer.<br></div>';
