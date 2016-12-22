@@ -13,7 +13,7 @@
   .form {
     background: $primary-color;
     max-width: 400px;
-    margin: 20vh auto;
+    margin: 25vh auto;
     padding: 35px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -33,14 +33,12 @@
 // loginknappen
   .login-button {
     font-family: $primary-font;
-    text-transform: uppercase;
     outline: 0;
     background: $button-color;
     width: 100%;
     border: none;
     padding: 15px;
     color: $primary-color;
-    font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
@@ -49,6 +47,10 @@
   .btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
     border: none;
+  }
+
+  h2.login{
+    color: $primary-text-color;
   }
 
 //-----------------------------------------------------------------------------
@@ -64,8 +66,9 @@
 }
   .welcome{
     font-family: $primary-font;
-    font-size: 3em;
-    text-align: center;
+    font-size: 2.5em;
+    text-align: center;    
+    color: $accent-color;
   }
 
 // detta är den vita boxen runt om input-fälten för inlägg
@@ -91,7 +94,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   h1.dashboard-title{
     font-family: $primary-font;
     font-size: 2em;
-    color: $secondary-text-color;
+    color: $primary-text-color;
 
   }
 
@@ -100,7 +103,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     width: 100%;
     margin: 20px auto;
     font-family: $primary-font;
-    font-size: 1.3em;
+    font-size: 1.1em;
     background-color: $divider-color;
     opacity: 0.7;
 
@@ -112,6 +115,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     color: $primary-color;
     background-color: $button-color;
     border: none;
+    font-size: 1.1em;
     max-width: 100%;
     margin: 0px auto;
     &:hover {
@@ -125,7 +129,7 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
 
   .statistics-count{
     font-family: $primary-font;
-    font-size: 1.5em;
+    font-size: 1.2em;
     padding: 2px;
   }
 
@@ -137,13 +141,6 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   }
-
-// denna ska generaliseras i base.scss
-  h1.statistics{
-    font-family: $primary-font;
-    font-size: 2.5em;
-  }
-
 
 //-----------------------------------------------------------------------------
 // DRAFTS
@@ -182,10 +179,14 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
 //-----------------------------------------------------------------------------
 
 .blogpost_center{
-  margin: 0px 250px;
+  margin: 0px 200px;
 }
 
 .comments_to_post{
   margin: 30px auto;
+}
 
+// Bannerbilden på index.php
+.banner{
+  background-image: url("../../images/layout/orange2.jpg");
 }
