@@ -220,7 +220,7 @@ Pagination-top printed out
                 <div class="text"><p><?php echo $text; ?></p></div><br><br>
                 <div class="text right-align"><?php echo "<span class='bold'>Kategori:</span> $catName";?></div>
                 <div class="right-align"><span class='bold'>Skriven av:
-                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</span></a><br>
+                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName,</span></a>
                     <p><a href='mailto:$user_email'>$user_email</a></p>";
                     ?>
                 </div>

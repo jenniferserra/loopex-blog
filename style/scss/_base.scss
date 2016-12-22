@@ -6,7 +6,7 @@
 h1, h2, h3, h4{
 	font-family: $primary-font;
 	color: $accent-color;
-	
+
 }
 
 h1{
@@ -25,11 +25,10 @@ p {
 }
 
 p.bold, span.bold, .bold {
-	font-weight: bold;
+	/* font-weight: bold; */
 	margin: 0px;
 	line-height: 1.7em;
-	//padding-right: 10px;
-	/* letter-spacing: 0.1em; */
+	color: $accent-color;
 }
 
 p.italic, span.italic {
@@ -58,10 +57,9 @@ p.italic, span.italic {
   font-size: 1.1em;
 }
 
-
 // FORMATTERING FÖR BLOGGPOSTS
 .date {
-	//font-style: italic;
+	font-style: italic;
 	font-size: 0.9em;
 	font-weight: light;
 	color: $date-color;
@@ -69,16 +67,21 @@ p.italic, span.italic {
 }
 
 .author {
-	font-weight: bold;
+	/* font-weight: bold; */
 	margin: 0px;
 	padding-right: 10px;
-	//color: $accent-color;
+	color: $accent-color;
 	/* letter-spacing: 0.1em; */
 }
 
 a {
-	color: $divider-color;
+	color: $primary-text-color;
 	font-style: italic;
+}
+
+.comments {
+	text-transform: uppercase;
+	font-weight: bold;
 }
 
 textarea {
@@ -91,15 +94,16 @@ textarea {
 
 h1.blog-text-center, .blog-text-center{
   text-align: center;
-
 }
-
 
 //högerjusterar written by, categories etc i varje inlägg på index.php
 .right-align{
   text-align: right;
-
 }
+.comments .right-align {
+	color: $accent-color;
+}
+
 
 
 // Bannerbilden på index.php
