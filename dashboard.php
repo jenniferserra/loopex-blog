@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 <!-- Fixa - Frida 
 	if(empty($_SESSION["loggedin"])) {
     header('Location: index.php');
@@ -29,7 +28,7 @@
 		//-----------------------------------------------------------------------------
 
 		?>
-=======
+
 
 		<?php
         require "header.php";
@@ -190,6 +189,7 @@
                 } else {
                     echo "Inlägget är inte sparat i databasen";
                 }
+
             } else {
                 echo "Du har inte fyllt i alla fält eller valt kategori";
             }
@@ -201,13 +201,15 @@
 <!-- if logged in -->
 <?php
 
-            } else {
-                //-----------------------------------------------------------------------------
-// LOGGED OUT
-//-----------------------------------------------------------------------------
-    echo "Du är inte inloggad";
-                echo "<br><a href='login.php'>Logga in</a>";
-            }
+            } 
+            //-----------------------------------------------------------------------------
+			// LOGGED OUT
+			//-----------------------------------------------------------------------------
+            else {
+			    echo "Du är inte inloggad";
+				echo "<br><a href='login.php'>Logga in</a>";
+			 }
         }
+    }
 require "footer.php";
 ?>
