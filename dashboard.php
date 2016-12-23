@@ -1,5 +1,5 @@
 
-<!-- Fixa - Frida 
+<!-- Fixa - Frida
 	if(empty($_SESSION["loggedin"])) {
     header('Location: index.php');
 } -->
@@ -124,43 +124,43 @@
         ___________________________________________________________________________________________
         */
 
-        $imageQuery  = "SELECT * FROM posts";
-
-            mysqli_query($conn, $imageQuery);
-
-            if ($stmt->prepare($imageQuery)) {
-                $stmt->execute();
-                $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text, $isPublished, $userId, $catId);
-
-                $postId = $conn->insert_id;
-
-                $targetFolder = "postimages/";
-                $targetName = $targetFolder . basename("post-image-".$postId.".jpg");
-
-
-                if ($_FILES["fileToUpload"]["size"] > 10000000) {
-                    echo "<div class='message'>" . 'Filen är för stor, den får max vara 10MB.' . "</div>";
-                    exit;
-                }
-
-                $type = pathinfo($targetName, PATHINFO_EXTENSION);
-                if ($type !== 'jpg') {
-                    echo "<div class='message'>" . 'Du kan bara ladda upp JPEG-filer' . "</div>";
-                    exit;
-                }
-
-                if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetName)) {
-
-                    $lastInsertId = mysqli_insert_id($conn);
-
-                    $query ="UPDATE posts SET image = '{$targetName}' WHERE post_id = '{$lastInsertId}'";
-
-                    if ($stmt->prepare($query)) {
-                        $stmt->execute();
-                        echo "<div class='message'>" . 'Uppladdningen lyckades' . "</div>";
-                    }
-                }
-							}
+        // $imageQuery  = "SELECT * FROM posts";
+				//
+        //     mysqli_query($conn, $imageQuery);
+				//
+        //     if ($stmt->prepare($imageQuery)) {
+        //         $stmt->execute();
+        //         $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text, $isPublished, $userId, $catId);
+				//
+        //         $postId = $conn->insert_id;
+				//
+        //         $targetFolder = "postimages/";
+        //         $targetName = $targetFolder . basename("post-image-".$postId.".jpg");
+				//
+				//
+        //         if ($_FILES["fileToUpload"]["size"] > 10000000) {
+        //             echo "<div class='message'>" . 'Filen är för stor, den får max vara 10MB.' . "</div>";
+        //             exit;
+        //         }
+				//
+        //         $type = pathinfo($targetName, PATHINFO_EXTENSION);
+        //         if ($type !== 'jpg') {
+        //             echo "<div class='message'>" . 'Du kan bara ladda upp JPEG-filer' . "</div>";
+        //             exit;
+        //         }
+				//
+        //         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetName)) {
+				//
+        //             $lastInsertId = mysqli_insert_id($conn);
+				//
+        //             $query ="UPDATE posts SET image = '{$targetName}' WHERE post_id = '{$lastInsertId}'";
+				//
+        //             if ($stmt->prepare($query)) {
+        //                 $stmt->execute();
+        //                 echo "<div class='message'>" . 'Uppladdningen lyckades' . "</div>";
+        //             }
+        //         }
+				// 			}
 
         //-----------------------------------------------------------------------------
         // SAVE AS DRAFT
@@ -201,7 +201,7 @@
 <!-- if logged in -->
 <?php
 
-            } 
+            }
             //-----------------------------------------------------------------------------
 			// LOGGED OUT
 			//-----------------------------------------------------------------------------

@@ -182,9 +182,9 @@ $stmt = $conn->stmt_init();
                         <p>
                         <div class='input-group'>
                           <form method='post'>
-                            <input type='text' class='form-control' placeholder='Ge kategorien ett namn...' name='newCat' required>
+                            <input type='text' class='form-control' placeholder='Ge kategorien ett namn...' name='nameCategory' required>
                               <span class='input-group-btn'>
-                              <input class='btn btn-secondary' name='addCat' type='submit' value='Lägg till'>
+                              <input class='btn btn-secondary' name='addCategory' type='submit' value='Lägg till'>
                               </span>
                             </form>
                           </div>
@@ -235,48 +235,25 @@ $stmt = $conn->stmt_init();
             "superuser.php?admin=editCategories");
           }
 
+          /* Add category */
+
+            if (isset($_POST["addCategory"])) {
+
+              if (!empty($_POST["nameCategory"])) {
+
+                $nameCategory = mysqli_real_escape_string($conn, $_POST["nameCategory"]);
+                $addQuery= "INSERT INTO categories
+                             VALUES (NULL, '$nameCategory')";
+                mysqli_query($conn, $addQuery);
+                header("Location:superuser.php?admin=editCategories");
+
+              }
+            }
+
+
            ?>
       <div class="col-md-2"></div>
       </div>
     </div>
   </div>
-<?php include "footer.php"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-// /* Add category */
-//
-//   if (isset($_POST["addCat"])) {
-//
-//     if (!empty($_POST["newCat"])) {
-//
-//       $newCat = mysqli_real_escape_string($conn, $_POST["newCat"]);
-//       $addQuery = "INSERT INTO categories
-//                    VALUES (NULL, '$newCat')";
-//       mysqli_query($conn, $addQuery);
-//
-//       header("Location:superuser.php?admin=editCategories");
-//
-//     }
-//   }
-?>
+<?php include "footer.php" ?>
