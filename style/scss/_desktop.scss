@@ -67,7 +67,7 @@
   .welcome{
     font-family: $primary-font;
     font-size: 2.5em;
-    text-align: center;    
+    text-align: center;
     color: $accent-color;
   }
 
@@ -140,6 +140,11 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     padding: 35px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  .imgStatistics {
+      background-image: url("../../images/imgStatistics/statistic3.jpg");
+      background-size: cover;
   }
 
 //-----------------------------------------------------------------------------
