@@ -6,7 +6,6 @@
 require "header.php";
 ?>
 	<div class="statistics-box col-xs-12">
-		<body class="imgStatistics">
 		<h1 class="statistics">Statistik</h1>
 		<?php
 		/* ----------------------------------------------------------------------------
