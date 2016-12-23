@@ -74,11 +74,9 @@ $cats = $conn->query($query);
 ?>
 <div class="blogpost-box col-sm-12 col-xs-12">
 
-	<h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Blogginlägg" ?></h1>
+	<h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Redigera ditt blogginlägg" ?></h1>
 	<form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
-		<p>Rubrik</p>
 		<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
-		<p>Text</p>
 		<textarea rows="15" cols="80" name="blogpost_text"><?= $post->text; ?></textarea><br>
 		<select name="blogpost_category" class="categories">
 
