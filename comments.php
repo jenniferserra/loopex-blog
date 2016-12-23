@@ -19,6 +19,12 @@ if (isset($_GET["delete"])) {
 }
 $stmt = $conn->stmt_init();
 
+ ?>
+ 	<!-- start of whitebox -->
+	<div class="blogpost-box col-sm-12 col-xs-12">
+	<h1>Kommentarer</h1>
+<?php
+
 //$query = "SELECT * FROM comments LEFT JOIN posts ON comments.post_id = posts.id"
 
 $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
@@ -38,6 +44,8 @@ if($stmt->prepare($query)) {
 		$myPostDataArray[] = array('postId' => $postId, 'createTime' => $createTime, 'editTime' => $editTime, 'title' => $title, 'text' => $text, 'isPublished' => $isPublished, 'userId' => $userId, 'catId' => $catId, 'firstName' => $firstName, 'lastName' => $lastName, 'catName' => $catName);
 	}
 }
+
+
 foreach ($myPostDataArray as $post) {
 ?>
     <?php
@@ -62,24 +70,28 @@ foreach ($myPostDataArray as $post) {
 					?>
 
 <!-- TO DO: Fix the whitebox instead of draftbox, to center in middle on comment page -->
-											<div class="blogpost-box col-sm-12 col-xs-12">
+						
 
-													<p><span class='bold'><?php echo $c_name;?></span><br>
-
-														<?php echo "<span class='bold'>" ;?> kommenterade inlägget: </span><?php echo $post['title'];?>
-														<?php echo "<span class='italic'><br>($createTime)</span><br>";?>
-														</p>
-														<p><?php echo $c_text;?></p>
-												<div class="btn-center">
-													<a href="comments.php?delete=<?php echo $com_id;?> "class="btn btn-sm btn-primary">Radera</a>
-												</div>
-											</div>
-
+					<p><span class='bold'><?php echo $c_name;?></span> kommenterade inlägget: 
+						<span class="bold"><?php echo $post['title'];?></span> 
+							<a href="comments.php?delete=<?php echo $com_id;?>">
+								<i class="fa fa-trash" aria-hidden="true"></i>
+							</a>
+						<?php echo "<span class='italic date'><br>($createTime)</span><br>";?>
+					</p>
+					<p><?php echo $c_text;?></p>
+					
+					<hr class="divider">
+						
             <?php
           }
         }
         $stmt2->close();
 }
+
+?>
+</div> <!-- End of whitebox -->
+<?php
 
 $stmt->close();
 include "footer.php";
