@@ -69,20 +69,17 @@ foreach ($myPostDataArray as $post) {
           while($stmt2->fetch()) {
 					?>
 
-<!-- TO DO: Fix the whitebox instead of draftbox, to center in middle on comment page -->
-						
-
-					<p><span class='bold'><?php echo $c_name;?></span> kommenterade inlägget: 
-						<span class="bold"><?php echo $post['title'];?></span> 
+					<p><span class='bold'><?php echo $c_name;?></span> kommenterade inlägget:
+						<span class="bold"><?php echo $post['title'];?></span>
 							<a href="comments.php?delete=<?php echo $com_id;?>">
 								<i class="fa fa-trash" aria-hidden="true"></i>
 							</a>
 						<?php echo "<span class='italic date'><br>($createTime)</span><br>";?>
 					</p>
 					<p><?php echo $c_text;?></p>
-					
+
 					<hr class="divider">
-						
+
             <?php
           }
         }
