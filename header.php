@@ -52,6 +52,8 @@
                     $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
                     $stmt->fetch();
                 ?>
+                <img src="helmet" alt="Colorful helmet">
+
                 <li class="menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
                 <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
                 <li class="menu-btn-lvl-1"><a href="comments.php">Blogginlägg</a>
@@ -63,7 +65,7 @@
                 </li>
                 <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
                 <li class="menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
-
+                </div>
                 <?php
                 $stmt->close();
                    // ---------------------------------------------------------------------
@@ -89,17 +91,17 @@
                 <li class="menu-btn-lvl-1"><a href="index.php">Arkiv</a>
                     <ul>
                         <?php
-                        // Looping out Month-selection drop-down          
+                        // Looping out Month-selection drop-down
                         $sql_month = "SELECT create_time FROM posts
                                     GROUP BY substr(create_time, 1, 8)
                                     HAVING COUNT(*) > 1
                                     ORDER BY create_time DESC";
                         $query_month = mysqli_query($conn, $sql_month);
-                        while ($yearAndMonth = mysqli_fetch_array($query_month)) {     
-                            $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);          
+                        while ($yearAndMonth = mysqli_fetch_array($query_month)) {
+                            $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
                             $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
                             global $readableDate;
-                            $readableDate = date("F Y", strtotime($yearAndMonth));                 
+                            $readableDate = date("F Y", strtotime($yearAndMonth));
                             echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                         }
                         ?>
