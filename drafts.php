@@ -24,20 +24,20 @@ if ($stmt->prepare($query)) {
                       ?>
 
 
-                <div class="form-check draft-divider">
-                    <div id="<?=$postId?>">
-
-                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
-                      <br>
+                <div class="form-check">
+                   <!-- Post title -->
+                   <div id="<?=$postId?>">
+                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'> ($createTime)</p>"; ?>                     
                       <!-- Link to edit post -->
-                      <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
-                      Redigera
+                      <a href="editpost.php?editid=<?php echo $postId?>">
+                         <i class="fa fa-pencil" aria-hidden="true"></i>
                       </a>
                       <!-- Link to delete post -->
-                      <a href="drafts.php?delete=<?=$postId?>" class="btn btn-sm btn-primary">
-                      Radera
+                      <a href="drafts.php?delete=<?=$postId?>">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                      </a>
-                </div>
+                   </div>
+                   <hr class="divider">
                </div>
 
                     <?php

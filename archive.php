@@ -22,19 +22,19 @@ if ($stmt->prepare($query)) {
 
                   if (isset($isPublished) && $isPublished == TRUE && $userId == $_SESSION["user_id"]) {
                       ?>
-              <div class="form-check draft-divider">
+              <div class="form-check">
                   <div id="<?=$postId?>">
-                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'>$createTime</p>"; ?>
-                      <br>
+                      <?php echo "<p class='bold'>$title </p>" . "<p class='italic'> ($createTime)</p>"; ?>
                       <!-- Link to edit post -->
-                      <a href="editpost.php?editid=<?php echo $postId ?>" class="btn btn-sm btn-primary">
-                      Redigera
+                      <a href="editpost.php?editid=<?php echo $postId ?>">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
                       </a>
                       <!-- Link to delete post -->
-                      <a href="archive.php?delete=<?=$postId?>" class="btn btn-sm btn-primary">
-                      Radera
+                      <a href="archive.php?delete=<?=$postId?>">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
                      </a>
                   </div>
+                  <hr class="divider">
               </div>
 
                     <?php

@@ -155,11 +155,8 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   @include whitebox;
 
 }
-.draft-divider {
-  margin: 10px auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $divider-color;
+.divider {
+  margin: 15px auto;
 }
 
 //-----------------------------------------------------------------------------
