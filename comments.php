@@ -26,7 +26,7 @@ $stmt = $conn->stmt_init();
 
  ?>
  	<!-- start of whitebox -->
-	<div class="blogpost-box col-sm-12 col-xs-12">
+	<div class="whitebox col-sm-12 col-xs-12">
 	<h1>Kommentarer</h1>
 <?php
 
