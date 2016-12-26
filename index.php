@@ -3,7 +3,7 @@ require_once "code_open.php";
 ?>
 <body class="index">  
     <!-- start a wrapper -->
-    <!-- <div class="page-content"> -->
+    <div class="page-content">
 <?php
   require_once "header.php";
     ?>

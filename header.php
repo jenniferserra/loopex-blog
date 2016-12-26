@@ -45,7 +45,7 @@
             </li>
             <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
             <li class="menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
-        <!-- </div> --> <!-- .page-content -->
+        </div>  <!-- .page-content -->
         <?php
         $stmt->close();
         // --------------------------------------------------------------------
