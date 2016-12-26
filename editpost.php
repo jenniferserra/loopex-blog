@@ -1,10 +1,17 @@
 <?php
-require "header.php";
+require_once "code_open.php";
+?>
+<body class="dashboard">
+<!-- start a wrapper -->
+	<div class="page-content">
+	    <?php
+	    require_once "header.php";
 
-if (!isset($_SESSION["loggedin"])) {
-	echo "Du är inte inloggad";
-	die();
-}
+		if (!isset($_SESSION["loggedin"])) {
+			echo "Du är inte inloggad";
+			die();
+		}
+		
 if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
 	// Preparing the statement
 	$stmt = $conn->stmt_init();

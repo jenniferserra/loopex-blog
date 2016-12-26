@@ -3,7 +3,9 @@
         <ul>
             <?php
             require_once "dbconnect.php";
-            session_start();
+            if(!isset($_SESSION)){ 
+                session_start(); 
+            } 
             // Variables to be inserted in link-URL in menu-buttons
             // Standard value is empty so that no extra characters appear in URL when nothing is selected
             global $selectedYearAndMonth;

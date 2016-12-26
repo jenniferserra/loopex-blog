@@ -137,3 +137,14 @@ $query = "SELECT posts.*, comments.*, users.firstname, users.lastname, categorie
 
 
             echo "<p><a href='mailto:<?php echo $c_epost; ?>'><?php echo $c_epost; ?></a> | <a href='http://<?php echo $c_url; ?>'><?php echo $c_url; ?></a></p>"; // lägg till i index! 
+
+
+// använda i dashboard.php
+
+             <select name="blogpost_category" class="categories">
+                    <option value ="0">Välj kategori</option>
+                    <?php while($cat = $cats->fetch_object()) :?> 
+                    <option value="<?= $cat->cat_id; ?>">
+                    <?= $cat->cat_name; ?></option>
+                </select>
+                <?php endwhile; ?> 
