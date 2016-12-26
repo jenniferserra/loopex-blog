@@ -1,7 +1,12 @@
 <?php
-require "header.php";
+require_once "code_open.php";
 ?>
-
+<body class="index">  
+    <!-- start a wrapper -->
+    <!-- <div class="page-content"> -->
+<?php
+  require_once "header.php";
+    ?>
     <!-- BANNER IMAGE -->
     <div class="banner col-md-12 col-xs-12"></div>
     <div class="col-md-6 pagination"> <!-- Jonatan, vad gör denna?? -->

@@ -3,8 +3,14 @@
 		REQUIRED - the required statement takes all that exists in the
 		specfied file and copies it inte this file.
 ---------------------------------------------------------------------------- */
-require "header.php";
+require_once "code_open.php";
 ?>
+<body class="statistics">
+	<!-- start a wrapper -->
+	<!-- <div class="page-content"> -->
+	<?php
+	require_once "header.php";
+	?>
 	<div class="statistics-box col-xs-12">
 		<h1 class="statistics">Statistik</h1>
 		<?php

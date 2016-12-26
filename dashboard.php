@@ -4,7 +4,13 @@
     header('Location: index.php');
 } -->
 		<?php
-		require "header.php";
+        require_once "code_open.php";
+        ?>
+        <body class="dashboard">
+        <!-- start a wrapper -->
+        <!-- <div class="page-content"> -->
+            <?php
+            require_once "header.php";
 
 		if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == TRUE ) {
 		//-----------------------------------------------------------------------------

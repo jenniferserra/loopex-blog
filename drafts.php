@@ -1,5 +1,11 @@
 <?php
-require "header.php";
+require_once "code_open.php";
+?>
+<body class="drafts">
+  <!-- start a wrapper -->
+  <!-- <div class="page-content"> -->
+  <?php
+  require_once "header.php";
 $stmt = $conn->stmt_init();
 
 $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name FROM posts

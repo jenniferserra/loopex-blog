@@ -1,6 +1,11 @@
 <?php
-include "header.php";
-
+require_once "code_open.php";
+?>
+<body class="comments">
+	<!-- start a wrapper -->
+  <!-- <div class="page-content"> -->
+  <?php
+  require_once "header.php";
 /**
 * if "delete" is set.
 * $query, is to delete the specific item from tasks where the id is the $taskToDelete.
