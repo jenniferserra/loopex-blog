@@ -1,11 +1,14 @@
 <header>
     <nav class="navbar navbar-default">
+  <!--       <div class="imgAnimation"></div>
+    <img class="logga" src="../../images/layout/logga.png"/>
+      <img src="../../images/layout/logga.png" alt="Helmet" width="45" height="45" style="float:left"> -->
         <ul>
             <?php
             require_once "dbconnect.php";
-            if(!isset($_SESSION)){ 
-                session_start(); 
-            } 
+            if(!isset($_SESSION)){
+                session_start();
+            }
             // Variables to be inserted in link-URL in menu-buttons
             // Standard value is empty so that no extra characters appear in URL when nothing is selected
             global $selectedYearAndMonth;
