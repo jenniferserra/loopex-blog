@@ -99,8 +99,7 @@ require_once "code_open.php";
                     <?php
                     /*-------------------------------------------------------------------
                     Looping out category-choices
-                    -------------------------------------------------------------------*/
-/*                    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);*/        
+                    -------------------------------------------------------------------*/       
                     $sql_selectCategory = "SELECT * FROM categories";
                     $query_giveCategory = mysqli_query($conn, $sql_selectCategory);
                     while ($selectCategory = mysqli_fetch_array($query_giveCategory)) {
