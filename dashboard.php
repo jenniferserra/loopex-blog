@@ -12,7 +12,6 @@ require_once "code_open.php";
             die();
         }
         $userId = $_SESSION["user_id"];
-
         $stmt = $conn->stmt_init();
 
         if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
@@ -96,10 +95,20 @@ require_once "code_open.php";
                 <!-- Välj kategori -->
                 <select name="category" class="categories">
                     <option value ="0">Välj kategori</option>
-                    <option value ="1">Sport</option>
-                    <option value ="2">Mode</option>
-                    <option value ="3">Fotografi</option>
-                    <option value ="4">Annat</option>
+                    <?php
+                    /*-------------------------------------------------------------------
+                    Looping out category-choices
+                    -------------------------------------------------------------------*/
+                    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);        
+                    $sql_selectCategory = "SELECT * FROM categories";
+                    $query_giveCategory = mysqli_query($conn, $sql_selectCategory);
+                    while ($selectCategory = mysqli_fetch_array($query_giveCategory)) {
+                    $categoryName = $selectCategory["cat_name"];
+                    $categoryId = $selectCategory["cat_id"];
+                    echo '<option value ="' . $categoryId . '">' . $categoryName . '</option>';
+                    }
+                    ?>
+
                 </select><br>
                 <!-- Publicera inlägg -->
                 <input name="publish" class="btn button btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
