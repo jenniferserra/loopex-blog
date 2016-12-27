@@ -10,7 +10,13 @@ require_once "code_open.php";
 	<div class="page-content">
 	<?php
 	require_once "header.php";
+
+	if (!isset($_SESSION["loggedin"])) {
+        header('Location: index.php');
+        die();
+    }
 	?>
+	
 	<div class="whitebox col-xs-12">
 	<!-- <div class="blogpost-box col-sm-12 col-xs-12"> -->
 		<h1 class="statistics">Statistik</h1>

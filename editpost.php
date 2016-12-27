@@ -8,9 +8,9 @@ require_once "code_open.php";
 	    require_once "header.php";
 
 		if (!isset($_SESSION["loggedin"])) {
-			echo "Du är inte inloggad";
-			die();
-		}
+	        header('Location: index.php');
+	        die();
+	    }
 		
 if ( isset($_POST["publish"]) && !empty($_POST["blogpost_title"]) && !empty($_POST["blogpost_text"])) {
 	// Preparing the statement
@@ -85,7 +85,7 @@ $cats = $conn->query($query);
 	<form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
 		<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
 		<textarea rows="15" cols="80" name="blogpost_text"><?= $post->text; ?></textarea><br>
-		<select name="blogpost_category" class="categories">
+		<select name="category" class="categories">
 
 
 		<?php while($cat = $cats->fetch_object()) : ?>

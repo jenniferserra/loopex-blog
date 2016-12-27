@@ -8,7 +8,7 @@ require_once "code_open.php";
         require_once "header.php";
 
         if (!isset($_SESSION["loggedin"])) {
-            echo "Du är inte inloggad";
+            header('Location: index.php');
             die();
         }
         $userId = $_SESSION["user_id"];

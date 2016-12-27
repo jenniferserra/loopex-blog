@@ -7,27 +7,25 @@ require_once "code_open.php";
     <?php
     require_once "header.php";
 
-$stmt = $conn->stmt_init();
-/* ----------------------------------------------------------------------------
-        PRINT POST
----------------------------------------------------------------------------- */
-$query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
-$query .= "FROM posts ";
-$query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
-$query .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
-$query .= "WHERE post_id = ";
-$query .= $_GET['id'];
+    $stmt = $conn->stmt_init();
+    /* ----------------------------------------------------------------------------
+            PRINT POST
+    ---------------------------------------------------------------------------- */
+    $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
+    $query .= "FROM posts ";
+    $query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
+    $query .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
+    $query .= "WHERE post_id = ";
+    $query .= $_GET['id'];
 
-if ( mysqli_query($conn, $query) ) {
-}
-if($stmt->prepare($query)) {
-	$stmt->execute();
-	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+    if ( mysqli_query($conn, $query) ) {
+    }
+    if($stmt->prepare($query)) {
+    	$stmt->execute();
+    	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
 
 	while(mysqli_stmt_fetch($stmt)) {
 	?>
-
-
 		<div class="blogpost_center divider">
             <div class="blogpost divider mobile-margin">
             <h1 class="blog-text-center"><?php echo $title; ?></h1>
