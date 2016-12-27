@@ -1,5 +1,156 @@
+//-----------------------------------------------------------------------------
+// MENU BAR-NAVIGATION
+//-----------------------------------------------------------------------------
+
+/* * {
+  margin:0;
+  padding:0;
+} */
+
+/* body {
+  background-repeat: no-repeat;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  margin:0;
+  padding:0;
+  text-transform: uppercase;
+  text-align: center;
+} */
+
+/* .navbar {
+  background-color: $divider-color;
+  float:right; Take away?
+  height: 45px; Distance between grey block top and helmet
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+  width:100%;
+}
+
+.logga {
+  background-repeat: no-repeat; Take away?
+  background: url(imgAnimation/logga.jpg);
+  float: left;  CHANGE HERE IF WE WANT THE NAV FLOAT TO LEFT
+  height:50px;
+  margin-top: 3px;
+  width: 50px;
+}
+
+MENU COLOR - MARGINS BETWEEN MENU
+li a {
+  color: $primary-color;
+  display:inline;
+  padding: 20px;    Distance between menu row
+  padding: 15px 20px;  Take away?
+  text-decoration: none;
+  text-align: center; 	Take away?
+}
+
+ul li {
+  background-color: $divider-color;
+  cursor: pointer;
+  display: inline-block; Nav one one row
+  margin-right: -5px;
+  position: relative;
+  padding: 13px 20px;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+ul li:hover {
+  background: $third-text-color;
+}
+
+DROP DOWN MENU - MARGINS BEETWEN MENU
+ul li ul {
+  box-shadow: none;
+  display: none;
+  left: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 40px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  visibility: hidden;
+  width: 0px auto;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+
+DROP DOWN MENU - BLOCK SIZE
+.navbar li:hover ul li {
+  display: block;
+  opacity:1;
+  transition-delay:0s;
+  -moz-transition-delay:0s;
+  -o-transition-delay:0s;
+  -webkit-transition-delay:0s;
+}
+
+DROP DOWN MENU - COLOR WHEN HOVER
+.navbar ul li ul li:hover
+{ background: $accent-color;}  COLOR IN DROP DOWN MENU
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  -moz-transition-delay:0.5s;
+  -o-transition-delay:0.5s;
+  -webkit-transition-delay:0.5s;
+  transition-delay:0.5s;
+}
+
+//-----------------------------------------------------------------------------
+// ANIMATION-START
+//-----------------------------------------------------------------------------
+
+.imgAnimation-container {
+  perspective: 700;
+}
+
+.imgAnimation {
+  background-repeat: no-repeat;
+  filter: grayscale(100%);
+  position: relative;
+  transition: all 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.imgAnimation:hover {
+  animation-name: imgAnimation;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform: rotateY(35deg);
+}
+
+COLOR LOOP
+
+@keyframes imgAnimation {
+  0% {
+    filter: hue-rotate(360deg);
+  }
+
+  100% {
+    filter: hue-rotate(0deg);
+  }
+} */
+//-----------------------------------------------------------------------------
+// ANIMATION AND MENU BAR-NAVIGATION-END
+//-----------------------------------------------------------------------------
+
+
+
 // ----------------------------------------------------------------------------
-// GENERAL 
+// GENERAL
 // ----------------------------------------------------------------------------
 
 .whitebox{
@@ -158,7 +309,3 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
 .banner{
   background-image: url("../../images/layout/orange2.jpg");
 }
-
-//-----------------------------------------------------------------------------
-// ANIMATION
-//-----------------------------------------------------------------------------
