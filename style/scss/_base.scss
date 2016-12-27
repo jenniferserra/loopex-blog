@@ -49,12 +49,19 @@ p.italic, span.italic {
 	z-index: -10;
 }
 
-// pagineringsformattering
+// Pagination formatting
 .pagination_controls {
   min-width: 300px;
   font-family: $primary-font;
   margin: 10px auto 40px;
   font-size: 1.1em;
+}
+
+// Underlining the current page number in pagination-control
+.current_page_nr {
+	display: inline;
+	color: red;
+	text-decoration: underline;
 }
 
 // FORMATTERING FÖR BLOGGPOSTS
@@ -98,8 +105,6 @@ h1.blog-text-center, .blog-text-center{
 .comments .right-align {
 	color: $accent-color;
 }
-
-
 
 // Bannerbilden på index.php
 .banner{

@@ -24,7 +24,6 @@ if (isset($_GET["yrmnth"])) {
     $sqlYearAndMonth = $_GET["yrmnth"];
 }
 
-
 //-----------------------------------------------------------------------------
 // Pagination start
 //-----------------------------------------------------------------------------
@@ -42,7 +41,6 @@ $query = mysqli_query($conn, $sql);
 $post = mysqli_fetch_row($query);
 $amountOfPosts = $post[0];
 $postsPerPage = 5;
-
 
 // Tells the page nr of the very last page ("ceil" rounds numbers up)
 $last = ceil($amountOfPosts/$postsPerPage);
@@ -79,15 +77,10 @@ $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories
         AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
         ORDER BY create_time DESC $limit";
 
-
 $query = mysqli_query($conn, $sql);
-
 
 // Establishing the $paginationCtrls variable
 $paginationCtrls = '';
-
-
-
 
 // If there is more than one page of results
 if ($last !=1) {
@@ -104,8 +97,6 @@ if ($last !=1) {
             }
         }
 
-
-
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpBackward . '"> << </a> &nbsp
         <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
@@ -118,9 +109,8 @@ if ($last !=1) {
         }
     }
 
-
     // CURRENT PAGE - Render the target page number (not being a link)
-    $paginationCtrls .= ''.$pageNumber.' &nbsp; ';
+    $paginationCtrls .= '<span class="current_page_nr">'.$pageNumber.'</span> &nbsp; ';
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
