@@ -18,6 +18,7 @@ require_once "code_open.php";
             $stmt->execute();
             $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
             $stmt->fetch();
+            mysqli_stmt_close($stmt);
         }
         //-----------------------------------------------------------------------------
         // PUBLISH
@@ -99,7 +100,7 @@ require_once "code_open.php";
                     /*-------------------------------------------------------------------
                     Looping out category-choices
                     -------------------------------------------------------------------*/
-                    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);        
+/*                    $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);*/        
                     $sql_selectCategory = "SELECT * FROM categories";
                     $query_giveCategory = mysqli_query($conn, $sql_selectCategory);
                     while ($selectCategory = mysqli_fetch_array($query_giveCategory)) {
@@ -107,6 +108,7 @@ require_once "code_open.php";
                     $categoryId = $selectCategory["cat_id"];
                     echo '<option value ="' . $categoryId . '">' . $categoryName . '</option>';
                     }
+                    mysqli_close($conn);
                     ?>
 
                 </select><br>
