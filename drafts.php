@@ -15,11 +15,22 @@ $query = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name F
 
 if (mysqli_query($conn, $query)) {
 }
+
+/* delete from database if get-request is sent */
+            if (isset($_GET["delete"])) {
+
+                $deletePost = $_GET["delete"];
+                $deleteQuery = "DELETE FROM posts
+                                WHERE post_id = '{$deletePost}'";
+                mysqli_query($conn, $deleteQuery);
+                // header("Location:drafts.php");
+            }
+
 if ($stmt->prepare($query)) {
     $stmt->execute();
     $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); ?>
 
-              <div class="draft-box">
+              <div class="whitebox">
               <h1>Välj ett utkast att redigera</h1>
 
               <?php
@@ -55,16 +66,6 @@ if ($stmt->prepare($query)) {
           </div>
           <?php
             /* end print */
-
-            /* delete from database if get-request is sent */
-            if (isset($_GET["delete"])) {
-
-                $deletePost = $_GET["delete"];
-                $deleteQuery = "DELETE FROM posts
-                                WHERE post_id = '{$deletePost}'";
-                mysqli_query($conn, $deleteQuery);
-                header("Location:drafts.php");
-            }
 }
 
 require_once "footer.php";

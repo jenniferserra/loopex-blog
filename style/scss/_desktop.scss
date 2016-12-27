@@ -1,13 +1,14 @@
+// ----------------------------------------------------------------------------
+// GENERAL 
+// ----------------------------------------------------------------------------
+
+.whitebox{
+  @include whitebox;
+}
+
 //-----------------------------------------------------------------------------
 // LOGIN
 //-----------------------------------------------------------------------------
-
-// bakgrunden för loginsidan, denna ska senare finnas i bakground.scss när det funkar
-  body.login{
-    background-image: url("../../images/layout/bw_1.jpg");
-    background-size: cover;
-    height: 100vh;
-  }
 
 // den vita rutan som omger loginformuläret
   .form {
@@ -58,24 +59,10 @@
 //-----------------------------------------------------------------------------
 
 // välkomsttexten på dashboard
-.img {
-  background-image: url("../../images/layout/banner5.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
   .welcome{
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
-    color: $accent-color;
-  }
-
-// detta är den vita boxen runt om input-fälten för inlägg
-// denna kan man kodförkorta med @extend
-  .blogpost-box {
-   @include whitebox;
-
   }
 
 // inputrutan för rubrik och brödtext
@@ -87,15 +74,6 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     padding: 15px;
     box-sizing: border-box;
     font-size: 16px;
-  }
-
-
-// denna borde också gå att spara som variabel eller på något sätt slippa specificera för varje sida */
-  h1.dashboard-title{
-    font-family: $primary-font;
-    font-size: 2em;
-    color: $primary-text-color;
-
   }
 
 // kategoriväljaren
@@ -134,22 +112,15 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
   }
 
   .statistics-box{
-    background: $primary-color;
+    @include whitebox;
     max-width: 400px;
-    margin: 20vh 50px;
-    padding: 35px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  }
+   }
 
 //-----------------------------------------------------------------------------
 // DRAFTS
 //-----------------------------------------------------------------------------
 
-.draft-box{
-  @include whitebox;
 
-}
 .divider {
   margin: 15px auto;
 }

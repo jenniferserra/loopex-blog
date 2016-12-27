@@ -4,11 +4,8 @@ p {
 
 }
 
-	/* denna ska in i backgrounds.scss men det funkar inte?? */
-	body.login{
-		background-image: url("../../images/layout/bw_1.jpg");
-		background-size: cover;
-		height: 100vh;
+body.dashboard{
+  background-color: $background-color;
 	}
 
   /* ************** LOGIN ******************* */
@@ -46,9 +43,6 @@ p {
     color: $primary-color;
   }
 
-  h2.login{
-    color: $primary-color;
-  }
 
 /* ************** DASHBOARD ******************* */
 
@@ -57,7 +51,6 @@ p {
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
-    color: $accent-color;
   }
 
 /* inputrutan för rubrik och brödtext */
@@ -100,7 +93,6 @@ p {
     }
   }
 
-
   
 
   /* ************** STATISTICS ******************* */
@@ -123,7 +115,7 @@ p {
   /* ************** DRAFTS ******************* */
 
 
-.draft-box{
+.whitebox{
   text-align: center;
 }
 

@@ -79,7 +79,7 @@ $cats = $conn->query($query);
 // HTML-STRUKTUR FÖR INLÄGG
 //-----------------------------------------------------------------------------
 ?>
-<div class="blogpost-box col-sm-12 col-xs-12">
+<div class="whitebox col-sm-12 col-xs-12">
 
 	<h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Redigera ditt blogginlägg" ?></h1>
 	<form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">

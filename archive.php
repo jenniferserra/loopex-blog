@@ -22,7 +22,7 @@ require_once "code_open.php";
       $stmt->execute();
       $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName); 
   ?>
-      <div class='draft-box'>
+      <div class="whitebox">
         <h1>Välj ett inlägg att redigera</h1>
         <?php
         /* Start printing unpublished posts */

@@ -11,8 +11,8 @@ require_once "code_open.php";
 	<?php
 	require_once "header.php";
 	?>
-	<!-- <div class="statistics-box col-xs-12"> -->
-	<div class="blogpost-box col-sm-12 col-xs-12">
+	<div class="whitebox col-xs-12">
+	<!-- <div class="blogpost-box col-sm-12 col-xs-12"> -->
 		<h1 class="statistics">Statistik</h1>
 		<?php
 		/* ----------------------------------------------------------------------------

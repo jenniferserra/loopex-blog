@@ -82,7 +82,7 @@ require_once "code_open.php";
         // HTML-STRUKTUR FÖR INLÄGG
         //-----------------------------------------------------------------------------
         ?>
-        <div class="blogpost-box col-sm-12 col-xs-12">
+        <div class="whitebox col-sm-12 col-xs-12">
         <?php echo '<div class="welcome"> Hej '. $firstname .' '. $lastname .'! </div>'; ?>
         <h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Dags att skriva nästa succéinlägg?" ?></h1>
             <form method="POST" action="dashboard.php" class="blogposts" enctype="multipart/form-data">
