@@ -99,22 +99,22 @@ if ($last !=1) {
 
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp; &nbsp';
+        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp &nbsp';
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+                $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp ';
             }
         }
     }
 
     // CURRENT PAGE - Render the target page number (not being a link)
-    $paginationCtrls .= '<span class="current_page_nr">'.$pageNumber.'</span> &nbsp; ';
+    $paginationCtrls .= '<span class="current_page_nr">'.$pageNumber.'</span> &nbsp ';
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
-        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp; ';
+        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp ';
 
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){

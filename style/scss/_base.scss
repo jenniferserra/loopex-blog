@@ -57,11 +57,9 @@ p.italic, span.italic {
   font-size: 1.1em;
 }
 
-// Underlining the current page number in pagination-control
+// Marking the current page number in pagination-control
 .current_page_nr {
-	display: inline;
-	color: red;
-	text-decoration: underline;
+	color: $accent-color;
 }
 
 // FORMATTERING FÖR BLOGGPOSTS
