@@ -84,7 +84,8 @@
                     while ($yearAndMonth = mysqli_fetch_array($query_month)) {
                         $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
                         $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
-                        global $readableDate;
+                        
+                        // Printing out menu buttons with date and month
                         $readableDate = date("F Y", strtotime($yearAndMonth));
                         echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                     }
