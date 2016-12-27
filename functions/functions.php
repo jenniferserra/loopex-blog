@@ -87,8 +87,9 @@ function deleteCommand($command, $id, $redirect)
     } elseif ($command == "deleteComment") {
         $query = "DELETE FROM comments WHERE com_id = '{$id}'";
     } elseif ($command == "deleteUser") {
-        $query = "DELETE FROM posts WHERE user_id = '{$id}'";
-        $query = "DELETE FROM users WHERE user_id = '{$id}'"; //Fungerar EJ
+        $query = "DELETE FROM users, posts USING users
+                  INNER JOIN posts on (users.user_id = posts.user_id)
+                  WHERE users.user_id='{$id}'";
     } elseif ($command == "deleteCategory") {
         $query = "DELETE FROM categories WHERE cat_id = '{$id}'";
     }

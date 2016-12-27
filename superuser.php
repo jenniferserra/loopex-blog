@@ -9,6 +9,10 @@ require_once "code_open.php";
 
 $stmt = $conn->stmt_init();
       include "functions/functions.php";
+
+
+      /* Check if user is a) logged in and b) logged in as admin */
+      if(isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {
 ?>
 <div class="jumbotron">
   <div class="container-fluid">
@@ -301,6 +305,13 @@ $stmt = $conn->stmt_init();
       <div class="col-md-2"></div> <!-- end div: col-md-2 -->
     </div> <!-- end div: container-fluid -->
   </div> <!-- end div: row -->
+
 <?php
+
+/* if user is a) not logged in or b) not logged in as admin redirect back to index */
+}else {
+  header("Location:index.php");
+      }
+
 include "footer.php";
 ?>
