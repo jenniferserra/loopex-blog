@@ -1,6 +1,6 @@
 	</div> <!-- .page-content -->
 	<footer>
-		<div class="footer">
+		<!-- <div class="footer"> -->
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12">
@@ -24,7 +24,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		<!-- </div> -->
 	</footer>
 </body>
 </html>

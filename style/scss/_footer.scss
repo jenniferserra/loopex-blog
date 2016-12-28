@@ -1,6 +1,6 @@
 /* FOOTER */
 
-.footer{
+footer{
 	color: $primary-color;
 	font-family: $primary-font;
 	font-size: 1em;
@@ -8,6 +8,9 @@
 	padding: 20px;
 	max-height: 200px;
 	background-color: $divider-color;
+	position: fixed;
+	width: 100%;
+	bottom: 0;
 }
 
 .fa-facebook-square, .fa-instagram,.fa-twitter-square {
