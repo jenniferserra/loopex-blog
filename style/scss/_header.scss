@@ -3,30 +3,54 @@ header {
     position: absolute;
     width: 100%;
 }
+
 .navbar-default {
     background-color: $divider-color;
 }
+
 nav {
-	float: left;
-	width: 100%; 
+  text-transform: uppercase;
+  text-align: center;
+	width: 100%;
+  background-color: $accent-color;
+  box-shadow: none;
+  top: 10px; /* MARGINAL TILL TOP */
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
 }
+
 nav * {
-    color: $primary-color; //frida har ändrat till VIT färg på text.
+    color: $primary-color;
     list-style: none;
     text-decoration: none;
     padding: 0;
     margin: 0;
     z-index: 1000;
+    /* display: inline-block; */ /* Nav one one row center */
 }
+
 nav *:hover {
-    color: $primary-color; // frida ändrat till vit textfärg. 
-    background-color: $accent-color; //frida ändrat till orange bakgrundfärg vid "hover".
+    color: $primary-color;
+    background-color: $accent-color;
     text-decoration: none;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
 }
+
 .right-btn {
     display: inline;
     float: right;
 }
+
 .menu-btn-lvl-1 {
     float: left;
     min-width: 150px;
@@ -44,11 +68,11 @@ nav *:hover {
 }
 
 .menu-btn-lvl-2 {
-    background: $divider-color; // grått
+    background: $divider-color;
 }
 
 .menu-btn-lvl-2:hover {
-  color: $accent-color; // orange
+  color: $accent-color;
 }
 
 nav a {
