@@ -2,7 +2,7 @@
 require_once "code_open.php";
 ?>
 <body class="statistics">
-	<div class="page-content">
+	<div class="page-content"> <!-- start a wrapper -->
 	<?php
 	require_once "header.php";
 	

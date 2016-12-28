@@ -148,3 +148,8 @@ $query = "SELECT posts.*, comments.*, users.firstname, users.lastname, categorie
                     <?= $cat->cat_name; ?></option>
                 </select>
                 <?php endwhile; ?> 
+
+
+/* ----------------------------------------------------------------------------
+        KOMMENTARER - 
+---------------------------------------------------------------------------- */
