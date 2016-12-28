@@ -1,16 +1,11 @@
 <?php
-/* ----------------------------------------------------------------------------
-		REQUIRED - the required statement takes all that exists in the
-		specfied file and copies it inte this file.
----------------------------------------------------------------------------- */
 require_once "code_open.php";
 ?>
 <body class="statistics">
-	<!-- start a wrapper -->
 	<div class="page-content">
 	<?php
 	require_once "header.php";
-
+	
 	if (!isset($_SESSION["loggedin"])) {
         header('Location: index.php');
         die();
@@ -18,7 +13,6 @@ require_once "code_open.php";
 	?>
 	
 	<div class="whitebox col-xs-12">
-	<!-- <div class="blogpost-box col-sm-12 col-xs-12"> -->
 		<h1 class="statistics">Statistik</h1>
 		<?php
 		/* ----------------------------------------------------------------------------
@@ -56,12 +50,7 @@ require_once "code_open.php";
 
 		echo '<div class="statistics-count">Du har '. $nbr . ' kommentarer per inlägg.</div>';
 		?>
-	</div> <!-- .statistics-box.col-xs-12 -->
-</div> <!-- END OF IMG STATISTIC -->
+	</div> <!-- .whitebox col-xs-12 -->
 <?php		
-	// TO DO!! ?
-	// + kolla igenom kommentarerna här uppe!!!
-	//detta kan man använda om man har en superuser som vill se vad alla användarna har för post count
-	//SELECT user_id, count(*) as postcount_per_user FROM posts WHERE user_id in (SELECT user_id FROM users) GROUP BY user_id
-	include "footer.php";
+include "footer.php";
 ?>
