@@ -2,17 +2,21 @@ header {
     z-index: 1000;
     position: absolute;
     width: 100%;
+    height: 50px;
+    margin-top: -10px;
 }
 
 .navbar-default {
     background-color: $divider-color;
+}
+.navbar {
+  border-radius: 0px;
 }
 
 nav {
   text-transform: uppercase;
   text-align: center;
 	width: 100%;
-  background-color: $accent-color;
   box-shadow: none;
   top: 10px; /* MARGINAL TILL TOP */
   -webkit-box-shadow: none;
@@ -39,11 +43,11 @@ nav *:hover {
     color: $primary-color;
     background-color: $accent-color;
     text-decoration: none;
-    -webkit-transition: 0.5s;
-    -moz-transition: 0.5s;
-    -ms-transition: 0.5s;
-    -o-transition: 0.5s;
-    transition: 0.5s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
 }
 
 .right-btn {
