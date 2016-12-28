@@ -68,6 +68,13 @@ if($pageNumber < 1) {
 // Query for a limited amount of posts
 $limit = 'LIMIT ' .($pageNumber - 1) * $postsPerPage .',' . $postsPerPage;
 
+
+// Sorting posts on decending or ascending create-time
+$postOrder = 'desc';
+if(isset($_GET["order"])) {
+    $postOrder = $_GET["order"];
+}
+
 $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
         FROM posts
         LEFT JOIN users ON posts.user_id = users.user_id
@@ -75,7 +82,7 @@ $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories
         WHERE is_published = 1
         AND (posts.cat_id = $sqlCategory)
         AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
-        ORDER BY create_time DESC $limit";
+        ORDER BY create_time $postOrder $limit";
 
 $query = mysqli_query($conn, $sql);
 
@@ -144,6 +151,15 @@ if ($last !=1) {
 
 <div class="col-sm-12 col-xs-12">
     <div class="selection-display-box">
+
+    <?php
+    if(isset($_GET["order"]) && $_GET["order"] == 'asc') {
+    echo '<a class="menu-button" href="?order=desc">Fallande</a>';
+    } else {
+        echo '<a class="menu-button" href="?order=asc">Stigande</a>';
+    }
+    ?>
+
     <?php
 
     if(isset($_GET["yrmnth"])) {
