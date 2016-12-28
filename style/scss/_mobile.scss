@@ -1,60 +1,95 @@
-/* ************** GENERAL STYLE FOR MOBILE ******************* */
+/* ----------------------------------------------------------------------------
+            GENERAL STYLE FOR MOBILE
+---------------------------------------------------------------------------- */
 
-p {
-
+body.dashboard {
+    background-color: $background-color;
+    background-image: none;
+}
+body.comments {
+    background-color: $background-color;
+    background-image: none;
+}
+body.archive {
+    background-color: $background-color;
+    background-image: none;
+}
+body.drafts {
+    background-color: $background-color;
+    background-image: none;
+}
+body.statistics {
+    background-color: $background-color;
+    background-image: none;
+}
+body.comments {
+    background-color: $background-color;
+    background-image: none;
 }
 
-body.dashboard{
-  background-color: $background-color;
-	}
+/* ----------------------------------------------------------------------------
+            SÅ LÄNGE
+    Lättare att ta bort navigeringsmenyn ifall man vill redigare någonting,
+    kommentera ut detta under bara: 
+---------------------------------------------------------------------------- */
+// .navbar {
+//     display: none;
+// }
 
-  /* ************** LOGIN ******************* */
+/* ----------------------------------------------------------------------------
+            BANNER PICTURE 
+            at index.php
+---------------------------------------------------------------------------- */
 
-   .form {
+.banner{
+  background-image: url("../../images/layout/orange2mobile.jpg");
+}
+
+/* ----------------------------------------------------------------------------
+            LOGIN
+---------------------------------------------------------------------------- */
+
+.form {
     text-align: center;
     width: 100%;
     margin-top: 20vh;
-   }
-
-  .form input {
+}
+.form input {
     font-family: $primary-font;
     width: 100%;
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-  }
-
-  .login-button {
+}
+.login-button {
     font-family: $primary-font;
     outline: 0;
     background: $button-color;
     width: 100%;
     color: $primary-color;
     font-size: 14px;
-  }
-
-  .btn:hover,.btn:active,.btn:focus {
+}
+.btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
-
-  }
-
-  h2.login{
+}
+h2.login{
     color: $primary-color;
-  }
+}
 
-
-/* ************** DASHBOARD ******************* */
+/* ----------------------------------------------------------------------------
+            DASHBOARD
+---------------------------------------------------------------------------- */
 
 /*välkomsttexten på dashboard */
-  .welcome{
+.welcome{
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
-  }
+}
 
 /* inputrutan för rubrik och brödtext */
-  input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], textarea {
     font-family: $primary-font;
     outline: 0;
     width: 100%;
@@ -64,23 +99,23 @@ body.dashboard{
     font-size: 16px;
 }
 
-  h1.dashboard-title{
+h1.dashboard-title{
     font-family: $primary-font;
     font-size: 2em;
     color: $secondary-text-color;
-  }
+}
 
 /*kategoriväljaren */
-  select.categories{
+select.categories{
     width: 100%;
     margin: 20px auto;
     font-family: $primary-font;
     font-size: 1.1em;
     background-color: $divider-color;
     opacity: 0.7;
-  }
+}
 /* publicera / spara utkast-knapparna */
-  input[type="submit"]{
+input[type="submit"]{
     font-family: $primary-font;
     color: $primary-color;
     background-color: $button-color;
@@ -89,63 +124,68 @@ body.dashboard{
     max-width: 100%;
     margin: 0px auto;
     &:hover {
-      background-color: $secondary-accent-color;
+        background-color: $secondary-accent-color;
     }
-  }
+}
 
-  
+/* ----------------------------------------------------------------------------
+            STATISTICS
+---------------------------------------------------------------------------- */
 
-  /* ************** STATISTICS ******************* */
-
-  .statistics-count{
+.statistics-count {
     font-family: $primary-font;
     font-size: 1.5em;
     padding: 2px;
     text-align: center;
-  }
+}
 
 
-/*denna ska generaliseras i base.scss */
-  h1.statistics{
+/* denna ska generaliseras i base.scss */
+    h1.statistics {
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
-  }
-
-  /* ************** DRAFTS ******************* */
-
-
-.whitebox{
-  text-align: center;
 }
 
-.draft-divider{
-  margin: 10px auto;
-  padding-bottom: 10px;
-  border-bottom: 1px solid $divider-color;
+/* ----------------------------------------------------------------------------
+            DRAFTS
+---------------------------------------------------------------------------- */
+
+.whitebox {
+    text-align: center;
 }
 
+.draft-divider {
+    margin: 10px auto;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $divider-color;
+}
 
-//-----------------------------------------------------------------------------
-// post.php - the page where visitors can comment posts
-//-----------------------------------------------------------------------------
-
+/* ----------------------------------------------------------------------------
+            POSTS
+            - the page where visitors can comment posts
+---------------------------------------------------------------------------- */
 
 .divider {
-  padding-bottom: 10px;
-  margin: 20px 0px;
-  border: 0;
+    padding-bottom: 10px;
+    margin: 20px 0px;
+    border: 0;
 }
 
 .mobile-margin {
-  margin: 0px 10px;
+    margin: 0px 10px;
 }
 
-//-----------------------------------------------------------------------------
-// index.php - the main blog posts page
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            FOOTER
+            - EJ KLAR, den är åt helvete fel kan någon fixa det!!
+---------------------------------------------------------------------------- */
 
-// Bannerbilden på index.php
-.banner{
-  background-image: url("../../images/layout/orange2mobile.jpg");
+footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    margin-top: 20px;
+    margin-bottom: -150px;
 }
