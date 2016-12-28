@@ -1,36 +1,34 @@
 header {
-    z-index: 1000000;
+    z-index: 1000;
     position: absolute;
     width: 100%;
 }
+nav {
+	float: left;
+	width: 100%;
+}
 nav * {
+    color: $accent-color;
     list-style: none;
     text-decoration: none;
     padding: 0;
     margin: 0;
-    color: $primary-text-color;
     z-index: 1000;
 }
-
-nav {
-	float: left;
-	width: 100%;
-	background:#272727;
+nav *:hover {
+    color: $primary-text-color;
+    text-decoration: none;
 }
-nav > ul {
-    background-color: $primary-color;
+.right-btn {
+    display: inline;
+    float: right;
 }
 .menu-btn-lvl-1 {
     float: left;
     min-width: 150px;
     height: 50px;
-    background-color: rgba($color: $primary-color, $alpha: 0.8);
     margin-right: 2px;
     line-height: 50px;
-}
-nav > ul li:hover a {
-    color: $primary-text-color;
-    text-decoration: none;
 }
 
 .menu-btn-lvl-1 > ul {
@@ -39,31 +37,17 @@ nav > ul li:hover a {
 
 .menu-btn-lvl-1:hover > ul {
     display: block;
-
-}
-
-.menu-btn-lvl-2:hover {
-  background: #f8f8f8;
 }
 
 .menu-btn-lvl-2 {
-    background-color: $primary-color;
+    background: $primary-color;
+}
+
+.menu-btn-lvl-2:hover {
+  color: $primary-color;
 }
 
 nav a {
     padding: 10px;
     box-sizing: border-box;
-}
-
-.selection-display {
-    font-family: $primary-font;
-}
-.selection-display-box {
-    width: 100%;
-    font-size: 24px;
-    color: rgba($color: $primary-text-color, $alpha: 0.8);
-    width: 800px;
-    margin: 20px auto;
-    text-align: center;
-    letter-spacing: 1px;
 }

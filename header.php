@@ -58,7 +58,7 @@
         // --------------------------------------------------------------------
         } else {
         ?>
-            <li class="menu-btn-lvl-1"><a href="index.php">Kategori</a>
+            <li class="menu-btn-lvl-1"><a class="menu-button" href="index.php">Kategori</a>
                 <ul>
                     <?php
                     // Looping out category drop-down
@@ -67,12 +67,12 @@
                     while ($category = mysqli_fetch_array($query_category)) {
                     $categoryName = $category["cat_name"];
                     $categoryId = $category["cat_id"];
-                    echo '<li class="menu-btn-lvl-2"><a class="nav-link" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
+                    echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
                     }
                     ?>
                 </ul>
             </li>
-            <li class="menu-btn-lvl-1"><a href="index.php">Arkiv</a>
+            <li class="menu-btn-lvl-1"><a class="menu-button" href="index.php">Arkiv</a>
                 <ul>
                     <?php
                     // Looping out Month-selection drop-down
@@ -87,15 +87,13 @@
                         
                         // Printing out menu buttons with date and month
                         $readableDate = date("F Y", strtotime($yearAndMonth));
-                        echo '<li class="menu-btn-lvl-2"><a href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
+                        echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                     }
                     ?>
                 </ul>
             </li>
-            <div class="navbar-header navbar-right">
-                <li class="menu-btn-lvl-1">
-                    <a class="navbar-brand" href="login.php">Logga in</a>
-                </li>
+            <div class="right-btn">
+                <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
             </div>
             <?php
                 }
