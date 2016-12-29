@@ -101,3 +101,15 @@ function deleteCommand($command, $id, $redirect)
         header("Location: " . $redirect);
     }
 }
+
+
+//-----------------------------------------------------------------------------
+// Creating URL-queries
+//-----------------------------------------------------------------------------
+
+function createUrl($pageNr) {
+    $urlArray = $_GET;
+    $urlArray['pn'] = $pageNr;
+    $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
+    return $url;
+}
