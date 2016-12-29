@@ -1,16 +1,26 @@
+
 header {
     z-index: 1000;
-    position: absolute;
+    position: relative; /* TA BORT SEN: ändrade från absolute till relative då försvann margin top på alla sidor */
     width: 100%;
     height: 50px;
     margin-top: -10px;
+
 }
 
 .navbar-default {
     background-color: $divider-color;
+
 }
+
 .navbar {
   border-radius: 0px;
+
+}
+
+.navbar-header .navbar-brand {
+  color: $third-text-color;
+
 }
 
 nav {
@@ -18,10 +28,9 @@ nav {
   text-align: center;
 	width: 100%;
   box-shadow: none;
-  top: 10px; /* MARGINAL TILL TOP */
+  top: 10px; /* Margin to top*/
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
-
   -webkit-transiton: opacity 0.2s;
   -moz-transition: opacity 0.2s;
   -ms-transition: opacity 0.2s;
@@ -36,12 +45,12 @@ nav * {
     padding: 0;
     margin: 0;
     z-index: 1000;
+
     /* display: inline-block; */ /* Nav one one row center */
 }
 
 nav *:hover {
-    color: $primary-color;
-    background-color: $accent-color;
+    color: $accent-color;
     text-decoration: none;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
@@ -50,6 +59,7 @@ nav *:hover {
     transition: 0.2s;
 }
 
+/* vavd gör denna- Ev går ta bort?*/
 .right-btn {
     display: inline;
     float: right;
@@ -72,11 +82,11 @@ nav *:hover {
 }
 
 .menu-btn-lvl-2 {
-    background: $divider-color;
+    background: $primary-text-color;
 }
 
 .menu-btn-lvl-2:hover {
-  color: $accent-color;
+
 }
 
 nav a {

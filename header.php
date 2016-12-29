@@ -1,5 +1,6 @@
 <header>
-    <nav class="navbar navbar-default">
+  <!-- DEFAULT= is the gray colour and INVERSE= is black -->
+    <nav class="navbar navbar-inverse">
   <!--       <div class="imgAnimation"></div>
     <img class="logga" src="../../images/layout/logga.png"/>
       <img src="../../images/layout/logga.png" alt="Helmet" width="45" height="45" style="float:left"> -->
@@ -39,17 +40,39 @@
                 $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
                 $stmt->fetch();
             ?>
-            <li class="menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
+            <!-- LOGO WITH ORANGE IMAGE -->
+            <div class="navbar-header">
+
+            <!-- THE TOGGLE BAR = HAMBURGER BAR -->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+
+              </button>
+
+              <a href="#" class="navbar-brand">ORANGE MUSIC.</a>
+            </div>
+
+            <!-- MENU ITEMS -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <!-- <ul class="nav navbar-nav"> -->
+            <!-- ACTIVE OCH LOGOUT TO RIGHT KROCKAR HÄR Logouts right align försvinner om jag slår på ul class ovan och active? -->
+            <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
             <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
             <li class="menu-btn-lvl-1"><a href="comments.php">Blogginlägg</a>
                 <ul>
+
                     <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
                     <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Inläggsarkiv</a></li>
                     <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
                 </ul>
             </li>
             <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
-            <li class="menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
+            <!-- RIGHT ALIGN LOGOUT -->
+            <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
         </div>  <!-- .page-content -->
         <?php
         $stmt->close();
@@ -84,7 +107,7 @@
                     while ($yearAndMonth = mysqli_fetch_array($query_month)) {
                         $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
                         $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
-                        
+
                         // Printing out menu buttons with date and month
                         $readableDate = date("F Y", strtotime($yearAndMonth));
                         echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
