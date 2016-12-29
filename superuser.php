@@ -8,8 +8,6 @@ require_once "code_open.php";
   require_once "header.php";
 
 $stmt = $conn->stmt_init();
-      include "functions/functions.php";
-
 
       /* Check if user is a) logged in and b) logged in as admin */
       if(isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {
