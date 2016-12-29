@@ -1,12 +1,11 @@
 <?php
 require_once "code_open.php";
+require_once "header.php";
 ?>
+
 <body class="index">  
     <!-- start a wrapper -->
     <div class="page-content">
-<?php
-  require_once "header.php";
-    ?>
     <!-- BANNER IMAGE -->
     <div class="banner col-md-12 col-xs-12"></div>
     <div class="col-md-6 pagination"> <!-- Jonatan, vad gör denna?? -->
@@ -23,6 +22,8 @@ $sqlYearAndMonth = 2;
 if (isset($_GET["yrmnth"])) {
     $sqlYearAndMonth = $_GET["yrmnth"];
 }
+
+
 
 //-----------------------------------------------------------------------------
 // Pagination start
@@ -104,14 +105,16 @@ if ($last !=1) {
             }
         }
 
+
         // Previous-button and long-backward-jump
-        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpBackward . '"> << </a> &nbsp
-        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $previous . '">Previous</a> &nbsp &nbsp';
+        $paginationCtrls .= '<a href="' . createUrl($jumpBackward) . '"> << </a> &nbsp
+        <a href="' . createUrl($previous) . '">Previous</a> &nbsp &nbsp';
+
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
             if ($i > 0) {
-                $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp ';
+                $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp ';
             }
         }
     }
@@ -121,7 +124,7 @@ if ($last !=1) {
 
     // RIGHT - Render clickable number links that should appear on the right
     for ($i = $pageNumber+1; $i <= $last; $i++) {
-        $paginationCtrls .= '<a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $i . '">' . $i . '</a> &nbsp ';
+        $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp ';
 
         // Making the index always show the same amount of page links
         if ($pageNumber <= 3){
@@ -139,8 +142,8 @@ if ($last !=1) {
     if ($pageNumber != $last) {
         $next = $pageNumber + 1;
         $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-        $paginationCtrls .= '&nbsp; <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $next . '">Next</a> &nbsp
-        <a href="?' . $categoryURL . $selectedYearAndMonthURL . '&pn=' . $jumpForward . '"> >> </a> ';
+        $paginationCtrls .= '&nbsp; <a href="' . createUrl($next) . '">Next</a> &nbsp
+        <a href="' . createUrl($jumpForward) . '"> >> </a> ';
     }
 }
 //-----------------------------------------------------------------------------
