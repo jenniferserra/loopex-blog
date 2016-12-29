@@ -81,7 +81,7 @@ $stmt = $conn->stmt_init();
                   mysqli_query($conn, $postQuery);
                   if ($stmt->prepare($postQuery)) {
                       $stmt->execute();
-                      $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text,
+                      $stmt->bind_result($postId, $createTime, $editTime, $title, $text,
                                                                  $isPublished, $userId, $catId, $firstName,
                                                                  $lastName, $user_email, $catName);
 
