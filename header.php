@@ -1,9 +1,6 @@
 <header>
-  <!-- DEFAULT= is the gray colour and INVERSE= is black -->
+  <!-- THE NAVBAR COLOR - DEFAULT IS FOR GREY / INVERSE- BLACK -->
     <nav class="navbar navbar-inverse">
-  <!--       <div class="imgAnimation"></div>
-    <img class="logga" src="../../images/layout/logga.png"/>
-      <img src="../../images/layout/logga.png" alt="Helmet" width="45" height="45" style="float:left"> -->
         <?php
         require_once "dbconnect.php";
         if(!isset($_SESSION)){
@@ -39,19 +36,20 @@
             $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
             $stmt->fetch();
         ?>
-        <!-- LOGO WITH ORANGE IMAGE -->
+        <!-- LOGO HERE -->
         <div class="navbar-header">
+          <!-- TO DO: Fuskstylat loggan här ta bort när det funkar i scss -->
+          <img src="images/layout/orange.png" alt="Image on orange" style="float:left;margin:7px 0px 0px 7px;height:40px;width:40px;">
+        </div>
 
-        <!-- THE TOGGLE BAR = HAMBURGER BAR -->
+        <!-- THE TOGGLE BAR MENU TO MOBIL -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
-
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-
           </button>
-
-          <a href="#" class="navbar-brand">ORANGE MUSIC.</a>
+        <div class="navbar-brand"/>
+            <a href="index.php">ORANGE MUSIC.</a>
         </div>
 
         <!-- MENU ITEMS -->
@@ -60,7 +58,7 @@
         <!-- <ul class="nav navbar-nav"> -->
         <!-- ACTIVE OCH LOGOUT TO RIGHT KROCKAR HÄR Logouts right align försvinner om jag slår på ul class ovan och active? -->
         <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
-        <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
+        <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv ett inlägg</a></li>
         <li class="menu-btn-lvl-1"><a href="comments.php">Blogginlägg</a>
       <!-- IF logged in user is admin -->
       <?php
@@ -69,16 +67,14 @@
         <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a>
 
       <?php } ?>
-      
-            <ul>
 
+            <ul>
                 <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
-                <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Inläggsarkiv</a></li>
+                <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Arkiv</a></li>
                 <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
             </ul>
         </li>
         <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
-        <!-- RIGHT ALIGN LOGOUT -->
         <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
         <?php
         $stmt->close();
