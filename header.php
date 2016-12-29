@@ -63,6 +63,14 @@
             <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
             <li class="menu-btn-lvl-1"><a href="dashboard.php">Profil</a></li>
             <li class="menu-btn-lvl-1"><a href="comments.php">Blogginlägg</a>
+          <!-- IF logged in user is admin -->
+          <?php
+          if(isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {?>
+
+            <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a>
+
+          <?php } ?>
+          
                 <ul>
 
                     <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
