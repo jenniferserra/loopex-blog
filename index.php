@@ -105,11 +105,9 @@ if ($last !=1) {
             }
         }
 
-
         // Previous-button and long-backward-jump
         $paginationCtrls .= '<a href="' . createUrl($jumpBackward) . '"> << </a> &nbsp
         <a href="' . createUrl($previous) . '">Previous</a> &nbsp &nbsp';
-
 
         // LEFT - Render clickable number links to the left
         for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
