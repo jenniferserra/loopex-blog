@@ -152,11 +152,19 @@ if ($last !=1) {
 <div class="col-sm-12 col-xs-12">
     <div class="selection-display-box">
 
+
     <?php
+    $order = '?&order=desc';
+    $queryStringOrder = $_SERVER['REQUEST_URI'] . $order;
+    if (isset($_GET["order"])) {
+        $queryStringOrder = $_SERVER['REQUEST_URI'];
+    }
     if(isset($_GET["order"]) && $_GET["order"] == 'asc') {
-    echo '<a class="menu-button" href="?order=desc">Fallande</a>';
-    } else {
-        echo '<a class="menu-button" href="?order=asc">Stigande</a>';
+    $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
+    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Nya inlägg först</a>';
+    } else{
+        $queryStringOrder = preg_replace('/desc/', 'asc', $queryStringOrder);
+        echo '<a class="order-sorting" href="' . $queryStringOrder . '">Gamla inlägg först</a>';
     }
     ?>
 
