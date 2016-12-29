@@ -278,5 +278,5 @@ Pagination-bottom printed out
 // Closing html-structure
 
 //fucking footer funkar inte som den ska. någon med tålamod får fixa
-//require "footer.php";
+include "footer.php";
 ?>
