@@ -1,6 +1,7 @@
 <header>
-  <!-- THE NAVBAR COLOR - DEFAULT IS FOR GREY / INVERSE- BLACK -->
-    <nav class="navbar navbar-inverse">
+  <!-- THE NAVBAR COLOR - DEFAULT IS FOR GREY / INVERSE- BLACK FIXED -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
         <?php
         require_once "dbconnect.php";
         if(!isset($_SESSION)){
@@ -40,7 +41,6 @@
         <div class="navbar-header">
           <!-- TO DO: Fuskstylat loggan här ta bort när det funkar i scss -->
           <img src="images/layout/orange.png" alt="Image on orange" style="float:left;margin:7px 0px 0px 7px;height:40px;width:40px;">
-        </div>
 
         <!-- THE TOGGLE BAR MENU TO MOBIL -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
@@ -48,14 +48,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-        <div class="navbar-brand"/>
-            <a href="index.php">ORANGE MUSIC.</a>
+
+        <!-- <div class="navbar-brand"/></div> -->
+            <a href="index.php" class="navbar-brand">ORANGE MUSIC.</a>
         </div>
 
         <!-- MENU ITEMS -->
         <div class="collapse navbar-collapse" id="mainNavbar">
 
-        <!-- <ul class="nav navbar-nav"> -->
+        <div class="nav navbar-nav"></div>
         <!-- ACTIVE OCH LOGOUT TO RIGHT KROCKAR HÄR Logouts right align försvinner om jag slår på ul class ovan och active? -->
         <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li>
         <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv ett inlägg</a></li>
@@ -118,9 +119,11 @@
                     ?>
                 </ul>
             </li>
-        <div class="right-btn">
-            <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+          <div class="right-btn">
+              <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+          </div>
         </div>
+      </div>
         <?php
             }
         ?>
