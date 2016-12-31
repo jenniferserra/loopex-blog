@@ -82,7 +82,7 @@ $cats = $conn->query($query);
 <div class="whitebox col-sm-12 col-xs-12">
 
 	<h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Redigera ditt blogginlägg" ?></h1>
-	<form method="POST" action="editpost.php?editid=<?= $post->post_id; ?>">
+	<form method="POST" class="blogposts" action="editpost.php?editid=<?= $post->post_id; ?>">
 		<input type="text" name="blogpost_title" value="<?= $post->title; ?>"><br>
 		<textarea rows="15" cols="80" name="blogpost_text"><?= $post->text; ?></textarea><br>
 		<select name="category" class="categories">
@@ -99,5 +99,5 @@ $cats = $conn->query($query);
 	<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara redigering till utkast">
 </form>
 <?php
-include "footer.php";
+//include "footer.php";
 ?>

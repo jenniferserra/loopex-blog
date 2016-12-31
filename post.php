@@ -6,6 +6,7 @@ require_once "code_open.php";
     <?php
     require_once "header.php";
 
+
     /* ----------------------------------------------------------------------------
         INSERT COMMENT TO DATABASE
     ---------------------------------------------------------------------------- */
@@ -25,7 +26,7 @@ require_once "code_open.php";
             $timeStamp = date("Y-m-d H:i:s");
 
             if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
-                echo "Ogiltig e-post.";
+                echo "<p class='feedback'>Ogiltig e-post.<p>";
                 exit;
             }
 
@@ -34,12 +35,13 @@ require_once "code_open.php";
             $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
             // header("Refresh:0");
             if ( mysqli_query($conn, $query)) {
-                echo "Du har kommenterat inlägget";
+                echo "<p class='feedback'>Du har kommenterat inlägget</p>";
             }   else {
-                echo "Någonting gick fel";
+                echo "<p class='feedback'>Någonting gick fel</p>";
                 }
-        } else { echo "Du har inte fyllt i alla fält"; }
+        } else { echo "<p class='feedback'>Du har inte fyllt i alla fält</p>"; }
     }
+
 
     $stmt = $conn->stmt_init();
     /* ----------------------------------------------------------------------------
@@ -67,14 +69,14 @@ require_once "code_open.php";
                         <p><?php echo $createTime; ?></p>
                     </div>
                     <br>
-                    <div class="text">
+                    <div>
                         <p><?php echo $text; ?></p>
                     </div>
                     <br>
                     <br>
                     <div class="right-align">
-                        <span class="bold">Skrivet av:</span> <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</a><br>";?>
-                        <span class='bold'>Kategori:</span> <?php echo "$catName";?>
+                        <span class="highlighted-text">Skrivet av:</span> <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</a><br>";?>
+                        <span class='highlighted-text'>Kategori:</span> <?php echo "$catName";?>
                     </div> <!-- .right-align -->
                 </div> <!-- . blogpost divider mobile-margin -->
             
@@ -87,7 +89,7 @@ require_once "code_open.php";
                 $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
 
                 if ( mysqli_query($conn, $query) ) {
-                }
+                } 
                 if($stmt->prepare($query)) {
                     $stmt->execute();
         			$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
@@ -95,12 +97,12 @@ require_once "code_open.php";
                     while(mysqli_stmt_fetch($stmt)) {
                         ?>
                         <div class="blogpost posted-comments mobile-margin">
-                            <hr>
-                          		<div class="author">
-                                    <p><?php echo "<span class='bold'> $c_name ($createTime)"; ?></p>
-                                    <p class="comment-email"><a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a></p>
+                            <hr class="divider">
+                          		<div>
+                                    <?php echo "<span class='highlighted-text'> $c_name ($createTime)"; ?>
+                                    <a href="mailto:<?php echo $c_epost; ?>"><?php echo $c_epost; ?></a>
                                 </div>
-                                <div class="text">
+                                <div>
                                     <p><?php echo $c_text; ?></p><br> 
         						</div>                        
                             <br>
@@ -112,7 +114,7 @@ require_once "code_open.php";
                         COMMENT A POST
                 ---------------------------------------------------------------------------- */
                 ?>
-                <hr>
+                <hr class="divider">
                 <div class="comments_to_post mobile-margin">
                     <h3>Kommentera</h3>
             		<form method="POST">
@@ -126,5 +128,6 @@ require_once "code_open.php";
         <?php
         }
     }
-include "footer.php";
-?>
+//include "footer.php";
+
+    

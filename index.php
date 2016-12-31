@@ -238,18 +238,18 @@ Pagination-top printed out
                 <h1 class="blog-text-center"><?php echo $title; ?></h1>
                 <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
                 <div class="text"><p><?php echo $text; ?></p></div><br><br>
-                <div class="text right-align"><?php echo "<span class='bold'>Kategori:</span> $catName";?></div>
-                <div class="right-align"><span class='bold'>Skriven av:
+                <div class="text right-align"><?php echo "<span class='highlighted-text'>Kategori:</span> $catName";?></div>
+                <div class="right-align"><span class='highlighted-text'>Skriven av:
                 <?php echo "<a href='author.php?id=$userId'>$firstName $lastName,</span></a>
                     <p><a href='mailto:$user_email'>$user_email</a></p>";
                     ?>
                 </div>
 
-                <div class="comments bold right-align">
+                <div class="comments highlighted-text right-align">
                     <?php
                     echo "<a href='post.php?id=$postId' name='btn'>
                     ($comments) Kommentarer </a>";
-                    ?><hr>
+                    ?><hr class="divider">
                 </div>
             </div>
         </div>
@@ -277,6 +277,5 @@ Pagination-bottom printed out
 
 // Closing html-structure
 
-//fucking footer funkar inte som den ska. någon med tålamod får fixa
-include "footer.php";
+//include "footer.php";
 ?>

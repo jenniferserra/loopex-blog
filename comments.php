@@ -75,12 +75,12 @@ require_once "code_open.php";
 
 	          	while($stmt2->fetch()) { ?>
 
-						<p><span class='bold'><?php echo $c_name;?></span> kommenterade inlägget:
-							<span class="bold"><?php echo $post['title'];?></span>
+						<p><span class='highlighted-text'><?php echo $c_name;?></span> kommenterade inlägget:
+							<span class="highlighted-text"><?php echo $post['title'];?></span>
 								<a href="comments.php?delete=<?php echo $com_id;?>">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 								</a>
-							<?php echo "<span class='italic date'><br>($createTime)</span><br>";?>
+							<?php echo "<span class='date'><br>($createTime)</span><br>";?>
 						</p>
 						<p><?php echo $c_text;?></p>
 					<hr class="divider">

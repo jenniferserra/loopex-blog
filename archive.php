@@ -47,7 +47,7 @@ require_once "code_open.php";
             ?>
             <div class="form-check">
                 <div id="<?=$postId?>">
-                    <?php echo "<p class='bold'>$title </p>" . "<p class='italic date'> ($createTime)</p>"; ?>
+                    <?php echo "<p class='highlighted-text'>$title </p>" . "<p class='date'> ($createTime)</p>"; ?>
                     <!-- Link to edit post -->
                     <a href="editpost.php?editid=<?php echo $postId ?>">
                         <i class="fa fa-pencil" aria-hidden="true"></i>
