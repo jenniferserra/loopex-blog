@@ -24,16 +24,11 @@ p {
 	font-family: $primary-font;
 }
 
-p.bold, span.bold, .bold {
-	/* font-weight: bold; */
+// for highlighting text areas such as "written by", category etc 
+.highlighted-text, p.highlighted-text, span.highlighted-text {
 	margin: 0px;
 	line-height: 1.7em;
 	color: $accent-color;
-}
-
-p.italic, span.italic {
-	font-style: italic;
-	padding-right: 10px;
 }
 
 .btn {
@@ -62,7 +57,7 @@ p.italic, span.italic {
 	color: $accent-color;
 }
 
-// FORMATTERING FÖR BLOGGPOSTS
+// styles the date format in archive, posts, index, comments, drafts
 .date {
 	font-style: italic;
 	font-size: 0.9em;
@@ -71,13 +66,6 @@ p.italic, span.italic {
 	letter-spacing: 0.1em;
 }
 
-.author {
-	/* font-weight: bold; */
-	margin: 0px;
-	padding-right: 10px;
-	color: $accent-color;
-	/* letter-spacing: 0.1em; */
-}
 
 a {
 	color: $primary-text-color;
@@ -87,23 +75,24 @@ textarea {
 	resize: vertical;
 }
 
-// -----------------------------------------------
-// index.php
-// -----------------------------------------------
+/* ----------------------------------------------------------------------------
+            INDEX
+---------------------------------------------------------------------------- */
 
 h1.blog-text-center, .blog-text-center{
   text-align: center;
 }
 
-//högerjusterar written by, categories etc i varje inlägg på index.php
+//styles written by, categories etc in every posts on index.php
 .right-align{
   text-align: right;
 }
-.comments .right-align {
+
+.right-align {
 	color: $accent-color;
 }
 
-// Bannerbilden på index.php
+// Banner image on index.php
 .banner{
   background-repeat: no-repeat;
   position: relative;
@@ -118,6 +107,7 @@ h1.blog-text-center, .blog-text-center{
 .selection-display {
     font-family: $primary-font;
 }
+
 .selection-display-box {
     width: 100%;
     font-size: 24px;

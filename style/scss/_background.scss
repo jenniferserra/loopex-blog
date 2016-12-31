@@ -4,8 +4,6 @@ body{
   background-color: $background-color;
 }
 
-/* dessa verkar inte funka, urlen funkar i andra filer men inte här */
-
 // /* BACKGROUND FOR LOGIN.PHP */
 body.login{
   @include backImage("../../images/layout/bw_1.jpg");
@@ -33,5 +31,5 @@ body.drafts{
 
 // /* BODY FOR STATISTICS.PHP */
 body.statistics{
-  @include backImage("../../images/layout/banner1.jpg");
+  @include backImage("../../images/layout/bw_7.jpg");
 }

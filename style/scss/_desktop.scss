@@ -1,27 +1,27 @@
 
-// ----------------------------------------------------------------------------
-// GENERAL
-// ----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            GENERAL STYLE FOR DESKTOP
+---------------------------------------------------------------------------- */
 
 
 // white background box in all pages
 .whitebox{
-  @include whitebox;
+    @include whitebox;
 }
 
-//-----------------------------------------------------------------------------
-// LOGIN
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            LOGIN
+---------------------------------------------------------------------------- */
 
 // the white background box in login.php 
-  .form {
+.form {
     @include whitebox;
     max-width: 400px;
     margin-top: 25vh;
-  }
+}
 
 // input fields in forms
-  .form input {
+.form input {
     font-family: $primary-font;
     outline: 0;
     width: 90%;
@@ -29,9 +29,9 @@
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-  }
+}
 
-  .login-button {
+.login-button {
     font-family: $primary-font;
     outline: 0;
     background: $button-color;
@@ -42,27 +42,27 @@
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
-  }
+}
 
-  .btn:hover,.btn:active,.btn:focus {
+.btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
     border: none;
-  }
+}
 
-  h2.login{
+h2.login{
     color: $primary-text-color;
-  }
+}
 
-//-----------------------------------------------------------------------------
-// DASHBOARD
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            DASHBOARD
+---------------------------------------------------------------------------- */
 
 // personalized welcome text in dashboard.php
-  .welcome{
+.welcome{
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
-  }
+}
 
 //this affects input fields in dashboard, editpost and login
 input[type="text"], input[type="email"], input[type="password"], textarea {
@@ -73,21 +73,19 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     padding: 15px;
     box-sizing: border-box;
     font-size: 16px;
-  }
-
+}
 // category dropdown
-  select.categories{
+select.categories{
     width: 100%;
     margin: 20px auto;
     font-family: $primary-font;
     font-size: 1.1em;
     background-color: $divider-color;
     opacity: 0.7;
-
-  }
+}
 
 // publish/ save draft buttons 
-  input[type="submit"]{
+input[type="submit"]{
     font-family: $primary-font;
     color: $primary-color;
     background-color: $button-color;
@@ -98,65 +96,57 @@ input[type="text"], input[type="email"], input[type="password"], textarea {
     &:hover {
       background-color: $secondary-accent-color;
     }
-  }
+}
 
-  //-----------------------------------------------------------------------------
-  // STATISTICTS
-  //-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            STATISTICS
+---------------------------------------------------------------------------- */
+
 
 // the text that shows how many posts/comments users have
-  .statistics-count{
+.statistics-count{
     font-family: $primary-font;
     font-size: 1.2em;
     padding: 2px;
-  }
+}
 
 // the white box background in statistics.php
-  .statistics-box{
+.statistics-box{
     @include whitebox;
     max-width: 400px;
-   }
+}
 
-//-----------------------------------------------------------------------------
-// DRAFTS
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            DRAFTS
+---------------------------------------------------------------------------- */
 
 // controls the margin in hr tags
 .divider {
-  margin: 15px auto;
+    margin: 15px auto;
 }
 
-//-----------------------------------------------------------------------------
-// COMMENTS: in comments.php
-//-----------------------------------------------------------------------------
-
-
-
-//-----------------------------------------------------------------------------
-// BLOG-PAGE: post.php
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            BLOG PAGE
+            - posts.php
+---------------------------------------------------------------------------- */
 
 // controls the whole comments form
 .comments_to_post{
-  margin: 30px auto;
+    margin: 30px auto;
 }
 
- //-----------------------------------------------------------------------------
- // BLOG-PAGE-COMMENTS: index.php, post.php
- //-----------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------------
-// INDEX.PHP
-//-----------------------------------------------------------------------------
+/* ----------------------------------------------------------------------------
+            BLOG PAGE
+            - index.php
+---------------------------------------------------------------------------- */
 
 //controls the text/posts
 .blogpost_center{
-  margin: 0px 200px;
+    margin: 0px 200px;
 }
 
 
 // Banner image on index.php
 .banner{
-  background-image: url("../../images/layout/orange2.jpg");
+    background-image: url("../../images/layout/orange2.jpg");
 }

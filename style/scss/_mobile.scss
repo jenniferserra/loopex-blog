@@ -27,6 +27,11 @@ body.comments {
     background-image: none;
 }
 
+h1{
+    margin-top: 50px;
+}
+
+
 /* ----------------------------------------------------------------------------
             SÅ LÄNGE
     Lättare att ta bort navigeringsmenyn ifall man vill redigare någonting,
@@ -73,22 +78,30 @@ body.comments {
 .btn:hover,.btn:active,.btn:focus {
     background: $button-hover;
 }
+
 h2.login{
     color: $primary-color;
+}
+
+/* center aligns all text on pages where there is a whitebox as background in the desktop site */
+.whitebox {
+    text-align: center;
 }
 
 /* ----------------------------------------------------------------------------
             DASHBOARD
 ---------------------------------------------------------------------------- */
 
-/*välkomsttexten på dashboard */
+/* welcome text on dashboard.php */
 .welcome{
     font-family: $primary-font;
     font-size: 2.5em;
     text-align: center;
+    margin-top: 50px;
+    margin-bottom: -30px;
 }
 
-/* inputrutan för rubrik och brödtext */
+/* input fields for writing headlines and blog texts */
 input[type="text"], input[type="email"], textarea {
     font-family: $primary-font;
     outline: 0;
@@ -99,22 +112,18 @@ input[type="text"], input[type="email"], textarea {
     font-size: 16px;
 }
 
-h1.dashboard-title{
-    font-family: $primary-font;
-    font-size: 2em;
-    color: $secondary-text-color;
-}
-
-/*kategoriväljaren */
+/* category picker */
 select.categories{
     width: 100%;
-    margin: 20px auto;
+    height: 30px;
+    margin: 15px auto;
     font-family: $primary-font;
     font-size: 1.1em;
     background-color: $divider-color;
     opacity: 0.7;
 }
-/* publicera / spara utkast-knapparna */
+
+/* publish/ save draft buttons */
 input[type="submit"]{
     font-family: $primary-font;
     color: $primary-color;
@@ -128,10 +137,16 @@ input[type="submit"]{
     }
 }
 
+/* surounding area (like whitebox in desktop version), gives a little extra margin between button and end of page */
+.blogposts{
+    margin-bottom: 30px;
+}
+
 /* ----------------------------------------------------------------------------
             STATISTICS
 ---------------------------------------------------------------------------- */
 
+/* text formatting for the looped out text on statistics.php */
 .statistics-count {
     font-family: $primary-font;
     font-size: 1.5em;
@@ -140,40 +155,20 @@ input[type="submit"]{
 }
 
 
-/* denna ska generaliseras i base.scss */
-    h1.statistics {
-    font-family: $primary-font;
-    font-size: 2.5em;
-    text-align: center;
-}
-
-/* ----------------------------------------------------------------------------
-            DRAFTS
----------------------------------------------------------------------------- */
-
-.whitebox {
-    text-align: center;
-}
-
-.draft-divider {
-    margin: 10px auto;
-    padding-bottom: 10px;
-    border-bottom: 1px solid $divider-color;
-}
-
 /* ----------------------------------------------------------------------------
             POSTS
             - the page where visitors can comment posts
 ---------------------------------------------------------------------------- */
 
-.divider {
-    padding-bottom: 10px;
-    margin: 20px 0px;
-    border: 0;
+/* This is the feedback message text that visitors get when they comment posts*/
+p.feedback{
+    text-align: center; /* två försök att centrera, FUNKAR INTE!!, men man kan ändra textstorlek och färg. fattar inte varför */
+    margin: 20px auto -50 auto; /* margins funkar inte heller */
 }
 
+/* gives a little extra margin to this page */
 .mobile-margin {
-    margin: 0px 10px;
+    margin: 15px 10px;
 }
 
 /* ----------------------------------------------------------------------------
