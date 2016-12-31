@@ -67,5 +67,5 @@ require_once "code_open.php";
     ?>
     </div>
 <?php
-require "footer.php";
+//include "footer.php";
 ?>

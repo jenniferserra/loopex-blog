@@ -66,5 +66,5 @@ require_once "code_open.php";
         <?php
     /* end print */
     }
-require_once "footer.php";
+//include "footer.php";
 ?>
