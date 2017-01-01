@@ -2,6 +2,22 @@
     <!-- THE NAVBAR COLOR - DEFAULT IS FOR GREY / INVERSE- BLACK FIXED -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
+            
+            <!-- LOGO HERE -->
+            <div class="navbar-header">
+                <a href="index.php">
+                    <img src="images/layout/orange.png" class="orange_logo" alt="till bloggen">
+                </a>
+
+                <!-- THE TOGGLE BAR MENU TO MOBIL -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+
             <?php
             require_once "dbconnect.php";
             if(!isset($_SESSION)){
@@ -28,31 +44,17 @@
             }
 
 
+            
             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                 // ------------------------------------------------------------------------
                 // IF LOGGED IN
                 // ------------------------------------------------------------------------
                 $userid = $_SESSION['user_id'];
-                // $stmt = $conn->stmt_init();
                 $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
                 $stmt->execute();
                 $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
                 $stmt->fetch();
                 ?>
-            <!-- LOGO HERE -->
-            <div class="navbar-header">
-                <a href="index.php">
-                    <img src="images/layout/orange.png" class="orange_logo" alt="till bloggen">
-                </a>
-
-                <!-- THE TOGGLE BAR MENU TO MOBIL -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-            </div>
 
             <!-- MENU ITEMS -->
             <div class="collapse navbar-collapse" id="mainNavbar">
@@ -65,7 +67,7 @@
                     <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv inlägg</a></li>
                     
                     <li class="menu-btn-lvl-1">
-                        <a href="comments.php">Blogginlägg</a>
+                        <a href="archive.php">Blogginlägg</a>
                         <ul>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Redigera Arkiv</a></li>
