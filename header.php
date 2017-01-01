@@ -111,7 +111,6 @@
                                 // Looping out Month-selection drop-down
                                 $sql_month = "SELECT create_time FROM posts
                                             GROUP BY substr(create_time, 1, 8)
-                                            HAVING COUNT(*) > 1
                                             ORDER BY create_time DESC";
                                 $query_month = mysqli_query($conn, $sql_month);
                                 while ($yearAndMonth = mysqli_fetch_array($query_month)) {
