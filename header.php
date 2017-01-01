@@ -82,59 +82,60 @@
                     <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
                     <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
                 </ul>
-                <?php
-                $stmt->close();
-                // --------------------------------------------------------------------
-                //         IF NOT LOGGED IN
-                // --------------------------------------------------------------------
-                } else { ?>
-                    <ul>
-                        <li class="menu-btn-lvl-1">
-                            <a class="menu-button" href="index.php">Kategori</a>
-                            <ul>
-                                <?php
-                                // Looping out category drop-down
-                                $sql_category = "SELECT * FROM categories";
-                                $query_category = mysqli_query($conn, $sql_category);
-                                while ($category = mysqli_fetch_array($query_category)) {
-                                $categoryName = $category["cat_name"];
-                                $categoryId = $category["cat_id"];
-                                echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
-                                }
-                                ?>
-                            </ul>
-                        </li>
-                        <li class="menu-btn-lvl-1">
-                            <a class="menu-button" href="index.php">Arkiv</a>
-                            <ul>
-                                <?php
-                                // Looping out Month-selection drop-down
-                                $sql_month = "SELECT create_time FROM posts
-                                            GROUP BY substr(create_time, 1, 8)
-                                            ORDER BY create_time DESC";
-                                
-                                $query_month = mysqli_query($conn, $sql_month);
-                                while ($yearAndMonth = mysqli_fetch_array($query_month)) {
-                                    $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
-                                    $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
-
-                                    // Printing out menu buttons with date and month
-                                    setlocale(LC_TIME, 'sv_SE');
-                                    $readableDate = strftime('%B %Y', strtotime($yearAndMonth));
-                                    echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
-                                }
-                                ?>
-                            </ul>
-                        </li>
-                    </ul>
-                <div class="right-btn">
-                    <ul>
-                        <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
-                    </ul>
-                </div>
+            </div> <!-- .collapse navbar-collapse --> 
             <?php
-                }
+            $stmt->close();
+            // --------------------------------------------------------------------
+            //         IF NOT LOGGED IN
+            // --------------------------------------------------------------------
+            } else { ?>
+                <ul>
+                    <li class="menu-btn-lvl-1">
+                        <a class="menu-button" href="index.php">Kategori</a>
+                        <ul>
+                            <?php
+                            // Looping out category drop-down
+                            $sql_category = "SELECT * FROM categories";
+                            $query_category = mysqli_query($conn, $sql_category);
+                            while ($category = mysqli_fetch_array($query_category)) {
+                            $categoryName = $category["cat_name"];
+                            $categoryId = $category["cat_id"];
+                            echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                    <li class="menu-btn-lvl-1">
+                        <a class="menu-button" href="index.php">Arkiv</a>
+                        <ul>
+                            <?php
+                            // Looping out Month-selection drop-down
+                            $sql_month = "SELECT create_time FROM posts
+                                        GROUP BY substr(create_time, 1, 8)
+                                        ORDER BY create_time DESC";
+                            
+                            $query_month = mysqli_query($conn, $sql_month);
+                            while ($yearAndMonth = mysqli_fetch_array($query_month)) {
+                                $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
+                                $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
+
+                                // Printing out menu buttons with date and month
+                                setlocale(LC_TIME, 'sv_SE');
+                                $readableDate = strftime('%B %Y', strtotime($yearAndMonth));
+                                echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
+                            }
+                            ?>
+                        </ul>
+                    </li>
+                </ul>
+            <div class="right-btn">
+                <ul>
+                    <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+                </ul>
+            </div>
+            <?php
+            }
             ?>
-        </div>
+        </div> <!-- .container-fluid -->
     </nav>
 </header>
