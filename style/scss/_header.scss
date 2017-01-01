@@ -25,7 +25,16 @@ header {
     height: 40px;
     width: 40px;
 }
+.orange_logo:hover {
+animation-name: orange;
+animation-duration: 2s;
 
+@keyframes orange {
+0% {filter: hue-rotate(0deg) brightness(100%);transform: rotate(0deg);}
+50% {filter: hue-rotate(180deg) brightness(130%);}
+100% {filter: hue-rotate(0deg) brightness(100%); transform: rotate(360deg);}
+}
+}
 
 /* ----------------------------------------------------------------------------
         DETTA VAR UTKOMMENTERAT, WHY ?
