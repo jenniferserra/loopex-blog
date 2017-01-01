@@ -162,10 +162,10 @@ if ($last !=1) {
     }
     if(isset($_GET["order"]) && $_GET["order"] == 'asc') {
     $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
-    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Nya inlägg först</a>';
+    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: nyast inlägg först</a>';
     } else{
         $queryStringOrder = preg_replace('/desc/', 'asc', $queryStringOrder);
-        echo '<a class="order-sorting" href="' . $queryStringOrder . '">Gamla inlägg först</a>';
+        echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: äldst inlägg först</a>';
     }
     ?>
 
@@ -237,15 +237,15 @@ Pagination-top printed out
             <div class="blogpost">
                 <h1 class="blog-text-center"><?php echo $title; ?></h1>
                 <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
-                <div class="text"><p><?php echo $text; ?></p></div><br><br>
-                <div class="text right-align"><?php echo "<span class='highlighted-text'>Kategori:</span> $catName";?></div>
+                <div><p><?php echo $text; ?></p></div><br><br>
+                <div class="text right-align"><span class='highlighted-text'>Kategori: </span><?php echo $catName;?></div>
                 <div class="right-align"><span class='highlighted-text'>Skriven av:
                 <?php echo "<a href='author.php?id=$userId'>$firstName $lastName,</span></a>
                     <p><a href='mailto:$user_email'>$user_email</a></p>";
                     ?>
                 </div>
 
-                <div class="comments highlighted-text right-align">
+                <div class="comments right-align">
                     <?php
                     echo "<a href='post.php?id=$postId' name='btn'>
                     ($comments) Kommentarer </a>";

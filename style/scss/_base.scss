@@ -123,9 +123,9 @@ h1.blog-text-center, .blog-text-center{
 	color: $accent-color;
     text-align: center;
 	letter-spacing: 1px;
-	font-size: 24px;
+	font-size: 0.5em;
 	text-transform: uppercase;
-}
-.order-sorting:hover {
-	text-decoration: none;
+	&:hover{
+		text-decoration: none;
+	}
 }
