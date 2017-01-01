@@ -8,7 +8,7 @@ require_once "code_open.php";
 
     <!-- start a wrapper -->
     <div class="page-content">
-        <!-- BANNER IMAGE -->
+        <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
         <div class="col-md-6 pagination">
 
@@ -18,12 +18,14 @@ require_once "code_open.php";
             ---------------------------------------------------------------------------- */
             
             $sqlCategory = '>' . 0;
+
             if (isset($_GET["category"])) {
             	$sqlCategory = '=' . $_GET["category"];
             }
 
             // The number 2 indicates that the blog post begins in the 2:nd millenium
             $sqlYearAndMonth = 2;
+
             if (isset($_GET["yrmnth"])) {
                 $sqlYearAndMonth = $_GET["yrmnth"];
             }
@@ -34,9 +36,11 @@ require_once "code_open.php";
 
             // Getting the total number of published blog posts
             $sqlGetPostAmount = "SELECT count(*) FROM posts
-                    WHERE is_published = TRUE
-                    AND (cat_id $sqlCategory)
-                    AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')";
+                                WHERE is_published = TRUE
+                                AND (cat_id $sqlCategory)
+                                AND (substr(create_time, 1, 7) 
+                                LIKE '$sqlYearAndMonth%')
+                                ";
 
             $queryGetPostAmount = mysqli_query($conn, $sqlGetPostAmount);
             $post = mysqli_fetch_row($queryGetPostAmount);
@@ -73,18 +77,20 @@ require_once "code_open.php";
 
             // Sorting posts on decending or ascending create-time
             $postOrder = 'desc';
+
             if(isset($_GET["order"])) {
                 $postOrder = $_GET["order"];
             }
 
             $sqlGetPaginatedPosts = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
-                    FROM posts
-                    LEFT JOIN users ON posts.user_id = users.user_id
-                    LEFT JOIN categories ON posts.cat_id = categories.cat_id
-                    WHERE is_published = TRUE
-                    AND (posts.cat_id $sqlCategory)
-                    AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
-                    ORDER BY create_time $postOrder $limit";
+                                    FROM posts
+                                    LEFT JOIN users ON posts.user_id = users.user_id
+                                    LEFT JOIN categories ON posts.cat_id = categories.cat_id
+                                    WHERE is_published = TRUE
+                                    AND (posts.cat_id $sqlCategory)
+                                    AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
+                                    ORDER BY create_time $postOrder $limit
+                                    ";
 
             $queryGetPaginatedPosts = mysqli_query($conn, $sqlGetPaginatedPosts);
 
@@ -146,6 +152,7 @@ require_once "code_open.php";
                     <a href="' . createUrl($jumpForward) . '"> >> </a> ';
                 }
             }
+
             /* ----------------------------------------------------------------------------
                     PAGINATION END
             ---------------------------------------------------------------------------- */
@@ -155,15 +162,16 @@ require_once "code_open.php";
             <div class="selection-display-box">
                 
                 <?php
-
                 $order = '?&order=desc';
+
                 $queryStringOrder = $_SERVER['REQUEST_URI'] . $order;
+
                 if (isset($_GET["order"])) {
                     $queryStringOrder = $_SERVER['REQUEST_URI'];
                 }
                 if(isset($_GET["order"]) && $_GET["order"] == 'asc') {
-                $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
-                echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: nyast inlägg först</a>';
+                    $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
+                    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: nyast inlägg först</a>';
                 } else{
                     $queryStringOrder = preg_replace('/desc/', 'asc', $queryStringOrder);
                     echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: äldst inlägg först</a>';
@@ -175,10 +183,11 @@ require_once "code_open.php";
                             <p>MÅNADSARKIV: ' . $selectedReadableDate . '</p>
                         </div>';
                 }
+
                 if(isset($_GET["category"]) && isset($_GET["yrmnth"])) {
                     echo '<div class="selection-display">
-                         <p class="divider-line"> ____ </p> <br><br>
-                    </div>';
+                            <p class="divider-line"> ____ </p> <br><br>
+                        </div>';
                 }
 
                 if(isset($_GET["category"])) {
@@ -191,6 +200,7 @@ require_once "code_open.php";
                             <p>KATEGORI: ' . $selectedCategoryName . '</p>
                         </div>';
                 } ?>
+
             </div> <!-- selection-display-box -->
 
             <!-----------------------------------------------------------------------------
@@ -207,6 +217,7 @@ require_once "code_open.php";
                     LOOPING
                     - Looping out blog posts a few at a time
             ---------------------------------------------------------------------------- */
+
             while ($post = mysqli_fetch_array($queryGetPaginatedPosts, MYSQLI_ASSOC)) {
                 $postId = $post["post_id"];
                 $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
@@ -235,14 +246,19 @@ require_once "code_open.php";
                         <h1 class="blog-text-center"><?php echo $title; ?></h1>
                         <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
                         <div><p><?php echo $text; ?></p></div><br><br>
-                        <div class="text right-align">
-                            <span class='highlighted-text'>Kategori: </span>
-                            <?php echo $catName;?>
-                        </div>
+                        <?php
+                        if (!$catName == NULL) {
+                        ?>
+                            <div class="text right-align">
+                                <span class='highlighted-text'>Kategori: </span>
+                                <?php echo $catName;?>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <div class="right-align">
                             <span class='highlighted-text'>Skriven av:</span>
-                                <?php echo "<a href='author.php?id=$userId'>$firstName $lastName,</a>
-                                            <p><a href='mailto:$user_email'>$user_email</a></p>";?>
+                                <?php echo "$firstName $lastName, <a href='mailto:$user_email'>$user_email</a>";?>
                         </div>
                         <div class="comments right-align">
                             <?php
