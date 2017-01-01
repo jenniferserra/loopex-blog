@@ -112,13 +112,15 @@
                                 $sql_month = "SELECT create_time FROM posts
                                             GROUP BY substr(create_time, 1, 8)
                                             ORDER BY create_time DESC";
+                                
                                 $query_month = mysqli_query($conn, $sql_month);
                                 while ($yearAndMonth = mysqli_fetch_array($query_month)) {
                                     $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
                                     $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
 
                                     // Printing out menu buttons with date and month
-                                    $readableDate = date("F Y", strtotime($yearAndMonth));
+                                    setlocale(LC_TIME, 'sv_SE');
+                                    $readableDate = strftime('%B %Y', strtotime($yearAndMonth));
                                     echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
                                 }
                                 ?>
