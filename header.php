@@ -52,8 +52,6 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <!-- <div class="navbar-brand"/></div> -->
-                 <a href="index.php" class="navbar-brand">ORANGE MUSIC.</a> 
             </div>
 
             <!-- MENU ITEMS -->
