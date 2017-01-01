@@ -127,12 +127,13 @@
                         </li>
                     </ul>
                 <div class="right-btn">
-                    <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+                    <ul>
+                        <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+                    </ul>
                 </div>
-                <?php
-                    }
-                ?>
-            </div>
+            <?php
+                }
+            ?>
         </div>
     </nav>
 </header>
