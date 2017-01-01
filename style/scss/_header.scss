@@ -1,4 +1,6 @@
-
+/* ----------------------------------------------------------------------------
+        HEADER
+---------------------------------------------------------------------------- */
 header {
     z-index: 1000;
     position: relative; /* TA BORT SEN: ändrade från absolute till relative då försvann margin top på alla sidor */
@@ -7,45 +9,57 @@ header {
     margin-top: -10px;
 }
 
-/* DENNA BEHÖVS EJ DÅ VI SÄTTER COLOR I HTML */
-/* .navbar-default {
-    background-color: $divider-color;
-} */
-
-/* TAR BORT RUNDA HÖRN  FRÅN BOOTSTRAP */
+/* ----------------------------------------------------------------------------
+        NAVBAR 
+        - Remove navbar radius from bootstrap
+---------------------------------------------------------------------------- */
 .navbar {
-  border-radius: 0px;
+    border-radius: 0px;
 }
 
-/* STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA? 
+/* ----------------------------------------------------------------------------
+        LOGO SETTINGS
+---------------------------------------------------------------------------- */
+.orange_logo {
+    float: left;
+    height: 40px;
+    width: 40px;
+}
+
+
+/* ----------------------------------------------------------------------------
+        DETTA VAR UTKOMMENTERAT, WHY ?
+---------------------------------------------------------------------------- */
+
+ // STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA? 
 .navbar-header {
-  float: left;
-  margin: 7px 0px 0px 7px;
-  height: 40px;
-  weight: 40px;
+    float: left;
+    margin: 7px 0px 0px 7px;
+    height: 40px;
+    weight: 40px;
 } 
 
-TEXTEN ORANGE MUSIC. TILL VÄNSTER I MENYN 
+// TEXTEN ORANGE MUSIC. TILL VÄNSTER I MENYN 
 .navbar-header {
-  color: $third-text-color;
+    color: $third-text-color;
     a:hover {
-      color: $accent-color;
+        color: $accent-color;
     }
 }
 
 nav {
-  text-transform: uppercase;
-  text-align: center;
-	width: 100%;
-  box-shadow: none;
-  top: 10px;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  -webkit-transiton: opacity 0.5s;
-  -moz-transition: opacity 0.5s;
-  -ms-transition: opacity 0.5s;
-  -o-transition: opacity 0.5s;
-  -transition: opacity 0.5s;
+    text-transform: uppercase;
+    text-align: center;
+    width: 100%;
+    box-shadow: none;
+    top: 10px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-transiton: opacity 0.5s;
+    -moz-transition: opacity 0.5s;
+    -ms-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+    -transition: opacity 0.5s;
 }
 
 nav * {
@@ -99,5 +113,3 @@ nav a {
     padding: 10px;
     box-sizing: border-box;
 }
-
-*/

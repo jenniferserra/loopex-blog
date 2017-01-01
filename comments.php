@@ -93,5 +93,5 @@ require_once "code_open.php";
 	</div> <!-- End of whitebox -->
 	<?php
 	$stmt->close();
-//include "footer.php";
+include "footer.php";
 ?>

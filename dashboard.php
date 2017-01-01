@@ -170,5 +170,5 @@ require_once "code_open.php";
 ?>
 </div>
 <?php
-//include "footer.php";
+include "footer.php";
 ?>
