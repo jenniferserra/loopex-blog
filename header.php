@@ -33,7 +33,6 @@
                 // IF LOGGED IN
                 // ------------------------------------------------------------------------
                 $userid = $_SESSION['user_id'];
-                // $stmt = $conn->stmt_init();
                 $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
                 $stmt->execute();
                 $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
@@ -65,7 +64,7 @@
                     <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv inlägg</a></li>
                     
                     <li class="menu-btn-lvl-1">
-                        <a href="comments.php">Blogginlägg</a>
+                        <a href="archive.php">Blogginlägg</a>
                         <ul>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Redigera Arkiv</a></li>
