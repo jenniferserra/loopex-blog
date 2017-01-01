@@ -7,6 +7,7 @@
             if(!isset($_SESSION)){
                 session_start();
             }
+
             // Variables to be inserted in link-URL in menu-buttons
             // Standard value is empty so that no extra characters appear in URL when nothing is selected
             global $selectedYearAndMonth;
@@ -25,6 +26,7 @@
             if(isset($_GET["category"])) {
                 $categoryURL = '&category=' . $_GET["category"];
             }
+
 
             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                 // ------------------------------------------------------------------------
@@ -51,7 +53,7 @@
                 </button>
 
                 <!-- <div class="navbar-brand"/></div> -->
-                <!-- <a href="index.php" class="navbar-brand">ORANGE MUSIC.</a> -->
+                 <a href="index.php" class="navbar-brand">ORANGE MUSIC.</a> 
             </div>
 
             <!-- MENU ITEMS -->
@@ -62,7 +64,7 @@
                 <!-- ACTIVE OCH LOGOUT TO RIGHT KROCKAR HÄR Logouts right align försvinner om jag slår på ul class ovan och active? -->
                 <ul>
                     <!-- <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li> -->
-                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv ett inlägg</a></li>
+                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv inlägg</a></li>
                     
                     <li class="menu-btn-lvl-1">
                         <a href="comments.php">Blogginlägg</a>
@@ -70,25 +72,18 @@
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Arkiv</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
+                            <li class="menu-btn-lvl-2"><a href="statistics.php">Statistik</a></li>
                         </ul>
                     </li>
-
-                    <!-- IF logged in user is admin -->
-                    <?php
-                    if(isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {?>
-                        <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a></li>
-                    <?php } ?>
-
-                    <li class="menu-btn-lvl-1"><a href="statistics.php">Statistik</a></li>
-                    <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
-                </ul>
-            </div> <!-- .collapse navbar-collapse --> 
-            <?php
+                <?php
             $stmt->close();
+            }
             // --------------------------------------------------------------------
-            //         IF NOT LOGGED IN
+            //         IF LOGGED IN OR NOT
             // --------------------------------------------------------------------
-            } else { ?>
+
+                if(basename($_SERVER['PHP_SELF'], '.php') == 'index') {
+                ?>
                 <ul>
                     <li class="menu-btn-lvl-1">
                         <a class="menu-button" href="index.php">Kategori</a>
@@ -100,6 +95,7 @@
                             while ($category = mysqli_fetch_array($query_category)) {
                             $categoryName = $category["cat_name"];
                             $categoryId = $category["cat_id"];
+                            
                             echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
                             }
                             ?>
@@ -128,14 +124,28 @@
                         </ul>
                     </li>
                 </ul>
-            <div class="right-btn">
-                <ul>
-                    <li class="menu-btn-lvl-1"><a class="menu-button" href="login.php">Logga in</a></li>
+                <?php
+                }
+
+            // --------------------------------------------------------------------
+            //         IF LOGGED IN
+            // --------------------------------------------------------------------
+            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
+                if($_SESSION['role'] == "admin") {
+                ?>
+                    <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a></li>
+                <?php
+                }
+                ?>
+                    
+                    <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
                 </ul>
-            </div>
+
             <?php
             }
             ?>
+
+            </div> <!-- .collapse navbar-collapse --> 
         </div> <!-- .container-fluid -->
     </nav>
 </header>
