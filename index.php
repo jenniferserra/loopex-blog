@@ -4,16 +4,22 @@ require_once "code_open.php";
 <body class="index"> 
     <?php
     require_once "header.php";
-    ?> 
+    ?>
+
     <!-- start a wrapper -->
     <div class="page-content">
         <!-- BANNER IMAGE -->
         <div class="banner col-md-12 col-xs-12"></div>
         <div class="col-md-6 pagination">
+
             <?php
-            $sqlCategory = 1 . ' OR ' . 2 . ' OR ' . 3 . ' OR ' . 4;
+            /* ----------------------------------------------------------------------------
+                    Values to insert into SQL-queries
+            ---------------------------------------------------------------------------- */
+            
+            $sqlCategory = '>' . 0;
             if (isset($_GET["category"])) {
-            	$sqlCategory = $_GET["category"];
+            	$sqlCategory = '=' . $_GET["category"];
             }
 
             // The number 2 indicates that the blog post begins in the 2:nd millenium
@@ -26,33 +32,33 @@ require_once "code_open.php";
                     PAGINATION START
             ---------------------------------------------------------------------------- */
 
-            $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-
-            // Getting the number of published blog posts
-            $sql = "SELECT count(*) FROM posts
+            // Getting the total number of published blog posts
+            $sqlGetPostAmount = "SELECT count(*) FROM posts
                     WHERE is_published = TRUE
-                    AND (cat_id = $sqlCategory)
+                    AND (cat_id $sqlCategory)
                     AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')";
 
-            $query = mysqli_query($conn, $sql);
-            $post = mysqli_fetch_row($query);
+            $queryGetPostAmount = mysqli_query($conn, $sqlGetPostAmount);
+            $post = mysqli_fetch_row($queryGetPostAmount);
             $amountOfPosts = $post[0];
+            
+            // Defining how many posts there are per page
             $postsPerPage = 5;
 
             // Tells the page nr of the very last page ("ceil" rounds numbers up)
             $last = ceil($amountOfPosts/$postsPerPage);
 
-            // Makes sure that last page cannot be less than 1
+            // Making sure that last page cannot be less than 1
             if ($last < 1) {
                 $last = 1;
             }
 
-            // If no page-number URL-variables are available
+            // If no page-number has been selected
             $pageNumber = 1;
 
-            // Simplifying GET-value
+            // Otherwise it the selected value
             if(isset($_GET['pn'])) {
-                $pageNumber = preg_replace('#[^0-9]#', '', $_GET['pn']);
+                $pageNumber = $_GET['pn'];
             }
 
             // Page number must be more than 1 and cannot be more than last page
@@ -62,9 +68,8 @@ require_once "code_open.php";
                 $pageNumber = $last;
             }
 
-            // Query for a limited amount of posts
+            // Query for a desired amount of posts per page
             $limit = 'LIMIT ' .($pageNumber - 1) * $postsPerPage .',' . $postsPerPage;
-
 
             // Sorting posts on decending or ascending create-time
             $postOrder = 'desc';
@@ -72,18 +77,18 @@ require_once "code_open.php";
                 $postOrder = $_GET["order"];
             }
 
-            $sql = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
+            $sqlGetPaginatedPosts = "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
                     FROM posts
                     LEFT JOIN users ON posts.user_id = users.user_id
                     LEFT JOIN categories ON posts.cat_id = categories.cat_id
-                    WHERE is_published = 1
-                    AND (posts.cat_id = $sqlCategory)
+                    WHERE is_published = TRUE
+                    AND (posts.cat_id $sqlCategory)
                     AND (substr(create_time, 1, 7) LIKE '$sqlYearAndMonth%')
                     ORDER BY create_time $postOrder $limit";
 
-            $query = mysqli_query($conn, $sql);
+            $queryGetPaginatedPosts = mysqli_query($conn, $sqlGetPaginatedPosts);
 
-            // Establishing the $paginationCtrls variable
+            // Establishing $paginationCtrls variable
             $paginationCtrls = '';
 
             // If there is more than one page of results
@@ -103,7 +108,7 @@ require_once "code_open.php";
                     }
 
                     // Previous-button and long-backward-jump
-                    $paginationCtrls .= '<a href="' . createUrl($jumpBackward) . '"> </a> &nbsp;
+                    $paginationCtrls .= '<a href="' . createUrl($jumpBackward) . '"> << </a> &nbsp;
                     <a href="' . createUrl($previous) . '">Previous</a> &nbsp; &nbsp;';
 
                     // LEFT - Render clickable number links to the left
@@ -202,7 +207,7 @@ require_once "code_open.php";
                     LOOPING
                     - Looping out blog posts a few at a time
             ---------------------------------------------------------------------------- */
-            while ($post = mysqli_fetch_array($query, MYSQLI_ASSOC)) {
+            while ($post = mysqli_fetch_array($queryGetPaginatedPosts, MYSQLI_ASSOC)) {
                 $postId = $post["post_id"];
                 $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
                 $editTime = $post["edit_time"];
@@ -241,7 +246,7 @@ require_once "code_open.php";
                         </div>
                         <div class="comments right-align">
                             <?php
-                            echo "<a href='post.php?id=$postId' class='btn'>
+                            echo "<a href='post.php?id=$postId'>
                             ($comments) Kommentarer</a>";
                             ?><hr class="divider">
                         </div>
