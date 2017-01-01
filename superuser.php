@@ -138,9 +138,9 @@ $stmt = $conn->stmt_init();
 
                 while ($stmt->fetch()) {
                     echo "ID: $userId<br>";
-                    echo "Namn: $firstName $lastName</br>";
-                    echo "E-Post: $email</br>";
-                    echo "Roll: $role</br></br>";
+                    echo "Namn: $firstName $lastName<br>";
+                    echo "E-Post: $email<br>";
+                    echo "Roll: $role<br><br>";
                     echo "<a href='superuser.php?userDelete=$userId'>
                             <i class='fa fa-trash' aria-hidden='true'></i>
                             </a>

@@ -25,10 +25,9 @@ require_once "code_open.php";
 
             $timeStamp = date("Y-m-d H:i:s");
 
-            if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
-                echo "<p class='feedback'>Ogiltig e-post.<p>";
-                exit;
-            }
+            // if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
+                
+            // }
 
             $fk_post_id = $_GET['id'];
             // Upload post into database. Published = TRUE
@@ -128,6 +127,5 @@ require_once "code_open.php";
         <?php
         }
     }
-//include "footer.php";
-
-    
+include "footer.php";
+?>
