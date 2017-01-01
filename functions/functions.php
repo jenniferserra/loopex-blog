@@ -127,3 +127,10 @@ function createUrl($pageNr) {
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
 }
+/*function createUrl($pageNr, $category) {
+    $urlArray = $_GET;
+    $urlArray['pn'] = $pageNr;
+    $urlArray['category'] = $category;
+    $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
+    return $url;
+}*/
