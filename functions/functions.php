@@ -1,5 +1,11 @@
 <?php
+/* ----------------------------------------------------------------------------
+                FUNCTIONS
+---------------------------------------------------------------------------- */
 
+/* ----------------------------------------------------------------------------
+        FUNCTION FOR REGISTER A NEW USER
+---------------------------------------------------------------------------- */
 function regUser()
 {
     if (isset($_POST["register"])) {
@@ -17,44 +23,50 @@ function regUser()
             $role = "user"; //standard för användaren är user.
             $encrypt_pass = password_hash($password, PASSWORD_DEFAULT);
 
-            $regQuery = "INSERT INTO users VALUES (
-													NULL, /* för att user_id ska skapas per automatik */
-													'$firstname',
-													'$lastname',
-													'$email',
-													'$encrypt_pass',
-													'', /* istället för profilbild eftersom den inte läggs in nu */
-													'$role'
-													)";
+            $regQuery = "INSERT INTO users 
+                        VALUES (
+						NULL, /* för att user_id ska skapas per automatik */
+						'$firstname',
+						'$lastname',
+						'$email',
+						'$encrypt_pass',
+						'', /* istället för profilbild eftersom den inte läggs in nu */
+						'$role'
+						)";
 
-            mysqli_query($conn, $regQuery);
+            if (mysqli_query($conn, $regQuery)) {
+                $_SESSION['msg'] = "Användaren är registrerad!";
+            } else {
+                echo "Någonting fick fel, testa igen";
+            }
         }
     }
 }
 
-/* PRINT POST FUNCTION */
-
+/* ----------------------------------------------------------------------------
+        FUNCTION FOR PRINTING A POST
+---------------------------------------------------------------------------- */
 function printPost()
 {
     $conn = new mysqli("localhost", "root", "", "db_blogg");
     $stmt = $conn->stmt_init();
 
-    $query =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name FROM posts
-							LEFT JOIN users ON posts.user_id = users.user_id
-							LEFT JOIN categories ON posts.cat_id = categories.cat_id
-							ORDER BY create_time DESC";
+    $query =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name 
+                FROM posts
+				LEFT JOIN users ON posts.user_id = users.user_id
+				LEFT JOIN categories ON posts.cat_id = categories.cat_id
+				ORDER BY create_time DESC";
 
     if (mysqli_query($conn, $query)) {
     }
 
     if ($stmt->prepare($query)) {
         $stmt->execute();
-        $stmt->bind_result($postId, $createTime, $editTime, $title, $text,
-                                                 $isPublished, $userId, $catId, $firstName,
-                                                 $lastName, $user_email, $catName);
+        $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $user_email, $catName);
 
         while (mysqli_stmt_fetch($stmt)) {
-            echo "<h1> $title</h1>";
+
+            echo "<h1>$title</h1>";
             echo "<p>$createTime</p>";
             echo "<p>$text</p>";
             echo "<p>Kategori: $catName</p>";
@@ -64,9 +76,10 @@ function printPost()
             echo "(X) Kommentarer </a>";
 
             if (isset($_SESSION["loggedin"])
-                                                && $_SESSION["loggedin"] == true
-                                                && $_SESSION["user_id"] == $userId
-                                                || $_SESSION["role"] == "admin") {
+                && $_SESSION["loggedin"] == true
+                && $_SESSION["user_id"] == $userId
+                || $_SESSION["role"] == "admin") {
+
                 echo "<a href='editpost.php?editid=$postId'>";
                 echo "Redigera </a>";
                 echo "<a href='superuser.php?deletePost=$postId'>Radera </a>";
@@ -74,8 +87,11 @@ function printPost()
         }
     }
 }
-/****************************************************/
 
+/* ----------------------------------------------------------------------------
+        FUNCTION FOR DELETE
+        - Delete posts, comments, user or categories
+---------------------------------------------------------------------------- */
 function deleteCommand($command, $id, $redirect)
 {
     global $conn;
@@ -102,11 +118,9 @@ function deleteCommand($command, $id, $redirect)
     }
 }
 
-
-//-----------------------------------------------------------------------------
-// Creating URL-queries
-//-----------------------------------------------------------------------------
-
+/* ----------------------------------------------------------------------------
+        CREATING URL-QUERIES
+---------------------------------------------------------------------------- */
 function createUrl($pageNr) {
     $urlArray = $_GET;
     $urlArray['pn'] = $pageNr;
