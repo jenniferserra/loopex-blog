@@ -68,7 +68,7 @@
                         <a href="comments.php">Blogginlägg</a>
                         <ul>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Arkiv</a></li>
+                            <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Redigera Arkiv</a></li>
                             <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
                             <li class="menu-btn-lvl-2"><a href="statistics.php">Statistik</a></li>
                         </ul>
