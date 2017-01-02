@@ -11,7 +11,7 @@ body.login{
 
 // /* BODY FOR DASHBOARD.PHP */
 body.dashboard{
-  @include backImage("../../images/layout/bw_1.jpg");
+  @include backImage("../../images/layout/bw_5.jpg");
 }
 
 // /* BODY FOR COMMENTS.PHP */
@@ -31,5 +31,5 @@ body.drafts{
 
 // /* BODY FOR STATISTICS.PHP */
 body.statistics{
-  @include backImage("../../images/layout/bw_7.jpg");
+  @include backImage("../../images/layout/banner1.jpg");
 }
