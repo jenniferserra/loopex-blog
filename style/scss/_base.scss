@@ -4,72 +4,72 @@
 }
 
 h1, h2, h3, h4 {
-  color: $accent-color;
-	font-family: $primary-font;
+    color: $accent-color;
+  	font-family: $primary-font;
 }
 
 h1 {
-	font-size: 2.2em;
+    font-size: 2.2em;
 }
 
 h2 {
-	font-size: 1.9em;
+    font-size: 1.9em;
 }
 
 p {
-	display: inline;
-  font-family: $primary-font;
-	line-height: 1.7em;
+    display: inline;
+    font-family: $primary-font;
+    line-height: 1.7em;
 }
 
 // for highlighting text areas such as "written by", category etc
 .highlighted-text, p.highlighted-text, span.highlighted-text {
-  color: $accent-color;
-  line-height: 1.7em;
-	margin: 0px;
+    color: $accent-color;
+    line-height: 1.7em;
+    margin: 0px;
 }
 
 .btn {
-	background-color: $accent-color;
-	border: none;
-  font-style: normal;
-  font-size: 1em;
-	margin-top: 10px;
+    background-color: $accent-color;
+    border: none;
+    font-style: normal;
+    font-size: 1em;
+    margin-top: 10px;
 }
 
 //EV TA BORT ? vad gör denna?
 .blogpost {
-	z-index: -10;
+    z-index: -10;
 }
 
 // Pagination formatting
 .pagination_controls {
-  font-family: $primary-font;
-  font-size: 1.1em;
-  margin: 10px auto 40px;
-  min-width: 300px;
+    font-family: $primary-font;
+    font-size: 1.1em;
+    margin: 10px auto 40px;
+    min-width: 300px;
 }
 
 // Marking the current page number in pagination-control
 .current_page_nr {
-	color: $accent-color;
+    color: $accent-color;
 }
 
 // styles the date format in archive, posts, index, comments, drafts
 .date {
-  color: $secondary-text-color;
-	font-style: italic;
-	font-size: 0.9em;
-	font-weight: light;
-	letter-spacing: 0.1em;
+    color: $secondary-text-color;
+    font-style: italic;
+    font-size: 0.9em;
+    font-weight: light;
+    letter-spacing: 0.1em;
 }
 
 a {
-	color: $primary-text-color;
+    color: $primary-text-color;
 }
 
 textarea {
-	resize: vertical;
+    resize: vertical;
 }
 
 /* ----------------------------------------------------------------------------
@@ -77,23 +77,23 @@ textarea {
 ---------------------------------------------------------------------------- */
 
 h1.blog-text-center, .blog-text-center{
-  text-align: center;
+    text-align: center;
 }
 
 //styles written by, categories etc in every posts on index.php
 .right-align{
-  text-align: right;
+    text-align: right;
 }
 
 // Banner image on index.php
 .banner{
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin-bottom: 30px;
-  margin-top: 0px;
-  position: relative;
-  height: 90vh;
-  width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    position: relative;
+    height: 90vh;
+    width: 100%;
 }
 
 // Showing what month and category is selected on blog
@@ -112,13 +112,13 @@ h1.blog-text-center, .blog-text-center{
 }
 
 .order-sorting {
-  color: $accent-color;
-	font-family: $primary-font;
-  letter-spacing: 1px;
-  text-align: center;
-  text-transform: uppercase;
-	font-size: 0.5em;
-	&:hover{
-		text-decoration: none;
-	}
+    color: $accent-color;
+    font-family: $primary-font;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.5em;
+    &:hover{
+    	text-decoration: none;
+    }
 }
