@@ -34,16 +34,15 @@ header {
   0% {
     filter: hue-rotate(0deg) brightness(100%);
     transform: rotate(0deg);
-  }
+    }
 
   50% {
     filter: hue-rotate(180deg) brightness(130%);
-  }
+    }
 
   100% {
     filter: hue-rotate(0deg) brightness(100%);
-    transform: rotate(360deg);
-    }
+    transform: rotate(360deg);}
   }
 
 
