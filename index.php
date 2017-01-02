@@ -1,7 +1,7 @@
 <?php
 require_once "code_open.php";
 ?>
-<body class="index"> 
+<body class="index">
     <?php
     require_once "header.php";
     ?>
@@ -10,13 +10,12 @@ require_once "code_open.php";
     <div class="page-content">
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
-        <div class="col-md-6 pagination">
-
+        <div class="bounce col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
                     Values to insert into SQL-queries
             ---------------------------------------------------------------------------- */
-            
+
             $sqlCategory = '>' . 0;
 
             if (isset($_GET["category"])) {
@@ -38,14 +37,14 @@ require_once "code_open.php";
             $sqlGetPostAmount = "SELECT count(*) FROM posts
                                 WHERE is_published = TRUE
                                 AND (cat_id $sqlCategory)
-                                AND (substr(create_time, 1, 7) 
+                                AND (substr(create_time, 1, 7)
                                 LIKE '$sqlYearAndMonth%')
                                 ";
 
             $queryGetPostAmount = mysqli_query($conn, $sqlGetPostAmount);
             $post = mysqli_fetch_row($queryGetPostAmount);
             $amountOfPosts = $post[0];
-            
+
             // Defining how many posts there are per page
             $postsPerPage = 5;
 
@@ -160,7 +159,7 @@ require_once "code_open.php";
         </div> <!-- col-md-6 pagination -->
         <div class="col-sm-12 col-xs-12">
             <div class="selection-display-box">
-                
+
                 <?php
                 $order = '?&order=desc';
 
@@ -286,7 +285,7 @@ require_once "code_open.php";
 
             <div class="col-sm-12 col-xs-12 text-center pagination_controls">
                 <?php echo $paginationCtrls; ?>
-            </div> 
+            </div>
         </div>
     <?php
     include "footer.php";
