@@ -1,13 +1,14 @@
 /* FOOTER */
 
-footer{
+footer {
+	background-color: transparent;
 	color: $divider-color;
 	font-family: $primary-font;
-	font-size: 1em;
-	text-align: center;
-	padding: 20px;
+	font-size: 0.9em;
+	line-height: 1em;
 	max-height: 200px;
-	background-color: transparent;
+	padding: 20px;
+	text-align: center;
 }
 
 .fa-facebook-square, .fa-instagram,.fa-twitter-square {
