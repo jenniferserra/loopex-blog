@@ -30,7 +30,7 @@ p {
 }
 
 .btn {
-	background-color: $button-color;
+	background-color: $accent-color;
 	border: none;
   font-style: normal;
   font-size: 1em;
@@ -57,7 +57,7 @@ p {
 
 // styles the date format in archive, posts, index, comments, drafts
 .date {
-  color: $date-color;
+  color: $secondary-text-color;
 	font-style: italic;
 	font-size: 0.9em;
 	font-weight: light;

@@ -1,4 +1,9 @@
+/* ----------------------------------------------------------------------------
+            MIXINS FOR DESKTOP
+---------------------------------------------------------------------------- */
 
+
+//settings controlling the background images
 @mixin backImage($image) {
 	background-image: url($image);
 	background-repeat: no-repeat;
@@ -9,12 +14,13 @@
   	background-size: cover;
 }
 
+// settings controlling the white box on top of backgrounds in desktop versions
 @mixin whitebox {
-		background: $primary-color;
-		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-		float: none;
+	background: $primary-color;
+	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+	float: none;
     margin: 50px auto;
     padding: 35px;
     text-align: center;
-		width: 800px;
+	width: 800px;
 }
