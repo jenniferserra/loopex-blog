@@ -24,3 +24,15 @@
     text-align: center;
 	width: 800px;
 }
+
+// settings and controlling the arrow animation on page index.php
+@mixin arrow {
+	bottom: 50px;
+	left: 0;
+	margin: auto;
+	position: absolute;
+	right: 0;
+	height: 50px;
+	width: 90px;
+	-webkit-animation:bounce 1s infinite;
+}
