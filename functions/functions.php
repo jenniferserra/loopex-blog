@@ -23,7 +23,7 @@ function regUser()
             $role = "user"; //standard för användaren är user.
             $encrypt_pass = password_hash($password, PASSWORD_DEFAULT);
 
-            $regQuery = "INSERT INTO users 
+            $regQuery = "INSERT INTO users
                         VALUES (
 						NULL, /* för att user_id ska skapas per automatik */
 						'$firstname',
@@ -51,7 +51,7 @@ function printPost()
     $conn = new mysqli("localhost", "root", "", "db_blogg");
     $stmt = $conn->stmt_init();
 
-    $query =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name 
+    $query =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
                 FROM posts
 				LEFT JOIN users ON posts.user_id = users.user_id
 				LEFT JOIN categories ON posts.cat_id = categories.cat_id
@@ -98,16 +98,40 @@ function deleteCommand($command, $id, $redirect)
 
     $query = "";
 
-    if ($command == "deletePost") {
+    switch($command) {
+
+    case "deletePost":
         $query = "DELETE FROM posts WHERE post_id = '{$id}'";
-    } elseif ($command == "deleteComment") {
+        break;
+
+    case "deleteComment":
+
         $query = "DELETE FROM comments WHERE com_id = '{$id}'";
-    } elseif ($command == "deleteUser") {
-        $query = "DELETE FROM users, posts USING users
-                  INNER JOIN posts on (users.user_id = posts.user_id)
-                  WHERE users.user_id='{$id}'";
-    } elseif ($command == "deleteCategory") {
+        break;
+
+    case "deleteUser":
+
+        if(!empty(posts.user_id)) {
+          $query = "DELETE from users
+                    WHERE user_id='{$id}'";
+        }else {
+
+          $query = "DELETE FROM users, posts USING users
+                    INNER JOIN posts on (users.user_id = posts.user_id)
+                    WHERE users.user_id='{$id}'";
+        }
+
+        break;
+
+    case "deleteCategory":
+
         $query = "DELETE FROM categories WHERE cat_id = '{$id}'";
+        break;
+
+    default:
+
+        echo "Någonting gick fel!";
+        break;
     }
 
     if (!mysqli_query($conn, $query)) {
@@ -116,6 +140,7 @@ function deleteCommand($command, $id, $redirect)
     } else {
         header("Location: " . $redirect);
     }
+
 }
 
 /* ----------------------------------------------------------------------------
