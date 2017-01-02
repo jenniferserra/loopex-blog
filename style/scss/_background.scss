@@ -1,35 +1,35 @@
 /* GENRERAL BODY BACKGROUND FOR THE BLOG */
 
 body{
-  background-color: $primary-color;
+	background-color: $primary-color;
 }
 
 // /* BACKGROUND FOR LOGIN.PHP */
 body.login{
-  @include backImage("../../images/layout/bw_1.jpg");
+  	@include backImage("../../images/layout/bw_1.jpg");
 }
 
 // /* BODY FOR DASHBOARD.PHP */
 body.dashboard{
-  @include backImage("../../images/layout/bw_5.jpg");
+  	@include backImage("../../images/layout/bw_5.jpg");
 }
 
 // /* BODY FOR COMMENTS.PHP */
 body.comments{
-  @include backImage("../../images/layout/bw_7.jpg");
+  	@include backImage("../../images/layout/bw_7.jpg");
 }
 
 /* BODY FOR ARCHIVE.PHP */
 body.archive {
-  @include backImage("../../images/layout/bw_1.jpg");
+  	@include backImage("../../images/layout/bw_1.jpg");
 }
 
 // /* BODY FOR DRAFTS.PHP */
 body.drafts{
-  @include backImage("../../images/layout/bw_9.jpg");
+ 	@include backImage("../../images/layout/bw_9.jpg");
 }
 
 // /* BODY FOR STATISTICS.PHP */
 body.statistics{
-  @include backImage("../../images/layout/banner1.jpg");
+ 	@include backImage("../../images/layout/banner1.jpg");
 }
