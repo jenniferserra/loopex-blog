@@ -102,7 +102,7 @@ require_once "code_open.php";
                             <a href="superuser.php?admin=showUsers" class="list-group-item">Visa alla bloggare</a>
                             <a href="superuser.php?admin=regUser" class="list-group-item">Registrera ny bloggare</a>
                             <a href="superuser.php?admin=editCategories" class="list-group-item">Redigera kategorier</a>
-                        </div>
+                        </div> <!-- .list-group -->
                     </div>
 
                     <div class="col-md-7">
@@ -210,7 +210,8 @@ require_once "code_open.php";
                                         echo "<a href='superuser.php?userDelete=$userId'>
                                                 <i class='fa fa-trash' aria-hidden='true'></i>
                                                 </a>
-                                                </div>";
+                                                </div>
+                                                <hr>";
                                     }
                                 }
 
@@ -272,7 +273,7 @@ require_once "code_open.php";
                                         <div class="col-xs-10">
                                             <input name="register" class="btn btn-lg btn-primary" type="submit" value="Registrera">
                                         </div>
-                                    </div> <!-- end div: form-group row -->
+                                    </div> <!-- .form-group row -->
                                 </form> <!-- end form -->
                                 <?php
                                 break; /* break case regUser */
@@ -305,17 +306,17 @@ require_once "code_open.php";
                                 <form method='post'>
                                     <div class='input-group'>
                                         <input type='text' class='form-control' placeholder='Ge kategorien ett namn...' name='nameCategory' required>
-                                        <!-- <span class='input-group-btn'> -->
-                                            <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
-                                            <!-- TODO: Fråga Erik om det kan vara så?  -->
-                                        <!-- </span> -->
-                                    </div>
+                                        <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
+                                    </div> <!-- .input-group -->
                                 </form>
 
                                 <?php
                                 break; /* break case editCategories */
 
-                                /* Print this is nothing is selected (should never happen) or someone tries their own GET-Request not found in menu */
+                                /* ----------------------------------------------------------------------------
+                                    Print this is nothing is selected (should never happen) or someone tries 
+                                    their own GET-Request not found in menu.
+                                ---------------------------------------------------------------------------- */
                                 default:
 
                                 echo "<h2>Välj ett alternativ från menyn</h2>";

@@ -121,6 +121,15 @@ function deleteCommand($command, $id, $redirect)
                     WHERE users.user_id='{$id}'";
         }
 
+        // $query =    "SELECT users.*, posts.*, comments.* 
+        //             FROM users 
+        //             INNER JOIN posts 
+        //             ON users.user_id = posts.user_id 
+        //             LEFT JOIN comments 
+        //             ON posts.post_id = comments.fk_post_id  
+        //             WHERE users.user_id = '{$id}'  
+        //             ";
+
         break;
 
     case "deleteCategory":
