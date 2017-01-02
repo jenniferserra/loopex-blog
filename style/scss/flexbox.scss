@@ -1,0 +1,14 @@
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  background-color: $secondary-text-color;
+  color: $background-color;
+  height: 150px;
+  width: 250px;
+  padding: 10px;
+  margin: 5px;
+}

@@ -14,7 +14,7 @@ require_once "code_open.php";
                 A) logged in and
                 B) logged in as admin
         ---------------------------------------------------------------------------- */
-        if(isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {
+        if (isset($_SESSION['loggedin']) && $_SESSION['role'] == "admin") {
 
             /* ----------------------------------------------------------------------------
                     DELETE INFORMATION
@@ -72,8 +72,7 @@ require_once "code_open.php";
                     mysqli_query($conn, $addQuery);
                     header("Location:superuser.php?admin=editCategories");
                 }
-            }
-            ?>
+            } ?>
 
             <!-----------------------------------------------------------------------------
                     SUPERADMIN BANNER
@@ -115,14 +114,14 @@ require_once "code_open.php";
                         if (isset($_GET["admin"])) {
 
                             /* ----------------------------------------------------------------------------
-                                USE MENU SELECTION TO SHOW REQUESTED INFORMATION 
+                                USE MENU SELECTION TO SHOW REQUESTED INFORMATION
                             ---------------------------------------------------------------------------- */
 
                             /* ----------------------------------------------------------------------------
                                         SWITCH START
                             ---------------------------------------------------------------------------- */
                             switch ($_GET["admin"]) {
-                                
+
                                 /* ----------------------------------------------------------------------------
                                             SHOW ALL POSTS
                                 ---------------------------------------------------------------------------- */
@@ -130,7 +129,7 @@ require_once "code_open.php";
 
                                 echo "<h2>Se alla inlägg</h2><br>";
 
-                                $postQuery  =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name 
+                                $postQuery  =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
                                                 FROM posts
                                                 LEFT JOIN users ON posts.user_id = users.user_id
                                                 LEFT JOIN categories ON posts.cat_id = categories.cat_id
@@ -148,7 +147,7 @@ require_once "code_open.php";
                                                 </a>";
 
                                         if ($isPublished == 0) {
-                                        echo    "*";
+                                            echo    "*";
                                         }
 
                                         echo    " </h4>(" . $createTime . ")<br><br>";
@@ -157,13 +156,13 @@ require_once "code_open.php";
                                     }
                                 }
                                 echo    "<div id='row'> * = utkast </div>";
-                                
+
                                 break; /* break case showPosts */
 
                                 /* ----------------------------------------------------------------------------
                                             SHOW ALL COMMENTS
                                 ---------------------------------------------------------------------------- */
-                                
+
                                 case 'showComments':
 
                                 echo "<h2>Se alla kommentarer</h2>";
@@ -185,7 +184,7 @@ require_once "code_open.php";
                                     }
                                 }
 
-                                break; /* break case showComments */ 
+                                break; /* break case showComments */
 
                                 /* ----------------------------------------------------------------------------
                                             SHOW ALL USERS
@@ -193,6 +192,7 @@ require_once "code_open.php";
                                 case 'showUsers':
 
                                 echo "<h2>Se alla användare</h2>";
+                                echo "<div class='flex-container'>";
                                 $userQuery  = "SELECT * FROM users";
 
                                 mysqli_query($conn, $userQuery);
@@ -202,6 +202,7 @@ require_once "code_open.php";
                                     $stmt->bind_result($userId, $firstName, $lastName, $email, $password, $profilePic, $role);
 
                                     while ($stmt->fetch()) {
+                                        echo "<div class='flex-item'>";
                                         echo "ID: $userId<br>";
                                         echo "Namn: $firstName $lastName<br>";
                                         echo "E-Post: $email<br>";
@@ -209,11 +210,13 @@ require_once "code_open.php";
                                         echo "<a href='superuser.php?userDelete=$userId'>
                                                 <i class='fa fa-trash' aria-hidden='true'></i>
                                                 </a>
-                                                <hr>";
+                                                </div>";
                                     }
                                 }
-                            
-                                break; /* break case showUsers */ 
+
+                                echo "</div>";
+
+                                break; /* break case showUsers */
 
                                 /* ----------------------------------------------------------------------------
                                             REGISTER A USER
@@ -225,7 +228,12 @@ require_once "code_open.php";
                                 regUser();
                                 ?>
                                 <form method="post">
-                                    <h2><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Registrera" ?></h2>
+                                    <h2><?php if (isset($_SESSION['msg'])) {
+                                    echo $_SESSION['msg'];
+                                    unset($_SESSION['msg']);
+                                } else {
+                                    echo "Registrera";
+                                } ?></h2>
 
                                     <!-- Input-field for Firstname -->
                                     <div class="form-group row">
@@ -267,7 +275,7 @@ require_once "code_open.php";
                                     </div> <!-- end div: form-group row -->
                                 </form> <!-- end form -->
                                 <?php
-                                break; /* break case regUser */ 
+                                break; /* break case regUser */
 
                                 /* ----------------------------------------------------------------------------
                                             CATEGORIES
@@ -298,14 +306,14 @@ require_once "code_open.php";
                                     <div class='input-group'>
                                         <input type='text' class='form-control' placeholder='Ge kategorien ett namn...' name='nameCategory' required>
                                         <!-- <span class='input-group-btn'> -->
-                                            <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'> 
+                                            <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
                                             <!-- TODO: Fråga Erik om det kan vara så?  -->
                                         <!-- </span> -->
                                     </div>
                                 </form>
 
                                 <?php
-                                break; /* break case editCategories */ 
+                                break; /* break case editCategories */
 
                                 /* Default CASE, no option picked (never really used BC Previous IF-statement) */
                                 default:
@@ -321,7 +329,7 @@ require_once "code_open.php";
                 </div> <!-- .container-fluid -->
             </div> <!-- .row -->
         <?php
-        
+
         /* ----------------------------------------------------------------------------
                 ELSE THE USER IS
                 A) logged in and
