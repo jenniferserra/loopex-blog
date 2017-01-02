@@ -158,34 +158,25 @@ input[type="submit"] {
             ANIMATION ARROW
 ---------------------------------------------------------------------------- */
 
-// link to arrow image on index page
 .bounce {
-    @include backImage("../../images/layout/arrow5.png");
-}
-// div class settings in sass
-.bounce {
-    bottom: 50px;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    height: 50px;
-    width: 90px;
-    -webkit-animation:bounce 1s infinite;
+    @include arrow ("../../images/layout/arrow5.png");
 }
 
 // keyframe settings to make the arrow bounce
 @-webkit-keyframes bounce {
   0% {
-    bottom:5px;
+    bottom: 5px;
   }
+
   25%, 75% {
-    bottom:15px;
+    bottom: 15px;
   }
+
   50% {
-    bottom:20px;
+    bottom: 20px;
   }
+
   100% {
-    bottom:0;
+    bottom: 0;
   }
 }
