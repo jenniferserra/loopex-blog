@@ -1,0 +1,18 @@
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.flex-item {
+  background-color: $secondary-text-color;
+  color: $background-color;
+  height: 150px;
+  width: 250px;
+  padding: 10px;
+  margin: 5px;
+}
