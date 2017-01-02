@@ -10,13 +10,11 @@
 }
 
 @mixin whitebox {
-	background: $primary-color;
-    width: 800px;
+		background: $primary-color;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+		float: none;
     margin: 50px auto;
     padding: 35px;
     text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    float: none;
+		width: 800px;
 }
-
-
