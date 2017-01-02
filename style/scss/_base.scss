@@ -1,55 +1,53 @@
-.page-content{
+.page-content {
     min-height: 100vh;
     padding-top: 0px;
 }
 
-h1, h2, h3, h4{
+h1, h2, h3, h4 {
+  color: $accent-color;
 	font-family: $primary-font;
-	color: $accent-color;
-
 }
 
-h1{
+h1 {
 	font-size: 2.2em;
 }
 
-h2{
+h2 {
 	font-size: 1.9em;
-
 }
 
 p {
 	display: inline;
+  font-family: $primary-font;
 	line-height: 1.7em;
-	font-family: $primary-font;
 }
 
-// for highlighting text areas such as "written by", category etc 
+// for highlighting text areas such as "written by", category etc
 .highlighted-text, p.highlighted-text, span.highlighted-text {
+  color: $accent-color;
+  line-height: 1.7em;
 	margin: 0px;
-	line-height: 1.7em;
-	color: $accent-color;
 }
 
 .btn {
 	background-color: $button-color;
 	border: none;
+  font-style: normal;
+  font-size: 1em;
 	margin-top: 10px;
-	font-style: normal;
-	font-size: 1em;
 }
 
-//vad gör denna?
+//EV TA BORT ? vad gör denna?
 .blogpost {
 	z-index: -10;
 }
 
 // Pagination formatting
 .pagination_controls {
-  min-width: 300px;
   font-family: $primary-font;
-  margin: 10px auto 40px;
   font-size: 1.1em;
+  margin: 10px auto 40px;
+  min-width: 300px;
 }
 
 // Marking the current page number in pagination-control
@@ -59,13 +57,12 @@ p {
 
 // styles the date format in archive, posts, index, comments, drafts
 .date {
+  color: $date-color;
 	font-style: italic;
 	font-size: 0.9em;
 	font-weight: light;
-	color: $date-color;
 	letter-spacing: 0.1em;
 }
-
 
 a {
 	color: $primary-text-color;
@@ -90,13 +87,13 @@ h1.blog-text-center, .blog-text-center{
 
 // Banner image on index.php
 .banner{
+  background-size: cover;
   background-repeat: no-repeat;
-  position: relative;
-  width: 100%;
-  height: 90vh;
   margin-bottom: 30px;
   margin-top: 0px;
-  background-size: cover;
+  position: relative;
+  height: 90vh;
+  width: 100%;
 }
 
 // Showing what month and category is selected on blog
@@ -105,22 +102,22 @@ h1.blog-text-center, .blog-text-center{
 }
 
 .selection-display-box {
-    width: 100%;
-    font-size: 24px;
     color: rgba($color: $primary-text-color, $alpha: 0.8);
-    width: 800px;
+    font-size: 24px;
+    letter-spacing: 1px;
     margin: 20px auto;
     text-align: center;
-    letter-spacing: 1px;
+    width: 800px;
+    width: 100%;
 }
 
 .order-sorting {
+  color: $accent-color;
 	font-family: $primary-font;
-	color: $accent-color;
-    text-align: center;
-	letter-spacing: 1px;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
 	font-size: 0.5em;
-	text-transform: uppercase;
 	&:hover{
 		text-decoration: none;
 	}
