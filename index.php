@@ -19,7 +19,7 @@ require_once "code_open.php";
             $sqlCategory = '>' . 0;
 
             if (isset($_GET["category"])) {
-            	$sqlCategory = '=' . $_GET["category"];
+                $sqlCategory = '=' . $_GET["category"];
             }
 
             // The number 2 indicates that the blog post begins in the 2:nd millenium
@@ -60,12 +60,12 @@ require_once "code_open.php";
             $pageNumber = 1;
 
             // Otherwise it the selected value
-            if(isset($_GET['pn'])) {
+            if (isset($_GET['pn'])) {
                 $pageNumber = $_GET['pn'];
             }
 
             // Page number must be more than 1 and cannot be more than last page
-            if($pageNumber < 1) {
+            if ($pageNumber < 1) {
                 $pageNumber = 1;
             } elseif ($pageNumber > $last) {
                 $pageNumber = $last;
@@ -77,7 +77,7 @@ require_once "code_open.php";
             // Sorting posts on decending or ascending create-time
             $postOrder = 'desc';
 
-            if(isset($_GET["order"])) {
+            if (isset($_GET["order"])) {
                 $postOrder = $_GET["order"];
             }
 
@@ -103,11 +103,11 @@ require_once "code_open.php";
                     $fillNumbersBehind = -3;
                     $jumpBackward = $pageNumber - 3;
 
-                    if ($pageNumber >= $last - 3){
+                    if ($pageNumber >= $last - 3) {
                         $fillNumbersBehind = $pageNumber - $last;
                         $jumpBackward = $pageNumber - 6 - $fillNumbersBehind;
 
-                        if($jumpBackward < 1){
+                        if ($jumpBackward < 1) {
                             $jumpBackward = 1;
                         }
                     }
@@ -117,7 +117,7 @@ require_once "code_open.php";
                     <a href="' . createUrl($previous) . '">Previous</a> &nbsp; &nbsp;';
 
                     // LEFT - Render clickable number links to the left
-                    for($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
+                    for ($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
                         if ($i > 0) {
                             $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp; ';
                         }
@@ -132,7 +132,7 @@ require_once "code_open.php";
                     $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp; ';
 
                     // Making the index always show the same amount of page links
-                    if ($pageNumber <= 3){
+                    if ($pageNumber <= 3) {
                         $fillNumbersInfront= 4 - $pageNumber;
                     } else {
                         $fillNumbersInfront= 0;
@@ -168,28 +168,28 @@ require_once "code_open.php";
                 if (isset($_GET["order"])) {
                     $queryStringOrder = $_SERVER['REQUEST_URI'];
                 }
-                if(isset($_GET["order"]) && $_GET["order"] == 'asc') {
+                if (isset($_GET["order"]) && $_GET["order"] == 'asc') {
                     $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
                     echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: nyast inlägg först</a>';
-                } else{
+                } else {
                     $queryStringOrder = preg_replace('/desc/', 'asc', $queryStringOrder);
                     echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: äldst inlägg först</a>';
                 }
 
-                if(isset($_GET["yrmnth"])) {
+                if (isset($_GET["yrmnth"])) {
                     $selectedReadableDate = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
                     echo '<div class="selection-display">
                             <p>MÅNADSARKIV: ' . $selectedReadableDate . '</p>
                         </div>';
                 }
 
-                if(isset($_GET["category"]) && isset($_GET["yrmnth"])) {
+                if (isset($_GET["category"]) && isset($_GET["yrmnth"])) {
                     echo '<div class="selection-display">
                             <p class="divider-line"> ____ </p> <br><br>
                         </div>';
                 }
 
-                if(isset($_GET["category"])) {
+                if (isset($_GET["category"])) {
                     $selectedCategory =  $_GET["category"];
                     $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
                     $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
@@ -237,8 +237,7 @@ require_once "code_open.php";
                 $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
                 $queryForCommentAmount = mysqli_query($conn, $sql);
                 $comment = mysqli_fetch_row($queryForCommentAmount);
-                $comments = $comment[0];
-                ?>
+                $comments = $comment[0]; ?>
 
                 <div class="blogpost_center mobile-margin">
                     <div class="blogpost">
@@ -246,28 +245,29 @@ require_once "code_open.php";
                         <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
                         <div><p><?php echo $text; ?></p></div><br><br>
                         <?php
-                        if (!$catName == NULL) {
                         ?>
                             <div class="text right-align">
                                 <span class='highlighted-text'>Kategori: </span>
-                                <?php echo $catName;?>
+                                <?php
+                                if ($catName == null) {
+                                    echo "Okategoriserat";
+                                } else {
+                                    echo $catName;
+                                } ?>
                             </div>
-                        <?php
-                        }
-                        ?>
                         <div class="right-align">
                             <span class='highlighted-text'>Skriven av:</span>
-                                <?php echo "$firstName $lastName, <a href='mailto:$user_email'>$user_email</a>";?>
+                                <?php echo "$firstName $lastName, <a href='mailto:$user_email'>$user_email</a>"; ?>
                         </div>
                         <div class="comments right-align">
                             <?php
                             echo "<a href='post.php?id=$postId'>
-                            ($comments) Kommentarer</a>";
-                            ?><hr class="divider">
+                            ($comments) Kommentarer</a>"; ?><hr class="divider">
                         </div>
                     </div>
                 </div>
             <?php
+
             }
             /* ----------------------------------------------------------------------------
                     END OF LOOPING OUT BLOG POSTS

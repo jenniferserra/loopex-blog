@@ -315,10 +315,10 @@ require_once "code_open.php";
                                 <?php
                                 break; /* break case editCategories */
 
-                                /* Default CASE, no option picked (never really used BC Previous IF-statement) */
+                                /* Print this is nothing is selected (should never happen) or someone tries their own GET-Request not found in menu */
                                 default:
 
-                                echo "<h2>Välj ett alternativ</h2>";
+                                echo "<h2>Välj ett alternativ från menyn</h2>";
 
                                 break;
                             } /* end SWITCH */
