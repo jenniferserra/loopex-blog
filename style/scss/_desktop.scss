@@ -23,26 +23,26 @@
 
 // input fields in forms
 .form input {
-    font-family: $primary-font;
-    outline: 0;
-    width: 90%;
-    margin: 0 auto 15px;
-    padding: 15px;
     box-sizing: border-box;
+    font-family: $primary-font;
     font-size: 14px;
+    margin: 0 auto 15px;
+    outline: 0;
+    padding: 15px;
+    width: 90%;
 }
 
 .login-button {
+    background: $button-color;
+    border: none;
+    color: $primary-color;
+    cursor: pointer;
     font-family: $primary-font;
     outline: 0;
-    background: $button-color;
-    width: 100%;
-    border: none;
     padding: 15px;
-    color: $primary-color;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
-    cursor: pointer;
+    width: 100%;
 }
 
 .btn:hover,.btn:active,.btn:focus {
@@ -67,30 +67,31 @@ h2.login{
 
 //this affects input fields in dashboard, editpost and login
 input[type="text"], input[type="email"], input[type="password"], textarea {
-    font-family: $primary-font;
-    outline: 0;
-    width: 100%;
-    margin: 10px auto;
-    padding: 15px;
     box-sizing: border-box;
+    font-family: $primary-font;
     font-size: 16px;
-}
-// category dropdown
-select.categories{
+    margin: 10px auto;
+    outline: 0;
+    padding: 15px;
     width: 100%;
-    margin: 20px auto;
+}
+
+// category dropdown
+select.categories {
+    background-color: $divider-color;
     font-family: $primary-font;
     font-size: 1.1em;
-    background-color: $divider-color;
+    margin: 20px auto;
     opacity: 0.7;
+    width: 100%;
 }
 
 // publish/ save draft buttons
-input[type="submit"]{
-    font-family: $primary-font;
-    color: $primary-color;
+input[type="submit"] {
     background-color: $button-color;
     border: none;
+    color: $primary-color;
+    font-family: $primary-font;
     font-size: 1.1em;
     max-width: 100%;
     margin: 0px auto;
