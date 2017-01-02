@@ -25,39 +25,24 @@ header {
     height: 36px;
     width: 36px;
 }
-
 .orange_logo:hover {
-    animation-name: orange;
-    animation-duration: 2s;
+animation-name: orange;
+animation-duration: 2s;
+}
 
 @keyframes orange {
-  0% {
-    brightness(100%);
-    filter: hue-rotate(0deg);
-    rotate(0deg);
-    transform:
-  }
-
-  50% {
-    brightness(130%);
-    filter: hue-rotate(180deg)
-  }
-
-  100% {
-    brightness(100%);
-    filter: hue-rotate(0deg)
-    rotate(360deg);
-    transform:
-    }
+0% {filter: hue-rotate(0deg) brightness(100%);transform: rotate(0deg);}
+50% {filter: hue-rotate(180deg) brightness(130%);}
+100% {filter: hue-rotate(0deg) brightness(100%); transform: rotate(360deg);}
   }
 }
 
 /* ----------------------------------------------------------------------------
-        DETTA VAR UTKOMMENTERAT, WHY ?
+    DETTA VAR UTKOMMENTERAT, WHY / FÖR ATT DET INTE BEHÖVS /LÅT VARA TILLS VI FIXAT navbar ?
 ---------------------------------------------------------------------------- */
 
  // STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA?
-.navbar-header {
+/* .navbar-header {
     float: left;
     margin: 7px 0px 0px 7px;
     height: 40px;
@@ -70,7 +55,7 @@ header {
     a:hover {
         color: $accent-color;
     }
-}
+} */
 
 nav {
     box-shadow: none;
@@ -84,7 +69,7 @@ nav {
     -moz-transition: opacity 0.5s;
     -ms-transition: opacity 0.5s;
     -o-transition: opacity 0.5s;
-    -transition: opacity 0.5s;
+    transition: opacity 0.5s;
 }
 
 nav * {
@@ -99,10 +84,6 @@ nav * {
 nav *:hover {
     color: $accent-color;
     text-decoration: none;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
     transition: 0.2s;
 }
 
