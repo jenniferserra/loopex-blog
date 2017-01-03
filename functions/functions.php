@@ -155,16 +155,16 @@ function deleteCommand($command, $id, $redirect)
 
 /* ----------------------------------------------------------------------------
         CREATE URL QUERIES
-        The $input variable must always be given an identifying string-value.
-        The string-value will determine how it is handeled and where it is
-        inserted in the URL.
-        The identifier is followed by the input value.
+        The $input variable must always be given an identifying string.
+        The identifying string will determine how it is handeled wich and which
+        $_GET-variable it is inserted into.
+        The identifying string is followed by the real input value.
 ---------------------------------------------------------------------------- */
 function createUrl($input) {
     $urlArray = $_GET;
     
     /* ----------------------------------------------------------------------------
-        PAGE NUMBER
+        PAGE NUMBER DIFF
         createUrl('pageNrDiff' . $input)
     ---------------------------------------------------------------------------- */
     if (strpos($input, 'pageNrDiff') !== false) {
