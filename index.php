@@ -109,14 +109,14 @@ require_once "code_open.php";
                     }
 
                     // Previous-button and long-backward-jump
-                    $paginationCtrls .= '<a href="' . createUrl('pn' . -3) . '"> << </a> &nbsp;
-                    <a href="' . createUrl('pn' . -1) . '">Previous</a> &nbsp; &nbsp;';
+                    $paginationCtrls .= '<a href="' . createUrl('pageNrDiff' . -3) . '"> << </a> &nbsp;
+                    <a href="' . createUrl('pageNrDiff' . -1) . '">Previous</a> &nbsp; &nbsp;';
 
                     // LEFT - Render clickable number links to the left
                     for ($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
                         if ($i > 0) {
                             $numberedLink = $i-$pageNumber;
-                            $paginationCtrls .= '<a href="' . createUrl('pn'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
+                            $paginationCtrls .= '<a href="' . createUrl('pageNrDiff'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
                         }
                     }
                 }
@@ -127,7 +127,7 @@ require_once "code_open.php";
                 // RIGHT - Render clickable number links that appear on the right
                 for ($i = $pageNumber+1; $i <= $last; $i++) {
                     $numberedLink = $i-$pageNumber;
-                    $paginationCtrls .= '<a href="' . createUrl('pn'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
+                    $paginationCtrls .= '<a href="' . createUrl('pageNrDiff'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
 
                     // Making the index always show the same amount of page links
                     if ($pageNumber <= 3) {
@@ -143,8 +143,8 @@ require_once "code_open.php";
 
                 // Next-button and long-forward-jump button
                 if ($pageNumber != $last) {
-                    $paginationCtrls .= '&nbsp; <a href="' . createUrl('pn'. 1) . '">Next</a> &nbsp;
-                    <a href="' . createUrl('pn' . 3) . '"> >> </a> ';
+                    $paginationCtrls .= '&nbsp; <a href="' . createUrl('pageNrDiff'. 1) . '">Next</a> &nbsp;
+                    <a href="' . createUrl('pageNrDiff' . 3) . '"> >> </a> ';
                 }
             }
 
@@ -169,20 +169,19 @@ require_once "code_open.php";
                     echo '<a class="order-sorting" href="' . createUrl('order' . $order) . '">Sortera: äldsta inlägg först</a>';
                 }
 
-                /* ----------------------------------------------------------------------------
-                        Telling what category and month has been selected
-                ---------------------------------------------------------------------------- */
-                if (isset($_GET["yrmnth"])) {
-                    $selectedMonth = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
-                    echo '<div class="selection-display">
-                            <p>MÅNADSARKIV: ' . $selectedMonth . '</p>
-                        </div>';
+            /* ----------------------------------------------------------------------------
+                    Telling what category and month has been selected
+            ---------------------------------------------------------------------------- */
+            $selectedMonth = "";
+            if(isset($_GET["yrmnth"])) {
+                $selectedMonth = $_GET["yrmnth"];
+                setlocale(LC_TIME, 'sv_SE');
+                $selectedMonth = strtoupper(strftime('%B %Y', strtotime($selectedMonth)));
+                echo '<div class="selection-display"><p>MÅNADSARKIV: ' . $selectedMonth . '</p></div>';
                 }
 
                 if (isset($_GET["category"]) && isset($_GET["yrmnth"])) {
-                    echo '<div class="selection-display">
-                            <p class="divider-line"> ____ </p> <br><br>
-                        </div>';
+                    echo '<div class="selection-display"><p class="divider-line"> ____ </p> <br><br></div>';
                 }
 
                 if (isset($_GET["category"])) {

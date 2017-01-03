@@ -152,33 +152,58 @@ function deleteCommand($command, $id, $redirect)
 
 }
 
+
 /* ----------------------------------------------------------------------------
-        CREATING URL-QUERIES
+        CREATE URL QUERIES
+        The $input variable must always be given an identifying string-value.
+        The string-value will determine how it is handeled and where it is
+        inserted in the URL.
+        The identifier is followed by the input value.
 ---------------------------------------------------------------------------- */
 function createUrl($input) {
     $urlArray = $_GET;
     
-    // Input values marked with 'pn'
-    // Input will be inserted into $_GET['pn']
-    if (strpos($input, 'pn') !== false) {
-        $input = str_replace('pn', '', $input);
-        $diff = $input;
-
+    /* ----------------------------------------------------------------------------
+        PAGE NUMBER
+        createUrl('pageNrDiff' . $input)
+    ---------------------------------------------------------------------------- */
+    if (strpos($input, 'pageNrDiff') !== false) {
+        $input = str_replace('pageNrDiff', '', $input);
         $pageNumber = 1;
         if(isset($urlArray['pn'])) {
             $pageNumber = $urlArray['pn'];
         }
-        $urlArray['pn'] = $pageNumber + $diff;
+        $urlArray['pn'] = $pageNumber + $input;
     }
 
-    // Input values marked with 'order'
-    // Input will be inserted into $_GET['order']
+    /* ----------------------------------------------------------------------------
+        ORDER
+        createUrl('order' . $input)
+    ---------------------------------------------------------------------------- */
     if (strpos($input, 'order') !== false) {
         $input = str_replace('order', '', $input);
-        $order = $input;
-        $urlArray['order'] = $order;
+        $urlArray['order'] = $input;
     }
 
+     /* ----------------------------------------------------------------------------
+        CATEGORY
+        createUrl('category' . $input)
+    ---------------------------------------------------------------------------- */
+    if (strpos($input, 'category') !== false) {
+        $input = str_replace('category', '', $input);
+        $urlArray['category'] = $input;
+    }
+
+    /* ----------------------------------------------------------------------------
+        YEAR AND MONTH
+        createUrl('yrmnth' . $input)
+    ---------------------------------------------------------------------------- */
+    if (strpos($input, 'yrmnth') !== false) {
+        $input = str_replace('yrmnth', '', $input);
+        $urlArray['yrmnth'] = $input;
+    }
+
+    // BUILDING URL FROM $urlArray (WHICH IS AN EDITED $_GET-ARRAY)
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
 }

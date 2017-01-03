@@ -20,30 +20,10 @@
 
             <?php
             require_once "dbconnect.php";
+            
             if(!isset($_SESSION)){
                 session_start();
             }
-
-            // Variables to be inserted in link-URL in menu-buttons
-            // Standard value is empty so that no extra characters appear in URL when nothing is selected
-            global $selectedYearAndMonth;
-            $selectedYearAndMonth = "";
-            global $selectedYearAndMonthURL;
-            $selectedYearAndMonthURL = "";
-
-            if(isset($_GET["yrmnth"])) {
-                $selectedYearAndMonth = $_GET["yrmnth"];
-                $selectedYearAndMonthURL = '&yrmnth=' . $selectedYearAndMonth;
-            }
-
-            global $categoryURL;
-            $categoryURL = "";
-
-            if(isset($_GET["category"])) {
-                $categoryURL = '&category=' . $_GET["category"];
-            }
-
-
             
             if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                 // ------------------------------------------------------------------------
@@ -90,13 +70,12 @@
                         <ul>
                             <?php
                             // Looping out category drop-down
-                            $sql_category = "SELECT * FROM categories";
-                            $query_category = mysqli_query($conn, $sql_category);
-                            while ($category = mysqli_fetch_array($query_category)) {
-                            $categoryName = $category["cat_name"];
-                            $categoryId = $category["cat_id"];
-                            
-                            echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?category='. $categoryId . $selectedYearAndMonthURL . '">' . $categoryName . '</a></li>';
+                            $sqlCategory = "SELECT * FROM categories";
+                            $queryCategory = mysqli_query($conn, $sqlCategory);
+                            while ($getCategory = mysqli_fetch_array($queryCategory)) {
+                            $categoryName = $getCategory["cat_name"];
+                            $categoryId = $getCategory["cat_id"];
+                            echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="'. createUrl('category' . $categoryId) . '">' . $categoryName . '</a></li>';
                             }
                             ?>
                         </ul>
@@ -111,14 +90,13 @@
                                         ORDER BY create_time DESC";
                             
                             $query_month = mysqli_query($conn, $sql_month);
-                            while ($yearAndMonth = mysqli_fetch_array($query_month)) {
-                                $yearAndMonth = substr($yearAndMonth["create_time"], 0, 7);
-                                $yearAndMonthURL = '&yrmnth=' . $yearAndMonth;
+                            while ($getYearAndMonth = mysqli_fetch_array($query_month)) {
+                                $yearAndMonth = substr($getYearAndMonth["create_time"], 0, 7);
 
                                 // Printing out menu buttons with date and month
                                 setlocale(LC_TIME, 'sv_SE');
                                 $readableDate = strftime('%B %Y', strtotime($yearAndMonth));
-                                echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="?' . $yearAndMonthURL . $categoryURL . '">' . $readableDate . '</a></li>';
+                                echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="' . createUrl('yrmnth' . $yearAndMonth) . '">' . $readableDate . '</a></li>';
                             }
                             ?>
                         </ul>
