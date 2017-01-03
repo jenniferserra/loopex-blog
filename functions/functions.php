@@ -156,8 +156,8 @@ function deleteCommand($command, $id, $redirect)
 /* ----------------------------------------------------------------------------
         CREATE URL QUERIES
         The $input variable must always be given an identifying string-value.
-        The string-value will determine how it is handeled and where it is
-        inserted in the URL.
+        The identifying string-value will determine how it is handeled and which
+        $_GET-variable is inserter into.
         The identifier is followed by the input value.
 ---------------------------------------------------------------------------- */
 function createUrl($input) {
