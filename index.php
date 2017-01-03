@@ -10,7 +10,8 @@ require_once "code_open.php";
     <div class="page-content">
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
-        <div class="bounce col-md-6 pagination">
+        <div class="bounce"></div>
+        <div class="col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
                     Values to insert into SQL-queries
