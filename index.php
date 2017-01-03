@@ -10,8 +10,8 @@ require_once "code_open.php";
     <div class="page-content">
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
-        <div class="bounce"></div>
-        <div class="col-md-6 pagination">
+        <div class="bounce"><a href="#link-anchor"><img class="bounce" src="images/layout/arrow5.png"></a></div>
+        <div id="link-anchor" class="col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
                     Values to insert into SQL-queries
@@ -116,8 +116,8 @@ require_once "code_open.php";
                     // LEFT - Render clickable number links to the left
                     for ($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
                         if ($i > 0) {
-                            $numberedLink = $i-$pageNumber;
-                            $paginationCtrls .= '<a href="' . createUrl('pageNrDiff'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
+                            $numberLinks = $i-$pageNumber;
+                            $paginationCtrls .= '<a href="' . createUrl('pageNrDiff' . $numberLinks) . '">' . $i . '</a> &nbsp; ';
                         }
                     }
                 }
@@ -127,8 +127,8 @@ require_once "code_open.php";
 
                 // RIGHT - Render clickable number links that appear on the right
                 for ($i = $pageNumber+1; $i <= $last; $i++) {
-                    $numberedLink = $i-$pageNumber;
-                    $paginationCtrls .= '<a href="' . createUrl('pageNrDiff'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
+                    $numberLinks = $i-$pageNumber;
+                    $paginationCtrls .= '<a href="' . createUrl('pageNrDiff'.$numberLinks) . '">' . $i . '</a> &nbsp; ';
 
                     // Making the index always show the same amount of page links
                     if ($pageNumber <= 3) {

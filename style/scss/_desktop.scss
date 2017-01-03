@@ -159,7 +159,7 @@ input[type="submit"] {
 ---------------------------------------------------------------------------- */
 
 .bounce {
-    @include arrow ("../../images/layout/arrow5.png");
+    @include arrow;
 }
 
 // keyframe settings to make the arrow bounce
