@@ -61,13 +61,11 @@ header {
 // TEXTEN ORANGE MUSIC. TILL VÄNSTER I MENYN
 .navbar-header {
     color: $secondary-text-color;
-    a:hover {
-        color: $accent-color;
-    }
+
 }
 
 nav {
-    text-transform: uppercase;
+    text-transform: none;
     text-align: center;
     width: 100%;
     box-shadow: none;
