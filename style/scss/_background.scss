@@ -4,17 +4,17 @@ body{
 	background-color: $primary-color;
 }
 
-// /* BACKGROUND FOR LOGIN.PHP */
+/* BACKGROUND FOR LOGIN.PHP */
 body.login{
   	@include backImage("../../images/layout/bw_1.jpg");
 }
 
-// /* BODY FOR DASHBOARD.PHP */
+/* BODY FOR DASHBOARD.PHP */
 body.dashboard{
   	@include backImage("../../images/layout/bw_5.jpg");
 }
 
-// /* BODY FOR COMMENTS.PHP */
+/* BODY FOR COMMENTS.PHP */
 body.comments{
   	@include backImage("../../images/layout/bw_7.jpg");
 }
@@ -24,12 +24,12 @@ body.archive {
   	@include backImage("../../images/layout/bw_1.jpg");
 }
 
-// /* BODY FOR DRAFTS.PHP */
+/* BODY FOR DRAFTS.PHP */
 body.drafts{
  	@include backImage("../../images/layout/bw_9.jpg");
 }
 
-// /* BODY FOR STATISTICS.PHP */
+/* BODY FOR STATISTICS.PHP */
 body.statistics{
  	@include backImage("../../images/layout/banner1.jpg");
 }

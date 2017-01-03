@@ -59,22 +59,25 @@ h1{
     width: 100%;
 
 }
+
 .form input {
+    box-sizing: border-box;
     font-family: $primary-font;
-    width: 100%;
+    font-size: 14px;
     margin: 0 0 15px;
     padding: 15px;
-    box-sizing: border-box;
-    font-size: 14px;
-}
-.login-button {
-    font-family: $primary-font;
-    outline: 0;
-    background: $accent-color;
     width: 100%;
-    color: $primary-color;
-    font-size: 14px;
 }
+
+.login-button {
+    background: $accent-color;
+    color: $primary-color;
+    font-family: $primary-font;
+    font-size: 14px;
+    outline: 0;
+    width: 100%;
+}
+
 .btn:hover,.btn:active,.btn:focus {
     background: $secondary-accent-color;
 }
@@ -96,39 +99,39 @@ h2.login{
 .welcome{
     font-family: $primary-font;
     font-size: 2.5em;
-    text-align: center;
     margin-top: 50px;
     margin-bottom: -30px;
+    text-align: center;
 }
 
 /* input fields for writing headlines and blog texts */
 input[type="text"], input[type="email"], textarea {
-    font-family: $primary-font;
-    outline: 0;
-    width: 100%;
-    margin: 10px auto;
-    padding: 15px;
     box-sizing: border-box;
+    font-family: $primary-font;
     font-size: 16px;
+    margin: 10px auto;
+    outline: 0;
+    padding: 15px;
+    width: 100%;
 }
 
 /* category picker */
-select.categories{
-    width: 100%;
-    height: 30px;
-    margin: 15px auto;
+select.categories {
+    background-color: $divider-color;
     font-family: $primary-font;
     font-size: 1.1em;
-    background-color: $divider-color;
+    margin: 15px auto;
     opacity: 0.7;
+    height: 30px;
+    width: 100%;
 }
 
 /* publish/ save draft buttons */
-input[type="submit"]{
-    font-family: $primary-font;
-    color: $primary-color;
+input[type="submit"] {
     background-color: $accent-color;
     border: none;
+    color: $primary-color;
+    font-family: $primary-font;
     font-size: 1.1em;
     max-width: 100%;
     margin: 0px auto;
@@ -138,7 +141,7 @@ input[type="submit"]{
 }
 
 /* surounding area (like whitebox in desktop version), gives a little extra margin between button and end of page */
-.blogposts{
+.blogposts {
     margin-bottom: 30px;
 }
 
@@ -161,9 +164,10 @@ input[type="submit"]{
 ---------------------------------------------------------------------------- */
 
 /* This is the feedback message text that visitors get when they comment posts*/
-p.feedback{
-    text-align: center; /* två försök att centrera, FUNKAR INTE!!, men man kan ändra textstorlek och färg. fattar inte varför */
-    margin: 20px auto -50 auto; /* margins funkar inte heller */
+p.feedback {
+    margin: 20px auto -50 auto; //margins funkar inte heller
+    text-align: center; //två försök att centrera, FUNKAR INTE!!, men man kan ändra textstorlek och färg. fattar inte varför
+
 }
 
 /* gives a little extra margin to this page */
@@ -178,9 +182,9 @@ p.feedback{
 
 footer {
     bottom: 0;
-    position: absolute;
-    width: 100%;
-    height: 120px;
     margin-top: 20px;
     margin-bottom: -150px;
+    position: absolute;
+    height: 120px;
+    width: 100%;
 }
