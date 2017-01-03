@@ -155,16 +155,31 @@ function deleteCommand($command, $id, $redirect)
 /* ----------------------------------------------------------------------------
         CREATING URL-QUERIES
 ---------------------------------------------------------------------------- */
-function createUrl($pageNr) {
+function createUrl($input) {
     $urlArray = $_GET;
-    $urlArray['pn'] = $pageNr;
+    
+    // Input values marked with 'pn'
+    // Input will be inserted into $_GET['pn']
+    if (strpos($input, 'pn') !== false) {
+        $input = str_replace('pn', '', $input);
+        $diff = $input;
+
+        $pageNumber = 1;
+        if(isset($urlArray['pn'])) {
+            $pageNumber = $urlArray['pn'];
+        }
+        $urlArray['pn'] = $pageNumber + $diff;
+    }
+
+    // Input values marked with 'order'
+    // Input will be inserted into $_GET['order']
+    if (strpos($input, 'order') !== false) {
+        $input = str_replace('order', '', $input);
+        $order = $input;
+        $urlArray['order'] = $order;
+    }
+
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
 }
-/*function createUrl($pageNr, $category) {
-    $urlArray = $_GET;
-    $urlArray['pn'] = $pageNr;
-    $urlArray['category'] = $category;
-    $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
-    return $url;
-}*/
+

@@ -59,7 +59,7 @@ require_once "code_open.php";
             // If no page-number has been selected
             $pageNumber = 1;
 
-            // Otherwise it the selected value
+            // Otherwise is the selected value
             if (isset($_GET['pn'])) {
                 $pageNumber = $_GET['pn'];
             }
@@ -99,37 +99,35 @@ require_once "code_open.php";
             // If there is more than one page of results
             if ($last !=1) {
                 if ($pageNumber > 1) {
-                    $previous = $pageNumber - 1;
+
+                    // Fillnumbers makes the amount of numbered links at a constant maximum
+                    // regardless of if you are near end or beginning of pagination
                     $fillNumbersBehind = -3;
-                    $jumpBackward = $pageNumber - 3;
 
                     if ($pageNumber >= $last - 3) {
                         $fillNumbersBehind = $pageNumber - $last;
-                        $jumpBackward = $pageNumber - 6 - $fillNumbersBehind;
-
-                        if ($jumpBackward < 1) {
-                            $jumpBackward = 1;
-                        }
                     }
 
                     // Previous-button and long-backward-jump
-                    $paginationCtrls .= '<a href="' . createUrl($jumpBackward) . '"> << </a> &nbsp;
-                    <a href="' . createUrl($previous) . '">Previous</a> &nbsp; &nbsp;';
+                    $paginationCtrls .= '<a href="' . createUrl('pn' . -3) . '"> << </a> &nbsp;
+                    <a href="' . createUrl('pn' . -1) . '">Previous</a> &nbsp; &nbsp;';
 
                     // LEFT - Render clickable number links to the left
                     for ($i = $pageNumber-6-$fillNumbersBehind; $i < $pageNumber; $i++) {
                         if ($i > 0) {
-                            $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp; ';
+                            $numberedLink = $i-$pageNumber;
+                            $paginationCtrls .= '<a href="' . createUrl('pn'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
                         }
                     }
                 }
 
-                // CURRENT PAGE - Render the target page number (not being a link)
+                // CURRENT PAGE - Render the target page number
                 $paginationCtrls .= '<span class="current_page_nr">'.$pageNumber.'</span> &nbsp; ';
 
-                // RIGHT - Render clickable number links that should appear on the right
+                // RIGHT - Render clickable number links that appear on the right
                 for ($i = $pageNumber+1; $i <= $last; $i++) {
-                    $paginationCtrls .= '<a href="' . createUrl($i) . '">' . $i . '</a> &nbsp; ';
+                    $numberedLink = $i-$pageNumber;
+                    $paginationCtrls .= '<a href="' . createUrl('pn'.$numberedLink) . '">' . $i . '</a> &nbsp; ';
 
                     // Making the index always show the same amount of page links
                     if ($pageNumber <= 3) {
@@ -145,10 +143,8 @@ require_once "code_open.php";
 
                 // Next-button and long-forward-jump button
                 if ($pageNumber != $last) {
-                    $next = $pageNumber + 1;
-                    $jumpForward = $pageNumber + 3 + $fillNumbersInfront;
-                    $paginationCtrls .= '&nbsp; <a href="' . createUrl($next) . '">Next</a> &nbsp;
-                    <a href="' . createUrl($jumpForward) . '"> >> </a> ';
+                    $paginationCtrls .= '&nbsp; <a href="' . createUrl('pn'. 1) . '">Next</a> &nbsp;
+                    <a href="' . createUrl('pn' . 3) . '"> >> </a> ';
                 }
             }
 
@@ -161,25 +157,25 @@ require_once "code_open.php";
             <div class="selection-display-box">
 
                 <?php
-                $order = '?&order=desc';
 
-                $queryStringOrder = $_SERVER['REQUEST_URI'] . $order;
-
-                if (isset($_GET["order"])) {
-                    $queryStringOrder = $_SERVER['REQUEST_URI'];
-                }
+                /* ----------------------------------------------------------------------------
+                        Sort posts by oldest or newest
+                ---------------------------------------------------------------------------- */
+                $order = 'desc';
                 if (isset($_GET["order"]) && $_GET["order"] == 'asc') {
-                    $queryStringOrder = preg_replace('/asc/', 'desc', $queryStringOrder);
-                    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: nyast inlägg först</a>';
+                    echo '<a class="order-sorting" href="' . createUrl('order' . $order) . '">Sortera: nyast inlägg först</a>';
                 } else {
-                    $queryStringOrder = preg_replace('/desc/', 'asc', $queryStringOrder);
-                    echo '<a class="order-sorting" href="' . $queryStringOrder . '">Sortera: äldst inlägg först</a>';
+                    $order = 'asc';
+                    echo '<a class="order-sorting" href="' . createUrl('order' . $order) . '">Sortera: äldsta inlägg först</a>';
                 }
 
+                /* ----------------------------------------------------------------------------
+                        Telling what category and month has been selected
+                ---------------------------------------------------------------------------- */
                 if (isset($_GET["yrmnth"])) {
-                    $selectedReadableDate = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
+                    $selectedMonth = strtoupper(date("F Y", strtotime($selectedYearAndMonth)));
                     echo '<div class="selection-display">
-                            <p>MÅNADSARKIV: ' . $selectedReadableDate . '</p>
+                            <p>MÅNADSARKIV: ' . $selectedMonth . '</p>
                         </div>';
                 }
 
@@ -203,8 +199,7 @@ require_once "code_open.php";
             </div> <!-- selection-display-box -->
 
             <!-----------------------------------------------------------------------------
-                        PAGINATION-TOP
-                        - printed out
+                        PAGINATION-TOP printed out
             ------------------------------------------------------------------------------>
 
             <div class="text-center pagination_controls">
