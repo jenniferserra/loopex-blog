@@ -164,7 +164,7 @@ function createUrl($input) {
     $urlArray = $_GET;
     
     /* ----------------------------------------------------------------------------
-        PAGE NUMBER
+        PAGE NUMBER DIFF
         createUrl('pageNrDiff' . $input)
     ---------------------------------------------------------------------------- */
     if (strpos($input, 'pageNrDiff') !== false) {
