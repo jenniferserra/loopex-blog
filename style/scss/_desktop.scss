@@ -165,15 +165,11 @@ input[type="submit"] {
 // keyframe settings to make the arrow bounce
 @-webkit-keyframes bounce {
   0% {
-    bottom: 5px;
-  }
-
-  25%, 75% {
-    bottom: 15px;
+    bottom: 0px;
   }
 
   50% {
-    bottom: 20px;
+    bottom: 10px;
   }
 
   100% {
