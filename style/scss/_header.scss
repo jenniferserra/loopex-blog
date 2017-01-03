@@ -47,7 +47,7 @@ header {
 
 
 /* ----------------------------------------------------------------------------
-        DETTA VAR UTKOMMENTERAT, WHY ?
+    DETTA VAR UTKOMMENTERAT, WHY / DESSA BEHÖVS NOG GAMAL KOD INTE .navbar-header?
 ---------------------------------------------------------------------------- */
 
  // STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA?
@@ -60,7 +60,7 @@ header {
 
 // TEXTEN ORANGE MUSIC. TILL VÄNSTER I MENYN
 .navbar-header {
-    color: $third-text-color;
+    color: $secondary-text-color;
     a:hover {
         color: $accent-color;
     }
