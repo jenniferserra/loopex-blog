@@ -57,7 +57,7 @@ h1{
 .form {
     text-align: center;
     width: 100%;
-  
+
 }
 .form input {
     font-family: $primary-font;
@@ -76,7 +76,7 @@ h1{
     font-size: 14px;
 }
 .btn:hover,.btn:active,.btn:focus {
-    background: $$secondary-accent-color;
+    background: $secondary-accent-color;
 }
 
 h2.login{
