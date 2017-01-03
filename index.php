@@ -11,6 +11,7 @@ require_once "code_open.php";
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
         <div class="bounce"><a href="#link-anchor"><img id="link-anchor" class="bounce" src="images/layout/arrow5.png"></a></div>
+        <div class="indexbox">
         <div class="col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
@@ -280,6 +281,7 @@ require_once "code_open.php";
 
             <div class="col-sm-12 col-xs-12 text-center pagination_controls">
                 <?php echo $paginationCtrls; ?>
+            </div>
             </div>
         </div>
     <?php

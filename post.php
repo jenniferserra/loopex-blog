@@ -7,11 +7,6 @@ require_once "code_open.php";
         <?php
         require_once "header.php";
 
-        if (!isset($_SESSION["loggedin"])) {
-            header('Location: index.php');
-            die();
-        }
-
         /* ----------------------------------------------------------------------------
             INSERT COMMENT TO DATABASE
         ---------------------------------------------------------------------------- */
@@ -68,7 +63,7 @@ require_once "code_open.php";
         	while(mysqli_stmt_fetch($stmt)) {
         	?>
                 <div class="whitebox col-sm-12 col-xs-12">
-            		<div class="blogpost_center divider">
+            		<div class="divider">
                         <div class="blogpost divider mobile-margin">
                             <h1 class="blog-text-center"><?php echo $title; ?></h1>
                             <div class="date blog-text-center">
