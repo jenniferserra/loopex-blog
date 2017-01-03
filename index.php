@@ -10,8 +10,8 @@ require_once "code_open.php";
     <div class="page-content">
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
-        <div class="bounce"><a href="#link-anchor"><img class="bounce" src="images/layout/arrow5.png"></a></div>
-        <div id="link-anchor" class="col-md-6 pagination">
+        <div class="bounce"><a href="#link-anchor"><img id="link-anchor" class="bounce" src="images/layout/arrow5.png"></a></div>
+        <div class="col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
                     Values to insert into SQL-queries
