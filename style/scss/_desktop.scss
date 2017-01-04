@@ -40,8 +40,8 @@
     font-family: $primary-font;
     outline: 0;
     padding: 15px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
     width: 100%;
 }
 
@@ -156,24 +156,40 @@ input[type="submit"] {
 
 
 /* ----------------------------------------------------------------------------
-            ANIMATION ARROW
+        ANIMATION ARROW
+        - keyframe settings to make the arrow bounce
 ---------------------------------------------------------------------------- */
 
 .bounce {
     @include arrow;
 }
 
-// keyframe settings to make the arrow bounce
+// Standard syntax
+@keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 5px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+// Safari
 @-webkit-keyframes bounce {
-  0% {
-    bottom: 0px;
-  }
+    0% {
+        bottom: 0px;
+    }
 
-  50% {
-    bottom: 5px;
-  }
+    50% {
+        bottom: 5px;
+    }
 
-  100% {
-    bottom: 0;
-  }
+    100% {
+        bottom: 0;
+    }
 }

@@ -35,5 +35,6 @@
 	right: 0;
 	height: 70px;
 	width: 100px;
-	-webkit-animation:bounce 1s infinite;
+	-webkit-animation: bounce 1s infinite; /* Safari */
+	animation: bounce 1s infinite;
 }
