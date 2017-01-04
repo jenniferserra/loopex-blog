@@ -32,13 +32,15 @@ header {
 
 .dropdown-menu {
     background-color: #222222;
+    font-size: 14px;
 }
 
 .dropdown-menu > li > a {
     color: $primary-color;
-    font-size: 16px;
     padding: 10px 20px;
     font-weight: 300;
+    font-size: 14px;
+
 }
 .dropdown-menu > li > a:hover {
     color: $accent-color;
