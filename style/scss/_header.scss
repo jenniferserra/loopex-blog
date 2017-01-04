@@ -6,7 +6,6 @@ header {
     position: absolute;
 }
 
-
 // Making drop down appear on hover
 @media (min-width: 979px) {
   ul.nav li.dropdown:hover > ul.dropdown-menu {
@@ -18,16 +17,16 @@ header {
     padding-left: 40px;
     padding-right: 40px;
     min-width: 80px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 300;
+    letter-spacing: 0.5px;
     color: $primary-color;
-
 }
 
 .navbar-inverse .navbar-nav>li:hover>a {
     color: $accent-color;
-}
 
+}
 
 .dropdown-menu {
     background-color: #222222;
@@ -36,13 +35,15 @@ header {
 
 .dropdown-menu > li > a {
     color: $primary-color;
-    font-size: 16px;
-    padding: 10px 20px;
+    font-size: 14px;
     font-weight: 300;
+    letter-spacing: 0.5px;
+    padding: 10px 20px;
 }
+
 .dropdown-menu > li > a:hover {
-    color: $accent-color;
     background-color: #222222;
+    color: $accent-color;
 }
 
 
@@ -53,7 +54,7 @@ header {
     float: left;
     height: 36px;
     width: 36px;
-    margin: 5px;
+    margin: 7px;
 }
 .orange_logo:hover {
     animation-name: orange;
