@@ -2,7 +2,8 @@
 require_once "code_open.php";
 ?>
 <body class="statistics">
-	<div class="page-content"> <!-- start a wrapper -->
+	<!-- start a wrapper -->
+	<div class="page-content">
 		<?php
 		require_once "header.php";
 		
@@ -14,6 +15,7 @@ require_once "code_open.php";
 		
 		<div class="whitebox col-xs-12">
 			<h1 class="statistics">Statistik</h1>
+			
 			<?php
 			/* ----------------------------------------------------------------------------
 					STATISTICS - POSTS
@@ -51,6 +53,7 @@ require_once "code_open.php";
 			echo '<div class="statistics-count">Du har '. $nbr . ' kommentarer per inlägg.</div>';
 			?>
 		</div> <!-- .whitebox col-xs-12 -->
-	<?php		
-	include "footer.php";
-	?>
+	</div> <!-- .page-content -->
+<?php		
+require_once "code_end.php";
+?>

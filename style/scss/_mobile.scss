@@ -26,11 +26,18 @@ body.comments {
     background-color: $primary-color;
     background-image: none;
 }
+body.login {
+    background-color: $primary-color;
+    background-image: none;
+}
+body.post {
+    background-color: $primary-color;
+    background-image: none;
+}
 
 h1{
     margin-top: 50px;
 }
-
 
 /* ----------------------------------------------------------------------------
             SÅ LÄNGE
@@ -63,6 +70,10 @@ h1{
 .form {
     text-align: center;
     width: 100%;
+<<<<<<< HEAD
+=======
+    margin-top: 40px;
+>>>>>>> 6c0379e0d67128c475a5ad5e347d0f8f65685441
 }
 
 .form input {
@@ -88,7 +99,7 @@ h1{
 }
 
 h2.login{
-    color: $primary-color;
+    color: $primary-text-color;
 }
 
 /* center aligns all text on pages where there is a whitebox as background in the desktop site */

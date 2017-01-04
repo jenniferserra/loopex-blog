@@ -2,7 +2,7 @@
 require_once "code_open.php";
 ?>
 <body class="dashboard">
-<!-- start a wrapper -->
+    <!-- start a wrapper -->
     <div class="page-content">
         <?php
         require_once "header.php";
@@ -11,6 +11,7 @@ require_once "code_open.php";
             header('Location: index.php');
             die();
         }
+
         $userId = $_SESSION["user_id"];
         $stmt = $conn->stmt_init();
 
@@ -20,9 +21,11 @@ require_once "code_open.php";
             $stmt->fetch();
             mysqli_stmt_close($stmt);
         }
-        //-----------------------------------------------------------------------------
-        // PUBLISH
-        //-----------------------------------------------------------------------------
+
+        /* ----------------------------------------------------------------------------
+                PUBLUSH
+        ---------------------------------------------------------------------------- */
+
         if(isset($_POST["publish"])) {
             if( !empty($_POST["blogpost_title"]) &&
                 !empty($_POST["blogpost_text"]) &&
@@ -41,17 +44,20 @@ require_once "code_open.php";
                 // Upload post into database. Published = TRUE
                 $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
 
+                // Feedback and error messages
                 if ( mysqli_query($conn, $query)) {
                     $_SESSION['msg'] = "Ditt inlägg är publicerat!";
                 } else {
-                    echo "Någonting fick fel, testa igen";
+                    $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
                 }
-            } else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
+            } else { 
+                $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och välj kategori!";
+            }
         }
 
-        //-----------------------------------------------------------------------------
-        // SAVE AS DRAFT
-        //-----------------------------------------------------------------------------
+        /* ----------------------------------------------------------------------------
+                SAVE AS DRAFTS
+        ---------------------------------------------------------------------------- */
 
         if(isset($_POST["draft"])) {
             if( !empty($_POST["blogpost_title"]) &&
@@ -71,28 +77,37 @@ require_once "code_open.php";
                 // Upload post into database. Published = FALSE
                 $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
 
+                // Feedback and error messages
                 if ( mysqli_query($conn, $query)) {
                     $_SESSION['msg'] = "Ditt inlägg är sparat i utkast!";
                 } else {
-                    echo "Någonting fick fel, testa igen";
+                    $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
                 }
-            } else { echo "Du har inte fyllt i alla fält eller valt kategori"; }
+            } else { 
+                $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och välj kategori!";
+            }
         }
-        //-----------------------------------------------------------------------------
-        // HTML-STRUKTUR FÖR INLÄGG
-        //-----------------------------------------------------------------------------
+         /* ----------------------------------------------------------------------------
+                HTML-STRUCTURE FOR POSTFORM
+        ---------------------------------------------------------------------------- */
         ?>
         <div class="whitebox col-sm-12 col-xs-12">
-        <?php echo '<div class="welcome"> Hej '. $firstname .' '. $lastname .'! </div>'; ?>
-        <h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Dags att skriva nästa succéinlägg?" ?></h1>
+            <?php echo '<div class="welcome"> Hej '. $firstname .' '. $lastname .'! </div>'; ?>
+            <h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Dags att skriva nästa succéinlägg?" ?></h1>
             <form method="POST" action="dashboard.php" class="blogposts" enctype="multipart/form-data">
+
                 <!-- Rubrik -->
                 <input type="text" placeholder="Skriv din rubrik här" name="blogpost_title" class="blogpost_title">
                 <br>
+
                 <!-- Bilduppladdning -->
-                <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <br>
+
                 <!-- Inläggstext -->
-                <textarea rows="15" cols="80" placeholder="Skriv ditt inlägg här" name="blogpost_text" class="blogpost_text"></textarea><br>
+                <textarea rows="15" cols="80" placeholder="Skriv ditt inlägg här" name="blogpost_text" class="blogpost_text"></textarea>
+                <br>
+
                 <!-- Välj kategori -->
                 <select name="category" class="categories">
                     <option value ="0">Välj kategori</option>
@@ -109,66 +124,70 @@ require_once "code_open.php";
                     }
                     mysqli_close($conn);
                     ?>
+                </select> <!-- .categories -->
+                <br>
 
-                </select><br>
                 <!-- Publicera inlägg -->
                 <input name="publish" class="btn button btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
+
                 <!-- Spara som utkast -->
                 <input name="draft" class="btn button btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
-            </form>
+            </form> <!-- .blogposts -->
+
+            <?php
+            /*___________________________________________________________________________________________
+
+            **Uppladdning av uppgiftsbild**
+
+            * 1: Användaren trycker på upload -> definiera vart bilderna ska laddas upp i $target_folder. Här används mappen som skapas genom registreringen
+            * 2: Ange att namnet på filen ska sparas som ska vara "task-image-task_id.jpg" i $target_folder
+            * 3: Kolla så att storleken på bilden är under 10MB, om så är fallet informeras användaren att välja en mindre bild
+            * 4: Kolla så att filen är en JPG eller JPEG, om så inte är fallet informeras användaren att välja en annan bild
+            * 5: Flytta bilden från dess temporära plats till användarens egna mapp
+
+            ___________________________________________________________________________________________
+            */
+
+            // $imageQuery  = "SELECT * FROM posts";
+                    //
+            //     mysqli_query($conn, $imageQuery);
+                    //
+            //     if ($stmt->prepare($imageQuery)) {
+            //         $stmt->execute();
+            //         $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text, $isPublished, $userId, $catId);
+                    //
+            //         $postId = $conn->insert_id;
+                    //
+            //         $targetFolder = "postimages/";
+            //         $targetName = $targetFolder . basename("post-image-".$postId.".jpg");
+                    //
+                    //
+            //         if ($_FILES["fileToUpload"]["size"] > 10000000) {
+            //             echo "<div class='message'>" . 'Filen är för stor, den får max vara 10MB.' . "</div>";
+            //             exit;
+            //         }
+                    //
+            //         $type = pathinfo($targetName, PATHINFO_EXTENSION);
+            //         if ($type !== 'jpg') {
+            //             echo "<div class='message'>" . 'Du kan bara ladda upp JPEG-filer' . "</div>";
+            //             exit;
+            //         }
+                    //
+            //         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetName)) {
+                    //
+            //             $lastInsertId = mysqli_insert_id($conn);
+                    //
+            //             $query ="UPDATE posts SET image = '{$targetName}' WHERE post_id = '{$lastInsertId}'";
+                    //
+            //             if ($stmt->prepare($query)) {
+            //                 $stmt->execute();
+            //                 echo "<div class='message'>" . 'Uppladdningen lyckades' . "</div>";
+            //             }
+            //         }
+            //          }
+            ?>
+        </div> <!-- .whitebox col-sm-12 col-xs-12 -->
+    </div> <!-- .page-content -->
 <?php
- /*___________________________________________________________________________________________
-
-        **Uppladdning av uppgiftsbild**
-
-        * 1: Användaren trycker på upload -> definiera vart bilderna ska laddas upp i $target_folder. Här används mappen som skapas genom registreringen
-        * 2: Ange att namnet på filen ska sparas som ska vara "task-image-task_id.jpg" i $target_folder
-        * 3: Kolla så att storleken på bilden är under 10MB, om så är fallet informeras användaren att välja en mindre bild
-        * 4: Kolla så att filen är en JPG eller JPEG, om så inte är fallet informeras användaren att välja en annan bild
-        * 5: Flytta bilden från dess temporära plats till användarens egna mapp
-
-        ___________________________________________________________________________________________
-        */
-
-        // $imageQuery  = "SELECT * FROM posts";
-                //
-        //     mysqli_query($conn, $imageQuery);
-                //
-        //     if ($stmt->prepare($imageQuery)) {
-        //         $stmt->execute();
-        //         $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text, $isPublished, $userId, $catId);
-                //
-        //         $postId = $conn->insert_id;
-                //
-        //         $targetFolder = "postimages/";
-        //         $targetName = $targetFolder . basename("post-image-".$postId.".jpg");
-                //
-                //
-        //         if ($_FILES["fileToUpload"]["size"] > 10000000) {
-        //             echo "<div class='message'>" . 'Filen är för stor, den får max vara 10MB.' . "</div>";
-        //             exit;
-        //         }
-                //
-        //         $type = pathinfo($targetName, PATHINFO_EXTENSION);
-        //         if ($type !== 'jpg') {
-        //             echo "<div class='message'>" . 'Du kan bara ladda upp JPEG-filer' . "</div>";
-        //             exit;
-        //         }
-                //
-        //         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetName)) {
-                //
-        //             $lastInsertId = mysqli_insert_id($conn);
-                //
-        //             $query ="UPDATE posts SET image = '{$targetName}' WHERE post_id = '{$lastInsertId}'";
-                //
-        //             if ($stmt->prepare($query)) {
-        //                 $stmt->execute();
-        //                 echo "<div class='message'>" . 'Uppladdningen lyckades' . "</div>";
-        //             }
-        //         }
-                //          }
-?>
-</div>
-<?php
-include "footer.php";
+require_once "code_end.php";
 ?>
