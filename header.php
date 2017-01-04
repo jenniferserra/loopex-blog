@@ -1,6 +1,5 @@
-   
 <header>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <a href="index.php"><img src="images/layout/orange.png" class="orange_logo" alt="till bloggen"></a>
 
@@ -110,14 +109,14 @@
                 <?php
                 }
                 ?>
-
-
+                
                 </ul>
             </div>
         </div>
-    </div>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </nav>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </header>
 
