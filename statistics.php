@@ -51,6 +51,7 @@ require_once "code_open.php";
 			echo '<div class="statistics-count">Du har '. $nbr . ' kommentarer per inlägg.</div>';
 			?>
 		</div> <!-- .whitebox col-xs-12 -->
-	<?php		
-	include "footer.php";
-	?>
+	</div> <!-- .page-content -->
+<?php		
+include "footer.php";
+?>

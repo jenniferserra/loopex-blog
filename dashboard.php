@@ -169,6 +169,7 @@ require_once "code_open.php";
                 //          }
 ?>
 </div>
+</div> <!-- .page-content -->
 <?php
 include "footer.php";
 ?>

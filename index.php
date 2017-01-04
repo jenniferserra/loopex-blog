@@ -10,10 +10,10 @@ require_once "code_open.php";
 
     <div class="bounce" tabindex="-1">
         <a href="#link-anchor">
-            <img id="link-anchor" class="bounce" src="images/layout/arrow5.png">
+            <img id="link-anchor" alt="arrow to page down" class="bounce" src="images/layout/arrow5.png">
         </a>
     </div> <!-- .bounce -->
-    
+
     <div class="col-md-6 pagination">
         <?php
         /* ----------------------------------------------------------------------------
@@ -181,23 +181,23 @@ require_once "code_open.php";
                 setlocale(LC_TIME, 'sv_SE');
                 $selectedMonth = strtoupper(strftime('%B %Y', strtotime($selectedMonth)));
                 echo '<div class="selection-display"><p>MÅNADSARKIV: ' . $selectedMonth . '</p></div>';
-                }
+            }
 
-                if (isset($_GET["category"]) && isset($_GET["yrmnth"])) {
-                    echo '<div class="selection-display"><p class="divider-line"> ____ </p> <br><br></div>';
-                }
+            if (isset($_GET["category"]) && isset($_GET["yrmnth"])) {
+                echo '<div class="selection-display"><p class="divider-line"> ____ </p> <br><br></div>';
+            }
 
-                if (isset($_GET["category"])) {
-                    $selectedCategory =  $_GET["category"];
-                    $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
-                    $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
-                    $categoryRow = mysqli_fetch_row($query_getCategoryName);
-                    $selectedCategoryName = strtoupper($categoryRow[0]);
-                    echo '<div class="selection-display">
-                            <p>KATEGORI: ' . $selectedCategoryName . '</p>
-                        </div>';
-                } ?>
-        </div> <!-- selection-display-box -->
+            if (isset($_GET["category"])) {
+                $selectedCategory =  $_GET["category"];
+                $sql_getCategoryName = "SELECT cat_name FROM categories WHERE cat_id = $selectedCategory";
+                $query_getCategoryName = mysqli_query($conn, $sql_getCategoryName);
+                $categoryRow = mysqli_fetch_row($query_getCategoryName);
+                $selectedCategoryName = strtoupper($categoryRow[0]);
+                echo '<div class="selection-display">
+                        <p>KATEGORI: ' . $selectedCategoryName . '</p>
+                    </div>';
+            } ?>
+        </div> <!-- .selection-display-box -->
 
         <!-----------------------------------------------------------------------------
                     PAGINATION-TOP printed out
@@ -213,7 +213,8 @@ require_once "code_open.php";
                 - Looping out blog posts a few at a time
         ---------------------------------------------------------------------------- */
 
-        while ($post = mysqli_fetch_array($queryGetPaginatedPosts, MYSQLI_ASSOC)) {
+        while($post = mysqli_fetch_array($queryGetPaginatedPosts, MYSQLI_ASSOC)) {
+
             $postId = $post["post_id"];
             $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
             $editTime = $post["edit_time"];
@@ -222,15 +223,21 @@ require_once "code_open.php";
             $isPublished = $post["is_published"];
             $userId = $post["user_id"];
             $catId = $post["cat_id"];
+
             //Left join
             $firstName = $post["firstname"];
             $lastName = $post["lastname"];
             $user_email = $post["email"];
+
             //Left join
             $catName = $post["cat_name"];
 
             // Getting the amout of comments for each post
-            $sql = "SELECT count(*) FROM comments WHERE fk_post_id = $postId";
+            $sql =  "SELECT count(*) 
+                    FROM comments 
+                    WHERE fk_post_id = $postId
+                    ";
+
             $queryForCommentAmount = mysqli_query($conn, $sql);
             $comment = mysqli_fetch_row($queryForCommentAmount);
             $comments = $comment[0]; ?>
@@ -240,19 +247,22 @@ require_once "code_open.php";
                     <h2 class="blog-text-center" tabindex="11"><?php echo $title; ?></h2>
                     <div class="date-container blog-text-center" tabindex="12">
                         <p class="date"><?php echo $createTime; ?></p>
-                    </div><br>
-                    <article tabindex="13"><p><?php echo $text; ?></p></div><br><br>
-                    <?php
-                    ?>
-                        <div class="text right-align">
-                            <span class='highlighted-text'>Kategori: </span>
-                            <?php
-                            if ($catName == null) {
-                                echo "Okategoriserat";
-                            } else {
-                                echo $catName;
-                            } ?>
-                        </div> <!-- .text right-align -->
+                    </div>
+                    <br>
+                    <article tabindex="13">
+                        <p><?php echo $text; ?></p>
+                    </article>
+                    <br>
+                    <br>
+                    <div class="text right-align">
+                        <span class='highlighted-text'>Kategori: </span>
+                        <?php
+                        if ($catName == null) {
+                            echo "Okategoriserat";
+                        } else {
+                            echo $catName;
+                        } ?>
+                    </div> <!-- .text right-align -->
                     <div class="right-align">
                         <span class='highlighted-text'>Skriven av:</span>
                             <?php echo "$firstName $lastName, <a href='mailto:$user_email'>$user_email</a>"; ?>
@@ -262,10 +272,9 @@ require_once "code_open.php";
                         echo "<a href='post.php?id=$postId'>
                         ($comments) Kommentarer</a>"; ?><hr class="divider">
                     </div> <!-- .comments right-align -->
-                </section>
+                </section> <!-- .blogpost -->
             </div> <!-- .blogpost_center mobile-margin -->
-        <?php
-
+        <?php 
         }
         /* ----------------------------------------------------------------------------
                 END OF LOOPING OUT BLOG POSTS

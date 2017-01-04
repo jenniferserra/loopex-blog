@@ -129,5 +129,8 @@ require_once "code_open.php";
             <?php
             }
         }
-    include "footer.php";
+        ?>
+    </div> <!-- .page-content -->
+<?php
+include "footer.php";
 ?>

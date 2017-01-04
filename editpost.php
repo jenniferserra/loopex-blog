@@ -99,6 +99,7 @@ $cats = $conn->query($query);
 			<input name="draft" class="btn btn-lg btn-primary btn-block" type="submit" value="Spara redigering till utkast">
 		</form>
 	</div> <!-- .whitebox col-sm-12 col-xs-12 -->
+	</div> <!-- .page-content -->
 <?php
 include "footer.php";
 ?>

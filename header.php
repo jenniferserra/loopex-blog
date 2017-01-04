@@ -63,7 +63,7 @@
                     ?>
 
                         <li class="dropdown">
-                            <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Kategori</a>
+                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown">Kategori</a>
                             <ul class="dropdown-menu">
                                 <?php
                                 // Looping out category drop-down
@@ -79,7 +79,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Arkiv</a>
+                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown">Arkiv</a>
                             <ul class="dropdown-menu">
                                 <?php
                                 // Looping out Month-selection drop-down

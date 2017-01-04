@@ -1,4 +1,3 @@
-	</div> <!-- .page-content -->
 	<footer>
 		<div class="container-fluid">
 			<div class="row">

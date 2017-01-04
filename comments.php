@@ -91,6 +91,7 @@ require_once "code_open.php";
 		}
 		?>
 	</div> <!-- End of whitebox -->
+	</div> <!-- .page-content -->
 	<?php
 	$stmt->close();
 include "footer.php";
