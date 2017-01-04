@@ -18,23 +18,18 @@ header {
     padding-left: 40px;
     padding-right: 40px;
     min-width: 80px;
-<<<<<<< HEAD
     font-family: $primary-font;
     font-size: 14px;
     font-weight: 300;
     letter-spacing: 0.2px;
-=======
     font-size: 16px;
     font-weight: 300;
->>>>>>> 49366899160e01fef6fe6a3b49490c86be499d9e
     color: $primary-color;
-
 }
 
 .navbar-inverse .navbar-nav>li:hover>a {
     color: $accent-color;
 }
-
 
 .dropdown-menu {
     background-color: #222222;
@@ -80,13 +75,6 @@ header {
     filter: hue-rotate(0deg) brightness(100%);
     transform: rotate(360deg);}
   }
-
-
-
-
-
-
-
 /*
 
 GAMMALT TJAFS SOM SKALL TAS BORT. MAN KAN SNO STYLING HÄRIFRÅN UNDER TIDEN!
