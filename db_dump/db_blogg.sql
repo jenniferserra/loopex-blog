@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 08, 2016 at 07:26 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Jan 04, 2017 at 07:52 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -36,10 +36,13 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
-(1, 'Sport'),
-(2, 'Mode'),
-(3, 'Fotografi'),
-(4, 'Annat');
+(14, 'Festival'),
+(15, 'Rock'),
+(16, 'Pop'),
+(17, 'Indie-pop'),
+(18, 'Jazz'),
+(19, 'KÃ¤ndisar'),
+(20, 'Rykten');
 
 -- --------------------------------------------------------
 
@@ -49,7 +52,7 @@ INSERT INTO `categories` (`cat_id`, `cat_name`) VALUES
 
 CREATE TABLE `comments` (
   `com_id` int(255) NOT NULL,
-  `name` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
+  `name` text COLLATE utf8_swedish_ci NOT NULL,
   `email` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `create_time` datetime(6) NOT NULL,
   `text` text COLLATE utf8_swedish_ci NOT NULL,
@@ -61,8 +64,14 @@ CREATE TABLE `comments` (
 --
 
 INSERT INTO `comments` (`com_id`, `name`, `email`, `create_time`, `text`, `fk_post_id`) VALUES
-(1, 'Henrik', 'hans@hans.se', '2016-12-08 13:53:14.000000', 'DÃ¥lig blogg', 97),
-(2, 'Torde', 'torde@torde.com', '2016-12-08 13:57:56.000000', 'Jag tycker den var bra!', 97);
+(108, 'Sana Karlsson', 'sara@hotmail.com', '2017-01-04 19:37:16.000000', 'Neeeeej! <br>\r\nDet kÃ¤nns sÃ¥ himla trÃ¥kigt att inte fÃ¥ se spelningen som jag har lÃ¤ngtat sÃ¥ mycket efter. Jag hoppas att bandet mÃ¥r bra och att inget allvarligt har hÃ¤nt. <br>\r\nVi ses nÃ¤sta gÃ¥ng! ', 222),
+(109, 'Lucas', 'Lucas@gmail.com', '2017-01-04 19:38:12.000000', 'Men fÃ¶r i helvete grabbar!! <br>\r\nStÃ¤ll upp pÃ¥ en jÃ¤vla spelning i Sverige. Jag har ju redan kÃ¶pt tÃ¥gbiljetter och betalt fÃ¶r hotell. TrÃ¥kigt....', 222),
+(110, 'Lucie', 'lucie@gmail.com', '2017-01-04 19:39:24.000000', 'Jag Ã¶nskar att jag var en rysk rik miljardÃ¤r som har rÃ¥d att boka in dessa stjÃ¤rnor', 228),
+(111, 'Nora', 'nora.h@hotmail.com', '2017-01-04 19:40:10.000000', 'OMG, herregud, wow <br>\r\nKolla in videon, sÃ¥ himla coolt!', 228),
+(112, 'Eva Norrsken', 'eva.norrsken@gaffa.se', '2017-01-04 19:41:16.000000', 'Jag hÃ¥ller verkligen med. <br>\r\nThe Crams omslag Ã¤r grymt snygga!!', 226),
+(113, 'Bellaroush', 'bellaroush@hotmail.com', '2017-01-04 19:44:01.000000', 'Kolla in vÃ¥r video <a href="https://www.youtube.com/watch?v=1-65SE7Dhlk&feature=youtu.be" target="_blank" style="color: #F00;">hÃ¤r</a> <br> \r\n/ Bellaroush\r\n', 225),
+(114, 'Felix', 'felix.b@hotmail.com', '2017-01-04 19:44:56.000000', 'Skitsnyggt gjort bandet och bra budskap!', 225),
+(115, 'Agneta ', 'agneta@hotmail.com', '2017-01-04 19:46:00.000000', 'Jag tycker dock att "Dancing Queen" Ã¤r den bÃ¤sta lÃ¥ten med ABBA', 224);
 
 -- --------------------------------------------------------
 
@@ -86,13 +95,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `create_time`, `edit_time`, `title`, `text`, `is_published`, `user_id`, `cat_id`) VALUES
-(95, '2016-12-07 17:20:56.000000', '0000-00-00 00:00:00.000000', 'Test', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoc non est positum in nostra actione. At iste non dolendi status non vocatur voluptas. Varietates autem iniurasque fortunae facile veteres philosophorum praeceptis instituta vita superabat. </p>\r\n\r\n<ul>\r\n	<li>Frater et T.</li>\r\n	<li>Omnium enim rerum principia parva sunt, sed suis progressionibus usa augentur nec sine causa;</li>\r\n	<li>Facillimum id quidem est, inquam.</li>\r\n	<li>Sed tamen enitar et, si minus multa mihi occurrent, non fugiam ista popularia.</li>\r\n</ul>\r\n\r\n\r\n<p>Quid enim de amicitia statueris utilitatis causa expetenda vides. Istic sum, inquit. Aliter homines, aliter philosophos loqui putas oportere? <b>Sed quod proximum fuit non vidit.</b> Ut in geometria, prima si dederis, danda sunt omnia. Atqui iste locus est, Piso, tibi etiam atque etiam confirmandus, inquam; <i>Memini me adesse P.</i> </p>\r\n\r\n<p><b>Beatum, inquit.</b> Sed haec quidem liberius ab eo dicuntur et saepius. Ergo in gubernando nihil, in officio plurimum interest, quo in genere peccetur. </p>\r\n\r\n<p>Duo Reges: constructio interrete. Et ille ridens: Video, inquit, quid agas; Non quaeritur autem quid naturae tuae consentaneum sit, sed quid disciplinae. <b>Quod quidem iam fit etiam in Academia.</b> </p>\r\n\r\n<p>Atqui reperies, inquit, in hoc quidem pertinacem; Animi enim quoque dolores percipiet omnibus partibus maiores quam corporis. Vitae autem degendae ratio maxime quidem illis placuit quieta. Post enim Chrysippum eum non sane est disputatum. <b>An haec ab eo non dicuntur?</b> Summum enÃ­m bonum exposuit vacuitatem doloris; </p>\r\n\r\n', 1, 4, 1),
-(96, '2016-12-07 20:42:28.000000', '0000-00-00 00:00:00.000000', 'Harry bloggar', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Equidem, sed audistine modo de Carneade? Ita prorsus, inquam; Duo Reges: constructio interrete. Hoc Hieronymus summum bonum esse dixit. Quonam, inquit, modo? Quid est, quod ab ea absolvi et perfici debeat? Quid me istud rogas? Quid de Platone aut de Democrito loquar? </p>\r\n\r\n<dl>\r\n	<dt><dfn>Quid Zeno?</dfn></dt>\r\n	<dd>Itaque rursus eadem ratione, qua sum paulo ante usus, haerebitis.</dd>\r\n	<dt><dfn>Quibusnam praeteritis?</dfn></dt>\r\n	<dd>Quid censes in Latino fore?</dd>\r\n	<dt><dfn>Magna laus.</dfn></dt>\r\n	<dd>Res enim se praeclare habebat, et quidem in utraque parte.</dd>\r\n	<dt><dfn>Easdemne res?</dfn></dt>\r\n	<dd>Itaque in rebus minime obscuris non multus est apud eos disserendi labor.</dd>\r\n</dl>\r\n\r\n\r\n<p>Ne in odium veniam, si amicum destitero tueri. Ut in geometria, prima si dederis, danda sunt omnia. </p>\r\n\r\n<p>Quantum Aristoxeni ingenium consumptum videmus in musicis? Sit hoc ultimum bonorum, quod nunc a me defenditur; Haec bene dicuntur, nec ego repugno, sed inter sese ipsa pugnant. Hic Speusippus, hic Xenocrates, hic eius auditor Polemo, cuius illa ipsa sessio fuit, quam videmus. </p>\r\n\r\n<p>Videamus animi partes, quarum est conspectus illustrior; Prodest, inquit, mihi eo esse animo. Nunc ita separantur, ut disiuncta sint, quo nihil potest esse perversius. Age nunc isti doceant, vel tu potius quis enim ista melius? Beatus sibi videtur esse moriens. At iste non dolendi status non vocatur voluptas. Aliter homines, aliter philosophos loqui putas oportere? </p>\r\n\r\n<ol>\r\n	<li>Nec enim, omnes avaritias si aeque avaritias esse dixerimus, sequetur ut etiam aequas esse dicamus.</li>\r\n	<li>Animum autem reliquis rebus ita perfecit, ut corpus;</li>\r\n</ol>\r\n\r\n\r\n<p>Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Quae est igitur causa istarum angustiarum? Sit sane ista voluptas. Urgent tamen et nihil remittunt. An nisi populari fama? Ab his oratores, ab his imperatores ac rerum publicarum principes extiterunt. </p>\r\n\r\n', 1, 5, 2),
-(97, '2016-12-07 20:43:41.000000', '0000-00-00 00:00:00.000000', 'Mitt fÃ¶rsta inlÃ¤gg', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Si mala non sunt, iacet omnis ratio Peripateticorum. Quid de Platone aut de Democrito loquar? Cur fortior sit, si illud, quod tute concedis, asperum et vix ferendum putabit? </p>\r\n\r\n<ol>\r\n	<li>Audeo dicere, inquit.</li>\r\n	<li>Non potes ergo ista tueri, Torquate, mihi crede, si te ipse et tuas cogitationes et studia perspexeris;</li>\r\n	<li>Nosti, credo, illud: Nemo pius est, qui pietatem-;</li>\r\n	<li>Aliis esse maiora, illud dubium, ad id, quod summum bonum dicitis, ecquaenam possit fieri accessio.</li>\r\n	<li>Commoda autem et incommoda in eo genere sunt, quae praeposita et reiecta diximus;</li>\r\n	<li>Quamquam non negatis nos intellegere quid sit voluptas, sed quid ille dicat.</li>\r\n</ol>\r\n\r\n\r\n<p>Quae cum magnifice primo dici viderentur, considerata minus probabantur. Immo alio genere; Inde sermone vario sex illa a Dipylo stadia confecimus. Quid enim tanto opus est instrumento in optimis artibus comparandis? </p>\r\n\r\n<p>Mene ergo et Triarium dignos existimas, apud quos turpiter loquare? Eam tum adesse, cum dolor omnis absit; Non quam nostram quidem, inquit Pomponius iocans; Vide igitur ne non debeas verbis nostris uti, sententiis tuis. </p>\r\n\r\n<p>Duo Reges: constructio interrete. Hoc sic expositum dissimile est superiori. Tecum optime, deinde etiam cum mediocri amico. Nihil enim iam habes, quod ad corpus referas; Idem iste, inquam, de voluptate quid sentit? Atqui perspicuum est hominem e corpore animoque constare, cum primae sint animi partes, secundae corporis. Quae cum dixisset, finem ille. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; A villa enim, credo, et: Si ibi te esse scissem, ad te ipse venissem. Ergo instituto veterum, quo etiam Stoici utuntur, hinc capiamus exordium. </p>\r\n\r\n<p>Quid ad utilitatem tantae pecuniae? Iam in altera philosophiae parte. Animi enim quoque dolores percipiet omnibus partibus maiores quam corporis. Quodsi ipsam honestatem undique pertectam atque absolutam. Apparet statim, quae sint officia, quae actiones. Quantum Aristoxeni ingenium consumptum videmus in musicis? Suo enim quisque studio maxime ducitur. </p>\r\n\r\n<dl>\r\n	<dt><dfn>Nihil sane.</dfn></dt>\r\n	<dd>Vitae autem degendae ratio maxime quidem illis placuit quieta.</dd>\r\n	<dt><dfn>Moriatur, inquit.</dfn></dt>\r\n	<dd>Sed id ne cogitari quidem potest quale sit, ut non repugnet ipsum sibi.</dd>\r\n	<dt><dfn>Numquam facies.</dfn></dt>\r\n	<dd>Videamus animi partes, quarum est conspectus illustrior;</dd>\r\n	<dt><dfn>Numquam facies.</dfn></dt>\r\n	<dd>Quae tamen a te agetur non melior, quam illae sunt, quas interdum optines.</dd>\r\n	<dt><dfn>Avaritiamne minuis?</dfn></dt>\r\n	<dd>Non minor, inquit, voluptas percipitur ex vilissimis rebus quam ex pretiosissimis.</dd>\r\n</dl>\r\n\r\n\r\n', 1, 6, 4),
-(98, '2016-12-08 11:57:39.000000', '0000-00-00 00:00:00.000000', 'Utkast 1', '\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam. Mauris elit velit, lobortis sed interdum at, vestibulum vitae libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque iaculis ligula ut ipsum mattis viverra. Nulla a libero metus. Integer gravida tempor metus eget condimentum. Integer eget iaculis tortor. Nunc sed ligula sed augue rutrum ultrices eget nec odio. Morbi rhoncus, sem laoreet tempus pulvinar, leo diam varius nisi, sed accumsan ligula urna sed felis. Mauris molestie augue sed nunc adipiscing et pharetra ligula suscipit. In euismod lectus ac sapien fringilla ut eleifend lacus venenatis.  </p>\r\n\r\n<p>Proin suscipit luctus orci placerat fringilla. Donec hendrerit laoreet risus eget adipiscing. Suspendisse in urna ligula, a volutpat mauris. Sed enim mi, bibendum eu pulvinar vel, sodales vitae dui. Pellentesque sed sapien lorem, at lacinia urna. In hac habitasse platea dictumst. Vivamus vel justo in leo laoreet ullamcorper non vitae lorem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin bibendum ullamcorper rutrum.  </p>\r\n\r\n<p>In facilisis scelerisque dui vel dignissim. Sed nunc orci, ultricies congue vehicula quis, facilisis a orci. In aliquet facilisis condimentum. Donec at orci orci, a dictum justo. Sed a nunc non lectus fringilla suscipit. Vivamus pretium sapien sit amet mauris aliquet eleifend vel vitae arcu. Fusce pharetra dignissim nisl egestas pretium.  </p>\r\n\r\n<p>Nullam eros mi, mollis in sollicitudin non, tincidunt sed enim. Sed et felis metus, rhoncus ornare nibh. Ut at magna leo. Suspendisse egestas est ac dolor imperdiet pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porttitor, erat sit amet venenatis luctus, augue libero ultrices quam, ut congue nisi risus eu purus. Cras semper consectetur elementum. Nulla vel aliquet libero. Vestibulum eget felis nec purus commodo convallis. Aliquam erat volutpat.  </p>\r\n\r\n<p>Proin ornare ligula eu tellus tempus elementum. Aenean bibendum iaculis mi, nec blandit lacus interdum vitae. Vestibulum non nibh risus, a scelerisque purus. Ut vel arcu ac tortor adipiscing hendrerit vel sed massa. Fusce sem libero, lacinia vulputate interdum non, porttitor non quam. Aliquam sed felis ligula. Duis non nulla magna.  </p>', 0, 3, 2),
-(99, '2016-12-08 12:20:54.000000', '0000-00-00 00:00:00.000000', 'Utkast 2', 'En vacker sommardag.', 0, 3, 1),
-(100, '2016-12-08 12:21:04.000000', '0000-00-00 00:00:00.000000', 'Roliga timmen', 'eller?', 0, 3, 4),
-(101, '2016-12-08 12:21:14.000000', '0000-00-00 00:00:00.000000', 'KrÃ¤ftor Ã¤r gott', 'Eller hur!', 0, 3, 3);
+(222, '2016-11-14 19:12:06.000000', '0000-00-00 00:00:00.000000', 'Bon Iver stÃ¤ller in sina Sverigespelningar â€“ lÃ¤s det officiella uttalandet', 'Det Ã¤r med sorg vi fÃ¥r till oss nyheten att Bon Iver stÃ¤ller in hela sin EuropaturnÃ©, inklusive de tvÃ¥ spelningarna i Stockholm, 30 och 31 januari.\r\n\r\nPÃ¥ sin officiella Facebook lÃ¤mnar han fÃ¶ljande meddelande:\r\n\r\n"Det Ã¤r med stor sorg som vi mÃ¥ste meddela annullering av vÃ¥ra kommande european tour och justin Ã¤r planerade utseende pÃ¥ A Prairie Home Companion denna mÃ¥nad."', 1, 34, 14),
+(223, '2016-11-25 19:14:40.000000', '0000-00-00 00:00:00.000000', 'HÃ¶r ny house-version av Kents "Du & Jag DÃ¶den"-klassiker', 'Kent lÃ¤mnade oss fÃ¶r nÃ¥gra veckor sedan. Det har vÃ¤l ingen missat. FÃ¶rmodligen inte heller producenten Axel E som idag skickar ut nedanstÃ¥ende deep house-version av Du & Jag DÃ¶den-klassikern 400 Slag.\r\n\r\nPÃ¥ sin Soundcloud-sida lÃ¤gger han till ett "I do not intend to make any money or infringe any copyrights with this remix. For promotional purposes only."\r\n\r\nMen visst har den potential att bli en Summerburst-hit?', 1, 36, 16),
+(224, '2016-12-31 18:15:45.000000', '0000-00-00 00:00:00.000000', 'HÃ¤r Ã¤r nyÃ¥rsaftons mest spelade lÃ¥tar', 'Idag gÃ¥r Spotify ut med vilka lÃ¥tar som var mest spelade under nyÃ¥rsafton i Sverige och globalt. Och nej, hÃ¤r finns ingen Happy New Year med ABBA. Varken i den inhemska eller den internationella. Men vÃ¤l nÃ¥gra riktiga house-dÃ¤ngor och givetvis en av 2016 Ã¥rs bÃ¤sta och mest lyssnade lÃ¥t, Starboy, med The Weeknd.', 1, 36, 17),
+(225, '2017-01-03 12:16:40.000000', '0000-00-00 00:00:00.000000', 'VIDEOPREMIÃ„R: Bellaroush uppmÃ¤rksammar vÃ¥r skuld till klimatet', 'Singeln Insecticides Ã¤r en dramatisk skildring av skuld. Videon fÃ¶rstÃ¤rker det mÃ¶rker som texten mÃ¥lande beskriver: om hur vi pÃ¥ planeten accelererar klimatfÃ¶rÃ¤ndring och hur tilltron till individuella val snarare konserverar istÃ¤llet fÃ¶r att fÃ¶rÃ¤ndra.\r\n\r\nKlippen till Insecticides har filmats i GÃ¶teborg av Rickard Olausson. Samma person stÃ¥r ocksÃ¥ fÃ¶r regi tillsammans med Magnus HagstrÃ¶m frÃ¥n Bellaroush. Dessutom spelar Nelly Daltrey frÃ¥n bandet Pale Honey huvudrollen i videon som vi premiÃ¤rvisar hÃ¤r ovanfÃ¶r.\r\n\r\nBellaroush jobbar just nu med nytt material som Ã¤r planerat att slÃ¤ppas under vÃ¥ren 2017. 2016 har varit bandets mest intensiva Ã¥r hittills och kickade igÃ¥ng med gruppens andra IndienturnÃ©. Den fÃ¶ljdes upp av en omfattande kontinentturnÃ© i Tyskland, Holland, Spanien och Portugal. DÃ¤refter gjordes festivalspelningar pÃ¥ bland annat danska Thy Lejren och Ã–land Roots, dÃ¤r Bellaroush kallades fÃ¶r Sveriges mest jÃ¤mstÃ¤llda band.', 1, 35, 16),
+(226, '2017-01-03 19:18:07.000000', '0000-00-00 00:00:00.000000', '"Alla The Cramps omslag Ã¤r ju genialiska"', 'Rome Is Not A Town tog oss med storm 2016. Mer given rÃ¥ rock med ett smutsigt gitarrsound som hÃ¤mtat frÃ¥n 90-talets altrock-scen fÃ¥r man leta efter. Gruppen slÃ¤ppte en EP i slutet pÃ¥ Ã¥ret och vi tyckte det var lÃ¤ge att kolla av hur omslaget till slÃ¤ppet kom till. Bandmedlemmen Kajsa Poidnak svarar pÃ¥ vÃ¥ra frÃ¥gor och levererar Ã¤ven fem favoritomslag. \r\n\r\nNÃ¤r det gÃ¤ller omslag gillar Rome Is Not A Town idÃ©n Ã¶verlÃ¥ta det visuella till nÃ¥gon de beundrar.\r\n\r\nâ€“ Vi skickade Ã¶ver vÃ¥r EP till Ylva Holmdahl (frÃ¥n Wildhart) tillsammans med texten â€tÃ¤nker att kÃ¤nslan Ã¤r lite som den tÃ¶ntiga kompisen som vill vara med och leka med the cool kids. Ã„r du pÃ¥?" Hon sa ja och sÃ¥ blev det snuskigt bra. \r\n\r\nâ€“ EP:n har fÃ¶rresten tvÃ¥ framsidor! Bara en sÃ¥n sak. Det Ã¤r en split med oss sjÃ¤lva frÃ¥n ett tidigare slÃ¤pp. Framsida nummer tvÃ¥ Ã¤r gjord av Sannah Kvist aka Rostiga NÃ¥len. Ett tatueringsproffs och visuellt geni.\r\n\r\nÃ„r det viktigt att designen pÃ¥ omslaget hÃ¤nger ihop med hur skivan lÃ¥ter?\r\n\r\nâ€“ NjeaaÃ¤. Det Ã¤r viktigt att omslaget ger nÃ¥gon slags kÃ¤nsla till musiken eller tvÃ¤rtom men det kan ju vara sÃ¥ mycket mer Ã¤n hur skivan just â€lÃ¥terâ€. Jag vill ju av nÃ¥gon anledning bli nyfiken nÃ¤r jag ser ett omslag eller hÃ¶r musik. Ibland Ã¤r det bara dÃ¶trÃ¥kigt nÃ¤r allt hÃ¤nger ihop fÃ¶r bra.\r\n\r\nHur kan en lÃ¤nka ihop ert omslag till sjÃ¤lva musiken?\r\n\r\nâ€“ Rent konkret alltsÃ¥ ... det Ã¤r pixligt, gult och fult och sÃ¥ satans vackert.', 1, 34, 16),
+(228, '2017-01-04 19:22:40.000000', '2017-01-04 19:24:23.000000', 'HÃ¤r mÃ¶ts Paul McCartney och The Killers i ett privatgig fÃ¶r rysk miljardÃ¤r', 'Ã„r det nyÃ¥rsfest sÃ¥ Ã¤r det, tÃ¤nkte fÃ¶rmodligen den ryske miljardÃ¤ren Roman Abramovich nÃ¤r han ordnade party pÃ¥ den karibiska Ã¶n Saint-BarthÃ©lemy. The Killers stod fÃ¶r underhÃ¥llningen, men det rÃ¤ckte liksom inte med det. PlÃ¶tsligt dÃ¶k The Beatles-ikonen Paul McCartney upp pÃ¥ scen och tillsammans drog de av The Beatles-klassikern Helter Skelter. Detta uppmÃ¤rksammar bland annat Consequence Of Sound.\r\n\r\nTur fÃ¶r oss vanliga dÃ¶dliga att mobilkameror finns. Kolla in klippet ovanfÃ¶r och det hÃ¤r som The Killers har delat:\r\n<br>\r\n<br>\r\n<a href="https://www.youtube.com/watch?v=3PgsC-GaWZs" target="_blank">Tryck hÃ¤r!</a>', 1, 34, 15);
 
 -- --------------------------------------------------------
 
@@ -115,10 +123,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `email`, `password`, `profilepic`, `role`) VALUES
-(3, 'superuser', 'superuser', 'superuser@loop.x', '$2y$10$xBRdo1uZS/5dSSGd1nuZgelONvVWB8hdLy/AYTv02V/AT85wd8NBy', '', 'admin'),
-(4, 'Erik', 'Kers', 'erik.kers.ohrnell@gmail.com', '$2y$10$g60BFLDwTow2O2tjX6IOqOlVwcr3S2QDWREfvjnndiK4m/IdBdreK', '', 'user'),
-(5, 'Harry', 'Hansson', 'hogsboharry@gbg.se', '$2y$10$Gw8vwMT5Q.RGlaTprU7/8.Vs89o49sAMpoPVgJKpkcPpvf1tzpHD2', '', 'user'),
-(6, 'Gunde', 'Svan', 'gsvan@hotmail.com', '$2y$10$uxz04VT6b5FKGIp7P62V9OIuSjR.gwiisWLi/sITFUzgiyERcNKZO', '', 'user');
+(19, 'superuser', 'superuser', 'superuser@loop.x', '$2y$10$qh3s.SLdgyKv3J/diabPK.ZZWmuc.mabbJ6Dxlyiwm18f2huJmAve', '', 'admin'),
+(34, 'Patty', 'Smith', 'smith@loop.x', '$2y$10$l508nEapRKqmTH3ZaVkjmuSIscdyxAnjpxHxSWu.5UApsKo1owB0G', '', 'user'),
+(35, 'Deborah', 'Harry ', 'harry@loop.x', '$2y$10$AK/W1J.k/YVgw.bjo2YB9eN5bPCDlUjMZqm6QPl51ZXL4Xtdtuf.W', '', 'user'),
+(36, 'Joan', 'Jett', 'jett@loop.x', '$2y$10$Vz56sY6bCXvtJPBFrRMfQObu.SMgxUO9.V47pbz5ymF1McXGK0NMm', '', 'user');
 
 --
 -- Indexes for dumped tables
@@ -158,22 +166,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `cat_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `com_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `com_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `post_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
