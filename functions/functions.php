@@ -6,21 +6,23 @@
 /* ----------------------------------------------------------------------------
         FUNCTION FOR REGISTER A NEW USER
 ---------------------------------------------------------------------------- */
-function regUser()
-{
+function regUser() {
+
     if (isset($_POST["register"])) {
+
         if (!empty($_POST["firstname"]) &&
             !empty($_POST["lastname"]) &&
             !empty($_POST["email"]) &&
             !empty($_POST["password"])
             ) {
+
             $conn = new mysqli("localhost", "root", "", "db_blogg");
 
             $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
             $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
             $email = mysqli_real_escape_string($conn, $_POST["email"]);
             $password = mysqli_real_escape_string($conn, $_POST["password"]);
-            $role = "user"; //standard för användaren är user.
+            $role = "user"; // The standard role for the user is "user".
             $encrypt_pass = password_hash($password, PASSWORD_DEFAULT);
 
             $regQuery = "INSERT INTO users
@@ -37,8 +39,10 @@ function regUser()
             if (mysqli_query($conn, $regQuery)) {
                 $_SESSION['msg'] = "Användaren är registrerad!";
             } else {
-                echo "Någonting fick fel, testa igen";
+                $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
             }
+        } else { 
+            $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och testa igen!";
         }
     }
 }
@@ -46,8 +50,8 @@ function regUser()
 /* ----------------------------------------------------------------------------
         FUNCTION FOR PRINTING A POST
 ---------------------------------------------------------------------------- */
-function printPost()
-{
+function printPost() {
+
     $conn = new mysqli("localhost", "root", "", "db_blogg");
     $stmt = $conn->stmt_init();
 
@@ -92,55 +96,60 @@ function printPost()
         FUNCTION FOR DELETE
         - Delete posts, comments, user or categories
 ---------------------------------------------------------------------------- */
-function deleteCommand($command, $id, $redirect)
-{
+function deleteCommand($command, $id, $redirect) {
+
     global $conn;
 
     $query = "";
 
     switch($command) {
 
-    case "deletePost":
-        $query = "DELETE FROM posts WHERE post_id = '{$id}'";
-        break;
+        case "deletePost":
 
-    case "deleteComment":
+            $query = "DELETE FROM posts WHERE post_id = '{$id}'";
 
-        $query = "DELETE FROM comments WHERE com_id = '{$id}'";
-        break;
+        break; /* break case deletePost */
 
-    case "deleteUser":
+        case "deleteComment":
 
-        if(!empty(posts.user_id)) {
-          $query = "DELETE from users
-                    WHERE user_id='{$id}'";
-        }else {
+            $query = "DELETE FROM comments WHERE com_id = '{$id}'";
+        
+        break; /* break case deleteComment */
 
-          $query = "DELETE FROM users, posts USING users
-                    INNER JOIN posts on (users.user_id = posts.user_id)
-                    WHERE users.user_id='{$id}'";
-        }
+        case "deleteUser":
 
-        // $query =    "SELECT users.*, posts.*, comments.* 
-        //             FROM users 
-        //             INNER JOIN posts 
-        //             ON users.user_id = posts.user_id 
-        //             LEFT JOIN comments 
-        //             ON posts.post_id = comments.fk_post_id  
-        //             WHERE users.user_id = '{$id}'  
-        //             ";
+            if(!empty(posts.user_id)) {
+              $query = "DELETE from users
+                        WHERE user_id='{$id}'";
+            }else {
 
-        break;
+              $query = "DELETE FROM users, posts USING users
+                        INNER JOIN posts on (users.user_id = posts.user_id)
+                        WHERE users.user_id='{$id}'";
+            }
 
-    case "deleteCategory":
+            // $query =    "SELECT users.*, posts.*, comments.* 
+            //             FROM users 
+            //             INNER JOIN posts 
+            //             ON users.user_id = posts.user_id 
+            //             LEFT JOIN comments 
+            //             ON posts.post_id = comments.fk_post_id  
+            //             WHERE users.user_id = '{$id}'  
+            //             ";
 
-        $query = "DELETE FROM categories WHERE cat_id = '{$id}'";
-        break;
+        break; /* break case deleteUser */
 
-    default:
+        case "deleteCategory":
 
-        echo "Någonting gick fel!";
-        break;
+            $query = "DELETE FROM categories WHERE cat_id = '{$id}'";
+        
+        break; /* break case deleteCategory */
+
+        default: 
+
+            echo "Någonting gick fel!";
+
+        break; /* break default */
     }
 
     if (!mysqli_query($conn, $query)) {
@@ -149,16 +158,15 @@ function deleteCommand($command, $id, $redirect)
     } else {
         header("Location: " . $redirect);
     }
-
 }
 
 
 /* ----------------------------------------------------------------------------
-        CREATE URL
-        The $input variable must always be given an identifying string.
-        The identifying string will determine how it is handeled with and which
-        $_GET-variable it is inserted into.
-        The identifying string is followed by the real input value.
+    CREATE URL
+    The $input variable must always be given an identifying string.
+    The identifying string will determine how it is handeled with and which
+    $_GET-variable it is inserted into.
+    The identifying string is followed by the real input value.
 ---------------------------------------------------------------------------- */
 function createUrl($input) {
     $urlArray = $_GET;
@@ -207,4 +215,3 @@ function createUrl($input) {
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
 }
-

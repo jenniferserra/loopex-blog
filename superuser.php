@@ -226,13 +226,19 @@ require_once "code_open.php";
 
                             regUser();
                             ?>
+
+                            <h2>
+                                <?php 
+                                if (isset($_SESSION['msg'])) {
+                                    echo $_SESSION['msg'];
+                                    unset($_SESSION['msg']);
+                                } else {
+                                    echo "Registrera";
+                                } 
+                                ?>
+                            </h2>
+
                             <form method="post">
-                                <h2><?php if (isset($_SESSION['msg'])) {
-                                echo $_SESSION['msg'];
-                                unset($_SESSION['msg']);
-                            } else {
-                                echo "Registrera";
-                            } ?></h2>
 
                                 <!-- Input-field for Firstname -->
                                 <div class="form-group row">
@@ -271,8 +277,9 @@ require_once "code_open.php";
                                     <div class="col-xs-10">
                                         <input name="register" class="btn btn-lg btn-primary" type="submit" value="Registrera">
                                     </div>
-                                </div> <!-- .form-group row -->
-                            </form> <!-- end form -->
+                                </div>
+                            </form> <!-- end : form -->
+
                             <?php
                             break; /* break case regUser */
 
@@ -328,7 +335,6 @@ require_once "code_open.php";
             </div> <!-- .container-fluid -->
         </div> <!-- .row -->
     <?php
-
     /* ----------------------------------------------------------------------------
             ELSE THE USER IS
             A) logged in and
