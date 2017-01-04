@@ -7,7 +7,7 @@
 }
 
 .error {
-    color: #F00;
+    color: $error-text-color;
 }
 
 h1, h2, h3, h4 {
@@ -27,16 +27,16 @@ p {
     display: inline;
     font-family: $primary-font;
     line-height: 1.7em;
-
 }
 
-// for highlighting text areas such as "written by", category etc
+/* For highlighting text areas such as "written by", category etc */
 .highlighted-text, p.highlighted-text, span.highlighted-text {
     color: $accent-color;
     line-height: 1.7em;
     margin: 0px;
 }
 
+/* Button */
 .btn {
     background-color: $accent-color;
     border: none;
@@ -45,12 +45,7 @@ p {
     margin-top: 10px;
 }
 
-//EV TA BORT ? vad gör denna?
-.blogpost {
-    z-index: -10;
-}
-
-// Pagination formatting
+/* Pagination formatting */
 .pagination_controls {
     font-family: $primary-font;
     font-size: 1.1em;
@@ -58,12 +53,12 @@ p {
     min-width: 300px;
 }
 
-// Marking the current page number in pagination-control
+/* Marking the current page number in pagination-control */
 .current_page_nr {
     color: $accent-color;
 }
 
-// styles the date format in archive, posts, index, comments, drafts
+/* Styles the date format in archive, posts, index, comments, drafts */
 .date {
     color: $secondary-text-color;
     font-size: 0.9em;
@@ -82,17 +77,16 @@ textarea {
 /* ----------------------------------------------------------------------------
             INDEX
 ---------------------------------------------------------------------------- */
-
 h1.blog-text-center, .blog-text-center{
     text-align: center;
 }
 
-//styles written by, categories etc in every posts on index.php
+/* Styles written by, categories etc in every post */
 .right-align{
     text-align: right;
 }
 
-// Banner image on index.php
+/* Banner image */
 .banner{
     background-size: cover;
     background-repeat: no-repeat;
@@ -103,7 +97,7 @@ h1.blog-text-center, .blog-text-center{
     width: 100%;
 }
 
-// Showing what month and category is selected on blog
+/* Showing what month and category is selected on blog */
 .selection-display {
     font-family: $primary-font;
 }
@@ -125,6 +119,7 @@ h1.blog-text-center, .blog-text-center{
     text-align: center;
     text-transform: uppercase;
     font-size: 0.5em;
+
     &:hover{
     	text-decoration: none;
     }
