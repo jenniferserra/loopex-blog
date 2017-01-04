@@ -41,7 +41,7 @@ function regUser() {
             } else {
                 $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
             }
-        } else { 
+        } else {
             $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och testa igen!";
         }
     }
@@ -113,39 +113,70 @@ function deleteCommand($command, $id, $redirect) {
         case "deleteComment":
 
             $query = "DELETE FROM comments WHERE com_id = '{$id}'";
-        
+
         break; /* break case deleteComment */
 
         case "deleteUser":
 
-            if(!empty(posts.user_id)) {
-              $query = "DELETE from users
-                        WHERE user_id='{$id}'";
-            }else {
+              /* 1: Tar bara bort användare om användaren har post */
 
-              $query = "DELETE FROM users, posts USING users
-                        INNER JOIN posts on (users.user_id = posts.user_id)
-                        WHERE users.user_id='{$id}'";
-            }
+              // $query = "DELETE FROM users, posts USING users
+              // INNER JOIN posts on (users.user_id = posts.user_id)
+              // WHERE users.user_id='{$id}'";
 
-            // $query =    "SELECT users.*, posts.*, comments.* 
-            //             FROM users 
-            //             INNER JOIN posts 
-            //             ON users.user_id = posts.user_id 
-            //             LEFT JOIN comments 
-            //             ON posts.post_id = comments.fk_post_id  
-            //             WHERE users.user_id = '{$id}'  
-            //             ";
+              /* 2: Villkoren för if-satsen borde vara något i stil med
+                    "Om det inte finns någon rad i där user_id = $id " */
+
+              // if(!empty(posts.user_id)) {
+              //
+              //   $query = "DELETE from users
+              //             WHERE user_id='{$id}'";
+              //
+              // }else {
+              //   $query = "DELETE FROM users, posts USING users
+              //   INNER JOIN posts on (users.user_id = posts.user_id)
+              //   WHERE users.user_id='{$id}'";
+              // }
+
+
+              /* 3: Tar bara bort användaren men inte posts. */
+
+              // $query = "DELETE FROM posts WHERE posts.user_id='{$id}'";
+              // $query = "DELETE FROM users WHERE users.user_id='{$id}'";
+
+              /* 4: Länktips */
+
+              /*
+
+              http://stackoverflow.com/questions/4839905/mysql-delete-from-multiple-tables-with-one-query
+
+              http://php.net/manual/en/mysqli.multi-query.php
+
+              http://stackoverflow.com/questions/1233451/delete-from-two-tables-in-one-query
+
+              */
+
+             
+              /* Detta är något som Frida förmodligen skrivit, har inget med mina lösningar att göra */
+
+              // $query =    "SELECT users.*, posts.*, comments.*
+              //             FROM users
+              //             INNER JOIN posts
+              //             ON users.user_id = posts.user_id
+              //             LEFT JOIN comments
+              //             ON posts.post_id = comments.fk_post_id
+              //             WHERE users.user_id = '{$id}'
+              //             ";
 
         break; /* break case deleteUser */
 
         case "deleteCategory":
 
             $query = "DELETE FROM categories WHERE cat_id = '{$id}'";
-        
+
         break; /* break case deleteCategory */
 
-        default: 
+        default:
 
             echo "Någonting gick fel!";
 
@@ -170,7 +201,7 @@ function deleteCommand($command, $id, $redirect) {
 ---------------------------------------------------------------------------- */
 function createUrl($input) {
     $urlArray = $_GET;
-    
+
     /* ----------------------------------------------------------------------------
         PAGE NUMBER DIFF
         createUrl('pageNrDiff' . $input)
