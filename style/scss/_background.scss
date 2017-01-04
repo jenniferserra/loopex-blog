@@ -7,7 +7,7 @@ body{
 }
 
 /* ----------------------------------------------------------------------------
-        BACKGROUND IMAGES
+        BACKGROUND IMAGES/COLOR
 ---------------------------------------------------------------------------- */
 
 /* BACKGROUND FOR LOGIN.PHP */
@@ -43,4 +43,14 @@ body.statistics{
 /* BODY FOR POST.PHP */
 body.post{
   	@include backImage("../../images/layout/bw_5.jpg");
+}
+
+/* BODY FOR EDITPOST.PHP */
+body.editpost{
+  	@include backImage("../../images/layout/bw_5.jpg");
+}
+
+/* BODY FOR SUPERUSER.PHP */
+body.superuser{
+  	background-color: $primary-color;
 }

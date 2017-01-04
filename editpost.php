@@ -1,7 +1,7 @@
 <?php
 require_once "code_open.php";
 ?>
-<body class="dashboard">
+<body class="editpost">
 	<!-- start a wrapper -->
 	<div class="page-content">
 	    <?php
