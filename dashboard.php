@@ -96,24 +96,24 @@ require_once "code_open.php";
             <h1><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Dags att skriva nästa succéinlägg?" ?></h1>
             <form method="POST" action="dashboard.php" class="blogposts" enctype="multipart/form-data">
 
-                <!-- Rubrik -->
+                <!-- Heading -->
                 <input type="text" placeholder="Skriv din rubrik här" name="blogpost_title" class="blogpost_title">
                 <br>
 
-                <!-- Bilduppladdning -->
+                <!-- Upload a file -->
                 <input type="file" name="fileToUpload" id="fileToUpload">
                 <br>
 
-                <!-- Inläggstext -->
+                <!-- Post text -->
                 <textarea rows="15" cols="80" placeholder="Skriv ditt inlägg här" name="blogpost_text" class="blogpost_text"></textarea>
                 <br>
 
-                <!-- Välj kategori -->
+                <!-- Select category -->
                 <select name="category" class="categories">
                     <option value ="0">Välj kategori</option>
                     <?php
                     /*-------------------------------------------------------------------
-                    Looping out category-choices
+                        Looping out category-choices
                     -------------------------------------------------------------------*/       
                     $sql_selectCategory = "SELECT * FROM categories";
                     $query_giveCategory = mysqli_query($conn, $sql_selectCategory);
@@ -127,10 +127,10 @@ require_once "code_open.php";
                 </select> <!-- .categories -->
                 <br>
 
-                <!-- Publicera inlägg -->
+                <!-- Publish post button -->
                 <input name="publish" class="btn button btn-lg btn-primary btn-block" type="submit" value="Publicera inlägg">
 
-                <!-- Spara som utkast -->
+                <!-- Save as draft button -->
                 <input name="draft" class="btn button btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
             </form> <!-- .blogposts -->
 
