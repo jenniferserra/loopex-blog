@@ -63,59 +63,57 @@ require_once "code_open.php";
         	while(mysqli_stmt_fetch($stmt)) {
         	?>
                 <div class="whitebox col-sm-12 col-xs-12">
-            		<!-- <div class="divider"> -->
-                        <div class="blogpost mobile-margin">
-                            <h1 class="blog-text-center"><?php echo $title; ?></h1>
-                            <div class="date blog-text-center">
-                                <p><?php echo $createTime; ?></p>
-                            </div>
-                            <br>
-                            <div>
-                                <p><?php echo $text; ?></p>
-                            </div>
-                            <br>
-                            <br>
-                            <div class="right-align">
-                                <span class="highlighted-text">Skrivet av:</span> <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</a><br>";?>
-                                <span class='highlighted-text'>Kategori:</span> <?php echo "$catName";?>
-                            </div> <!-- .right-align -->
-                        </div> <!-- . blogpost divider mobile-margin -->
+                    <div class="blogpost mobile-margin">
+                        <h1 class="blog-text-center"><?php echo $title; ?></h1>
+                        <div class="date blog-text-center">
+                            <p><?php echo $createTime; ?></p>
+                        </div>
+                        <br>
+                        <div>
+                            <p><?php echo $text; ?></p>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="right-align">
+                            <span class="highlighted-text">Skrivet av:</span> <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</a><br>";?>
+                            <span class='highlighted-text'>Kategori:</span> <?php echo "$catName";?>
+                        </div> <!-- .right-align -->
+                    </div> <!-- . blogpost divider mobile-margin -->
 
+                    <?php
+                    /* ----------------------------------------------------------------------------
+                            PRINT COMMENTS TO POST
+                    ---------------------------------------------------------------------------- */
+                    $stmt = $conn->stmt_init();
+
+                    $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
+
+                    if ( mysqli_query($conn, $query) ) {
+                    }
+                    if($stmt->prepare($query)) {
+                        $stmt->execute();
+            			$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
+
+                        while(mysqli_stmt_fetch($stmt)) {
+                            ?>
+                            <div class="blogpost posted-comments mobile-margin">
+                                <hr>
+                              		<div>
+                                        <?php echo "<span class='highlighted-text'> $c_name <a href='mailto:<?php echo $c_epost; ?>'> $c_epost</a>"; ?>
+                                    </div>
+                                    <?php echo $createTime; ?>
+                                    <div>
+                                        <p><?php echo $c_text; ?></p><br>
+            						</div>
+                                <br>
+                            </div> <!-- .blogpost posted-comments mobile-margin -->
                         <?php
-                        /* ----------------------------------------------------------------------------
-                                PRINT COMMENTS TO POST
-                        ---------------------------------------------------------------------------- */
-                        $stmt = $conn->stmt_init();
-
-                        $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
-
-                        if ( mysqli_query($conn, $query) ) {
                         }
-                        if($stmt->prepare($query)) {
-                            $stmt->execute();
-                			$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
-
-                            while(mysqli_stmt_fetch($stmt)) {
-                                ?>
-                                <div class="blogpost posted-comments mobile-margin">
-                                    <hr>
-                                  		<div>
-                                            <?php echo "<span class='highlighted-text'> $c_name <a href='mailto:<?php echo $c_epost; ?>'> $c_epost</a>"; ?>
-                                        </div>
-                                        <?php echo $createTime; ?>
-                                        <div>
-                                            <p><?php echo $c_text; ?></p><br>
-                						</div>
-                                    <br>
-                                </div> <!-- .blogpost posted-comments mobile-margin -->
-                            <?php
-                            }
-                        }
-                        /* ----------------------------------------------------------------------------
-                                COMMENT A POST
-                        ---------------------------------------------------------------------------- */
-                        ?>
-                    <!-- </div> <!-- .divider -->
+                    }
+                    /* ----------------------------------------------------------------------------
+                            COMMENT A POST
+                    ---------------------------------------------------------------------------- */
+                    ?>
                 </div> <!-- .whitebox col-sm-12 col-xs-12 -->
                 <div class="whitebox col-sm-12 col-xs-12">
                     <div class="comments_to_post mobile-margin">
