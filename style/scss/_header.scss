@@ -7,15 +7,14 @@ header {
     position: absolute;
 }
 
-
 /* Making drop down appear on hover */
 @media (min-width: 979px) {
-  ul.nav li.dropdown:hover > ul.dropdown-menu {
-    display: block;
-  }
+    ul.nav li.dropdown:hover > ul.dropdown-menu {
+        display: block;
+    }
 }
 
-.navbar-inverse .navbar-nav>li>a {
+.navbar-inverse .navbar-nav > li > a {
     padding-left: 40px;
     padding-right: 40px;
     min-width: 80px;
@@ -47,7 +46,6 @@ header {
     background-color: #222222;
 }
 
-
 /* ----------------------------------------------------------------------------
         LOGO SETTINGS
 ---------------------------------------------------------------------------- */
@@ -63,108 +61,17 @@ header {
 }
 
 @keyframes orange {
-  0% {
-    filter: hue-rotate(0deg) brightness(100%);
-    transform: rotate(0deg);
+    0% {
+        filter: hue-rotate(0deg) brightness(100%);
+        transform: rotate(0deg);
     }
 
-  50% {
-    filter: hue-rotate(180deg) brightness(130%);
+    50% {
+        filter: hue-rotate(180deg) brightness(130%);
     }
 
-  100% {
-    filter: hue-rotate(0deg) brightness(100%);
-    transform: rotate(360deg);}
-  }
-/*
-
-GAMMALT TJAFS SOM SKALL TAS BORT. MAN KAN SNO STYLING HÄRIFRÅN UNDER TIDEN!
-*/
-
-
-
-
-/* ----------------------------------------------------------------------------
-    DETTA VAR UTKOMMENTERAT, WHY / DESSA BEHÖVS NOG GAMAL KOD INTE .navbar-header?
----------------------------------------------------------------------------- */
-
- // STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA?
-/*.navbar-header {
-    float: left;
-    margin: 7px 0px 0px 7px;
-    height: 40px;
-    weight: 40px;
+    100% {
+        filter: hue-rotate(0deg) brightness(100%);
+        transform: rotate(360deg);
+    }
 }
-
-
-nav {
-    text-transform: none;
-    text-align: center;
-    width: 100%;
-    box-shadow: none;
-    top: 10px;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    -webkit-transiton: opacity 0.5s;
-    -moz-transition: opacity 0.5s;
-    -ms-transition: opacity 0.5s;
-    -o-transition: opacity 0.5s;
-    -transition: opacity 0.5s;
-}
-
-nav * {
-    color: $primary-color;
-    list-style: none;
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
-    z-index: 1000;
-}
-
-nav *:hover {
-    color: $accent-color;
-    text-decoration: none;
-    -webkit-transition: 0.2s;
-    -moz-transition: 0.2s;
-    -ms-transition: 0.2s;
-    -o-transition: 0.2s;
-    transition: 0.2s;
-}
-
-.right-btn {
-    display: inline;
-    float: right;
-}
-
-.menu-btn-lvl-1 {
-    float: left;
-    height: 50px;
-    line-height: 50px;
-    min-width: 150px;
-    margin-right: 2px;
-}
-
-.menu-btn-lvl-1 > ul {
-    display: none;
-}
-
-.menu-btn-lvl-1:hover > ul {
-    display: block;
-}
-
-.menu-btn-lvl-2 {
-    background: $primary-text-color;
-}
-
-.menu-btn-lvl-2:hover {
-}
-
-nav a {
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.edit-btn {
-    color: $accent-color;
-}
-*/

@@ -2,8 +2,7 @@
             MIXINS FOR DESKTOP
 ---------------------------------------------------------------------------- */
 
-
-//settings controlling the background images
+/* Settings controlling the background images */
 @mixin backImage($image) {
 	background-image: url($image);
 	background-repeat: no-repeat;
@@ -15,7 +14,7 @@
   	-o-background-size: cover;
 }
 
-// settings controlling the white box on top of backgrounds in desktop versions
+/* Settings controlling the white box on top of backgrounds in desktop versions */
 @mixin whitebox {
 	background: $primary-color;
 	box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -26,7 +25,7 @@
 	width: 750px;
 }
 
-// settings and controlling the arrow animation on page index.php
+/* Settings and controlling the arrow animation on page index.php */
 @mixin arrow {
 	bottom: 50px;
 	left: 0;

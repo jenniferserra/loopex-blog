@@ -40,19 +40,9 @@ h1{
 }
 
 /* ----------------------------------------------------------------------------
-            SÅ LÄNGE
-    Lättare att ta bort navigeringsmenyn ifall man vill redigare någonting,
-    kommentera ut detta under bara:
----------------------------------------------------------------------------- */
-// .navbar {
-//     display: none;
-// }
-
-/* ----------------------------------------------------------------------------
             BANNER PICTURE
-            at index.php
+            - at index.php
 ---------------------------------------------------------------------------- */
-
 .banner{
   background-image: url("../../images/layout/bannerMobil.jpg");
   max-height: 350px;
@@ -66,7 +56,6 @@ h1{
 /* ----------------------------------------------------------------------------
             LOGIN
 ---------------------------------------------------------------------------- */
-
 .form {
     text-align: center;
     width: 100%;
@@ -147,6 +136,7 @@ input[type="submit"] {
     font-size: 1.1em;
     max-width: 100%;
     margin: 0px auto;
+    
     &:hover {
         background-color: $secondary-accent-color;
     }
