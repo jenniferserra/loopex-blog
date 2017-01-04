@@ -10,8 +10,8 @@ require_once "code_open.php";
     <div class="page-content">
         <!-- banner image -->
         <div class="banner col-md-12 col-xs-12"></div>
-        <div class="bounce"><a href="#link-anchor"><img id="link-anchor" class="bounce" src="images/layout/arrow5.png"></a></div>
-        <div class="indexbox">
+        <div class="bounce" tabindex="-1"><a href="#link-anchor"><img id="link-anchor" class="bounce" src="images/layout/arrow5.png"></a></div>
+        <div class="indexbox"> <!-- Vad är detta? Hittar ingen style -->
         <div class="col-md-6 pagination">
             <?php
             /* ----------------------------------------------------------------------------
@@ -236,10 +236,10 @@ require_once "code_open.php";
                 $comments = $comment[0]; ?>
 
                 <div class="blogpost_center mobile-margin">
-                    <div class="blogpost">
-                        <h1 class="blog-text-center"><?php echo $title; ?></h1>
-                        <div class="date-container blog-text-center"><p class="date"><?php echo $createTime; ?></p></div><br>
-                        <div><p><?php echo $text; ?></p></div><br><br>
+                    <section class="blogpost">
+                        <h2 class="blog-text-center" tabindex="11"><?php echo $title; ?></h2>
+                        <div class="date-container blog-text-center" tabindex="12"><p class="date"><?php echo $createTime; ?></p></div><br>
+                        <article tabindex="13"><p><?php echo $text; ?></p></div><br><br>
                         <?php
                         ?>
                             <div class="text right-align">
@@ -260,7 +260,7 @@ require_once "code_open.php";
                             echo "<a href='post.php?id=$postId'>
                             ($comments) Kommentarer</a>"; ?><hr class="divider">
                         </div>
-                    </div>
+                    </section>
                 </div>
             <?php
 
