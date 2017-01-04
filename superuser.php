@@ -199,7 +199,7 @@ require_once "code_open.php";
                                 $stmt->execute();
                                 $stmt->bind_result($userId, $firstName, $lastName, $email, $password, $profilePic, $role);
 
-                                while ($stmt->fetch()) {
+                                while(mysqli_stmt_fetch($stmt)) {
                                     echo "<div class='flex-item'>";
                                     echo "ID: $userId<br>";
                                     echo "Namn: $firstName $lastName<br>";
@@ -208,11 +208,9 @@ require_once "code_open.php";
                                     echo "<a href='superuser.php?userDelete=$userId'>
                                             <i class='fa fa-trash' aria-hidden='true'></i>
                                             </a>
-                                            </div>
-                                            <hr>";
+                                            </div>";
                                 }
                             }
-
                             echo "</div>";
 
                             break; /* break case showUsers */
