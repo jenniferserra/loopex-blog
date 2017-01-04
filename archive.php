@@ -13,7 +13,7 @@ require_once "code_open.php";
         }
 
         /* ----------------------------------------------------------------------------
-                DELETE A POST
+                DELETE A POST FROM ARCHIVE
         ---------------------------------------------------------------------------- */
         if (isset($_GET["delete"])) {
             $deletePost = $_GET["delete"];
