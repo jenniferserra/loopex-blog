@@ -47,7 +47,8 @@ h1{
 ---------------------------------------------------------------------------- */
 
 .banner{
-  background-image: url("../../images/layout/orange2mobile.jpg");
+  background-image: url("../../images/layout/bannerMobil.jpg");
+  max-height: 350px;
 }
 
 /* Don't display bouncing arrow if viewed on mobile */
@@ -62,7 +63,6 @@ h1{
 .form {
     text-align: center;
     width: 100%;
-
 }
 
 .form input {
