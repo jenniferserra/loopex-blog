@@ -1,13 +1,14 @@
 /* ----------------------------------------------------------------------------
         HEADER
 ---------------------------------------------------------------------------- */
+
 header {
     height: 40px;
     position: absolute;
 }
 
 
-// Making drop down appear on hover
+/* Making drop down appear on hover */
 @media (min-width: 979px) {
   ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
