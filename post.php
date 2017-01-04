@@ -3,7 +3,7 @@ require_once "code_open.php";
 ?>
 <body class="dashboard">
     <!-- start a wrapper -->
-    <div class="page-content">
+    <!--<div class="page-content">-->
         <?php
         require_once "header.php";
 
@@ -80,7 +80,7 @@ require_once "code_open.php";
                                 <span class='highlighted-text'>Kategori:</span> <?php echo "$catName";?>
                             </div> <!-- .right-align -->
                         </div> <!-- . blogpost divider mobile-margin -->
-                    
+
                         <?php
                         /* ----------------------------------------------------------------------------
                                 PRINT COMMENTS TO POST
@@ -90,7 +90,7 @@ require_once "code_open.php";
                         $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
 
                         if ( mysqli_query($conn, $query) ) {
-                        } 
+                        }
                         if($stmt->prepare($query)) {
                             $stmt->execute();
                 			$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
@@ -104,8 +104,8 @@ require_once "code_open.php";
                                         </div>
                                         <?php echo $createTime; ?>
                                         <div>
-                                            <p><?php echo $c_text; ?></p><br> 
-                						</div>                        
+                                            <p><?php echo $c_text; ?></p><br>
+                						</div>
                                     <br>
                                 </div> <!-- .blogpost posted-comments mobile-margin -->
                             <?php
