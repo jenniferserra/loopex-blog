@@ -175,28 +175,7 @@ input[type="submit"] {
             - the page where visitors can comment posts
 ---------------------------------------------------------------------------- */
 
-/* This is the feedback message text that visitors get when they comment posts*/
-p.feedback {
-    margin: 20px auto -50 auto; //margins funkar inte heller
-    text-align: center; //två försök att centrera, FUNKAR INTE!!, men man kan ändra textstorlek och färg. fattar inte varför
-
-}
-
 /* gives a little extra margin to this page */
 .mobile-margin {
     margin: 15px 10px;
-}
-
-/* ----------------------------------------------------------------------------
-            FOOTER
-            - EJ KLAR, den är åt helvete fel kan någon fixa det!!
----------------------------------------------------------------------------- */
-
-// footer {
-//     bottom: 0;
-//     margin-top: 20px;
-//     margin-bottom: -150px;
-//     position: absolute;
-//     height: 120px;
-//     width: 100%;
-// }
+} 
