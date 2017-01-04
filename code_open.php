@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="style/css/style.css">
 	<link rel="icon" href="images/layout/favicon.ico" type="image/x-icon">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- FLYTTA UPP ? -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- FLYTTA UPP ? -->
 </head>
-
-
 <?php
 //-----------------------------------------------------------------------------
 // Requiring functions for all pages
