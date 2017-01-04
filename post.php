@@ -3,7 +3,7 @@ require_once "code_open.php";
 ?>
 <body class="dashboard">
     <!-- start a wrapper -->
-    <!--<div class="page-content">-->
+    <div class="page-content">
         <?php
         require_once "header.php";
 
@@ -63,8 +63,8 @@ require_once "code_open.php";
         	while(mysqli_stmt_fetch($stmt)) {
         	?>
                 <div class="whitebox col-sm-12 col-xs-12">
-            		<div class="divider">
-                        <div class="blogpost divider mobile-margin">
+            		<!-- <div class="divider"> -->
+                        <div class="blogpost mobile-margin">
                             <h1 class="blog-text-center"><?php echo $title; ?></h1>
                             <div class="date blog-text-center">
                                 <p><?php echo $createTime; ?></p>
@@ -98,7 +98,7 @@ require_once "code_open.php";
                             while(mysqli_stmt_fetch($stmt)) {
                                 ?>
                                 <div class="blogpost posted-comments mobile-margin">
-                                    <hr class="divider">
+                                    <hr>
                                   		<div>
                                             <?php echo "<span class='highlighted-text'> $c_name <a href='mailto:<?php echo $c_epost; ?>'> $c_epost</a>"; ?>
                                         </div>
@@ -115,7 +115,7 @@ require_once "code_open.php";
                                 COMMENT A POST
                         ---------------------------------------------------------------------------- */
                         ?>
-                    </div> <!-- .blogpost_center divider -->
+                    <!-- </div> <!-- .divider -->
                 </div> <!-- .whitebox col-sm-12 col-xs-12 -->
                 <div class="whitebox col-sm-12 col-xs-12">
                     <div class="comments_to_post mobile-margin">
