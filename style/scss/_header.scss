@@ -2,20 +2,49 @@
         HEADER
 ---------------------------------------------------------------------------- */
 header {
-    margin-top: -10px;
-    position: relative;
-    z-index: 1000;
-    height: 50px;
-    width: 100%;
+    height: 40px;
+    position: absolute;
 }
 
-/* ----------------------------------------------------------------------------
-        NAVBAR
-        - Remove navbar radius from bootstrap
----------------------------------------------------------------------------- */
-.navbar {
-    border-radius: 0px;
+
+// Making drop down appear on hover
+@media (min-width: 979px) {
+  ul.nav li.dropdown:hover > ul.dropdown-menu {
+    display: block;
+  }
 }
+
+.navbar-inverse .navbar-nav>li>a {
+    padding-left: 40px;
+    padding-right: 40px;
+    min-width: 80px;
+    font-size: 16px;
+    font-weight: 300;
+    color: $primary-color;
+
+}
+
+.navbar-inverse .navbar-nav>li:hover>a {
+    color: $accent-color;
+}
+
+
+.dropdown-menu {
+    background-color: #222222;
+    border-radius: none;
+}
+
+.dropdown-menu > li > a {
+    color: $primary-color;
+    font-size: 16px;
+    padding: 10px 20px;
+    font-weight: 300;
+}
+.dropdown-menu > li > a:hover {
+    color: $accent-color;
+    background-color: #222222;
+}
+
 
 /* ----------------------------------------------------------------------------
         LOGO SETTINGS
@@ -24,6 +53,7 @@ header {
     float: left;
     height: 36px;
     width: 36px;
+    margin: 5px;
 }
 .orange_logo:hover {
     animation-name: orange;
@@ -46,23 +76,31 @@ header {
   }
 
 
+
+
+
+
+
+/*
+
+GAMMALT TJAFS SOM SKALL TAS BORT. MAN KAN SNO STYLING HÄRIFRÅN UNDER TIDEN!
+*/
+
+
+
+
 /* ----------------------------------------------------------------------------
     DETTA VAR UTKOMMENTERAT, WHY / DESSA BEHÖVS NOG GAMAL KOD INTE .navbar-header?
 ---------------------------------------------------------------------------- */
 
  // STYLE PÅ ORANGE LOGGA FÅR EJ ATT FUNGERA?
-.navbar-header {
+/*.navbar-header {
     float: left;
     margin: 7px 0px 0px 7px;
     height: 40px;
     weight: 40px;
 }
 
-// TEXTEN ORANGE MUSIC. TILL VÄNSTER I MENYN
-.navbar-header {
-    color: $secondary-text-color;
-
-}
 
 nav {
     text-transform: none;
@@ -134,3 +172,4 @@ nav a {
 .edit-btn {
     color: $accent-color;
 }
+*/

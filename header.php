@@ -1,73 +1,60 @@
+   
 <header>
-    <!-- THE NAVBAR COLOR - DEFAULT IS FOR GREY / INVERSE- BLACK FIXED -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            
-            <!-- LOGO HERE -->
-            <div class="navbar-header">
-                <a href="index.php">
-                    <img src="images/layout/orange.png" class="orange_logo" alt="till bloggen">
-                </a>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <a href="index.php"><img src="images/layout/orange.png" class="orange_logo" alt="till bloggen"></a>
 
-                <!-- THE TOGGLE BAR MENU TO MOBIL -->
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavbar">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-
-            </div>
-
-            <?php
-            require_once "dbconnect.php";
-            
-            if(!isset($_SESSION)){
-                session_start();
-            }
-            
-            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
-                // ------------------------------------------------------------------------
-                // IF LOGGED IN
-                // ------------------------------------------------------------------------
-                $userid = $_SESSION['user_id'];
-                $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
-                $stmt->execute();
-                $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
-                $stmt->fetch();
-                ?>
+            </button>
 
             <!-- MENU ITEMS -->
-            <div class="collapse navbar-collapse" id="mainNavbar">
+            <div class="collapse navbar-collapse navHeaderCollapse">
+                <ul class="nav navbar-nav navbar-left">
+      
+                <?php
+                require_once "dbconnect.php";
+                
+                if(!isset($_SESSION)){
+                    session_start();
+                }
+                
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
+                    // ------------------------------------------------------------------------
+                    // IF LOGGED IN
+                    // ------------------------------------------------------------------------
+                    $userid = $_SESSION['user_id'];
+                    $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
+                    $stmt->execute();
+                    $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
+                    $stmt->fetch();
+                ?>
 
-                <div class="nav navbar-nav"></div>
-
-                <!-- ACTIVE OCH LOGOUT TO RIGHT KROCKAR HÄR Logouts right align försvinner om jag slår på ul class ovan och active? -->
-                <ul>
-                    <!-- <li class="active menu-btn-lvl-1"><a href="index.php">Bloggen</a></li> -->
-                    <li class="menu-btn-lvl-1"><a href="dashboard.php">Skriv inlägg</a></li>
-                    
-                    <li class="menu-btn-lvl-1">
-                        <a href="archive.php">Blogginlägg</a>
-                        <ul>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="comments.php">Kommentarer</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="archive.php">Redigera Arkiv</a></li>
-                            <li class="menu-btn-lvl-2"><a class="nav-link" href="drafts.php">Utkast</a></li>
-                            <li class="menu-btn-lvl-2"><a href="statistics.php">Statistik</a></li>
+                    <li><a href="dashboard.php">Skriv inlägg</a></li>
+                    <li class="dropdown">
+                        <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Blogginlägg</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="comments.php">Kommentarer</a></li>
+                            <li><a href="archive.php">Redigera Arkiv</a></li>
+                            <li><a href="drafts.php">Utkast</a></li>
+                            <li><a href="statistics.php">Statistik</a></li>
                         </ul>
                     </li>
                 <?php
             $stmt->close();
             }
+
             // --------------------------------------------------------------------
             //         IF LOGGED IN OR NOT
             // --------------------------------------------------------------------
 
                 if(basename($_SERVER['PHP_SELF'], '.php') == 'index') {
                 ?>
-                <ul>
-                    <li class="menu-btn-lvl-1">
-                        <a class="menu-button" href="index.php">Kategori</a>
-                        <ul>
+                    <li class="dropdown">
+                        <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Kategori</a>
+                        <ul class="dropdown-menu">
                             <?php
                             // Looping out category drop-down
                             $sqlCategory = "SELECT * FROM categories";
@@ -75,14 +62,14 @@
                             while ($getCategory = mysqli_fetch_array($queryCategory)) {
                             $categoryName = $getCategory["cat_name"];
                             $categoryId = $getCategory["cat_id"];
-                            echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="'. createUrl('category' . $categoryId) . '">' . $categoryName . '</a></li>';
+                            echo '<li><a href="'. createUrl('category' . $categoryId) . '">' . $categoryName . '</a></li>';
                             }
                             ?>
                         </ul>
                     </li>
-                    <li class="menu-btn-lvl-1">
-                        <a class="menu-button" href="index.php">Arkiv</a>
-                        <ul>
+                    <li class="dropdown">
+                        <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Arkiv</a>
+                        <ul class="dropdown-menu">
                             <?php
                             // Looping out Month-selection drop-down
                             $sql_month = "SELECT create_time FROM posts
@@ -96,34 +83,41 @@
                                 // Printing out menu buttons with date and month
                                 setlocale(LC_TIME, 'sv_SE');
                                 $readableDate = strftime('%B %Y', strtotime($yearAndMonth));
-                                echo '<li class="menu-btn-lvl-2"><a class="menu-button" href="' . createUrl('yrmnth' . $yearAndMonth) . '">' . $readableDate . '</a></li>';
+                                echo '<li><a href="' . createUrl('yrmnth' . $yearAndMonth) . '">' . $readableDate . '</a></li>';
                             }
                             ?>
                         </ul>
                     </li>
                 </ul>
+                <ul>
                 <?php
                 }
 
-            // --------------------------------------------------------------------
-            //         IF LOGGED IN
-            // --------------------------------------------------------------------
-            if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
-                if($_SESSION['role'] == "admin") {
-                ?>
-                    <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a></li>
+                // --------------------------------------------------------------------
+                //         IF LOGGED IN
+                // --------------------------------------------------------------------
+                if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
+                    if($_SESSION['role'] == "admin") {
+                    ?>
+                        <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a></li>
+                    <?php
+                    }
+                    ?>
+                        
+                        <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
+                    </ul>
+
                 <?php
                 }
                 ?>
-                    
-                    <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
+
+
                 </ul>
+            </div>
+        </div>
+    </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-            <?php
-            }
-            ?>
-
-            </div> <!-- .collapse navbar-collapse --> 
-        </div> <!-- .container-fluid -->
-    </nav>
 </header>
+
