@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container-inverse">
             <a href="index.php"><img src="images/layout/orange.png" class="orange_logo" alt="till bloggen"></a>
 
             <button class="navbar-toggle" data-toggle="collapse" data-target=".navHeaderCollapse">
@@ -109,7 +109,7 @@
                 <?php
                 }
                 ?>
-                
+
                 </ul>
             </div>
         </div>
