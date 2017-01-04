@@ -53,5 +53,5 @@ require_once "code_open.php";
 		</div> <!-- .whitebox col-xs-12 -->
 	</div> <!-- .page-content -->
 <?php		
-include "footer.php";
+require_once "code_end.php";
 ?>

@@ -338,4 +338,5 @@ require_once "code_open.php";
         header("Location:index.php");
     }
 include "footer.php";
+require_once "code_end.php";
 ?>

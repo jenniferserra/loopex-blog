@@ -1,7 +1,7 @@
 <?php
 require_once "code_open.php";
 ?>
-<body class="dashboard">
+<body class="post">
     <!-- start a wrapper -->
     <div class="page-content">
         <?php
@@ -139,4 +139,5 @@ require_once "code_open.php";
     </div> <!-- .page-content -->
 <?php
 include "footer.php";
+require_once "code_end.php";
 ?>

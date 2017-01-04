@@ -296,4 +296,5 @@ require_once "code_open.php";
     </div> <!-- .col-sm-12 col-xs-12 -->
 <?php
 include "footer.php";
+require_once "code_end.php";
 ?>

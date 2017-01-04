@@ -94,5 +94,5 @@ require_once "code_open.php";
 	</div> <!-- .page-content -->
 	<?php
 	$stmt->close();
-include "footer.php";
+require_once "code_end.php";
 ?>

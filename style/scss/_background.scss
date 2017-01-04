@@ -33,3 +33,8 @@ body.drafts{
 body.statistics{
  	@include backImage("../../images/layout/banner1.jpg");
 }
+
+/* BODY FOR POST.PHP */
+body.post{
+  	@include backImage("../../images/layout/bw_5.jpg");
+}

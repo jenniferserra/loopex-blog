@@ -101,5 +101,5 @@ $cats = $conn->query($query);
 	</div> <!-- .whitebox col-sm-12 col-xs-12 -->
 	</div> <!-- .page-content -->
 <?php
-include "footer.php";
+require_once "code_end.php";
 ?>
