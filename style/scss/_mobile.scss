@@ -50,6 +50,11 @@ h1{
   background-image: url("../../images/layout/orange2mobile.jpg");
 }
 
+/* Don't display bouncing arrow if viewed on mobile */
+.bounce {
+  display: none;
+}
+
 /* ----------------------------------------------------------------------------
             LOGIN
 ---------------------------------------------------------------------------- */
