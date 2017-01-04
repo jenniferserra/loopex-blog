@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container-inverse">
             <a href="index.php">
                 <img src="images/layout/orange.png" class="orange_logo" alt="till bloggen">
@@ -13,14 +13,14 @@
             <!-- MENU ITEMS -->
             <div class="collapse navbar-collapse navHeaderCollapse">
                 <ul class="nav navbar-nav navbar-left">
-      
+
                     <?php
                     require_once "dbconnect.php";
-                
+
                     if(!isset($_SESSION)){
                         session_start();
                     }
-                
+
                     if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == TRUE ) {
                         /* ----------------------------------------------------------------------------
                                 IF LOGGED IN
@@ -32,14 +32,14 @@
                         $stmt->fetch();
                         ?>
 
-                        <li><a href="dashboard.php">Skriv inlägg</a></li>
+                        <li><a href="dashboard.php" tabindex="1">Skriv inlägg</a></li>
                         <li class="dropdown">
-                            <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown">Blogginlägg</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="comments.php">Kommentarer</a></li>
-                                <li><a href="archive.php">Redigera Arkiv</a></li>
-                                <li><a href="drafts.php">Utkast</a></li>
-                                <li><a href="statistics.php">Statistik</a></li>
+                            <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown" tabindex="2">Blogginlägg</a>
+                            <ul class="dropdown-menu" tabindex="3">
+                                <li><a href="comments.php" tabindex="4">Kommentarer</a></li>
+                                <li><a href="archive.php" tabindex="5">Redigera Arkiv</a></li>
+                                <li><a href="drafts.php" tabindex="6">Utkast</a></li>
+                                <li><a href="statistics.php" tabindex="7">Statistik</a></li>
                             </ul>
                         </li>
                     <?php
@@ -47,11 +47,11 @@
 
                         if($_SESSION['role'] == "admin") {
                             ?>
-                                <li class="menu-btn-lvl-1"><a href="superuser.php">Kontrollpanelen</a></li>
+                                <li class="menu-btn-lvl-1"><a href="superuser.php" tabindex="8">Kontrollpanelen</a></li>
                             <?php
                             }
                             ?>
-                        <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php">Logga ut</a></li>
+                        <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php" tabindex="9">Logga ut</a></li>
                     <?php
                     }
 
@@ -86,7 +86,7 @@
                                 $sql_month =    "SELECT create_time FROM posts
                                                 GROUP BY substr(create_time, 1, 8)
                                                 ORDER BY create_time DESC";
-                                
+
                                 $query_month = mysqli_query($conn, $sql_month);
 
                                 while ($getYearAndMonth = mysqli_fetch_array($query_month)) {
