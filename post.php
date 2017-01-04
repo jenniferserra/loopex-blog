@@ -11,6 +11,7 @@ require_once "code_open.php";
             INSERT COMMENT TO DATABASE
         ---------------------------------------------------------------------------- */
         if(isset($_POST["publish"])) {
+
             if( !empty($_POST["comment_name"]) &&
                 !empty($_POST["comment_epost"]) &&
                 !empty($_POST["comment_text"])) {
@@ -56,6 +57,7 @@ require_once "code_open.php";
 
         if ( mysqli_query($conn, $query) ) {
         }
+
         if($stmt->prepare($query)) {
         	$stmt->execute();
         	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
@@ -75,7 +77,7 @@ require_once "code_open.php";
                         <br>
                         <br>
                         <div class="right-align">
-                            <span class="highlighted-text">Skrivet av:</span> <?php echo "<a href='author.php?id=$userId'>$firstName $lastName</a><br>";?>
+                            <span class="highlighted-text">Skrivet av:</span> <?php echo "$firstName $lastName<br>";?>
                             <span class='highlighted-text'>Kategori:</span> <?php echo "$catName";?>
                         </div> <!-- .right-align -->
                     </div> <!-- . blogpost divider mobile-margin -->
@@ -99,7 +101,9 @@ require_once "code_open.php";
                             <div class="blogpost posted-comments mobile-margin">
                                 <hr>
                               		<div>
-                                        <?php echo "<span class='highlighted-text'> $c_name <a href='mailto:<?php echo $c_epost; ?>'> $c_epost</a>"; ?>
+                                        <?php echo "<span class='highlighted-text'> $c_name </span>
+                                                    <a href='mailto:$c_epost'>$c_epost</a>
+                                        "; ?>
                                     </div>
                                     <?php echo $createTime; ?>
                                     <div>
@@ -114,7 +118,9 @@ require_once "code_open.php";
                             COMMENT A POST
                     ---------------------------------------------------------------------------- */
                     ?>
+
                 </div> <!-- .whitebox col-sm-12 col-xs-12 -->
+                
                 <div class="whitebox col-sm-12 col-xs-12">
                     <div class="comments_to_post mobile-margin">
                         <h3>Kommentera</h3>
