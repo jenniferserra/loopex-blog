@@ -36,13 +36,14 @@ require_once "code_open.php";
                 $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
                 // header("Refresh:0");
                 if ( mysqli_query($conn, $query)) {
-                    echo "<p class='feedback'>Du har kommenterat inlägget</p>";
-                }   else {
-                    echo "<p class='feedback'>Någonting gick fel</p>";
-                    }
-            } else { echo "<p class='feedback'>Du har inte fyllt i alla fält</p>"; }
+                    $_SESSION['msg'] = "Du har kommenterat inlägget!";
+                } else {
+                    $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
+                }
+            } else {
+                $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och testa igen!";
+            }
         }
-
 
         $stmt = $conn->stmt_init();
         /* ----------------------------------------------------------------------------
@@ -123,7 +124,7 @@ require_once "code_open.php";
                 
                 <div class="whitebox col-sm-12 col-xs-12">
                     <div class="comments_to_post mobile-margin">
-                        <h3>Kommentera</h3>
+                        <h3><?php if ( isset($_SESSION['msg']) ) { echo $_SESSION['msg']; unset($_SESSION['msg']); } else echo "Kommentera" ?></h3>
                 		<form method="POST">
                             <input type="text" placeholder="Namn" name="comment_name"><br>
                             <input type="email" placeholder="E-post" name="comment_epost"><br>
