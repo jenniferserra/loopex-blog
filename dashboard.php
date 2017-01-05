@@ -23,10 +23,10 @@ require_once "code_open.php";
         }
 
         /* ----------------------------------------------------------------------------
-                PUBLUSH
+                SAVE POST
         ---------------------------------------------------------------------------- */
 
-        if(isset($_POST["publish"])) {
+        if(isset($_POST["publish"]) || isset($_POST["draft"] )) {
             if( !empty($_POST["blogpost_title"]) &&
                 !empty($_POST["blogpost_text"]) &&
                 $_POST["category"] != "0" ) {
@@ -41,8 +41,15 @@ require_once "code_open.php";
                 $timeStamp = date("Y-m-d H:i:s");
                 $category = $_POST["category"];
 
-                // Upload post into database. Published = TRUE
+                // SAVE AS PUBLISHED
+                if(isset($_POST["publish"])) {
                 $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
+                }
+
+                // SAVE AS DRAFT
+                elseif (isset($_POST["draft"])) {
+                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
+                }
 
                 // Feedback and error messages
                 if ( mysqli_query($conn, $query)) {
@@ -55,38 +62,6 @@ require_once "code_open.php";
             }
         }
 
-        /* ----------------------------------------------------------------------------
-                SAVE AS DRAFTS
-        ---------------------------------------------------------------------------- */
-
-        if(isset($_POST["draft"])) {
-            if( !empty($_POST["blogpost_title"]) &&
-                !empty($_POST["blogpost_text"]) &&
-                $_POST["category"] != "0") {
-
-                // Preparing the statement
-                $stmt = $conn->stmt_init();
-
-                // Stripping off harmful characters
-                $text = mysqli_real_escape_string($conn, $_POST["blogpost_text"]);
-                $title = mysqli_real_escape_string($conn, $_POST["blogpost_title"]);
-
-                $timeStamp = date("Y-m-d H:i:s");
-                $category = $_POST["category"];
-
-                // Upload post into database. Published = FALSE
-                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
-
-                // Feedback and error messages
-                if ( mysqli_query($conn, $query)) {
-                    $_SESSION['msg'] = "Ditt inlägg är sparat i utkast!";
-                } else {
-                    $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
-                }
-            } else { 
-                $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och välj kategori!";
-            }
-        }
          /* ----------------------------------------------------------------------------
                 HTML-STRUCTURE FOR POSTFORM
         ---------------------------------------------------------------------------- */
