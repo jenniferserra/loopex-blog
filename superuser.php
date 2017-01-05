@@ -77,7 +77,7 @@ require_once "code_open.php";
         <div class="jumbotron">
             <div class="container-fluid">
                 <h1>Kontrollpanelen</h1>
-                <small>Här kan du administrera bloggen</small>
+                <p>Här kan du administrera bloggen</p>
             </div>
         </div> <!-- .jumbotron -->
 
@@ -204,7 +204,7 @@ require_once "code_open.php";
                                         Namn: $firstName $lastName<br>
                                         E-Post: $email<br>
                                         Roll: $role<br>
-                                            <form action='$_SERVER[REQUEST_URI]' method='post'>
+                                            <form method='post'>
                                                 <button class='btn' type='submit'  name='deleteUser' value='$userId'>
                                                     <i class='fa fa-trash'></i>
                                                 </button>
