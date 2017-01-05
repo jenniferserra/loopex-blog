@@ -246,3 +246,36 @@ function createUrl($input) {
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
 }
+
+
+
+
+function deleteUser($postArray, $conn) {
+
+    $deleteUserId = $postArray['deleteUser'];
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+
+    // GET POST ID
+    $sqlGetPostId = "SELECT * FROM posts WHERE user_id = $deleteUserId";
+    $queryGetPostId = mysqli_query($conn, $sqlGetPostId);
+    while($getPostId = mysqli_fetch_array($queryGetPostId, MYSQLI_ASSOC)) {
+        $postId = $getPostId['post_id'];
+    }
+
+    $sqlDelete = "DELETE FROM users WHERE user_id = $deleteUserId;";
+    $sqlDelete .= "DELETE FROM posts WHERE user_id = $deleteUserId;";
+    if(isset($postId)) {
+    $sqlDelete .= "DELETE FROM comments WHERE fk_post_id = $postId;";
+    }
+    
+    if ($conn->multi_query($sqlDelete) === TRUE) {
+        echo "Användaren borttagen";
+    } else {
+        echo "Lyckades inte ta bort användaren: " . $conn->error;
+    }
+    header('Refresh:0');
+}

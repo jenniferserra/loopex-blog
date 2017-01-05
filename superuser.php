@@ -42,10 +42,8 @@ require_once "code_open.php";
         /* ----------------------------------------------------------------------------
                     DELETE USER
         ---------------------------------------------------------------------------- */
-        if (isset($_GET["userDelete"])) {
-            deleteCommand("deleteUser",
-            $_GET["userDelete"],
-            "superuser.php?admin=showUsers");
+        if (isset($_POST['deleteUser'])) {
+        deleteUser($_POST, $conn);
         }
 
         /* ----------------------------------------------------------------------------
@@ -191,6 +189,7 @@ require_once "code_open.php";
 
                             echo "<h2>Se alla användare</h2>";
                             echo "<div class='flex-container'>";
+
                             $userQuery  = "SELECT * FROM users";
 
                             mysqli_query($conn, $userQuery);
@@ -200,19 +199,23 @@ require_once "code_open.php";
                                 $stmt->bind_result($userId, $firstName, $lastName, $email, $password, $profilePic, $role);
 
                                 while(mysqli_stmt_fetch($stmt)) {
-                                    echo "<div class='flex-item'>";
-                                    echo "ID: $userId<br>";
-                                    echo "Namn: $firstName $lastName<br>";
-                                    echo "E-Post: $email<br>";
-                                    echo "Roll: $role<br><br>";
-                                    echo "<a href='superuser.php?userDelete=$userId'>
-                                            <i class='fa fa-trash' aria-hidden='true'></i>
-                                            </a>
-                                            </div>";
+                                echo "<div class='flex-item'>
+                                        ID: $userId<br>
+                                        Namn: $firstName $lastName<br>
+                                        E-Post: $email<br>
+                                        Roll: $role<br><br>
+                                            <form action='$_SERVER[REQUEST_URI]' method='post'>
+                                                <button class='btn' type='submit'  name='deleteUser' value='$userId'>
+                                                    <i class='fa fa-trash'></i>
+                                                </button>
+                                            </form>
+                                    </div>";
                                 }
                             }
                             echo "</div>";
 
+
+  
                             break; /* break case showUsers */
 
                             /* ----------------------------------------------------------------------------
