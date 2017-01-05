@@ -93,10 +93,10 @@ require_once "code_open.php";
             <div class="container-fluid">
                 <div class="col-md-3">
                     <div class="list-group">
-                        <a href="superuser.php?admin=showPosts" class="list-group-item">Visa alla inlägg</a>
-                        <a href="superuser.php?admin=showComments" class="list-group-item">Visa alla kommentarer</a>
-                        <a href="superuser.php?admin=showUsers" class="list-group-item">Visa alla bloggare</a>
-                        <a href="superuser.php?admin=regUser" class="list-group-item">Registrera ny bloggare</a>
+                        <a href="superuser.php?admin=showPosts" class="list-group-item">Redigera inlägg</a>
+                        <a href="superuser.php?admin=showComments" class="list-group-item">Redigera kommentarer</a>
+                        <a href="superuser.php?admin=showUsers" class="list-group-item">Redigera användare</a>
+                        <a href="superuser.php?admin=regUser" class="list-group-item">Registrera ny användare</a>
                         <a href="superuser.php?admin=editCategories" class="list-group-item">Redigera kategorier</a>
                     </div> <!-- .list-group -->
                 </div>
