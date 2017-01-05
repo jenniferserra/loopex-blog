@@ -249,33 +249,39 @@ function createUrl($input) {
 
 
 
-
+/* ----------------------------------------------------------------------------
+    DELETE USER
+---------------------------------------------------------------------------- */
 function deleteUser($postArray, $conn) {
 
+    // Getting chosen user-id
     $deleteUserId = $postArray['deleteUser'];
 
-    // Check connection
+    // Checking connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     } 
 
-    // GET POST ID
+    // Getting the post-id needed for deletion of comments
     $sqlGetPostId = "SELECT * FROM posts WHERE user_id = $deleteUserId";
     $queryGetPostId = mysqli_query($conn, $sqlGetPostId);
     while($getPostId = mysqli_fetch_array($queryGetPostId, MYSQLI_ASSOC)) {
         $postId = $getPostId['post_id'];
     }
 
+    // Multi query deleting in three tables
     $sqlDelete = "DELETE FROM users WHERE user_id = $deleteUserId;";
     $sqlDelete .= "DELETE FROM posts WHERE user_id = $deleteUserId;";
     if(isset($postId)) {
     $sqlDelete .= "DELETE FROM comments WHERE fk_post_id = $postId;";
     }
     
+    // Executing query
     if ($conn->multi_query($sqlDelete) === TRUE) {
         echo "Användaren borttagen";
     } else {
         echo "Lyckades inte ta bort användaren: " . $conn->error;
     }
+    // Reloading page
     header('Refresh:0');
 }
