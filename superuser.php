@@ -24,18 +24,18 @@ require_once "code_open.php";
         /* ----------------------------------------------------------------------------
                     DELETE POSTS
         ---------------------------------------------------------------------------- */
-        if (isset($_GET["postDelete"])) {
+        if (isset($_POST["postDelete"])) {
             deleteCommand("deletePost",
-            $_GET["postDelete"],
+            $_POST["postDelete"],
             "superuser.php?admin=showPosts");
         }
 
         /* ----------------------------------------------------------------------------
                     DELETE COMMENTS
         ---------------------------------------------------------------------------- */
-        if (isset($_GET["commentDelete"])) {
+        if (isset($_POST["commentDelete"])) {
             deleteCommand("deleteComment",
-            $_GET["commentDelete"],
+            $_POST["commentDelete"],
             "superuser.php?admin=showComments");
         }
 
@@ -49,9 +49,9 @@ require_once "code_open.php";
         /* ----------------------------------------------------------------------------
                     DELETE CATEGORY
         ---------------------------------------------------------------------------- */
-        if (isset($_GET["categoryDelete"])) {
+        if (isset($_POST["categoryDelete"])) {
             deleteCommand("deleteCategory",
-            $_GET["categoryDelete"],
+            $_POST["categoryDelete"],
             "superuser.php?admin=editCategories");
         }
 
@@ -139,8 +139,13 @@ require_once "code_open.php";
 
                                 while ($stmt->fetch()) {
                                     echo    "<h4>$title ";
-                                    echo    "<a href='superuser.php?postDelete=$postId'><i class='fa fa-trash' aria-hidden='true'></i>
-                                            </a>";
+                                    echo   "
+                                            <form method='post'>
+                                              <button class='btn' type='submit'  name='postDelete' value='$postId'>
+                                                <i class='fa fa-trash'></i>
+                                              </button>
+                                            </form>
+                                          ";
 
                                     if ($isPublished == 0) {
                                         echo    "*";
@@ -167,16 +172,22 @@ require_once "code_open.php";
                             mysqli_query($conn, $commentQuery);
                             if ($stmt->prepare($commentQuery)) {
                                 $stmt->execute();
-                                $stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
+                                $stmt->bind_result($comId, $comName, $comEmail, $createTime, $comText, $postId);
 
                                 while ($stmt->fetch()) {
-                                    echo    "<p><a href='superuser.php?commentDelete=$com_id'>
-                                            <i class='fa fa-trash' aria-hidden='true'></i>
-                                            </a></p>";
+                                    echo    "
+                                              <p>
+                                                <form method='post'>
+                                                  <button class='btn' type='submit'  name='commentDelete' value='$comId'>
+                                                    <i class='fa fa-trash'></i>
+                                                  </button>
+                                                </form>
+                                              </p>
+                                            ";
 
-                                    echo    " $c_name<br>";
+                                    echo    " $comName<br>";
                                     echo    " (" . $createTime . " )<br>";
-                                    echo    "$c_text<br><hr>";
+                                    echo    "$comText<br><hr>";
                                 }
                             }
 
@@ -215,7 +226,7 @@ require_once "code_open.php";
                             echo "</div>";
 
 
-  
+
                             break; /* break case showUsers */
 
                             /* ----------------------------------------------------------------------------
@@ -229,13 +240,13 @@ require_once "code_open.php";
                             ?>
 
                             <h2>
-                                <?php 
+                                <?php
                                 if (isset($_SESSION['msg'])) {
                                     echo $_SESSION['msg'];
                                     unset($_SESSION['msg']);
                                 } else {
                                     echo "Registrera";
-                                } 
+                                }
                                 ?>
                             </h2>
 
@@ -299,10 +310,18 @@ require_once "code_open.php";
 
                             if ($stmt->prepare($catQuery)) {
                                 $stmt->execute();
-                                $stmt->bind_result($catID, $catName);
+                                $stmt->bind_result($catId, $catName);
 
                                 while ($stmt->fetch()) {
-                                    echo "<a href='superuser.php?categoryDelete=$catID'><i class='fa fa-trash' aria-hidden='true'></i></a> ";
+                                  echo "
+                                        <p>
+                                          <form method='post'>
+                                            <button class='btn' type='submit'  name='categoryDelete' value='$catId'>
+                                              <i class='fa fa-trash'></i>
+                                            </button>
+                                          </form>
+                                        </p>
+                                      ";
                                     echo "$catName <br><hr>";
                                 }
                             }
@@ -320,7 +339,7 @@ require_once "code_open.php";
                             break; /* break case editCategories */
 
                             /* ----------------------------------------------------------------------------
-                                Print this is nothing is selected (should never happen) or someone tries 
+                                Print this is nothing is selected (should never happen) or someone tries
                                 their own GET-Request not found in menu.
                             ---------------------------------------------------------------------------- */
                             default:
