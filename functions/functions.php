@@ -278,10 +278,10 @@ function deleteUser($postArray, $conn) {
     
     // Executing query
     if ($conn->multi_query($sqlDelete) === TRUE) {
-        echo "Användaren borttagen";
+        // Reloading page
+        header('Refresh:0');    
     } else {
         echo "Lyckades inte ta bort användaren: " . $conn->error;
     }
-    // Reloading page
-    header('Refresh:0');
+
 }
