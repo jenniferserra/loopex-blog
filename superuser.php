@@ -203,7 +203,7 @@ require_once "code_open.php";
                                         ID: $userId<br>
                                         Namn: $firstName $lastName<br>
                                         E-Post: $email<br>
-                                        Roll: $role<br><br>
+                                        Roll: $role<br>
                                             <form action='$_SERVER[REQUEST_URI]' method='post'>
                                                 <button class='btn' type='submit'  name='deleteUser' value='$userId'>
                                                     <i class='fa fa-trash'></i>
