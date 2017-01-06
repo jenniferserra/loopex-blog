@@ -46,16 +46,16 @@ require_once "code_open.php";
 			while($getPostCommentUser = mysqli_fetch_array($queryGetPost, MYSQLI_ASSOC)) {
 
 			      $postId = $getPostCommentUser["post_id"];
-			      $createTime = $etPostCommentUser["create_time"];
+			      $createTime = $getPostCommentUser["create_time"];
 						$editTime = $getPostCommentUser["edit_time"];
 			      $title = $getPostCommentUser["title"];
 			      $text = $getPostCommentUser["text"];
 			      $isPublished = $getPostCommentUser["is_published"];
 			      $userId = $getPostCommentUser["user_id"];
 			      $catId = $getPostCommentUser["cat_id"];
-						$catName = $etPostCommentUser["cat_name"];
-						$lastName = $etPostCommentUser["lastname"];
-						$firstName = $etPostCommentUser["firstname"];
+						$catName = $getPostCommentUser["cat_name"];
+						$lastName = $getPostCommentUser["lastname"];
+						$firstName = $getPostCommentUser["firstname"];
 
 						$myPostDataArray[] = array(
 
