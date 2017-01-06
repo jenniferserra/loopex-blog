@@ -125,19 +125,32 @@ require_once "code_open.php";
 
                             echo "<h2>Se alla inlägg</h2><br>";
 
-                            $postQuery  =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
+                            $sqlGetUser  =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
                                             FROM posts
                                             LEFT JOIN users ON posts.user_id = users.user_id
                                             LEFT JOIN categories ON posts.cat_id = categories.cat_id
                                             ORDER BY create_time DESC";
 
-                            mysqli_query($conn, $postQuery);
 
-                            if ($stmt->prepare($postQuery)) {
-                                $stmt->execute();
-                                $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $user_email, $catName);
+                            $queryGetUser = mysqli_query($conn, $sqlGetUser);
+                            while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
+                                $userId = $getUser["user_id"];
+                                $firstName = $getUser["firstname"];
+                                $lastName = $getUser["lastname"];
+                                $email = $getUser["email"];
 
-                                while ($stmt->fetch()) {
+                                $postId = $getUser["post_id"];
+                                $createTime = $getUser["create_time"];
+                                $editTime = $getUser["edit_time"];
+                                $title = $getUser["title"];
+                                $text = $getUser["text"];
+                                $isPublished = $getUser["is_published"];
+                                $userId = $getUser["user_id"];
+                                $catId = $getUser["cat_id"];
+
+                                $catId = $getUser["cat_id"];
+                                $catName = $getUser["cat_name"];
+
                                     echo    "<h4>$title ";
                                     echo   "
                                             <form method='post'>
@@ -154,7 +167,6 @@ require_once "code_open.php";
                                     echo    " </h4>(" . $createTime . ")<br><br>";
                                     echo    "<p>$text </p>";
                                     echo    "<hr>";
-                                }
                             }
                             echo    "<div id='row'> * = utkast </div>";
 
@@ -168,13 +180,16 @@ require_once "code_open.php";
 
                             echo "<h2>Se alla kommentarer</h2>";
 
-                            $commentQuery  = "SELECT * FROM comments";
-                            mysqli_query($conn, $commentQuery);
-                            if ($stmt->prepare($commentQuery)) {
-                                $stmt->execute();
-                                $stmt->bind_result($comId, $comName, $comEmail, $createTime, $comText, $postId);
+                            $sqlGetComment = "SELECT * FROM comments";
+                            $queryGetComment = mysqli_query($conn, $sqlGetComment);
+                            while($getComment = mysqli_fetch_array($queryGetComment, MYSQLI_ASSOC)) {
+                                $comId = $getComment["com_id"];
+                                $comName = $getComment["name"];
+                                $comEmail = $getComment["email"];
+                                $createTime = $getComment["create_time"];
+                                $comText = $getComment["text"];
+                                $postId = $getComment["fk_post_id"];
 
-                                while ($stmt->fetch()) {
                                     echo    "
                                               <p>
                                                 <form method='post'>
@@ -188,7 +203,6 @@ require_once "code_open.php";
                                     echo    " $comName<br>";
                                     echo    " (" . $createTime . " )<br>";
                                     echo    "$comText<br><hr>";
-                                }
                             }
 
                             break; /* break case showComments */
@@ -201,15 +215,15 @@ require_once "code_open.php";
                             echo "<h2>Se alla användare</h2>";
                             echo "<div class='flex-container'>";
 
-                            $userQuery  = "SELECT * FROM users";
+                            $sqlGetUser  = "SELECT * FROM users";
+                            $queryGetUser = mysqli_query($conn, $sqlGetUser);
+                            while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
+                                $userId = $getUser["user_id"];
+                                $firstName = $getUser["firstname"];
+                                $lastName = $getUser["lastname"];
+                                $email = $getUser["email"];
+                                $role = $getUser["role"];
 
-                            mysqli_query($conn, $userQuery);
-
-                            if ($stmt->prepare($userQuery)) {
-                                $stmt->execute();
-                                $stmt->bind_result($userId, $firstName, $lastName, $email, $password, $profilePic, $role);
-
-                                while(mysqli_stmt_fetch($stmt)) {
                                 echo "<div class='flex-item'>
                                         ID: $userId<br>
                                         Namn: $firstName $lastName<br>
@@ -221,7 +235,6 @@ require_once "code_open.php";
                                                 </button>
                                             </form>
                                     </div>";
-                                }
                             }
                             echo "</div>";
 
@@ -304,15 +317,12 @@ require_once "code_open.php";
 
                             echo "<h2>Redigera kategori</h2>";
 
-                            $catQuery  = "SELECT * FROM categories";
+                            $sqlGetCategory  = "SELECT * FROM categories";
+                            $queryGetCategory = mysqli_query($conn, $sqlGetCategory);
+                            while($getCategory = mysqli_fetch_array($queryGetCategory, MYSQLI_ASSOC)) {
+                                $catId = $getCategory["cat_id"];
+                                $catName = $getCategory["cat_name"];
 
-                            mysqli_query($conn, $catQuery);
-
-                            if ($stmt->prepare($catQuery)) {
-                                $stmt->execute();
-                                $stmt->bind_result($catId, $catName);
-
-                                while ($stmt->fetch()) {
                                   echo "
                                         <p>
                                           <form method='post'>
@@ -323,14 +333,13 @@ require_once "code_open.php";
                                         </p>
                                       ";
                                     echo "$catName <br><hr>";
-                                }
                             }
                             ?>
                             <h3>Lägg till kategori</h3>
 
                             <form method='post'>
                                 <div class='input-group'>
-                                    <input type='text' class='form-control' placeholder='Ge kategorien ett namn...' name='nameCategory' required>
+                                    <input type='text' class='form-control' placeholder='Ge kategorin ett namn...' name='nameCategory' required>
                                     <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
                                 </div> <!-- .input-group -->
                             </form>
