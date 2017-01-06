@@ -100,9 +100,9 @@ require_once "code_open.php";
 
                     $sqlGetComment  = "SELECT * FROM comments WHERE fk_post_id = $postId";
                     $queryGetComment = mysqli_query($conn, $sqlGetComment);
-                    while($getComment = mysqli_fetch_array($querySelectPost, MYSQLI_ASSOC)) {
+                    while($getComment = mysqli_fetch_array($queryGetComment, MYSQLI_ASSOC)) {
                         $comId = $getComment["com_id"];
-                        $comName = $getComment["firstname"];
+                        $comName = $getComment["name"];
                         $comEmail = $getComment["email"];
                         $createTime = $getComment["create_time"];
                         $comText = $getComment["text"];
