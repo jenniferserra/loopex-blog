@@ -17,14 +17,12 @@ require_once "code_open.php";
         $sqlGetUser = "SELECT * FROM users WHERE user_id = '{$userId}' ";
         $queryGetUser = mysqli_query($conn, $sqlGetUser);
 
-          while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
-                $firstName = $getUser["firstname"];
-                $lastName = $getUser["lastname"];
-                $email = $getUser["email"];
-                $role = $getUser["role"];
-          }
-
-
+        while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
+            $firstName = $getUser["firstname"];
+            $lastName = $getUser["lastname"];
+            $email = $getUser["email"];
+            $role = $getUser["role"];
+        }
 
         /* ----------------------------------------------------------------------------
                 SAVE POST
@@ -66,7 +64,7 @@ require_once "code_open.php";
             }
         }
 
-         /* ----------------------------------------------------------------------------
+        /* ----------------------------------------------------------------------------
                 HTML-STRUCTURE FOR POSTFORM
         ---------------------------------------------------------------------------- */
         ?>
@@ -112,59 +110,6 @@ require_once "code_open.php";
                 <!-- Save as draft button -->
                 <input name="draft" class="btn button btn-lg btn-primary btn-block" type="submit" value="Spara utkast">
             </form> <!-- .blogposts -->
-
-            <?php
-            /*___________________________________________________________________________________________
-
-            **Uppladdning av uppgiftsbild**
-
-            * 1: Användaren trycker på upload -> definiera vart bilderna ska laddas upp i $target_folder. Här används mappen som skapas genom registreringen
-            * 2: Ange att namnet på filen ska sparas som ska vara "task-image-task_id.jpg" i $target_folder
-            * 3: Kolla så att storleken på bilden är under 10MB, om så är fallet informeras användaren att välja en mindre bild
-            * 4: Kolla så att filen är en JPG eller JPEG, om så inte är fallet informeras användaren att välja en annan bild
-            * 5: Flytta bilden från dess temporära plats till användarens egna mapp
-
-            ___________________________________________________________________________________________
-            */
-
-            // $imageQuery  = "SELECT * FROM posts";
-                    //
-            //     mysqli_query($conn, $imageQuery);
-                    //
-            //     if ($stmt->prepare($imageQuery)) {
-            //         $stmt->execute();
-            //         $stmt->bind_result($postId, $createTime, $editTime, $title, $image, $text, $isPublished, $userId, $catId);
-                    //
-            //         $postId = $conn->insert_id;
-                    //
-            //         $targetFolder = "postimages/";
-            //         $targetName = $targetFolder . basename("post-image-".$postId.".jpg");
-                    //
-                    //
-            //         if ($_FILES["fileToUpload"]["size"] > 10000000) {
-            //             echo "<div class='message'>" . 'Filen är för stor, den får max vara 10MB.' . "</div>";
-            //             exit;
-            //         }
-                    //
-            //         $type = pathinfo($targetName, PATHINFO_EXTENSION);
-            //         if ($type !== 'jpg') {
-            //             echo "<div class='message'>" . 'Du kan bara ladda upp JPEG-filer' . "</div>";
-            //             exit;
-            //         }
-                    //
-            //         if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetName)) {
-                    //
-            //             $lastInsertId = mysqli_insert_id($conn);
-                    //
-            //             $query ="UPDATE posts SET image = '{$targetName}' WHERE post_id = '{$lastInsertId}'";
-                    //
-            //             if ($stmt->prepare($query)) {
-            //                 $stmt->execute();
-            //                 echo "<div class='message'>" . 'Uppladdningen lyckades' . "</div>";
-            //             }
-            //         }
-            //          }
-            ?>
         </div> <!-- .whitebox col-sm-12 col-xs-12 -->
     </div> <!-- .page-content -->
 <?php

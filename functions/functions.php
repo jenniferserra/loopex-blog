@@ -3,11 +3,23 @@
                 FUNCTIONS
 ---------------------------------------------------------------------------- */
 
-require"dbconnect.php";
+require "dbconnect.php";
 
 /* ----------------------------------------------------------------------------
         FUNCTION FOR REGISTER A NEW USER
 ---------------------------------------------------------------------------- */
+
+/** 
+* The function register a new user from a form with data.
+* @param string $firstname  Variable for firstname.
+* @param string $lastname   Variable for lastname.
+* @param string $email      Variable for email.
+* @param string $password   Variable for password.
+* @param string $role       The predefined variable role as user. 
+* @param string $password_hash  Variable for the hashed password. 
+* @return the registerd user and save the data in the database. 
+**/
+
 function regUser($conn) {
 
     if (isset($_POST["register"])) {
@@ -22,7 +34,7 @@ function regUser($conn) {
             $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
             $email = mysqli_real_escape_string($conn, $_POST["email"]);
             $password = mysqli_real_escape_string($conn, $_POST["password"]);
-            $role = "user"; // The standard role for the user is "user".
+            $role = "user";
             $encrypt_pass = password_hash($password, PASSWORD_DEFAULT);
 
             $regQuery = "INSERT INTO users
@@ -46,7 +58,6 @@ function regUser($conn) {
         }
     }
 }
-
 
 /* ----------------------------------------------------------------------------
         FUNCTION FOR DELETE
@@ -97,7 +108,6 @@ function deleteCommand($conn, $command, $id, $redirect) {
     }
 }
 
-
 /* ----------------------------------------------------------------------------
     DELETE USER
 ---------------------------------------------------------------------------- */
@@ -134,7 +144,6 @@ function deleteUser($postArray, $conn) {
     }
 
 }
-
 
 /* ----------------------------------------------------------------------------
     CREATE URL

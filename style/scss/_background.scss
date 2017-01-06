@@ -12,42 +12,42 @@ body{
 
 /* BACKGROUND FOR LOGIN.PHP */
 body.login{
-  	@include backImage("../../images/layout/bw_1.jpg");
+  	@include backImage("../../images/layout/bg_login.jpg");
 }
 
 /* BODY FOR DASHBOARD.PHP */
 body.dashboard{
-  	@include backImage("../../images/layout/bw_5.jpg");
+  	@include backImage("../../images/layout/bg_post.jpg");
 }
 
 /* BODY FOR COMMENTS.PHP */
 body.comments{
-  	@include backImage("../../images/layout/bw_7.jpg");
+  	@include backImage("../../images/layout/bg_comments.jpg");
 }
 
 /* BODY FOR ARCHIVE.PHP */
 body.archive {
-  	@include backImage("../../images/layout/bw_1.jpg");
+  	@include backImage("../../images/layout/bg_login.jpg");
 }
 
 /* BODY FOR DRAFTS.PHP */
 body.drafts{
- 	@include backImage("../../images/layout/bw_9.jpg");
+ 	@include backImage("../../images/layout/bg_drafts.jpg");
 }
 
 /* BODY FOR STATISTICS.PHP */
 body.statistics{
- 	@include backImage("../../images/layout/banner1.jpg");
+ 	@include backImage("../../images/layout/bg_content.jpg");
 }
 
 /* BODY FOR POST.PHP */
 body.post{
-  	@include backImage("../../images/layout/bw_5.jpg");
+  	@include backImage("../../images/layout/bg_post.jpg");
 }
 
 /* BODY FOR EDITPOST.PHP */
 body.editpost{
-  	@include backImage("../../images/layout/bw_5.jpg");
+  	@include backImage("../../images/layout/bg_post.jpg");
 }
 
 /* BODY FOR SUPERUSER.PHP */

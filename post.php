@@ -68,8 +68,6 @@ require_once "code_open.php";
             $userId = $getPost["user_id"];
             $firstName = $getPost["firstname"];
             $lastName = $getPost["lastname"];
-            /*$email = $getPost["email"];
-            $role = $getPost["role"];*/
 
             $catId = $getPost["cat_id"];
             $catName = $getPost["cat_name"];

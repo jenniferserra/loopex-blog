@@ -1,6 +1,7 @@
 <?php
 require_once "code_open.php";
-/* Den här variabeln används för att få ett löpande tabindex medan while-loopen trycker ut inlägg */
+
+/* $tab is used to get a running tabindex while the loop pushes the posts*/
 $tab = 11;
 ?>
 <body class="index">
@@ -14,7 +15,7 @@ $tab = 11;
 
     <div class="bounce" tabindex="-1">
         <a href="#link-anchor">
-            <img id="link-anchor" alt="arrow to page down" class="bounce" src="images/layout/arrow5.png">
+            <img id="link-anchor" alt="arrow to page down" class="bounce" src="images/layout/arrow.png">
         </a>
     </div> <!-- .bounce -->
 
@@ -156,10 +157,10 @@ $tab = 11;
             }
         }
 
-        /* ----------------------------------------------------------------------------
-                PAGINATION END
-        ---------------------------------------------------------------------------- */
-        ?>
+    /* ----------------------------------------------------------------------------
+            PAGINATION END
+    ---------------------------------------------------------------------------- */
+    ?>
     </div> <!-- col-md-6 pagination -->
     <div class="col-sm-12 col-xs-12">
         <div class="selection-display-box">
