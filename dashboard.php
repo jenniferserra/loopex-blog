@@ -18,7 +18,6 @@ require_once "code_open.php";
         $queryGetUser = mysqli_query($conn, $sqlGetUser);
 
           while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
-                $userId = $getUser["user_id"];
                 $firstName = $getUser["firstname"];
                 $lastName = $getUser["lastname"];
                 $email = $getUser["email"];
@@ -48,12 +47,12 @@ require_once "code_open.php";
 
                 // SAVE AS PUBLISHED
                 if(isset($_POST["publish"])) {
-                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$userId', '$category')";
+                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '{$userId}', '{$category}')";
                 }
 
                 // SAVE AS DRAFT
                 elseif (isset($_POST["draft"])) {
-                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$userId', '$category')";
+                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '{$userId}', '{$category}')";
                 }
 
                 // Feedback and error messages
