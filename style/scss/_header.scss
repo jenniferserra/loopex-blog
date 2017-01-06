@@ -8,7 +8,7 @@ header {
 }
 
 /* Making drop down appear on hover */
-@media (min-width: 979px) {
+@media (min-width: 960px) {
     ul.nav li.dropdown:hover > ul.dropdown-menu {
         display: block;
     }

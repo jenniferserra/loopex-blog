@@ -39,7 +39,7 @@ body.editpost {
     background-image: none;
 }
 
-h1{
+h1 {
     margin-top: 50px;
 }
 
@@ -47,14 +47,53 @@ h1{
             BANNER PICTURE
             - at index.php
 ---------------------------------------------------------------------------- */
-.banner{
-  background-image: url("../../images/layout/bannerMobil.jpg");
-  max-height: 350px;
+.banner {
+    background-image: url("../../images/layout/bannerMobil.jpg");
+    max-height: 350px;
 }
 
 /* Don't display bouncing arrow if viewed on mobile */
 .bounce {
-  display: none;
+    width: 50%;
+    height: 50%;
+    left: 0;
+    margin: auto;
+    position: relative;
+    right: 0;
+    height: 70px;
+    width: 100px;
+    -webkit-animation: bounce 1s infinite; /* Safari */
+    animation: bounce 1s infinite;
+}
+
+// Standard syntax
+@keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 5px;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}
+
+// Safari
+@-webkit-keyframes bounce {
+    0% {
+        bottom: 0px;
+    }
+
+    50% {
+        bottom: 5px;
+    }
+
+    100% {
+        bottom: 0;
+    }
 }
 
 /* ----------------------------------------------------------------------------

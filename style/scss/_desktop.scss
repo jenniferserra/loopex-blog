@@ -2,12 +2,10 @@
             GENERAL STYLE FOR DESKTOP
 ---------------------------------------------------------------------------- */
 
-
 // white background box in all pages
 .whitebox{
     @include whitebox;
 }
-
 
 /* ----------------------------------------------------------------------------
             LOGIN
@@ -103,7 +101,6 @@ input[type="submit"] {
             STATISTICS
 ---------------------------------------------------------------------------- */
 
-
 // the text that shows how many posts/comments users have
 .statistics-count{
     font-family: $primary-font;
@@ -152,7 +149,6 @@ input[type="submit"] {
 .banner{
   background-image: url("../../images/layout/orange2.jpg");
 }
-
 
 /* ----------------------------------------------------------------------------
         ANIMATION ARROW

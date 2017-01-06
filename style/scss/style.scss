@@ -7,16 +7,11 @@
 @import "footer";
 @import "header";
 @import "flexbox";
-@import "ipad"; //IPAD
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 959px) {
 	@import "mobile";
 }
-//IPAD MEDIA QUERIES
-@media screen and (max-width: xpx) {
-	@import "ipad";
-}
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 960px) {
 	@import "desktop";
 }
