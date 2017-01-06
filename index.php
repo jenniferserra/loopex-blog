@@ -1,7 +1,7 @@
 <?php
 require_once "code_open.php";
 /* Den här variabeln används för att få ett löpande tabindex medan while-loopen trycker ut inlägg */
-$tab = 10;
+$tab = 11;
 ?>
 <body class="index">
     <?php
@@ -218,6 +218,7 @@ $tab = 10;
         while($post = mysqli_fetch_array($queryGetPaginatedPosts, MYSQLI_ASSOC)) {
             /* tabindex startar på 11 för att navigationen ska komma först, sedan får varje artikel som följer ett nummer från 11 till -> så många inlägg som visas */
             $tab++;
+            $secondTab = $tab + 1;
 
             $postId = $post["post_id"];
             $createTime = substr($post['create_time'], 0, 16); // Printing out only yyyy-mm-dd hh:mm
@@ -247,14 +248,14 @@ $tab = 10;
             $comments = $comment[0]; ?>
 
             <div class="blogpost_center mobile-margin">
-                <section class="blogpost" tabindex="<?=$tab?>">
-                    <h2 class="blog-text-center"><?php echo $title; ?></h2>
+                <section class="blogpost">
+                    <h2 class="blog-text-center" tabindex="<?=$tab?>"><?php echo $title; ?></h2>
                     <div class="date-container blog-text-center">
                         <p class="date"><?php echo $createTime; ?></p>
                     </div>
                     <br>
                     <article>
-                        <p><?php echo $text; ?></p>
+                        <p tabindex="<?=$secondTab?>"><?php echo $text; ?></p>
                     </article>
                     <br>
                     <br>

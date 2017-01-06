@@ -10,6 +10,8 @@
                 <span class="icon-bar"></span>
             </button>
 
+
+
             <!-- MENU ITEMS -->
             <div class="collapse navbar-collapse navHeaderCollapse">
                 <ul class="nav navbar-nav navbar-left">
@@ -35,11 +37,11 @@
                         <li><a href="dashboard.php" tabindex="1">Skriv inlägg</a></li>
                         <li class="dropdown">
                             <a href="archive.php" class="dropdown-toggle" data-toggle="dropdown" tabindex="2">Blogginlägg</a>
-                            <ul class="dropdown-menu" tabindex="3">
-                                <li><a href="comments.php" tabindex="4">Kommentarer</a></li>
-                                <li><a href="archive.php" tabindex="5">Redigera Arkiv</a></li>
-                                <li><a href="drafts.php" tabindex="6">Utkast</a></li>
-                                <li><a href="statistics.php" tabindex="7">Statistik</a></li>
+                            <ul class="dropdown-menu">
+                                <li><a href="comments.php" tabindex="3">Kommentarer</a></li>
+                                <li><a href="archive.php" tabindex="4">Redigera Arkiv</a></li>
+                                <li><a href="drafts.php" tabindex="5">Utkast</a></li>
+                                <li><a href="statistics.php" tabindex="6">Statistik</a></li>
                             </ul>
                         </li>
                     <?php
@@ -47,11 +49,11 @@
 
                         if($_SESSION['role'] == "admin") {
                             ?>
-                                <li class="menu-btn-lvl-1"><a href="superuser.php" tabindex="8">Kontrollpanelen</a></li>
+                                <li class="menu-btn-lvl-1"><a href="superuser.php" tabindex="7">Kontrollpanelen</a></li>
                             <?php
                             }
                             ?>
-                        <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php" tabindex="9">Logga ut</a></li>
+                        <li class="nav navbar-nav navbar-right menu-btn-lvl-1"><a href="logout.php" tabindex="6">Logga ut</a></li>
                     <?php
                     }
 
@@ -63,7 +65,7 @@
                     ?>
 
                         <li class="dropdown">
-                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown">Kategori</a>
+                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" tabindex="4">Kategori</a>
                             <ul class="dropdown-menu">
                                 <?php
                                 // Looping out category drop-down
@@ -79,7 +81,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown">Arkiv</a>
+                            <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" tabindex="5">Arkiv</a>
                             <ul class="dropdown-menu">
                                 <?php
                                 // Looping out Month-selection drop-down
