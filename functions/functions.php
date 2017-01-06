@@ -59,7 +59,7 @@ function regUser($conn) {
 ---------------------------------------------------------------------------- */
 /** 
 * The function deletes a user and its related data.
-* @param string $coon  Variable for database connection.
+* @param string $conn  Variable for database connection.
 * @param string $command  Variable for what action to execute.
 * @param string $id  Variable telling which id is affected.
 * @param string $redirect  Variable telling where to be redirected.
