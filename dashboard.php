@@ -55,7 +55,7 @@ require_once "code_open.php";
 
                 // Feedback and error messages
                 if ( mysqli_query($conn, $query)) {
-                    $_SESSION['msg'] = "Ditt inlägg är publicerat!";
+                    $_SESSION['msg'] = "Väl skrivet!";
                 } else {
                     $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
                 }
