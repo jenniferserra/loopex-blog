@@ -315,7 +315,15 @@ require_once "code_open.php";
 
                             case 'editCategories':
 
-                            echo "<h2>Redigera kategori</h2>";
+                            ?>
+                            <h2>Lägg till kategori</h2>
+                            <form method='post'>
+                                    <input type='text' class='form-control' placeholder='Namnge en kategori...' name='nameCategory' required>
+                                    <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
+                            </form>
+                            <?php
+
+                            echo "<h3>Redigera kategorier</h3>";
 
                             $sqlGetCategory  = "SELECT * FROM categories";
                             $queryGetCategory = mysqli_query($conn, $sqlGetCategory);
@@ -334,17 +342,7 @@ require_once "code_open.php";
                                       ";
                                     echo "$catName <br><hr>";
                             }
-                            ?>
-                            <h3>Lägg till kategori</h3>
 
-                            <form method='post'>
-                                <div class='input-group'>
-                                    <input type='text' class='form-control' placeholder='Ge kategorin ett namn...' name='nameCategory' required>
-                                    <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
-                                </div> <!-- .input-group -->
-                            </form>
-
-                            <?php
                             break; /* break case editCategories */
 
                             /* ----------------------------------------------------------------------------
