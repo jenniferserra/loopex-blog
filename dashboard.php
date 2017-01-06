@@ -13,14 +13,19 @@ require_once "code_open.php";
         }
 
         $userId = $_SESSION["user_id"];
-        $stmt = $conn->stmt_init();
 
-        if($stmt->prepare("SELECT * FROM users WHERE user_id = '{$userId}' ")) {
-            $stmt->execute();
-            $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
-            $stmt->fetch();
-            mysqli_stmt_close($stmt);
-        }
+        $sqlGetUser = "SELECT * FROM users WHERE user_id = '{$userId}' ";
+        $queryGetUser = mysqli_query($conn, $sqlGetUser);
+
+          while($getUser = mysqli_fetch_array($queryGetUser, MYSQLI_ASSOC)) {
+                $userId = $getUser["user_id"];
+                $firstName = $getUser["firstname"];
+                $lastName = $getUser["lastname"];
+                $email = $getUser["email"];
+                $role = $getUser["role"];
+          }
+
+
 
         /* ----------------------------------------------------------------------------
                 SAVE POST
@@ -57,7 +62,7 @@ require_once "code_open.php";
                 } else {
                     $_SESSION['msg'] = "<span class='error'>Error: </span>Någonting fick fel, testa igen!";
                 }
-            } else { 
+            } else {
                 $_SESSION['msg'] = "<span class='error'>Error: </span>Fyll i alla fält och välj kategori!";
             }
         }
@@ -89,7 +94,7 @@ require_once "code_open.php";
                     <?php
                     /*-------------------------------------------------------------------
                         Looping out category-choices
-                    -------------------------------------------------------------------*/       
+                    -------------------------------------------------------------------*/
                     $sql_selectCategory = "SELECT * FROM categories";
                     $query_giveCategory = mysqli_query($conn, $sql_selectCategory);
                     while ($selectCategory = mysqli_fetch_array($query_giveCategory)) {
