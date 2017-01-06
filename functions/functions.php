@@ -11,13 +11,7 @@ require "dbconnect.php";
 
 /** 
 * The function register a new user from a form with data.
-* @param string $firstname  Variable for firstname.
-* @param string $lastname   Variable for lastname.
-* @param string $email      Variable for email.
-* @param string $password   Variable for password.
-* @param string $role       The predefined variable role as user. 
-* @param string $password_hash  Variable for the hashed password. 
-* @return the registerd user and save the data in the database. 
+* @param string $conn  Variable for database connection
 **/
 
 function regUser($conn) {
@@ -63,6 +57,14 @@ function regUser($conn) {
         FUNCTION FOR DELETE
         - Delete posts, comments, user or categories
 ---------------------------------------------------------------------------- */
+/** 
+* The function deletes a user and its related data.
+* @param string $coon  Variable for database connection.
+* @param string $command  Variable for what action to execute.
+* @param string $id  Variable telling which id is affected.
+* @param string $redirect  Variable telling where to be redirected.
+**/
+
 function deleteCommand($conn, $command, $id, $redirect) {
 
 
@@ -111,6 +113,14 @@ function deleteCommand($conn, $command, $id, $redirect) {
 /* ----------------------------------------------------------------------------
     DELETE USER
 ---------------------------------------------------------------------------- */
+
+/** 
+* The function deletes a user and its related data.
+* @param string $postArray  Variable for getting $_POST value.
+* @param string $conn  Variable for database connection.
+**/
+
+
 function deleteUser($postArray, $conn) {
 
     // Getting chosen user-id
@@ -152,6 +162,12 @@ function deleteUser($postArray, $conn) {
     $_GET-variable it is inserted into.
     The identifying string is followed by the real input value.
 ---------------------------------------------------------------------------- */
+
+/** 
+* The function creates an URL from input data.
+* @param string $input  Variable containing identifying str and variable value.
+**/
+
 function createUrl($input) {
     $urlArray = $_GET;
 
