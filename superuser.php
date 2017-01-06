@@ -25,7 +25,7 @@ require_once "code_open.php";
                     DELETE POSTS
         ---------------------------------------------------------------------------- */
         if (isset($_POST["postDelete"])) {
-            deleteCommand("deletePost",
+            deleteCommand($conn, "deletePost",
             $_POST["postDelete"],
             "superuser.php?admin=showPosts");
         }
@@ -34,7 +34,7 @@ require_once "code_open.php";
                     DELETE COMMENTS
         ---------------------------------------------------------------------------- */
         if (isset($_POST["commentDelete"])) {
-            deleteCommand("deleteComment",
+            deleteCommand($conn, "deleteComment",
             $_POST["commentDelete"],
             "superuser.php?admin=showComments");
         }
@@ -50,7 +50,7 @@ require_once "code_open.php";
                     DELETE CATEGORY
         ---------------------------------------------------------------------------- */
         if (isset($_POST["categoryDelete"])) {
-            deleteCommand("deleteCategory",
+            deleteCommand($conn, "deleteCategory",
             $_POST["categoryDelete"],
             "superuser.php?admin=editCategories");
         }
@@ -151,7 +151,7 @@ require_once "code_open.php";
                                 $catId = $getUser["cat_id"];
                                 $catName = $getUser["cat_name"];
 
-                                    echo    "<h4>$title ";
+                                    echo    "<h4>$title</h4>";
                                     echo   "
                                             <form method='post'>
                                               <button class='btn' type='submit'  name='postDelete' value='$postId'>
@@ -161,10 +161,10 @@ require_once "code_open.php";
                                           ";
 
                                     if ($isPublished == 0) {
-                                        echo    "*";
+                                        echo    "<h4>*</h4>";
                                     }
 
-                                    echo    " </h4>(" . $createTime . ")<br><br>";
+                                    echo    " (" . $createTime . ")<br><br>";
                                     echo    "<p>$text </p>";
                                     echo    "<hr>";
                             }
@@ -249,7 +249,7 @@ require_once "code_open.php";
 
                             case 'regUser':
 
-                            regUser();
+                            regUser($conn);
                             ?>
 
                             <h2>
@@ -315,7 +315,15 @@ require_once "code_open.php";
 
                             case 'editCategories':
 
-                            echo "<h2>Redigera kategori</h2>";
+                            ?>
+                            <h2>Lägg till kategori</h2>
+                            <form method='post'>
+                                    <input type='text' class='form-control' placeholder='Namnge en kategori...' name='nameCategory' required>
+                                    <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
+                            </form>
+                            <?php
+
+                            echo "<h3>Redigera kategorier</h3>";
 
                             $sqlGetCategory  = "SELECT * FROM categories";
                             $queryGetCategory = mysqli_query($conn, $sqlGetCategory);
@@ -334,17 +342,7 @@ require_once "code_open.php";
                                       ";
                                     echo "$catName <br><hr>";
                             }
-                            ?>
-                            <h3>Lägg till kategori</h3>
 
-                            <form method='post'>
-                                <div class='input-group'>
-                                    <input type='text' class='form-control' placeholder='Ge kategorin ett namn...' name='nameCategory' required>
-                                    <input class='btn btn-default' name='addCategory' type='submit' value='Lägg till'>
-                                </div> <!-- .input-group -->
-                            </form>
-
-                            <?php
                             break; /* break case editCategories */
 
                             /* ----------------------------------------------------------------------------
