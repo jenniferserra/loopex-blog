@@ -151,7 +151,7 @@ require_once "code_open.php";
                                 $catId = $getUser["cat_id"];
                                 $catName = $getUser["cat_name"];
 
-                                    echo    "<h4>$title ";
+                                    echo    "<h4>$title</h4>";
                                     echo   "
                                             <form method='post'>
                                               <button class='btn' type='submit'  name='postDelete' value='$postId'>
@@ -161,10 +161,10 @@ require_once "code_open.php";
                                           ";
 
                                     if ($isPublished == 0) {
-                                        echo    "*";
+                                        echo    "<h4>*</h4>";
                                     }
 
-                                    echo    " </h4>(" . $createTime . ")<br><br>";
+                                    echo    " (" . $createTime . ")<br><br>";
                                     echo    "<p>$text </p>";
                                     echo    "<hr>";
                             }
