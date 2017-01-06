@@ -48,12 +48,12 @@ require_once "code_open.php";
 
                 // SAVE AS PUBLISHED
                 if(isset($_POST["publish"])) {
-                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$user_id', '$category')";
+                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', TRUE, '$userId', '$category')";
                 }
 
                 // SAVE AS DRAFT
                 elseif (isset($_POST["draft"])) {
-                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$user_id', '$category')";
+                $query = "INSERT INTO posts VALUES (NULL, '{$timeStamp}', '', '{$title}', '{$text}', FALSE, '$userId', '$category')";
                 }
 
                 // Feedback and error messages
