@@ -28,10 +28,16 @@
                                 IF LOGGED IN
                         ---------------------------------------------------------------------------- */
                         $userid = $_SESSION['user_id'];
-                        $stmt->prepare("SELECT * FROM users WHERE user_id = '{$userid}'");
-                        $stmt->execute();
-                        $stmt->bind_result($user_id, $firstname, $lastname, $email, $encrypt_password, $profilepic, $role);
-                        $stmt->fetch();
+
+                        $sqlAllFromUsers = "SELECT * FROM users WHERE user_id = '{$userid}'";
+                        $queryAllFromUsers = mysqli_query($conn, $sqlAllFromUsers);
+                        while($getUser = mysqli_fetch_array($queryAllFromUsers, MYSQLI_ASSOC)) {
+                            $userId = $getUser["user_id"];
+                            $firstName = $getUser["firstname"];
+                            $lastName = $getUser["lastname"];
+                            $email = $getUser["email"];
+                            $role = $getUser["role"];
+                        }
                         ?>
 
                         <li><a href="dashboard.php" tabindex="1">Skriv inlägg</a></li>
@@ -45,7 +51,6 @@
                             </ul>
                         </li>
                     <?php
-                    $stmt->close();
 
                         if($_SESSION['role'] == "admin") {
                             ?>

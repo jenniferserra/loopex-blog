@@ -20,20 +20,20 @@ require_once "code_open.php";
                 $stmt = $conn->stmt_init();
 
                 // Stripping off harmful characters
-                $c_name = mysqli_real_escape_string($conn, $_POST["comment_name"]);
-                $c_epost = mysqli_real_escape_string($conn, $_POST["comment_epost"]);
-                $c_text = mysqli_real_escape_string($conn, $_POST["comment_text"]);
+                $comName = mysqli_real_escape_string($conn, $_POST["comment_name"]);
+                $comEmail = mysqli_real_escape_string($conn, $_POST["comment_epost"]);
+                $comText = mysqli_real_escape_string($conn, $_POST["comment_text"]);
 
                 $timeStamp = date("Y-m-d H:i:s");
 
-                if (filter_var($c_epost, FILTER_VALIDATE_EMAIL) === false) {
+                if (filter_var($comEmail, FILTER_VALIDATE_EMAIL) === false) {
                     echo "Ogiltig e-post.";
                     exit;
                 }
 
-                $fk_post_id = $_GET['id'];
+                $postId = $_GET['id'];
                 // Upload post into database. Published = TRUE
-                $query = "INSERT INTO comments VALUES ('','{$c_name}', '{$c_epost}', '{$timeStamp}', '{$c_text}', '{$fk_post_id}')";
+                $query = "INSERT INTO comments VALUES ('','{$comName}', '{$comEmail}', '{$timeStamp}', '{$comText}', '{$postId}')";
                 // header("Refresh:0");
                 if ( mysqli_query($conn, $query)) {
                     $_SESSION['msg'] = "Du har kommenterat inlägget!";
@@ -45,25 +45,35 @@ require_once "code_open.php";
             }
         }
 
-        $stmt = $conn->stmt_init();
         /* ----------------------------------------------------------------------------
                 PRINT POST
         ---------------------------------------------------------------------------- */
-        $query  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
-        $query .= "FROM posts ";
-        $query .= "LEFT JOIN users ON posts.user_id = users.user_id ";
-        $query .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
-        $query .= "WHERE post_id = ";
-        $query .= $_GET['id'];
+        $sqlSelectPost  = "SELECT posts.*, users.firstname, users.lastname, categories.cat_name ";
+        $sqlSelectPost .= "FROM posts ";
+        $sqlSelectPost .= "LEFT JOIN users ON posts.user_id = users.user_id ";
+        $sqlSelectPost .= "LEFT JOIN categories ON posts.cat_id = categories.cat_id ";
+        $sqlSelectPost .= "WHERE post_id = ";
+        $sqlSelectPost .= $_GET['id'];
 
-        if ( mysqli_query($conn, $query) ) {
-        }
+        $querySelectPost = mysqli_query($conn, $sqlSelectPost);
+        while($getPost = mysqli_fetch_array($querySelectPost, MYSQLI_ASSOC)) {
+            $postId = $getPost["post_id"];
+            $createTime = $getPost["create_time"];
+            $title = $getPost["title"];
+            $text = $getPost["text"];
+            $isPublished = $getPost["is_published"];
+            $userId = $getPost["user_id"];
+            $catId = $getPost["cat_id"];
 
-        if($stmt->prepare($query)) {
-        	$stmt->execute();
-        	$stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $catName);
+            $userId = $getPost["user_id"];
+            $firstName = $getPost["firstname"];
+            $lastName = $getPost["lastname"];
+            /*$email = $getPost["email"];
+            $role = $getPost["role"];*/
 
-        	while(mysqli_stmt_fetch($stmt)) {
+            $catId = $getPost["cat_id"];
+            $catName = $getPost["cat_name"];
+
         	?>
                 <div class="whitebox col-sm-12 col-xs-12">
                     <div class="blogpost mobile-margin">
@@ -87,33 +97,31 @@ require_once "code_open.php";
                     /* ----------------------------------------------------------------------------
                             PRINT COMMENTS TO POST
                     ---------------------------------------------------------------------------- */
-                    $stmt = $conn->stmt_init();
 
-                    $query  = "SELECT * FROM comments WHERE fk_post_id = $postId";
-
-                    if ( mysqli_query($conn, $query) ) {
-                    }
-                    if($stmt->prepare($query)) {
-                        $stmt->execute();
-            			$stmt->bind_result($com_id, $c_name, $c_epost, $createTime, $c_text, $fk_post_id);
-
-                        while(mysqli_stmt_fetch($stmt)) {
+                    $sqlGetComment  = "SELECT * FROM comments WHERE fk_post_id = $postId";
+                    $queryGetComment = mysqli_query($conn, $sqlGetComment);
+                    while($getComment = mysqli_fetch_array($querySelectPost, MYSQLI_ASSOC)) {
+                        $comId = $getComment["com_id"];
+                        $comName = $getComment["firstname"];
+                        $comEmail = $getComment["email"];
+                        $createTime = $getComment["create_time"];
+                        $comText = $getComment["text"];
+                        $postId = $getComment["fk_post_id"];
                             ?>
                             <div class="blogpost posted-comments mobile-margin">
                                 <hr>
                               		<div>
-                                        <?php echo "<span class='highlighted-text'> $c_name </span>
-                                                    <a href='mailto:$c_epost'>$c_epost</a>
+                                        <?php echo "<span class='highlighted-text'> $comName </span>
+                                                    <a href='mailto:$comEmail'>$comEmail</a>
                                         "; ?>
                                     </div>
                                     <?php echo $createTime; ?>
                                     <div>
-                                        <p><?php echo $c_text; ?></p><br>
+                                        <p><?php echo $comText; ?></p><br>
             						</div>
                                 <br>
                             </div> <!-- .blogpost posted-comments mobile-margin -->
                         <?php
-                        }
                     }
                     /* ----------------------------------------------------------------------------
                             COMMENT A POST
@@ -134,7 +142,6 @@ require_once "code_open.php";
                     </div> <!-- .comments_to_post mobile-margin -->
                 </div> <!-- .whitebox col-sm-12 col-xs-12 -->
             <?php
-            }
         }
         ?>
     </div> <!-- .page-content -->
