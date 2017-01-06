@@ -191,13 +191,11 @@ require_once "code_open.php";
                                 $postId = $getComment["fk_post_id"];
 
                                     echo    "
-                                              <p>
-                                                <form method='post'>
-                                                  <button class='btn' type='submit'  name='commentDelete' value='$comId'>
-                                                    <i class='fa fa-trash'></i>
-                                                  </button>
-                                                </form>
-                                              </p>
+                                            <form method='post'>
+                                              <button class='btn' type='submit'  name='commentDelete' value='$comId'>
+                                                <i class='fa fa-trash'></i>
+                                              </button>
+                                            </form>
                                             ";
 
                                     echo    " $comName<br>";
@@ -332,13 +330,11 @@ require_once "code_open.php";
                                 $catName = $getCategory["cat_name"];
 
                                   echo "
-                                        <p>
                                           <form method='post'>
                                             <button class='btn' type='submit'  name='categoryDelete' value='$catId'>
                                               <i class='fa fa-trash'></i>
                                             </button>
                                           </form>
-                                        </p>
                                       ";
                                     echo "$catName <br><hr>";
                             }

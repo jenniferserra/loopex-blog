@@ -10,7 +10,7 @@ $tab = 11;
     ?>
     <!-- banner image -->
     <div class="banner col-md-12 col-xs-12">
-        <img class="text_orange" src="images/layout/text_orange.png">
+        <img class="text_orange" alt="orange records banner text" src="images/layout/text_orange.png">
     </div>
 
     <div class="bounce" tabindex="-1">
