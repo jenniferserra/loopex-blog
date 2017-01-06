@@ -25,7 +25,7 @@ require_once "code_open.php";
                     DELETE POSTS
         ---------------------------------------------------------------------------- */
         if (isset($_POST["postDelete"])) {
-            deleteCommand("deletePost",
+            deleteCommand($conn, "deletePost",
             $_POST["postDelete"],
             "superuser.php?admin=showPosts");
         }
