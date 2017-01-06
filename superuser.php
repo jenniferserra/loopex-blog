@@ -34,7 +34,7 @@ require_once "code_open.php";
                     DELETE COMMENTS
         ---------------------------------------------------------------------------- */
         if (isset($_POST["commentDelete"])) {
-            deleteCommand("deleteComment",
+            deleteCommand($conn, "deleteComment",
             $_POST["commentDelete"],
             "superuser.php?admin=showComments");
         }
@@ -50,7 +50,7 @@ require_once "code_open.php";
                     DELETE CATEGORY
         ---------------------------------------------------------------------------- */
         if (isset($_POST["categoryDelete"])) {
-            deleteCommand("deleteCategory",
+            deleteCommand($conn, "deleteCategory",
             $_POST["categoryDelete"],
             "superuser.php?admin=editCategories");
         }
@@ -249,7 +249,7 @@ require_once "code_open.php";
 
                             case 'regUser':
 
-                            regUser();
+                            regUser($conn);
                             ?>
 
                             <h2>

@@ -6,7 +6,7 @@
 /* ----------------------------------------------------------------------------
         FUNCTION FOR REGISTER A NEW USER
 ---------------------------------------------------------------------------- */
-function regUser() {
+function regUser($conn) {
 
     if (isset($_POST["register"])) {
 
@@ -15,8 +15,6 @@ function regUser() {
             !empty($_POST["email"]) &&
             !empty($_POST["password"])
             ) {
-
-            $conn = new mysqli("localhost", "root", "", "db_blogg");
 
             $firstname = mysqli_real_escape_string($conn, $_POST["firstname"]);
             $lastname = mysqli_real_escape_string($conn, $_POST["lastname"]);
@@ -47,58 +45,13 @@ function regUser() {
     }
 }
 
-/* ----------------------------------------------------------------------------
-        FUNCTION FOR PRINTING A POST
----------------------------------------------------------------------------- */
-function printPost() {
-
-    $conn = new mysqli("localhost", "root", "", "db_blogg");
-    $stmt = $conn->stmt_init();
-
-    $query =   "SELECT posts.*, users.firstname, users.lastname, users.email, categories.cat_name
-                FROM posts
-				LEFT JOIN users ON posts.user_id = users.user_id
-				LEFT JOIN categories ON posts.cat_id = categories.cat_id
-				ORDER BY create_time DESC";
-
-    if (mysqli_query($conn, $query)) {
-    }
-
-    if ($stmt->prepare($query)) {
-        $stmt->execute();
-        $stmt->bind_result($postId, $createTime, $editTime, $title, $text, $isPublished, $userId, $catId, $firstName, $lastName, $user_email, $catName);
-
-        while (mysqli_stmt_fetch($stmt)) {
-
-            echo "<h1>$title</h1>";
-            echo "<p>$createTime</p>";
-            echo "<p>$text</p>";
-            echo "<p>Kategori: $catName</p>";
-            echo "<a href='author.php?id=$userId'>$firstName $lastName</p></a>";
-            echo "<p><a href='mailto:$user_email'>$user_email</a></p>";
-            echo "<a href='post.php?id=$postId' name='btn'>";
-            echo "(X) Kommentarer </a>";
-
-            if (isset($_SESSION["loggedin"])
-                && $_SESSION["loggedin"] == true
-                && $_SESSION["user_id"] == $userId
-                || $_SESSION["role"] == "admin") {
-
-                echo "<a href='editpost.php?editid=$postId'>";
-                echo "Redigera </a>";
-                echo "<a href='superuser.php?deletePost=$postId'>Radera </a>";
-            }
-        }
-    }
-}
 
 /* ----------------------------------------------------------------------------
         FUNCTION FOR DELETE
         - Delete posts, comments, user or categories
 ---------------------------------------------------------------------------- */
-function deleteCommand($command, $id, $redirect) {
+function deleteCommand($conn, $command, $id, $redirect) {
 
-    global $conn;
 
     $query = "";
 
@@ -118,55 +71,6 @@ function deleteCommand($command, $id, $redirect) {
 
         case "deleteUser":
 
-              /* 1: Tar bara bort användare om användaren har post */
-
-              // $query = "DELETE FROM users, posts USING users
-              // INNER JOIN posts on (users.user_id = posts.user_id)
-              // WHERE users.user_id='{$id}'";
-
-              /* 2: Villkoren för if-satsen borde vara något i stil med
-                    "Om det inte finns någon rad i där user_id = $id " */
-
-              // if(!empty(posts.user_id)) {
-              //
-              //   $query = "DELETE from users
-              //             WHERE user_id='{$id}'";
-              //
-              // }else {
-              //   $query = "DELETE FROM users, posts USING users
-              //   INNER JOIN posts on (users.user_id = posts.user_id)
-              //   WHERE users.user_id='{$id}'";
-              // }
-
-
-              /* 3: Tar bara bort användaren men inte posts. */
-
-              // $query = "DELETE FROM posts WHERE posts.user_id='{$id}'";
-              // $query = "DELETE FROM users WHERE users.user_id='{$id}'";
-
-              /* 4: Länktips */
-
-              /*
-
-              http://stackoverflow.com/questions/4839905/mysql-delete-from-multiple-tables-with-one-query
-
-              http://php.net/manual/en/mysqli.multi-query.php
-
-              http://stackoverflow.com/questions/1233451/delete-from-two-tables-in-one-query
-
-              */
-
-             
-              /* Detta är något som Frida förmodligen skrivit, har inget med mina lösningar att göra */
-
-              // $query =    "SELECT users.*, posts.*, comments.*
-              //             FROM users
-              //             INNER JOIN posts
-              //             ON users.user_id = posts.user_id
-              //             LEFT JOIN comments
-              //             ON posts.post_id = comments.fk_post_id
-              //             WHERE users.user_id = '{$id}'
-              //             ";
 
         break; /* break case deleteUser */
 
@@ -189,6 +93,44 @@ function deleteCommand($command, $id, $redirect) {
     } else {
         header("Location: " . $redirect);
     }
+}
+
+
+/* ----------------------------------------------------------------------------
+    DELETE USER
+---------------------------------------------------------------------------- */
+function deleteUser($postArray, $conn) {
+
+    // Getting chosen user-id
+    $deleteUserId = $postArray['deleteUser'];
+
+    // Checking connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } 
+
+    // Getting the post-id needed for deletion of comments
+    $sqlGetPostId = "SELECT * FROM posts WHERE user_id = $deleteUserId";
+    $queryGetPostId = mysqli_query($conn, $sqlGetPostId);
+    while($getPostId = mysqli_fetch_array($queryGetPostId, MYSQLI_ASSOC)) {
+        $postId = $getPostId['post_id'];
+    }
+
+    // Multi query deleting in three tables
+    $sqlDelete = "DELETE FROM users WHERE user_id = $deleteUserId;";
+    $sqlDelete .= "DELETE FROM posts WHERE user_id = $deleteUserId;";
+    if(isset($postId)) {
+    $sqlDelete .= "DELETE FROM comments WHERE fk_post_id = $postId;";
+    }
+    
+    // Executing query
+    if ($conn->multi_query($sqlDelete) === TRUE) {
+        // Reloading page
+        header('Refresh:0');    
+    } else {
+        echo "Lyckades inte ta bort användaren: " . $conn->error;
+    }
+
 }
 
 
@@ -245,43 +187,4 @@ function createUrl($input) {
     // BUILDING URL FROM $urlArray (WHICH IS AN EDITED $_GET-ARRAY)
     $url = $_SERVER['PHP_SELF'] . '?' . http_build_query($urlArray);
     return $url;
-}
-
-
-
-/* ----------------------------------------------------------------------------
-    DELETE USER
----------------------------------------------------------------------------- */
-function deleteUser($postArray, $conn) {
-
-    // Getting chosen user-id
-    $deleteUserId = $postArray['deleteUser'];
-
-    // Checking connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
-
-    // Getting the post-id needed for deletion of comments
-    $sqlGetPostId = "SELECT * FROM posts WHERE user_id = $deleteUserId";
-    $queryGetPostId = mysqli_query($conn, $sqlGetPostId);
-    while($getPostId = mysqli_fetch_array($queryGetPostId, MYSQLI_ASSOC)) {
-        $postId = $getPostId['post_id'];
-    }
-
-    // Multi query deleting in three tables
-    $sqlDelete = "DELETE FROM users WHERE user_id = $deleteUserId;";
-    $sqlDelete .= "DELETE FROM posts WHERE user_id = $deleteUserId;";
-    if(isset($postId)) {
-    $sqlDelete .= "DELETE FROM comments WHERE fk_post_id = $postId;";
-    }
-    
-    // Executing query
-    if ($conn->multi_query($sqlDelete) === TRUE) {
-        // Reloading page
-        header('Refresh:0');    
-    } else {
-        echo "Lyckades inte ta bort användaren: " . $conn->error;
-    }
-
 }
