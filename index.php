@@ -8,7 +8,9 @@ $tab = 11;
     require_once "header.php";
     ?>
     <!-- banner image -->
-    <div class="banner col-md-12 col-xs-12"></div>
+    <div class="banner col-md-12 col-xs-12">
+        <img class="text_orange" src="images/layout/text_orange.png">
+    </div>
 
     <div class="bounce" tabindex="-1">
         <a href="#link-anchor">

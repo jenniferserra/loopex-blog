@@ -147,7 +147,13 @@ input[type="submit"] {
 
 // Banner image on index.php
 .banner{
-  background-image: url("../../images/layout/orange2.jpg");
+    background-image: url("../../images/layout/banner_mobil.jpg");
+    max-height: 700px;
+}
+.text_orange {
+    width: 50%;
+    margin-top: 40vh;
+    margin: 40vh 20vh;
 }
 
 /* ----------------------------------------------------------------------------
